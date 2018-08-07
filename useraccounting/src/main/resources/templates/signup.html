@@ -27,12 +27,12 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="uname" placeholder="Enter a username" th:field="*{uname}">
-								
+								<input type="text" class="form-control" name="uname" placeholder="Enter a username" th:field="*{uname}">	
 							</div>
 						</div>
+						<div class="alert" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
 					</div>
-					<div class="alert" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
+					
 
 
 					<!--Email-->
@@ -44,8 +44,9 @@
 								<input type="text" class="form-control" name="email" placeholder="Enter your contact e-mail" th:field="*{email}">		
 							</div>
 						</div>
+						<div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 					</div>
-					<div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					
 					
 
 					<!--Password-->
@@ -57,13 +58,14 @@
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 								<input type="password" class="form-control" name="pwd" placeholder="Create a password" th:field="*{pwd}">	
 							</div>
+							<div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
 						</div>
-						<div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+						
 
 						<div class="cols-sm-10">
 							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-							<input type="password" class="form-control" name="pwdConfirm" placeholder="Confirm password" th:field="*{pwdConfirm}">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="pwdConfirm" placeholder="Confirm password" th:field="*{pwdConfirm}">
 							</div>
 						</div>
 						<div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>

@@ -1,165 +1,156 @@
-* { box-sizing: border-box; 
+* {
+	box-sizing: border-box;
 }
 
 .row {
-
+	
 }
 
 .header {
-    text-align: center;
+	text-align: center;
 }
 
 /*Create three unequal columns that floats next to each other */
 .column {
-    float: left;
+	float: left;
 }
 
 /* Left and right column */
 .column.side {
-    width: 30%;
-    text-align: center;
+	width: 30%;
+	text-align: center;
 }
 
 /*Middle column */
 .column.middle {
-    border-radius: 8px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
-    background-color: rgb(230,230,230); 
-    width:40%;
+	border-radius: 8px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	background-color: rgb(230, 230, 230);
+	width: 40%;
 }
 
 /*Clear floats after the columns */
 .row::after {
-    content: "";
-    display: table;
-    clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 /* Style the footer */
 .footer {
-    text-align: center;
+	text-align: center;
 }
 
 .alert {
-    font-family: "Helvetica";
-    font-size: 14px;
-    color: red;
-    width: 100%;
-    padding: 12px 20px;
-    background-color: rgb(230,230,230);
+	font-family: "Helvetica";
+	font-size: 14px;
+	color: red;
+	width: 100%;
+	padding: 12px 20px;
+	background-color: rgb(230, 230, 230);
 }
 
 /* Bootstrap form */
-.form-group{
-    margin-bottom: 15px;
-}
-
-label{
-    margin-bottom: 15px;
-}
-
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
-
-.main-login{
-    background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
-}
-.form-control {
-    height: auto!important;
-padding: 8px 12px !important;
-}
-
-.input-group {
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+.form-group {	
+	margin-top: 15px;
 }
 
 label {
-    font-family: "Helvetica";
-    
+	margin-bottom: 15px;
+}
+
+input, input::-webkit-input-placeholder {
+	font-size: 11px;
+	padding-top: 3px;
+}
+
+.main-login {
+	background-color: #fff;
+	/* shadows and rounded borders */
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-control {
+	height: auto !important;
+	padding: 8px 12px !important;
+}
+
+.input-group {
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+}
+
+label {
+	font-family: "Helvetica";
 }
 
 p {
-    width: 100%;
-    padding: 5px 5px;
-    margin: 5px 0;
+	width: 100%;
+	padding: 5px 5px;
+	margin: 5px 0;
 }
 
 /* Button style */
 button {
-    border: none;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: "Segoe UI";
-    font-size: 16px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;  
+	border: none;
+	color: black;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "Segoe UI";
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
-
 .submitbtn {
-    background-color: white; 
-    color: darkgray; 
-    
+	background-color: white;
+	color: darkgray;
 }
 
 .submitbtn:hover {
-    background-color: rgb(220,255,180); /*light green*/
-    color: rgb(40,40,40);
+	background-color: rgb(220, 255, 180); /*light green*/
+	color: rgb(40, 40, 40);
 }
 
 .cancelbtn {
-    background-color: white; 
-    color: darkgrey; 
-    
+	background-color: white;
+	color: darkgrey;
 }
 
 .cancelbtn:hover {
-    background-color: rgb(255,220,180); /*light red*/
-    color: rgb(40,40,40);
+	background-color: rgb(255, 220, 180); /*light red*/
+	color: rgb(40, 40, 40);
 }
-
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .submitbtn {
-  float: left;
-  width: 50%;
+	float: left;
+	width: 50%;
 }
 
-
 div {
-    border-radius: 5px;    
-    padding: 5px;
+	border-radius: 5px;
+	padding: 5px;
 }
 
 /* Center the avatar image inside this container */
 .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
+	text-align: center;
+	margin: 24px 0 12px 0;
 }
 
 /* Avatar image */
 img.avatar {
-    width: 40%;
-    border-radius: 50%;
+	width: 40%;
+	border-radius: 50%;
 }
-
-
-
-
