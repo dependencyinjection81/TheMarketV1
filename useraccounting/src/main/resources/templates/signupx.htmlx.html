@@ -1,0 +1,55 @@
+<html xmlns:th="http//thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/forms.css}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>SignUp</title>
+</head>
+
+<body>
+
+	<div class="header"><h2></h2>
+	</div>
+
+	<div class="row">
+
+		<div class="column side">			
+		</div>
+
+			<div class="column middle">
+
+				<form action="#" th:action="@{/}" th:object="${ValidationBeanUserSignUp}" method="post">
+
+					<div class="container">
+					    <label for="email"><b>e-mail</b></label>
+					    <input type="text" th:field="*{email}" />
+					    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">e-mail Error </p>
+					</div>
+
+					<div class="container">
+					    <label for="pwd"><b>Password</b></label>
+					    <input type="password" placeholder="Enter password" th:text="${message2}" name="pwd" required>
+					</div>
+
+					<div class="container">
+					    <label for="pwd"><b>Confirm password</b></label>
+					    <input type="password" placeholder="Enter password again" th:text="${message3}" name="pwd_confirm" required>
+					</div>
+
+					<div class="submitcontainer">
+						<button type="submit" class="submitbtn" name="sbm">Submit</button>
+		 			</div>
+
+		 			<div class="container">
+		 				<span class="pwd"><a href="">Why we ask for this Information.</a></span>
+		 			</div>
+
+				</form>
+
+			</div>
+			
+	</div>
+
+	
+</body>
+</html>

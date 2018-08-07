@@ -1,0 +1,43 @@
+<html xmlns:th="http//thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/forms.css}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>SignUp</title>
+</head>
+
+<body>
+
+	<div class="header"><h2></h2></div>
+
+	<div class="row">
+
+		<div class="column side"></div>
+
+			<div class="column middle">
+
+				<form method="post" action="/signup">
+
+					<div class="container">
+				    <label for="email"><b>e-mail</b></label>
+					</div>
+
+					<div class="container">
+				    <label for="pwd"><b>Password</b></label>
+					</div>
+
+					<div class="submitcontainer">
+					<button type="submit" class="submitbtn" name="sbm">Confirm</button>
+		 			</div>
+
+		 			<div class="container">
+					<button type="submit">Cancel</button>
+		 			</div>
+
+				</form>
+
+			</div>
+		</div>
+
+</body>
+</html>

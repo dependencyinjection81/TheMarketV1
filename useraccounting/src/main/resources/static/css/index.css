@@ -1,0 +1,95 @@
+* {
+	box-sizing: border-box;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: lightgrey;
+
+}
+
+.topnav button {
+	margin: 10px 30px 10px 0px;
+}
+
+/* Style the topnav links */
+.topnav a {
+    
+    display: block;
+    color: lightgrey;
+    text-align: center;
+    padding: 20px 30px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+	float: left;
+	width: 33.33%;
+	padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+div {
+			background-color: grey;			
+}
+
+button {
+			background-color: rgb(255,255,255); /* white */
+			color: rgb(0,0,0); /*black*/
+			border: 1px solid rgb(0,0,0); /*black*/
+			width: 120px;
+			height: 40px;
+			border-radius: 8px;   						     						  
+    		-webkit-transition-duration: 0.2s;
+    		transition-duration: 0.2s;
+    		text-align: center;
+    		cursor: pointer;
+    		text-decoration: none;
+    		display: inline-block;
+    		font-family: Verdana;
+    		font-size: 20px;
+    		
+    		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+a:link {
+			text-decoration: none;
+			color: black;
+			font-family: Verdana;
+			font-size: 20px;
+}
+
+a:visited {
+			text-decoration: none;
+			color: black;
+			font-family: Verdana;
+			font-size: 20px;
+}
+
+a:hover {
+			text-decoration: underline;
+			font-family: Verdana;
+			color: white;
+			font-size: 20px;
+}
+
+a:active {
+    		text-decoration: underline;
+}
+
+body {background-color: lightblue}
