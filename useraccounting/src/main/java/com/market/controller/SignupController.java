@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Controller
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
-  
+
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.addViewController("/signupconfirm").setViewName("signupconfirm");
@@ -34,15 +34,17 @@ public class SignupController implements WebMvcConfigurer {
 
   /**
    * Fetch data.
-   * @param userForm userForm bean
-   * @param bindingResult bindingResult
-   * @param action action
+   * 
+   * @param userForm
+   *          userForm bean
+   * @param bindingResult
+   *          bindingResult
+   * @param action
+   *          action
    * @return
    */
   @PostMapping(value = "/action")
-  public String checkFormData(
-      final @Valid UserForm userForm, 
-      final BindingResult bindingResult,
+  public String checkFormData(final @Valid UserForm userForm, final BindingResult bindingResult,
       final @RequestParam(value = "action", required = true) String action) {
 
     if (bindingResult.hasErrors() && action.equals("verify")) {
@@ -53,7 +55,5 @@ public class SignupController implements WebMvcConfigurer {
       return "signupconfirm";
     }
   }
-  
-  
 
 }
