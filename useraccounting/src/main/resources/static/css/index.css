@@ -45,51 +45,52 @@
 
 
 div {
-			background-color: grey;			
+	background-color: grey;			
 }
 
+/* Button style */
 button {
-			background-color: rgb(255,255,255); /* white */
-			color: rgb(0,0,0); /*black*/
-			border: 1px solid rgb(0,0,0); /*black*/
-			width: 120px;
-			height: 40px;
-			border-radius: 8px;   						     						  
-    		-webkit-transition-duration: 0.2s;
-    		transition-duration: 0.2s;
-    		text-align: center;
-    		cursor: pointer;
-    		text-decoration: none;
-    		display: inline-block;
-    		font-family: Verdana;
-    		font-size: 20px;
-    		
-    		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	border: none;
+	color: darkgrey;
+	background-color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "Segoe UI";
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	
+}
+
+.button:hover {
+	background-color: rgb(220, 255, 180); /*light green*/
+	color: rgb(40, 40, 40);
 }
 
 a:link {
-			text-decoration: none;
-			color: black;
-			font-family: Verdana;
-			font-size: 20px;
+	text-decoration: none;
+	color: black;
+	font-family: Verdana;
+	font-size: 20px;
 }
 
 a:visited {
-			text-decoration: none;
-			color: black;
-			font-family: Verdana;
-			font-size: 20px;
+	text-decoration: none;
+	color: black;
+	font-family: Verdana;
+	font-size: 20px;
 }
 
 a:hover {
-			text-decoration: underline;
-			font-family: Verdana;
-			color: white;
-			font-size: 20px;
+	text-decoration: underline;
+	font-family: Verdana;
+	color: white;
+	font-size: 20px;
 }
 
-a:active {
-    		text-decoration: underline;
-}
+a:active {text-decoration: underline;}
 
-body {background-color: lightblue}
+body {background-color: lightblue;}
