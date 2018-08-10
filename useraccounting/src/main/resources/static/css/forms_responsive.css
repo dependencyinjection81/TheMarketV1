@@ -1,80 +1,105 @@
-* {
-  box-sizing:border-box;
+body {font-family: Segoe UI;}
+* {box-sizing: border-box;}
+
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
 }
 
-.left {
-  background-color:#2196F3;
-  padding:20px;
-  float:left;
-  width:30%; 
+.left, .right {
+  width: 25%;
 }
 
-.main {
-  background-color:#f1f1f1;
-  padding:20px;
-  float:left;
-  width:40%; 
+.middle {
+  width: 50%;
 }
 
-.right {
-  background-color:#4CAF50;
-  padding:20px;
-  float:left;
-  width:30%; 
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-/* Use a media query to add a break point at 800px: */
-@media screen and (max-width:800px) {
-  .left, .main, .right {
-    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
-  }
-
-
-.input-group {
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
-  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
 }
+
+
+.icon {
+    
+    color: gray;
+    min-width: 40px;
+    text-align: center;
+    width: 10%;
+    padding: 13px 20px;
+    margin: 5px;
+    
+}
+
+.fa {
+    font-size: 22px !important;
+}
+
+.input-field {
+    width: 90%;
+    padding: 10px;  
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border: 1px solid green;
+}
+
+
 
 /* Button style */
 button {
-  border: none;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-family: "Segoe UI";
-  font-size: 16px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Segoe UI";
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 .submitbtn {
-  background-color: white;
-  color: darkgray;
+    background-color: white;
+    color: darkgray;
 }
 
 .submitbtn:hover {
-  background-color: rgb(220, 255, 180); /*light green*/
-  color: rgb(40, 40, 40);
+    background-color: rgb(220, 255, 180); /*light green*/
+    color: rgb(40, 40, 40);
 }
 
 .cancelbtn {
-  background-color: white;
-  color: darkgrey;
+    background-color: white;
+    color: darkgrey;
 }
 
 .cancelbtn:hover {
-  background-color: rgb(255, 220, 180); /*light red*/
-  color: rgb(40, 40, 40);
+    background-color: rgb(255, 220, 180); /*light red*/
+    color: rgb(40, 40, 40);
 }
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .submitbtn {
-  float: left;
-  width: 50%;
+    float: left;
+    width: 100%;
 }
-
-

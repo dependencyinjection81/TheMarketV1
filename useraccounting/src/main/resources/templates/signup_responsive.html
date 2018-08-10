@@ -1,101 +1,71 @@
 <html xmlns:th="http//thymeleaf.org">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <head>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/forms_responsive.css}" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/forms_responsive.css}" >
+  
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SignUp</title>
 </head>
 
-  <body>
+<body>
 
-    <h2>Media Queries</h2>
-    <p>Resize the browser window.</p>
+  <div class="row">
 
-    <p>Make sure you reach the breakpoint at 800px when resizing this frame.</p>
+    <div class="column left"></div>
 
-    <div class="left">
-      <p>Left Menu</p>
-    </div>
-
-    <div class="main">
+    <div class="column middle">
+      
       <form action="#" th:action="@{/action}" th:object="${userForm}" method="post">
 
-          <!--Username-->
-          <div class="form-group">
-            <label class="cols-sm-2 control-label" for="name" th:text="#{form.signup.username}"></label>
-              
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      
-                  <input class="form-control" type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
+        <!--Username-->
+        <label for="uname" th:text="#{form.signup.username}"></label>
+        <div class="input-container">              
+          <input class="input-field" type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
+          <i class="fa fa-user icon"></i>
+        </div>
+        <div class="alert" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
 
-                </div>
-              
+        <!--Email-->
+        <label for="email" th:text="#{form.signup.email}"></label>
+        <div class="input-container">                               
+          <input class="input-field" type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
+          <i class="fa fa-envelope icon"></i>      
+        </div>
+        <div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+      
+        <!--Password-->
+        <label for="pwd" th:text="#{form.signup.pwd}"></label>
+        <div class="input-container">           
+          <input class="input-field" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
+          <i class="fa fa-key icon"></i>
+        </div>
+        <div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+        
+        <!--Password confirm-->
+        <div class="input-container">    
+          <input class="input-field" type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
+          <i class="fa fa-key icon"></i>
+        </div>
+        <div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
+        
+        <!--Agreement-->
+        <div>
+          <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms &amp; Conditions</a>.</p>
+        </div>
 
-            <div class="alert" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
-          </div>
-          
+        <!--Submit area-->
+        <div>
+          <button type="submit" name="action" value="verify" class="submitbtn">Sign Up</button>
+          <button type="submit" name="action" value="cancel" class="cancelbtn">Cancel</button>            
+        </div>
 
+      </form>
+    
+    <div class="column right"></div>
 
-          <!--Email-->
-          <div class="form-group">
-            <label class="cols-sm-2 control-label" for="email" th:text="#{form.signup.email}"></label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  
-                  <input class="form-control" type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">   
-                
-                </div>
-              </div>
-              <div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-          </div>
-          
-          
-
-          <!--Password-->
-          <div class="form-group">
-            <label class="cols-sm-2 control-label" for="pwd" th:text="#{form.signup.pwd}"></label>
-            
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    
-                    <input class="form-control" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
-
-                </div>
-                <div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
-              </div>
-            
-
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input class="form-control" type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
-                </div>
-              </div>
-              <div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>
-          </div>
-                  
-                  <div>
-                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms &amp; Conditions</a>.</p>
-                  </div>
-
-          <div class="submitcontainer">
-                <button type="submit" name="action" value="cancel" class="cancelbtn">Cancel</button>
-                <button type="submit" name="action" value="verify" class="submitbtn">Sign Up</button>
-              </div>
-
-        </form>
-    </div>
-
-    <div class="right">
-      <p>Right Content</p>
-    </div>
-
-  </body>
+  </div>
+  
+</body>
 </html>
