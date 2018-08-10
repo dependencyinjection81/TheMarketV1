@@ -10,13 +10,13 @@ import javax.validation.constraints.Size;
     message = "Confirmed password differs from password above!")
 public class UserForm {
 
+  @NotBlank(message = "{UserForm.uname.NotBlank.message}")
+  private String uname;
+  
   @NotBlank(message = "This field cannot be empty!")
   @Email(message = "You must enter a valid Email adress!")
   private String email;
   
-  @NotBlank(message = "This field cannot be empty!")
-  private String uname;
-
   @NotBlank(message = "This field cannot be empty!")
   @Size(min = 8, message = "Your Password must have at least 8 characters!")
   private String pwd;
