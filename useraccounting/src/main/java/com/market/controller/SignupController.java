@@ -26,12 +26,12 @@ public class SignupController implements WebMvcConfigurer {
    * 
    * @return signup.html
    */
-  @GetMapping(value = "/signup")
+  @GetMapping(value = "/signup_responsive")
   public String showForm(UserForm userForm) {
-    return "signup";
+    return "signup_responsive";
 
   }
-
+  
   /**
    * Fetch data.
    * 
@@ -48,7 +48,7 @@ public class SignupController implements WebMvcConfigurer {
       final @RequestParam(value = "action", required = true) String action) {
 
     if (bindingResult.hasErrors() && action.equals("verify")) {
-      return "signup";
+      return "signup_responsive";
     } else if (action.equals("cancel")) {
       return "index";
     } else {

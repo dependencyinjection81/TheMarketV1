@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/forms.css}" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>SignUp</title>
 </head>
 
@@ -23,13 +23,16 @@
 
 					<!--Username-->
 					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label" th:text="#{form.signup.username}"/>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">	
-							</div>
-						</div>
+						<label class="cols-sm-2 control-label" for="name" th:text="#{form.signup.username}"></label>
+							
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											
+									<input class="form-control" type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
+
+								</div>
+							
+
 						<div class="alert" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
 					</div>
 					
@@ -37,38 +40,42 @@
 
 					<!--Email-->
 					<div class="form-group">
-						<label for="email" class="cols-sm-2 control-label">Email (Your Email will not be exposed to other users)</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="email" placeholder="Enter your contact e-mail" th:field="*{email}">		
+						<label class="cols-sm-2 control-label" for="email" th:text="#{form.signup.email}"></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									
+									<input class="form-control" type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">		
+								
+								</div>
 							</div>
-						</div>
-						<div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+							<div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 					</div>
 					
 					
 
 					<!--Password-->
 					<div class="form-group">
-						<label for="pwd" class="cols-sm-2 control-label">Password</label>
+						<label class="cols-sm-2 control-label" for="pwd" th:text="#{form.signup.pwd}"></label>
 						
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="pwd" placeholder="Create a password" th:field="*{pwd}">	
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+										
+										<input class="form-control" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
+
+								</div>
+								<div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
 							</div>
-							<div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
-						</div>
 						
 
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="pwdConfirm" placeholder="Confirm password" th:field="*{pwdConfirm}">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+										<input class="form-control" type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
+								</div>
 							</div>
-						</div>
-						<div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>
+							<div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>
 					</div>
 			    				
                 	<div>

@@ -7,21 +7,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @FieldMatch(first = "pwd", second = "pwdConfirm", 
-    message = "Confirmed password differs from password above!")
+    message = "{UserForm.pwdconfirm.FieldMatch.message}")
 public class UserForm {
 
   @NotBlank(message = "{UserForm.uname.NotBlank.message}")
   private String uname;
   
-  @NotBlank(message = "This field cannot be empty!")
-  @Email(message = "You must enter a valid Email adress!")
+  @NotBlank(message = "{UserForm.email.NotBlank.message}")
+  @Email(message = "{UserForm.email.Email.message}")
   private String email;
   
-  @NotBlank(message = "This field cannot be empty!")
-  @Size(min = 8, message = "Your Password must have at least 8 characters!")
+  @NotBlank(message = "{UserForm.pwd.NotBlank.message}")
+  @Size(min = 8, message = "{UserForm.pwd.Size.message}")
   private String pwd;
 
-  @NotBlank(message = "You must confirm your password!")
+  @NotBlank(message = "{UserForm.pwdconfirm.NotBlank.message}")
   private String pwdConfirm;
 
   public String getEmail() {
