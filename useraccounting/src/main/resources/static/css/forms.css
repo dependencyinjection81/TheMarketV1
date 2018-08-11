@@ -1,156 +1,155 @@
-* {
-	box-sizing: border-box;
+
+/* Color Sheme */
+:root {
+
+	--color-red-light: #D8A48D;
+	--color-red-middle: #B96643;
+	--color-red-dark: #713B24;
+
+	--color-green-light: #AAD38F;	
+    --color-green-middle: #7CBA53;
+    --color-green-dark: #4A722F;
+    
+    
+    --color-blue-light: #6B889D;
+    --color-blue-middle: #315B78;
+    --color-blue-dark: #1A3548;
+    
+    --color-grey-light: #BFBFBF;
+    --color-grey-middle: #9C9C9C;
+    --color-grey-dark: #5F5F5F;
+    --color-grey-almostblack: #2F2F2F;
+
 }
 
-.row {
-	
-}
+body {font-family: Segoe UI;}
+* {box-sizing: border-box;}
 
-.header {
-	text-align: center;
-}
 
-/*Create three unequal columns that floats next to each other */
+/* Create three unequal columns that floats next to each other */
 .column {
-	float: left;
+    float: left;
+    padding: 10px;
 }
 
-/* Left and right column */
-.column.side {
-	width: 30%;
-	text-align: center;
+.top {
+    
+    float: none;
+    padding:8px;
+    margin:16px;
+    height: 5%;
 }
 
-/*Middle column */
-.column.middle {
+.bottom {
+    
+    float: none;
+    padding:8px;
+    margin:16px;
+    height: 10%;
+}
+
+.left, .right {
+  width: 35%;
+}
+
+.middle {
+	background-color: var(--color-grey-light);	
+  	width: 30%;
 	border-radius: 8px;
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-	background-color: rgb(230, 230, 230);
-	width: 40%;
+	box-shadow: 0 8px 16px 0 var(--color-grey-almostblack), 0 6px 20px 0 var(--color-grey-light);
+    background-color: var(--color-blue-light);
 }
 
-/*Clear floats after the columns */
-.row::after {
-	content: "";
-	display: table;
-	clear: both;
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-/* Style the footer */
-.footer {
-	text-align: center;
+.input-section {
+    margin-bottom: 16px;
 }
 
-.alert {
-	font-family: "Helvetica";
-	font-size: 14px;
-	color: red;
-	width: 100%;
-	padding: 12px 20px;
-	background-color: rgb(230, 230, 230);
-}
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
 
-/* Bootstrap form */
-.form-group {	
-	margin-top: 15px;
 }
 
 label {
-	margin-bottom: 15px;
+    padding-left: 2px;
 }
 
-input, input::-webkit-input-placeholder {
-	font-size: 11px;
-	padding-top: 3px;
+.icon {
+    
+    color: var(--color-grey-almostblack);
+    min-width: 40px;
+    text-align: center;
+    width: 10%;
+    padding: 13px 20px;
+    margin: 5px;
+    
 }
 
-.main-login {
-	background-color: #fff;
-	/* shadows and rounded borders */
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+.fa {
+    font-size: 22px !important;
 }
 
-.form-control {
-	height: auto !important;
-	padding: 8px 12px !important;
+.input-field {
+    width: 90%;
+    padding: 10px;  
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.input-group {
-	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
-	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
-	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+.input-field:focus {
+    border: 2px solid var(--color-blue-light);
 }
 
-label {
-	font-family: "Helvetica";
-}
 
-p {
-	width: 100%;
-	padding: 5px 5px;
-	margin: 5px 0;
-}
 
 /* Button style */
 button {
-	border: none;
-	color: black;
-	padding: 16px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-family: "Segoe UI";
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
+	color: black; /*Textcolor*/
+    border: none;
+    padding: 16px 32px;
+    margin-bottom: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Segoe UI";
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 .submitbtn {
-	background-color: white;
-	color: darkgray;
+    background-color: white;
+    color: var(--color-grey-dark); /*Textcolor*/
 }
 
 .submitbtn:hover {
-	background-color: rgb(220, 255, 180); /*light green*/
-	color: rgb(40, 40, 40);
+    background-color: var(--color-green-light); 
+    color: var(--color-grey-almostblack);
 }
 
 .cancelbtn {
-	background-color: white;
-	color: darkgrey;
+    background-color: white;
+    color: var(--color-grey-dark);
 }
 
 .cancelbtn:hover {
-	background-color: rgb(255, 220, 180); /*light red*/
-	color: rgb(40, 40, 40);
+    background-color: var(--color-red-light); 
+    color: var(--color-grey-almostblack);
 }
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .submitbtn {
-	float: left;
-	width: 50%;
-}
-
-div {
-	border-radius: 5px;
-	padding: 5px;
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-	text-align: center;
-	margin: 24px 0 12px 0;
-}
-
-/* Avatar image */
-img.avatar {
-	width: 40%;
-	border-radius: 50%;
+    float: left;
+    width: 100%;
 }

@@ -1,3 +1,19 @@
+
+/* Color Sheme */
+:root {
+
+    --color-red-light: #FFB789;
+    --color-green-light: #B7f081;   
+    --color-blue-middle: #4BA7CD;
+    
+    
+    --color-grey-light: rgb(230,230,230);
+    --color-grey-middle: rgb(180,180,180);
+    --color-grey-dark: rgb(100,100,100);
+    --color-grey-almostblack: rgb(30,30,30);
+
+}
+
 body {font-family: Segoe UI;}
 * {box-sizing: border-box;}
 
@@ -6,15 +22,33 @@ body {font-family: Segoe UI;}
 .column {
     float: left;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.top {
+    
+    float: none;
+    padding:8px;
+    margin:16px;
+    height: 5%;
+}
+
+.bottom {
+    
+    float: none;
+    padding:8px;
+    margin:16px;
+    height: 10%;
 }
 
 .left, .right {
-  width: 25%;
+  width: 35%;
 }
 
 .middle {
-  width: 50%;
+    background-color: var(--color-grey-light);  
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 var(--color-grey-light), 0 6px 20px 0 var(--color-grey-almostblack);    
 }
 
 /* Clear floats after the columns */
@@ -24,17 +58,24 @@ body {font-family: Segoe UI;}
     clear: both;
 }
 
+.input-section {
+    margin-bottom: 16px;
+}
+
 .input-container {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     width: 100%;
-    margin-top: 15px;
+
 }
 
+label {
+    padding-left: 2px;
+}
 
 .icon {
     
-    color: gray;
+    color: var(--color-grey-dark);
     min-width: 40px;
     text-align: center;
     width: 10%;
@@ -58,17 +99,31 @@ body {font-family: Segoe UI;}
 }
 
 .input-field:focus {
-    border: 1px solid green;
+    border: 2px solid var(--color-blue-middle);
+}
+
+.alert-box {
+    width: 100%;
+    padding-left: 10px;
+    padding-right:10px;    
+    border: none;
+    background-color: var(--color-red-light);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.alert-text {
+    font-size: small;
 }
 
 
 
 /* Button style */
 button {
+    color: black; /*Textcolor*/
     border: none;
-    border-radius: 4px;
-    color: black;
     padding: 16px 32px;
+    margin-bottom: 8px;
     text-align: center;
     text-decoration: none;
     font-family: "Segoe UI";
@@ -80,22 +135,22 @@ button {
 
 .submitbtn {
     background-color: white;
-    color: darkgray;
+    color: var(--color-grey-dark); /*Textcolor*/
 }
 
 .submitbtn:hover {
-    background-color: rgb(220, 255, 180); /*light green*/
-    color: rgb(40, 40, 40);
+    background-color: var(--color-green-light); 
+    color: var(--color-grey-almostblack);
 }
 
 .cancelbtn {
     background-color: white;
-    color: darkgrey;
+    color: var(--color-grey-dark);
 }
 
 .cancelbtn:hover {
-    background-color: rgb(255, 220, 180); /*light red*/
-    color: rgb(40, 40, 40);
+    background-color: var(--color-red-light); 
+    color: var(--color-grey-almostblack);
 }
 
 /* Float cancel and signup buttons and add an equal width */
