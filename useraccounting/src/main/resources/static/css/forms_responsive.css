@@ -58,48 +58,94 @@ body {font-family: Segoe UI;}
     clear: both;
 }
 
+/************************/
+/******Input Fields******/
+/************************/
+input[type=text] {
+    width: 100%;      
+    margin: 6px 1;
+    border: 2px solid var(--color-grey-dark);
+    border-radius: 4px;
+    margin: 8px 0 0 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input[type=password] {
+    width: 100%;      
+    margin: 6px 1;
+    border: 2px solid var(--color-grey-dark);
+    border-radius: 4px;
+    margin: 8px 0 0 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input[type=text]:focus {
+    border-color: var(--color-blue-middle);
+    box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+input[type=password]:focus {
+    border-color: var(--color-blue-middle);
+    box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+.inputWithIcon input[type=text] {
+    padding-left: 40px;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 10px;  
+    margin: 8px 0;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.inputWithIcon input[type=password] {
+    padding-left: 40px;
+}
+
+
+.inputWithIcon {
+    position: relative;
+}
+
+
+.inputWithIcon i{
+    color:white;
+    background-color: var(--color-grey-dark);
+    position:absolute;
+    left: 0;
+    top: 8px;
+    padding: 9px 8px;
+    border-radius: 4px 0 0 4px;
+    transition: 0.3s;
+}
+
+.inputWithIcon [type=text]:focus + i {
+    background-color: var(--color-blue-middle);
+}
+
+.inputWithIcon [type=password]:focus + i {
+    background-color: var(--color-blue-middle);
+}
+
+
+
 .input-section {
     margin-bottom: 16px;
 }
 
-.input-container {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    width: 100%;
-
-}
-
 label {
     padding-left: 2px;
-}
-
-.icon {
-    
-    color: var(--color-grey-dark);
-    min-width: 40px;
-    text-align: center;
-    width: 10%;
-    padding: 13px 20px;
-    margin: 5px;
-    
-}
-
-.fa {
-    font-size: 22px !important;
-}
-
-.input-field {
-    width: 90%;
-    padding: 10px;  
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid grey;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.input-field:focus {
-    border: 2px solid var(--color-blue-middle);
 }
 
 .alert-box {
@@ -115,8 +161,6 @@ label {
 .alert-text {
     font-size: small;
 }
-
-
 
 /* Button style */
 button {

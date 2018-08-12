@@ -24,40 +24,49 @@
       <form action="#" th:action="@{/action}" th:object="${userForm}" method="post">
 
         <!--Username-->
-        <div class="input-section">
+        <!--<div class="input-section">-->
+        <div class="inputWithIcon">
           <label for="uname" th:text="#{form.signup.username}"></label>
-          <div class="input-container">              
-            <input class="input-field" type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
-            <i class="fa fa-user icon"></i>
+          
+          <div style="width: 30px; height: 30px;">
+            <svg class="icon-user" viewBox="0 0 80 80"><use xlink:href="#icon-user"></use></svg>
           </div>
-          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
+          
+          <input type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
         </div>
+        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
+        <!--</div>-->
 
         <!--Email-->
         <div class="input-section">
+        <div class="inputWithIcon">
           <label for="email" th:text="#{form.signup.email}"></label>
-          <div class="input-container">                               
-            <input class="input-field" type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
-            <i class="fa fa-envelope icon"></i>      
-          </div>
-          <div class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+          <input type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
+          <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
         </div>
+        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        
 
         <!--Password-->
         <div class="input-section">
+        <div class="inputWithIcon">
           <label for="pwd" th:text="#{form.signup.pwd}"></label>
-          <div class="input-container">           
-            <input class="input-field" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
-            <i class="fa fa-key icon"></i>
-          </div>
-          <div class="alert" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
-          
-          <!--Password confirm-->
-          <div class="input-container">    
-            <input class="input-field" type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
-            <i class="fa fa-key icon"></i>
-          </div>
-          <div class="alert" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
+          <input type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
+          <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+        </div>
+            
+        <!--Password confirm-->
+        <div class="input-section">
+        <div class="inputWithIcon">
+          <label for="pwd" th:text="#{form.signup.pwd}"></label>    
+          <input type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
+          <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
         </div>
 
         <!--Agreement-->
@@ -81,6 +90,21 @@
   <footer class="bottom">
     
   </footer>
+
+  
+  <svg id="icon-user" height="100%" viewBox="0 1 16 15" width="100%">
+  <g>
+    <path
+       id="path3793"
+       d="M 8.0332031,10.298331 A 7.9880972,6.176136 0 0 0 0.07421875,15.999503 H 15.994141 A 7.9880972,6.176136 0 0 0 8.0332031,10.298331 Z"
+       style="stroke-width:2.51148605" />
+    <circle
+       r="4.2315922"
+       cy="4.8520198"
+       cx="7.7008338"
+       id="path3795" />
+  </g>
+  </svg>
   
 </body>
 </html>
