@@ -1,5 +1,7 @@
+/*********************************/
+/******COLOR SHEME****************/
+/*********************************/
 
-/* Color Sheme */
 :root {
 
     --color-red-signal: rgb(230,80,60);
@@ -15,6 +17,10 @@
     --color-grey-almostblack: rgb(30,30,30);
 
 }
+
+/*********************************/
+/******BASIC LAYOUT***************/
+/*********************************/
 
 body {font-family: Segoe UI;}
 * {box-sizing: border-box;}
@@ -60,9 +66,14 @@ body {font-family: Segoe UI;}
     clear: both;
 }
 
-/************************/
-/******Input Fields******/
-/************************/
+/*********************************/
+/******STYLE THE INPUTFIELDS******/
+/*********************************/
+
+.input-section {margin-bottom: 16px;}
+
+label {padding-left: 2px;}
+
 input {
     width: 100%;      
     margin: 6px 1;
@@ -85,9 +96,8 @@ input:focus {
 /************************/
 /****STYLE THE ICONS*****/
 /************************/
-.inputWithIcon {
-    position: relative;
-}
+
+.inputWithIcon {position: relative;}
 
 .icon {
     
@@ -100,21 +110,12 @@ input:focus {
     /*Position the icon inside the input field*/
     position:absolute;
     left: 12; /*Advance Icon to the left*/
-    top: 37px;/*Advance Icon downwards*/
-    
-       
+    top: 37px;/*Advance Icon downwards*/       
 }
 
-/*******************/
-
-
-.input-section {
-    margin-bottom: 16px;
-}
-
-label {
-    padding-left: 2px;
-}
+/************************/
+/****STYLE THE ALERT*****/
+/************************/
 
 .alert-box {
     width: 100%;
@@ -133,7 +134,10 @@ label {
 }
 
 
-/* Button style */
+/************************/
+/****STYLE THE BUTTONS***/
+/************************/
+
 button {
     color: black; /*Textcolor*/
     border: none;
