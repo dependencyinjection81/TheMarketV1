@@ -2,6 +2,8 @@
 /* Color Sheme */
 :root {
 
+    --color-red-signal: rgb(230,80,60);
+    
     --color-red-light: #FFB789;
     --color-green-light: #B7f081;   
     --color-blue-middle: #4BA7CD;
@@ -61,7 +63,7 @@ body {font-family: Segoe UI;}
 /************************/
 /******Input Fields******/
 /************************/
-input[type=text] {
+input {
     width: 100%;      
     margin: 6px 1;
     border: 2px solid var(--color-grey-dark);
@@ -71,73 +73,39 @@ input[type=text] {
     padding: 8px;
     box-sizing: border-box;
     transition: 0.3s;
+    padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
-input[type=password] {
-    width: 100%;      
-    margin: 6px 1;
-    border: 2px solid var(--color-grey-dark);
-    border-radius: 4px;
-    margin: 8px 0 0 0;
-    outline: none;
-    padding: 8px;
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-
-input[type=text]:focus {
+input:focus {
     border-color: var(--color-blue-middle);
     box-shadow: 0 0 8px 0 var(--color-blue-middle);
+    padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
-input[type=password]:focus {
-    border-color: var(--color-blue-middle);
-    box-shadow: 0 0 8px 0 var(--color-blue-middle);
-}
-
-.inputWithIcon input[type=text] {
-    padding-left: 40px;
-}
-
-input[type=password] {
-    width: 100%;
-    padding: 10px;  
-    margin: 8px 0;
-    border: 1px solid grey;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-
-.inputWithIcon input[type=password] {
-    padding-left: 40px;
-}
-
-
+/************************/
+/****STYLE THE ICONS*****/
+/************************/
 .inputWithIcon {
     position: relative;
 }
 
-
-.inputWithIcon i{
-    color:white;
-    background-color: var(--color-grey-dark);
-    position:absolute;
-    left: 0;
-    top: 8px;
-    padding: 9px 8px;
-    border-radius: 4px 0 0 4px;
+.icon {
+    
+    width: 20px; height: 20px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
     transition: 0.3s;
+
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 12; /*Advance Icon to the left*/
+    top: 37px;/*Advance Icon downwards*/
+    
+       
 }
 
-.inputWithIcon [type=text]:focus + i {
-    background-color: var(--color-blue-middle);
-}
-
-.inputWithIcon [type=password]:focus + i {
-    background-color: var(--color-blue-middle);
-}
-
+/*******************/
 
 
 .input-section {
@@ -153,14 +121,17 @@ label {
     padding-left: 10px;
     padding-right:10px;    
     border: none;
-    background-color: var(--color-red-light);
+    background-color: transparent;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 .alert-text {
     font-size: small;
+    color: var(--color-red-signal);
+    padding-left: 32px;
 }
+
 
 /* Button style */
 button {

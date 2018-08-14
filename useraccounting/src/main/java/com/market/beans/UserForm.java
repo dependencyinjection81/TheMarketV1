@@ -6,9 +6,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @FieldMatch(first = "pwd", second = "pwdConfirm", 
     message = "{UserForm.pwdconfirm.FieldMatch.message}")
 public class UserForm {
+  
+  
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   @NotBlank(message = "{UserForm.uname.NotBlank.message}")
   private String uname;
@@ -24,35 +30,44 @@ public class UserForm {
   @NotBlank(message = "{UserForm.pwdconfirm.NotBlank.message}")
   private String pwdConfirm;
 
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(final String email) {
-    this.email = email;
-  }
-  
   public String getUname() {
+    log.debug("getUname() returned: " + uname);
     return this.uname;
   }
   
   public void setUname(final String uname) {
+    log.debug(uname + " :has been set");
     this.uname = uname;
   }
+  
+  
+  public String getEmail() {
+    log.debug("getEmail() returned: " + email);
+    return email;
+  }
 
+  public void setEmail(final String email) {
+    log.debug(email + " :has been set");
+    this.email = email;
+  }
+  
   public String getPwd() {
+    log.debug("getPwd() returned: " + pwd);
     return pwd;
   }
 
   public void setPwd(final String pwd) {
+    log.debug(pwd + " :has been set");
     this.pwd = pwd;
   }
 
   public String getPwdConfirm() {
+    log.debug("getPwdConfirm() returned: " + pwdConfirm);
     return pwdConfirm;
   }
 
   public void setPwdConfirm(final String pwdConfirm) {
+    log.debug(pwdConfirm + " :has been set");
     this.pwdConfirm = pwdConfirm;
   }
 

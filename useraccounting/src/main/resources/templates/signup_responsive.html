@@ -2,10 +2,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" th:href="@{/css/forms_responsive.css}" >
-  
-  <!-- Add icon library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
   <title>SignUp</title>
 </head>
 
@@ -24,49 +21,63 @@
       <form action="#" th:action="@{/action}" th:object="${userForm}" method="post">
 
         <!--Username-->
-        <!--<div class="input-section">-->
-        <div class="inputWithIcon">
-          <label for="uname" th:text="#{form.signup.username}"></label>
-          
-          <div style="width: 30px; height: 30px;">
-            <svg class="icon-user" viewBox="0 0 80 80"><use xlink:href="#icon-user"></use></svg>
+        <div class="input-section">
+          <div class="inputWithIcon">
+            <!--LABEL------->
+            <label for="uname" th:text="#{form.signup.username}"></label>                   
+            <!--INPUTFIELD-->
+            <input type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">                    
+            <!--ICON-------->          
+            <svg class="icon"><use xlink:href="#icon-user"></use></svg>
+                  
           </div>
-          
-          <input type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
+          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}">
+          </div>
         </div>
-        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></div>
-        <!--</div>-->
+        
 
         <!--Email-->
         <div class="input-section">
-        <div class="inputWithIcon">
-          <label for="email" th:text="#{form.signup.email}"></label>
-          <input type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
-          <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+          <div class="inputWithIcon">
+            <!--LABEL------->
+            <label for="email" th:text="#{form.signup.email}"></label>
+            <!--INPUTFIELD-->
+            <input type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
+            <!--ICON-------->    
+            <svg class="icon"><use xlink:href="#icon-email"></use></svg>
+           
+          </div>
+          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
 
         
 
         <!--Password-->
         <div class="input-section">
-        <div class="inputWithIcon">
-          <label for="pwd" th:text="#{form.signup.pwd}"></label>
-          <input type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
-          <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+          <div class="inputWithIcon">
+            <!--LABEL------->
+            <label for="pwd" th:text="#{form.signup.pwd}"></label>
+            <!--INPUTFIELD-->
+            <input type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
+            <!--ICON-------->
+            <svg class="icon"><use xlink:href="#icon-lock"></use></svg>
+            
+          </div>
+          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
         </div>
             
         <!--Password confirm-->
         <div class="input-section">
-        <div class="inputWithIcon">
-          <label for="pwd" th:text="#{form.signup.pwd}"></label>    
-          <input type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
-          <i class="fa fa-key fa-lg fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
+          <div class="inputWithIcon">
+            <!--LABEL-->
+            <label class="empty"></label>
+            <!--INPUTFIELD-->    
+            <input type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
+            <!--ICON-------->
+            <svg class="icon"><use xlink:href="#icon-lock"></use></svg>
+            
+          </div>
+          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
         </div>
 
         <!--Agreement-->
@@ -91,20 +102,23 @@
     
   </footer>
 
-  
-  <svg id="icon-user" height="100%" viewBox="0 1 16 15" width="100%">
-  <g>
-    <path
-       id="path3793"
-       d="M 8.0332031,10.298331 A 7.9880972,6.176136 0 0 0 0.07421875,15.999503 H 15.994141 A 7.9880972,6.176136 0 0 0 8.0332031,10.298331 Z"
-       style="stroke-width:2.51148605" />
-    <circle
-       r="4.2315922"
-       cy="4.8520198"
-       cx="7.7008338"
-       id="path3795" />
-  </g>
+  <!--SVG ICONS Recsource-->
+  <svg style="display:none">
+    
+    <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
+      <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
+    <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
+    </symbol>
+
+    <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
+      <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z "/>
+    </symbol>
+
+    <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+      <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+    <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+    </symbol>
   </svg>
-  
+
 </body>
 </html>
