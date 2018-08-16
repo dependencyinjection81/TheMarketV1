@@ -1,6 +1,9 @@
 package com.market.controller;
 
 import com.market.beans.UserForm;
+import com.market.entities.UserEntity;
+import com.market.service.UserService;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Controller
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
+  
+  private UserService userService;
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
@@ -52,6 +57,26 @@ public class SignupController implements WebMvcConfigurer {
     } else if (action.equals("cancel")) {
       return "index";
     } else {
+      
+      
+      /**
+       * Populating the user entity.
+       */
+      UserEntity usr = new UserEntity();
+      usr.setUserName(userForm.getUname());
+      usr.setEmail(userForm.getEmail());
+      usr.setPwd(userForm.getPwd());
+      usr.setEnabled(false);
+      usr.setId();
+      System.out.println(userForm.getUname());
+      System.out.println(userForm.getEmail());
+      System.out.println(userForm.getPwd());
+      
+      /**
+       * Save entity to repository
+       */
+      userService.saveUser(usr);
+      
       return "signupconfirm";
     }
   }
