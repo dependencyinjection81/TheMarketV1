@@ -27,8 +27,8 @@ public class UserEntity {
     return id;
   }
 
-  public void setId() {
-    this.id = generateId();
+  public void setId(final Long id) {
+    this.id = id;
   }
 
   /************************************************************
@@ -120,14 +120,4 @@ public class UserEntity {
   public Set<RequestEntity> getRequests() {
     return requests;
   }
-
-  
-  /************************************************************
-   * ID Generator.*********************************************
-   ************************************************************
-   */
-  private Long generateId() {
-    return 123L;
-  }
-
 }

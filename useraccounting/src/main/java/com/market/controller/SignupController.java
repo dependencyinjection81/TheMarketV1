@@ -69,10 +69,6 @@ public class SignupController implements WebMvcConfigurer {
       usr.setEmail(userForm.getEmail());
       usr.setPwd(userForm.getPwd());
       usr.setEnabled(false);
-      usr.setId();
-      System.out.println(userForm.getUname());
-      System.out.println(userForm.getEmail());
-      System.out.println(userForm.getPwd());
       
       /**
        * Save entity to repository
