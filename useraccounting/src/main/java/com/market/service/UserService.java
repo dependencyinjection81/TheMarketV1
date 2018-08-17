@@ -3,8 +3,9 @@ package com.market.service;
 import com.market.entities.UserEntity;
 import com.market.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class UserService {
 
   private UserRepository userRepository;
