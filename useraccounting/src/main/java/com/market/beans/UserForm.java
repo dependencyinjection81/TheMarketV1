@@ -75,11 +75,4 @@ public class UserForm {
     this.pwdConfirm = pwdConfirm;
   }
 
-  
-  
-  
-  public String toString() {
-    return "User(Email: " + this.email + ", Username: " + this.uname;
-  }
-
 }

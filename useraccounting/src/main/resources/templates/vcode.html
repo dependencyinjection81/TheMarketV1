@@ -1,0 +1,68 @@
+<html xmlns:th="http//thymeleaf.org" lang="de">
+
+<head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/forms.css}" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"> 
+  <title th:text="#{form.vcode.title}"></title>
+</head>
+
+<body>
+
+  <header class="top">
+    
+  </header>
+
+  <div class="row">
+
+    <div class="column left"></div>
+
+    <div class="column middle">
+      
+      <form action="#" th:action="@{/action}" th:object="${vcodeForm}" method="post">
+
+		<!--Description-->
+        <div>
+          <p th:text="#{form.vcode.description}"></p>
+        </div>
+
+        <!--Verification code-->
+        <div class="input-section">
+          <div class="inputWithIcon">
+            <!--LABEL------->
+            <label for="vcode" th:text="#{form.vcode.vcode.label}"></label>                   
+            <!--INPUTFIELD-->
+            <input type="text" name="vcode" th:placeholder="#{form.vcode.vcode.placeholder}" th:field="*{vcode}">                    
+            <!--ICON-------->          
+            <svg class="icon"><use xlink:href="#icon-lock"></use></svg>
+                  
+          </div>
+          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('vcode')}" th:errors="*{vcode}">
+          </div>
+        </div>
+         
+        <!--Submit area-->
+        <div>
+          <button type="submit" name="action" value="verify" class="submitbtn">Verify</button>            
+        </div>
+      </form>
+    </div>
+
+
+    <div class="column right"></div>
+
+  </div>
+
+  <footer class="bottom">
+    
+  </footer>
+
+  <!--SVG ICONS Recsource-->
+  <svg style="display:none">
+    <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+      <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+    <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+    </symbol>
+  </svg>
+
+</body>
+</html>
