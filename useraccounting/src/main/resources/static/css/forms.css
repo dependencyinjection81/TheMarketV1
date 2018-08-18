@@ -32,13 +32,80 @@ body {font-family: Segoe UI;}
     padding: 10px;
 }
 
+/*********************************/
+/******Style topnav***************/
+/*********************************/
 .top {
-    
-    float: none;
+	float: none;
     padding:8px;
     margin:16px;
-    height: 5%;
+    height: 10%;
+       
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-grey-light);
+    
+}
+
+li {
+    float: left;
+}
+
+.dropdown {
+	float: right;
+}
+
+li a, .dropbtn {
+	float: left;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: var(--color-green-light);
+    color: var(--color-grey-almostblack);
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+
+
 
 .bottom {
     
@@ -77,7 +144,7 @@ label {padding-left: 2px;}
 input {
     width: 100%;      
     margin: 6px 1;
-    border: 2px solid var(--color-grey-dark);
+    border: 1px solid var(--color-grey-dark);
     border-radius: 4px;
     margin: 8px 0 0 0;
     outline: none;
@@ -177,3 +244,50 @@ button {
     float: left;
     width: 100%;
 }
+
+/*********************************/
+/******Style dropdown*************/
+/*********************************/
+/*
+.dropbtn {
+    background-color: white;
+    color: var(--color-grey-dark);
+    
+}
+
+.dropdown:hover .dropbtn {
+    background-color: var(--color-green-light);
+    color: var(--color-grey-almostblack);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color-grey-light);
+    min-width: 140px;
+    box-shadow: 0 8px 16px 0 var(--color-grey-light), 0 6px 20px 0 var(--color-grey-almostblack);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: var(--color-blue-middle);
+	color: var(--color-grey-almostblack);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+*/

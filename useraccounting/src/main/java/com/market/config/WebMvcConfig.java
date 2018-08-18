@@ -1,5 +1,7 @@
 package com.market.config;
 
+import java.util.Locale;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,8 +10,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -24,12 +26,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
    * @return SessionLocaleResolver
    */
   @Bean(name = "localeResolver")
-  public LocaleResolver getLocaleResolver() {
-    CookieLocaleResolver resolver = new CookieLocaleResolver();
-    resolver.setCookieDomain("myAppLocaleCookie");
-    // 60 minutes
-    resolver.setCookieMaxAge(60 * 60);
-    return resolver;
+  public LocaleResolver localeResolver() {
+    SessionLocaleResolver r = new SessionLocaleResolver();
+    r.setDefaultLocale(Locale.ENGLISH);
+    return r;
   }
 
   /**

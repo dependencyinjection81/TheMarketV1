@@ -60,10 +60,11 @@ public class SignupController implements WebMvcConfigurer {
    *          action
    * @return
    */
-  @PostMapping(value = "/action")
+  @PostMapping(value = "/signup")
   public String checkFormData(final @Valid UserForm userForm, final BindingResult bindingResult,
       final @RequestParam(value = "action", required = true) String action) {
 
+    userForm.setLanguage("?=en");
     if (bindingResult.hasErrors() && action.equals("signup")) {
       return "signup";
     } else if (action.equals("cancel")) {

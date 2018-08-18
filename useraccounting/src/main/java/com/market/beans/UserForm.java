@@ -9,6 +9,22 @@ import javax.validation.constraints.Size;
 @FieldMatch(first = "pwd", second = "pwdConfirm", 
     message = "{UserForm.pwdconfirm.FieldMatch.message}")
 public class UserForm {
+  
+  /************************************************************
+   * Language.*************************************************
+   ************************************************************
+   */
+  
+  private String language;
+
+  public String getLanguage() {
+    return this.language;
+  }
+
+  public void setLanguage(final String language) {
+    this.language = language;
+  }
+  
 
   /************************************************************
    * Username.*************************************************
