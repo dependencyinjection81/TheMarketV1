@@ -1,5 +1,7 @@
 <html xmlns:th="http//thymeleaf.org" lang="de">
 
+
+
 <head>
   <link rel="stylesheet" type="text/css" th:href="@{/css/forms.css}" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"> 
@@ -9,7 +11,11 @@
 <body>
 
   <header class="top">
-    
+  	  <div>
+         <a th:href="@{/signup?lang=de}">SignUp (Deutsch)</a>
+         &nbsp;|&nbsp;
+         <a th:href="@{/signup?lang=en}">SignUp (English)</a>
+      </div>
   </header>
 
   <div class="row">
@@ -82,8 +88,8 @@
 
         <!--Submit area-->
         <div>
-          <button type="submit" name="action" value="signup" class="submitbtn">Sign Up</button>
-          <button type="submit" name="action" value="cancel" class="cancelbtn">Cancel</button>            
+          <button type="submit" name="action" value="signup" class="submitbtn" th:text="#{form.signup.button.signup}"></button>
+          <button type="submit" name="action" value="cancel" class="cancelbtn" th:text="#{form.signup.button.cancel}"></button>            
         </div>
       </form>
     </div>
