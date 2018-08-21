@@ -1,96 +1,163 @@
+/*********************************/
+/******COLOR SHEME****************/
+/*********************************/
+
+:root {
+
+    --color-red-signal: rgb(230,80,60);
+    
+    --color-white-creme: rgb(250,251,252);
+    
+    --color-red-light: #FFB789;
+    --color-green-light: #B7f081;   
+    --color-blue-middle: #4BA7CD;
+    
+    
+    --color-grey-light: rgb(230,230,230);
+    --color-grey-middle: rgb(180,180,180);
+    --color-grey-dark: rgb(100,100,100);
+    --color-grey-almostblack: rgb(30,30,30);
+
+}
+
+/*********************************/
+/******BASIC LAYOUT***************/
+/*********************************/
 * {
 	box-sizing: border-box;
+	font-family: Segoe UI;
 }
 
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden;
-    background-color: white;
-
+body {
+	margin: 0px;
 }
 
-.topnav button {
-	margin: 10px 30px 10px 0px;
+.row::after {
+	content: "";
+	clear: both;
+	display: block;
 }
 
-/* Style the topnav links */
-.topnav a {
-    
-    display: block;
-    color: lightgrey;
-    text-align: center;
-    padding: 20px 30px;
-    text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-    background-color: white;
-    color: black;
-}
-
-/* Create three equal columns that floats next to each other */
-.column {
-	float: left;
-	width: 33.33%;
-	padding: 15px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+[class*="col-"] {
+	float: left;	
 }
 
 
-div {
-	background-color: grey;			
-}
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
 
-/* Button style */
-button {
-	border: none;
-	color: darkgrey;
-	background-color: white;
-	padding: 16px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-family: "Segoe UI";
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	[class*="col-"] {
+		width: 100%;
+	}
+	
+	[class*="side-spacer"] {
+		display: none;
+	}
+	
+	[class*="input"]  {
+		width: 100%;		
+	}
+	
+	[class*="button"] {
+		width: 100%;
+	}
+	
+	[class*="headerMenuItem"] {
+		padding-top: 0px;	
+	}
+	
 	
 }
 
+
+.header {
+	height: 80px;
+	background-color: var(--color-grey-dark);
+}
+
+
+.headerMenuItem {
+	padding-top: 25px;
+	color: var(--color-white-creme);
+}
+
+
+
+.main {
+	height: 80%;
+	background-color: var(--color-grey-light);
+}
+
+.footer {
+	height: 80px;
+	background-color: var(--color-grey-dark);
+}
+
+.footermenu {
+	color: var(--color-white-creme);
+}
+
+/************************/
+/****STYLE THE BUTTONS***/
+/************************/
+
+button {
+	
+	white-space: nowrap;
+	width: 80%;
+	padding: 4px;
+	background-color: var(--color-white-creme);
+    color: var(--color-grey-dark); /*Textcolor*/
+    border: none;      
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;    
+    cursor: pointer;
+}
+
 .button:hover {
-	background-color: rgb(220, 255, 180); /*light green*/
-	color: rgb(40, 40, 40);
+    background-color: var(--color-green-light); 
+    color: var(--color-grey-almostblack);
 }
 
-a:link {
-	text-decoration: none;
-	color: black;
-	font-family: Verdana;
-	font-size: 20px;
+/************************/
+/****STYLE INPUT FIELDS**/
+/************************/
+
+input {
+	
+    width: 80%;
+    padding: 4px;
+    background-color: var(--color-white-creme);      
+    font-size: 14px;
+    border: 1px solid var(--color-grey-dark);
+    border-radius: 4px; 
+    outline: none;
+    box-sizing: border-box;
+    
+    padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
-a:visited {
-	text-decoration: none;
-	color: black;
-	font-family: Verdana;
-	font-size: 20px;
+input:focus {
+    border-color: var(--color-blue-middle);
+    box-shadow: 0 0 8px 0 var(--color-blue-middle);
+    padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
-a:hover {
-	text-decoration: underline;
-	font-family: Verdana;
-	color: white;
-	font-size: 20px;
+.input-section {
+	
 }
 
-a:active {text-decoration: underline;}
-
-body {background-color: lightblue;}
