@@ -1,15 +1,26 @@
 package com.market.service;
 
+import com.market.beans.UserForm;
 import com.market.entities.UserEntity;
 import com.market.repositories.UserRepository;
+import com.market.security.service.TokenService;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Component
-public class UserService {
+@Service
+public class UserService implements IUserService {
 
   private UserRepository userRepository;
 
+  /**
+   * CTOR
+   * @param userRepository
+   */
   @Autowired
   public UserService(final UserRepository userRepository) {
     this.userRepository = userRepository;
@@ -23,8 +34,37 @@ public class UserService {
     return userRepository.findByConfirmationToken(confirmationToken);
   }
 
-  public void saveUser(final UserEntity user) {
+  
+  
+  
+  private void saveUser(final UserEntity user) {
     userRepository.save(user);
   }
+
+  /**
+   * 
+   */
+  @Transactional
+  @Override
+  public UserEntity registerNewUserAccount(UserForm userForm) {
+    
+    /**
+     * Populating the user entity.
+     */
+    UserEntity usr = new UserEntity();
+    usr.setUserName(userForm.getUname());
+    usr.setEmail(userForm.getEmail());
+    usr.setPwd(userForm.getPwd());
+    // Disable user until they confirm the verification code sent by Email.
+    usr.setEnabled(false);
+    // Generate random 8-character verification code.  
+    usr.setConfirmationToken(new TokenService(8).getToken());    
+    /**
+     * Save entity to repository
+     */
+    saveUser(usr);
+    return usr; /*TODO warum brauch ich das usr objekt nochmal?*/
+}
+
 
 }

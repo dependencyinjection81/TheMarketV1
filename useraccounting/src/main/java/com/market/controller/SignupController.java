@@ -2,8 +2,6 @@ package com.market.controller;
 
 import com.market.beans.UserForm;
 import com.market.beans.VcodeForm;
-import com.market.entities.UserEntity;
-import com.market.security.service.TokenService;
 import com.market.service.UserService;
 
 import javax.validation.Valid;
@@ -61,35 +59,23 @@ public class SignupController implements WebMvcConfigurer {
    * @return
    */
   @PostMapping(value = "/signup")
-  public String checkFormData(final @Valid UserForm userForm, final BindingResult bindingResult,
-      final @RequestParam(value = "action", required = true) String action) {
+  public String checkFormData(
+      final @Valid UserForm userForm, /*user form bean*/
+      final BindingResult bindingResult,/*result to handle or process errors*/
+      final @RequestParam(value = "action", required = true) String action) 
+      /*additional parameter because I have also a cancel button in my form */ {
 
-    userForm.setLanguage("?=en");
+    /**
+     * If the user hit the signupButton and the bindingResult has errors
+     * return the same page. Errors will be parsed and displayed automatically.
+     */
     if (bindingResult.hasErrors() && action.equals("signup")) {
       return "signup";
     } else if (action.equals("cancel")) {
       return "index";
     } else {
-      
-      
-      /**
-       * Populating the user entity.
-       */
-      UserEntity usr = new UserEntity();
-      usr.setUserName(userForm.getUname());
-      usr.setEmail(userForm.getEmail());
-      usr.setPwd(userForm.getPwd());
-      // Disable user until they confirm the verification code sent by Email.
-      usr.setEnabled(false);
-      // Generate random 8-character verification code.  
-      usr.setConfirmationToken(new TokenService(8).getToken());
-      
-      /**
-       * Save entity to repository
-       */
-      userService.saveUser(usr);
-      
-      return "vcode";
+      userService.registerNewUserAccount(userForm); 
+      return "index";
     }
   }
 
