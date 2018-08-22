@@ -18,8 +18,8 @@ public class UserService implements IUserService {
   private UserRepository userRepository;
 
   /**
-   * CTOR
-   * @param userRepository
+   * CTOR ctor.
+   * @param userRepository userRepository.
    */
   @Autowired
   public UserService(final UserRepository userRepository) {
@@ -33,20 +33,14 @@ public class UserService implements IUserService {
   public UserEntity findByConfirmationToken(final String confirmationToken) {
     return userRepository.findByConfirmationToken(confirmationToken);
   }
-
-  
-  
-  
+ 
   private void saveUser(final UserEntity user) {
     userRepository.save(user);
   }
 
-  /**
-   * 
-   */
   @Transactional
   @Override
-  public UserEntity registerNewUserAccount(UserForm userForm) {
+  public UserEntity registerNewUserAccount(final UserForm userForm) {
     
     /**
      * Populating the user entity.
@@ -64,7 +58,7 @@ public class UserService implements IUserService {
      */
     saveUser(usr);
     return usr; /*TODO warum brauch ich das usr objekt nochmal?*/
-}
+  }
 
 
 }

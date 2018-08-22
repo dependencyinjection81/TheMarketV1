@@ -6,7 +6,7 @@
 
     --color-red-signal: rgb(230,80,60);
     
-    --color-white-creme: rgb(250,251,252);
+    --color-white-creme: rgb(255,255,240);
     
     --color-red-light: #FFB789;
     --color-green-light: #B7f081;   
@@ -110,44 +110,132 @@ body {
 	color: var(--color-white-creme);
 }
 
+
+/************************/
+/****STYLE THE DROPDOWN**/
+/************************/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-grey-light);
+    
+}
+
+li {
+    float: left;
+}
+
+.dropdown {
+	float: right;
+}
+
+li a, .dropbtn {
+	float: left;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: var(--color-green-light);
+    color: var(--color-grey-almostblack);
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /************************/
 /****STYLE THE BUTTONS***/
 /************************/
 
+
+
 button {
-	
-	white-space: nowrap;
-	width: 80%;
-	padding: 4px;
-	background-color: var(--color-white-creme);
-    color: var(--color-grey-dark); /*Textcolor*/
-    border: none;      
+    color: black; /*Textcolor*/
+    border: none;
+    padding: 16px 32px;
+    margin-bottom: 8px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;    
+    font-family: "Segoe UI";
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
 }
 
-.button:hover {
+.submitbtn {
+    background-color: var(--color-white-creme);
+    color: var(--color-grey-dark); /*Textcolor*/
+}
+
+.submitbtn:hover {
     background-color: var(--color-green-light); 
     color: var(--color-grey-almostblack);
 }
 
-/************************/
-/****STYLE INPUT FIELDS**/
-/************************/
+.cancelbtn {
+    background-color: white;
+    color: var(--color-grey-dark);
+}
+
+.cancelbtn:hover {
+    background-color: var(--color-red-light); 
+    color: var(--color-grey-almostblack);
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .submitbtn {
+    float: left;
+    width: 100%;
+}
+
+/*********************************/
+/******STYLE THE INPUTFIELDS******/
+/*********************************/
+
+.input-section {margin-bottom: 16px;}
+
+label {padding-left: 2px;}
 
 input {
-	
-    width: 80%;
-    padding: 4px;
-    background-color: var(--color-white-creme);      
-    font-size: 14px;
+    width: 100%;      
+    margin: 6px 1;
     border: 1px solid var(--color-grey-dark);
-    border-radius: 4px; 
+    border-radius: 4px;
+    margin: 8px 0 0 0;
     outline: none;
+    padding: 8px;
     box-sizing: border-box;
-    
+    transition: 0.3s;
     padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
@@ -157,7 +245,43 @@ input:focus {
     padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
-.input-section {
-	
+/************************/
+/****STYLE THE ICONS*****/
+/************************/
+
+.inputWithIcon {position: relative;}
+
+.icon {
+    
+    width: 20px; height: 20px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
+    transition: 0.3s;
+
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 12; /*Advance Icon to the left*/
+    top: 37px;/*Advance Icon downwards*/       
+}
+
+/************************/
+/****STYLE THE ALERT*****/
+/************************/
+
+.alert-box {
+    width: 100%;
+    padding-left: 10px;
+    padding-right:10px;    
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.alert-text {
+    font-size: small;
+    color: var(--color-red-signal);
+    padding-left: 32px;
 }
 
