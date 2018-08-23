@@ -25,7 +25,7 @@
 /*********************************/
 * {
 	box-sizing: border-box;
-	font-family: Segoe UI;
+	font-family: Segoe UI, Verdana;
 }
 
 body {
@@ -57,45 +57,64 @@ body {
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-@media only screen and (max-width: 768px) {
-	/* For mobile phones: */
-	[class*="col-"] {
-		width: 100%;
-	}
-	
-	[class*="side-spacer"] {
-		display: none;
-	}
-	
-	[class*="input"]  {
-		width: 100%;		
-	}
-	
-	[class*="button"] {
-		width: 100%;
-	}
-	
-	[class*="headerMenuItem"] {
-		padding-top: 0px;	
-	}
-	
-	
-}
 
-
+/************************/
+/****STYLE THE TOPNAV****/
+/************************/
 .header {
+	padding: 15px;	
 	height: 80px;
 	background-color: var(--color-grey-dark);
 }
 
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-grey-dark);
+}
 
-.headerMenuItem {
-	padding-top: 25px;
-	color: var(--color-white-creme);
+a {
+	width: 100px;	
+}
+
+ul.topnav li {float: left;}
+ul.topnav li.right {float: right;}
+
+ul.topnav li a {
+    display: block;
+    color: var(--color-white-creme);
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+ul.topnav li a.styled {
+	font-style: italic;
+}
+
+ul.topnav li a.styled:hover {
+	text-decoration: none;
 }
 
 
+ul.topnav li a:hover {
+	color: var(--color-blue-middle);
+	
+	text-decoration: underline;
+}
 
+/************************/
+/****STYLE THE DROPDOWN**/
+/************************/
+
+
+/************************/
+/****STYLE THE MAIN**/
+/************************/
 .main {
 	height: 80%;
 	background-color: var(--color-grey-light);
@@ -112,80 +131,15 @@ body {
 
 
 /************************/
-/****STYLE THE DROPDOWN**/
-/************************/
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--color-grey-light);
-    
-}
-
-li {
-    float: left;
-}
-
-.dropdown {
-	float: right;
-}
-
-li a, .dropbtn {
-	float: left;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: var(--color-green-light);
-    color: var(--color-grey-almostblack);
-}
-
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/************************/
 /****STYLE THE BUTTONS***/
 /************************/
 
-
-
 button {
     color: black; /*Textcolor*/
-    border: none;
-    padding: 16px 32px;
-    margin-bottom: 8px;
+    border: none;    
     text-align: center;
     text-decoration: none;
-    font-family: "Segoe UI";
+    
     font-size: 16px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -193,21 +147,29 @@ button {
 }
 
 .submitbtn {
+	padding: 16px 32px;
+    margin-bottom: 8px;
     background-color: var(--color-white-creme);
     color: var(--color-grey-dark); /*Textcolor*/
 }
 
 .submitbtn:hover {
+	padding: 16px 32px;
+    margin-bottom: 8px;
     background-color: var(--color-green-light); 
     color: var(--color-grey-almostblack);
 }
 
 .cancelbtn {
+	padding: 16px 32px;
+    margin-bottom: 8px;
     background-color: white;
     color: var(--color-grey-dark);
 }
 
 .cancelbtn:hover {
+	padding: 16px 32px;
+    margin-bottom: 8px;
     background-color: var(--color-red-light); 
     color: var(--color-grey-almostblack);
 }
@@ -249,6 +211,28 @@ input:focus {
 /****STYLE THE ICONS*****/
 /************************/
 
+.topnav {position: relative;}
+
+.topnav .icon {
+	width: 50px; height: 50px; /*Size of Icon*/
+    background-color: var(--color-grey-dark);
+    fill: var(--color-white-creme);
+    stroke: var(--color-white-creme);  
+    transition: 0.3s;
+
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 25px; /*Advance Icon to the right*/
+    top: 2px;/*Advance Icon downwards*/       
+}
+
+.topnav .icon:hover {
+	
+	fill: var(--color-blue-middle);
+    stroke: var(--color-blue-middle);
+    
+}
+
 .inputWithIcon {position: relative;}
 
 .icon {
@@ -257,13 +241,13 @@ input:focus {
     background-color: transparent;
     fill: var(--color-grey-middle);
     stroke: var(--color-grey-middle);  
-    transition: 0.3s;
-
     /*Position the icon inside the input field*/
     position:absolute;
     left: 12; /*Advance Icon to the left*/
     top: 37px;/*Advance Icon downwards*/       
 }
+
+
 
 /************************/
 /****STYLE THE ALERT*****/
@@ -284,4 +268,47 @@ input:focus {
     color: var(--color-red-signal);
     padding-left: 32px;
 }
+
+@media screen and (max-width: 768px) {
+	/* For mobile phones: */
+	
+	.topnav .icon {
+	display: none;        
+	}
+	
+	.li-icon {
+	display:none;
+	}
+	
+	a {
+	width: auto;
+	}
+	
+	.header {
+	height: auto;
+	}
+	
+	ul.topnav li.right, 
+    ul.topnav li {
+    float: none;
+    }
+	
+	[class*="col-"] {
+		width: 100%;
+	}
+	
+	[class*="side-spacer"] {
+		display: none;
+	}
+	
+	[class*="input"]  {
+		width: 100%;		
+	}
+	
+	[class*="button"] {
+		width: 100%;
+	}
+	
+}
+
 

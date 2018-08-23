@@ -13,5 +13,4 @@ public interface IUserService {
   
   UserEntity findByConfirmationToken(final String confirmationToken);
   
-
 }

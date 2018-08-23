@@ -13,7 +13,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
   UserEntity findByEmail(final String email);
   
   UserEntity findByConfirmationToken(final String confirmationToken);
-
  
-  
 }
