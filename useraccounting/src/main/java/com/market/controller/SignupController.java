@@ -18,11 +18,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Controller
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
-  
+
   @Autowired
   private UserService userService;
 
-  
   /**
    * show the signup-form and binds the validation bean to it.
    * 
@@ -33,7 +32,7 @@ public class SignupController implements WebMvcConfigurer {
     return "signup";
 
   }
-  
+
   /**
    * show the vcode-form and binds the validation bean to it.
    * 
@@ -44,9 +43,7 @@ public class SignupController implements WebMvcConfigurer {
     return "vcode";
 
   }
-  
-  
-  
+
   /**
    * Fetch data.
    * 
@@ -59,24 +56,43 @@ public class SignupController implements WebMvcConfigurer {
    * @return
    */
   @PostMapping(value = "/signup")
-  public String checkFormData(
-      final @Valid UserForm userForm, /*user form bean*/
-      final BindingResult bindingResult,/*result to handle or process errors*/
-      final @RequestParam(value = "action", required = true) String action) 
-      /*additional parameter because I have also a cancel button in my form */ {
+  public String checkFormData(final @Valid UserForm userForm, /* user form bean */
+      final BindingResult bindingResult, /* result to handle or process errors */
+      final @RequestParam(value = "action", required = true) String action)
+  /* additional parameter because I have also a cancel button in my form */ {
 
     /**
-     * If the user hit the signupButton and the bindingResult has errors
-     * return the same page. Errors will be parsed and displayed automatically.
+     * STEP 1 FORM VALIDATION
+     * 
+     * If the user hit the signupButton and the bindingResult has errors return the same page.
+     * Errors will be parsed and displayed automatically.
      */
     if (bindingResult.hasErrors() && action.equals("signup")) {
       return "signup";
     } else if (action.equals("cancel")) {
       return "index";
     } else {
-      userService.registerNewUserAccount(userForm); 
-      return "index";
-    }
-  }
 
+      /**
+       * STEP 2 TRY TO REGISTER THE NEW USER
+       * the returned value will be 0 or 1 or 3 if there was an error like
+       * 
+       * 1 username is already in use
+       * 2 email is already in use
+       * 0 if everything was ok and the account has been registered
+       *   
+       */
+      if (userService.registerNewUserAccount(userForm) == 1) {
+        bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
+        return "signup";
+      } else if (userService.registerNewUserAccount(userForm) == 2) {
+        bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
+        return "signup"; 
+      }
+      
+    }
+
+    return "index";
+  }
+  
 }

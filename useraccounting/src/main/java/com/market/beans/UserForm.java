@@ -1,7 +1,6 @@
 package com.market.beans;
 
 import com.market.security.constraint.FieldMatch;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

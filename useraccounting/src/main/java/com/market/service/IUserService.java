@@ -5,7 +5,9 @@ import com.market.entities.UserEntity;
 
 public interface IUserService {
   
-  UserEntity registerNewUserAccount(final UserForm userForm);
+  int registerNewUserAccount(final UserForm userForm);
+  
+  UserEntity findByUsername(final String userName);
   
   UserEntity findByEmail(final String email);
   
