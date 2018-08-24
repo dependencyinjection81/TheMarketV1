@@ -111,15 +111,6 @@ ul.topnav li a:hover {
 /****STYLE THE DROPDOWN**/
 /************************/
 
-.dropbtn {
-    /*background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;*/
-}
-
 .dropdown-content {
     display: none;
     position: absolute;    
@@ -133,7 +124,7 @@ ul.topnav li a:hover {
 }
 
 
-.dropdown:hover .dropdown-content {
+.dropdown-lang:hover .dropdown-content {
     display: block;
 }
 
