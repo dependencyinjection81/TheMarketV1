@@ -33,13 +33,13 @@
 			<li class="right"><a class="styled" href="#language">language</a></li>
 			
 			<li class="dropdown">
-    		<!--  <a href="javascript:void(0)" class="dropbtn">language2</a>
-	    		<div class="dropdown-content">
-		      		<a th:href="@{/signup?lang=de}">deutsch</a>
-		      		<a th:href="@{/signup?lang=en}">english</a>
-	    		</div>
-  			</li>-->
-						
+			<button class="dropbtn">language2</button>
+				<div class="dropdown-content">
+			      		<a th:href="@{/signup?lang=de}">deutsch</a>
+			      		<a th:href="@{/signup?lang=en}">english</a>
+		    	</div>
+	    	</li>			
+			
 			<li class="right"><a href="#about">About</a></li>
 
 		</ul>
@@ -76,7 +76,7 @@
 		<div class="col-4">
 			<div class="middle-content">
 			
-			<form action="#" th:action="@{/signup}" th:object="${userForm}" method="post">
+			<form class="form" action="#" th:action="@{/signup}" th:object="${userForm}" method="post">
 
 	        <!--Username-->
 	        <div class="input-section">
@@ -138,8 +138,8 @@
 	          <div class="alert-box"><p class="alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></div>        
 	        </div>
 
-	        <!--Submit area-->
-	        <div>
+	        <!--Submit section-->
+	        <div class="submit-section">
 	          <button type="submit" name="action" value="signup" class="submitbtn" th:text="#{form.signup.button.signup}"></button>
 	          <button type="submit" name="action" value="cancel" class="cancelbtn" th:text="#{form.signup.button.cancel}"></button>            
 	        </div>

@@ -6,7 +6,7 @@
 
     --color-red-signal: rgb(230,80,60);
     
-    --color-white-creme: rgb(255,255,240);
+    --color-white-creme: rgb(255,255,245);
     
     --color-red-light: #FFB789;
     --color-green-light: #B7f081;   
@@ -111,14 +111,42 @@ ul.topnav li a:hover {
 /****STYLE THE DROPDOWN**/
 /************************/
 
+.dropbtn {
+    /*background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;*/
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;    
+    min-width: 160px;    
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;   
+    display: block;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 
 /************************/
 /****STYLE THE MAIN**/
 /************************/
 .main {
-	height: 80%;
+	height: auto;
 	background-color: var(--color-grey-light);
 }
+
 
 .footer {
 	height: 80px;
@@ -135,6 +163,7 @@ ul.topnav li a:hover {
 /************************/
 
 button {
+	background-color: var(--color-white-creme);
     color: black; /*Textcolor*/
     border: none;    
     text-align: center;
@@ -163,7 +192,7 @@ button {
 .cancelbtn {
 	padding: 16px 32px;
     margin-bottom: 8px;
-    background-color: white;
+    background-color: var(--color-white-creme);
     color: var(--color-grey-dark);
 }
 
@@ -186,9 +215,18 @@ button {
 
 .input-section {margin-bottom: 16px;}
 
-label {padding-left: 2px;}
+label {
+	color: var(--color-grey-almostblack);
+	padding-left: 2px;
+
+}
+
+.empty label {
+	display: none;	
+}
 
 input {
+	background-color: var(--color-white-creme);
     width: 100%;      
     margin: 6px 1;
     border: 1px solid var(--color-grey-dark);

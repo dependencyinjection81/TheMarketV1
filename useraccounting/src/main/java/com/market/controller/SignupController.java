@@ -88,6 +88,8 @@ public class SignupController implements WebMvcConfigurer {
       } else if (userService.registerNewUserAccount(userForm) == 2) {
         bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
         return "signup"; 
+      } else if (userService.registerNewUserAccount(userForm) == 0) {
+        return "index"; //TODO weiteres Vorgehen. VCode Verification link etc.
       }
       
     }
