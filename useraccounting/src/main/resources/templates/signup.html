@@ -7,80 +7,64 @@
 <title>Signup</title>
 </head>
 
-<body>
+<body class="body-container">
 
-		
-
-	
-	<!-- Header -->
 	
 	<!-- Space left --> 
-	<div class="col-1 header">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
+	<div class="bs1 side-spacer header"></div>
 
+	<!-- Header -->
+	<div class="b02 header">
 
+		
+			<div class="h01">
+			<div class="icon-container">
+			<a class="anchor-topnav" href='index'> 
+			<svg class="icon-big icon-skin"><use xlink:href="#icon-logo"></use></svg></a>
+			</div>
+			</div>
 
-	<div class="col-10 header">
-
-		<ul class="topnav">
-			<li class="li-icon"><a href='index'> <svg class="icon">
-						<use xlink:href="#icon-logo"></use></svg>&nbsp;
-			</a></li>
-
-			<li><a href='index'>Explore</a></li>
-			<li><a href="#contact">Help</a></li>
+			<div class="h02"><a class="anchor-topnav" href='index'>Explore</a></div>
 			
+			<div class="h03"><a class="anchor-topnav" href="#contact">Help</a></div>
 			
-			
-			<li class="right">
-			
-			<a class="dropdown-lang" href="#language">language</a>
+			<div class="h09"><a class="anchor-topnav" href="#about">About</a></div>
+						
+			<div class="h10 dropdown">			
+			<span class="anchor-topnav styled">language</span>
 			
 					<div class="dropdown-content">
-			      		<a th:href="@{/signup?lang=de}">deutsch</a>
-			      		<a th:href="@{/signup?lang=en}">english</a>
+			      		<a class="styled" th:href="@{/signup?lang=de}">de</a>
+			      		<a class="styled" th:href="@{/signup?lang=en}">en</a>
 			    	</div>
 	    	
-	    	</li>			
+	    	</div>			
 			
-			
-			<li class="right"><a href="#about">About</a></li>
-
-		</ul>
-
 	</div>
-
-
-
-
 
 	<!-- Space right --> 
-	<div class="col-1 header">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
+	<div class="bs03 side-spacer header"></div>
 	
 	
+	
+	<!-- Space left --> 
+	<div class="bs04 side-spacer side-spacer-skin"></div>
 	
 	<!-- Main content -->
-	<div class="row main">
+	<div class="b05 main-content-skin">
 
-		<div class="col-12">
-			<div class="top-spacer">&nbsp;</div>
-		</div>
 		
-		<div class="col-1">
-			<div class="side-spacer">&nbsp;</div>
-		</div>
 		
-		<div class="col-3">
-			<div class="side-spacer">&nbsp;</div>
+		<div class="m03 text-container-skin">
+		<h1>Sign-up</h1>
+			<p>Sign up for an account to start requesting right now!</p>
+			<p>bla bla bla bla bla bla bla bla bla bla bla bla</p>
+			
 		</div>
 		
 		<!-- Signup form -->
-		<div class="col-4">
-			<div class="middle-content">
-			
+		<div class="m04 form-skin">
+					
 			<form class="form" action="#" th:action="@{/signup}" th:object="${userForm}" method="post">
 
 	        <!--Username-->
@@ -151,35 +135,22 @@
       		
       		</form>
 					
-			</div>
+			
 		</div>
-		
-		<div class="col-3">
-			<div class="side-spacer">&nbsp;</div>
-		</div>
-		
-		<div class="col-1">
-			<div class="side-spacer">&nbsp;</div>
-		</div>
-		
-		<div class="col-12">
-			<div class="bottom-spacer">&nbsp;</div>
-		</div>
+				
 		
 	</div>
 
-	<!-- Footer -->
-	<div class="col-1 footer">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
+	<!-- Space right --> 
+	<div class="bs06 side-spacer side-spacer-skin"></div>
+    
+    <div class="bs07 side-spacer footer"></div>
+
+    <div class="b08 footer"></div>
+
+    <div class="bs09 side-spacer footer"></div>
+
 	
-	<div class="col-10 footer">
-		<div class="footermenu">&nbsp;</div>
-	</div>
-	
-	<div class="col-1 footer">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
 	
 	<!--SVG ICONS Recsource-->
   	<svg style="display:none">  
@@ -197,8 +168,7 @@
 	    <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
 	    </symbol>
 	    
-	    <symbol id="icon-logo" viewBox="0 0 16 15" width="100%"
-			height="100%">
+	    <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
 			    <g id="layer1">
 		    <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
 		      <g id="g1413"

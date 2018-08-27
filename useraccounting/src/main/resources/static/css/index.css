@@ -9,14 +9,14 @@
     --color-white-creme: rgb(255,255,245);
     
     --color-red-light: #FFB789;
-    --color-green-light: #B7f081;   
+    --color-green-light: #B7f081;
     --color-blue-middle: #4BA7CD;
     
     
     --color-grey-light: rgb(230,230,230);
     --color-grey-middle: rgb(180,180,180);
     --color-grey-dark: rgb(100,100,100);
-    --color-grey-almostblack: rgb(30,30,30);
+    --color-grey-almostblack: rgb(50,50,50);
 
 }
 
@@ -30,103 +30,164 @@
 
 body {
 	margin: 0px;
+	background-image: url('../images/background03.jpg');
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 80% 80%;  
 }
 
-.row::after {
-	content: "";
-	clear: both;
-	display: block;
+p {
+	font-size: 20px;
 }
 
-[class*="col-"] {
-	float: left;	
+h1 {
+	font-size: 50px;
+}
+
+/******************************************************************/
+/*BODY LAYOUT******************************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.bs01 {grid-area: bs01;}    .b02 {grid-area: b02;}  .bs03 {grid-area: bs03;}
+.bs04 {grid-area: bs04;}    .b05 {grid-area: b05;}	.bs06 {grid-area: bs06;}
+.bs07 {grid-area: bs07;}    .b08 {grid-area: b08;}	.bs09 {grid-area: bs09;}
+
+.body-container {
+  display: grid;
+  
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-rows: minmax(80px, auto) 
+  					  auto 
+  					  80px;
+  
+  grid-template-areas:
+
+/*Actual displayed order*******************************************/ 
+  "bs01 b02 bs03"
+  "bs04 b05 bs06"
+  "bs07 b08 bs09";
+}
+
+/******************************************************************/
+/*HEADER LAYOUT****************************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.h01 {grid-area: h01;}  .h02 {grid-area: h02;}  .h03 {grid-area: h03;}  
+.h04 {grid-area: h04;}  .h05 {grid-area: h05;}  .h06 {grid-area: h06;}
+.h07 {grid-area: h07;}  .h08 {grid-area: h08;}  .h09 {grid-area: h09;}
+.h10 {grid-area: h10;}
+
+.b02 {
+  display: grid;
+  
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: 
+
+/*Actual displayed order*******************************************/
+  "h01 h02 h03 h04 h05 h06 h07 h08 h09 h10";
+}
+
+/************************/
+/****ICONS***************/
+/************************/
+.icon-container {position: relative;}
+
+.icon-big {		
+	width: 60px; height: 60px;     
+    position:absolute;
+    left: -35px; 
+    top: -30px;          
+}
+
+.dropdown {
+    position: relative;
+    
+}
+
+.dropdown-content {
+	
+	width: 80px;
+	padding: 10px;
+	
+	text-align: center;
+    display: none;
+    position: absolute;
+    left: -8px; 
+    top: -22px; 
+    background-color: var(--color-grey-dark);    
+    z-index: 1;
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--color-white-creme);
+    text-decoration: none;   
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: var(--color-blue-middle);
 }
 
 
-/* For desktop: */
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
+/******************************************************************/
+/*MAIN CONTENT LAYOUT**********************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.m01 {grid-area: m01;} .m02 {grid-area: m02;}
+.m03 {grid-area: m03;} .m04 {grid-area: m04;}
+.m05 {grid-area: m05;} .m06 {grid-area: m06;}
+
+.b05 {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 60px 
+  					  auto
+  					  60px;
+  grid-template-areas: 
+/*Actual displayed order*******************************************/
+  "m01 m02"
+  "m03 m04"
+  "m05 m06";
+}
+
 
 
 /************************/
-/****STYLE THE TOPNAV****/
+/****HEADER SKIN*********/
 /************************/
-.header {
-	padding: 15px;	
-	height: 80px;
-	background-color: var(--color-grey-dark);
-}
+.header {background-color: var(--color-grey-dark);}
 
-ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--color-grey-dark);
-}
-
-a {
-	width: 100px;	
-}
-
-ul.topnav li {float: left;}
-ul.topnav li.right {float: right;}
-
-ul.topnav li a {
+.anchor-topnav {
     display: block;
     color: var(--color-white-creme);
     text-align: center;
-    padding: 14px 16px;
     font-size: 16px;
-    
     text-decoration: none;
 }
 
-ul.topnav li a.styled {
-	font-style: italic;
-}
+.anchor-topnav:hover {color: var(--color-blue-middle);}
 
-ul.topnav li a.styled:hover {
-	text-decoration: none;
-}
+.styled {font-style: italic;}
 
-
-ul.topnav li a:hover {
-	color: var(--color-blue-middle);
-	
-	text-decoration: underline;
-}
 
 /************************/
 /****STYLE THE DROPDOWN**/
 /************************/
 
-.dropdown-content {
-    display: none;
-    position: absolute;    
-    min-width: 160px;    
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;   
-    display: block;
-}
 
 
-.dropdown-lang:hover .dropdown-content {
-    display: block;
-}
 
 
 
@@ -134,13 +195,30 @@ ul.topnav li a:hover {
 /****STYLE THE MAIN**/
 /************************/
 .main {
-	height: auto;
+	
+	
+}
+
+.side-spacer-skin {
+	
+}
+
+.main-content-skin {
+	
+}
+
+.form-skin {
+	padding: 20px;
+	border-radius: 5px;
 	background-color: var(--color-grey-light);
 }
 
+.text-container-skin {
+	padding: 20px;
+	color: var(--color-grey-almostblack);
+}
 
 .footer {
-	height: 80px;
 	background-color: var(--color-grey-dark);
 }
 
@@ -240,22 +318,16 @@ input:focus {
 /****STYLE THE ICONS*****/
 /************************/
 
-.topnav {position: relative;}
 
-.topnav .icon {
-	width: 50px; height: 50px; /*Size of Icon*/
-    background-color: var(--color-grey-dark);
+
+.icon-skin {
+	background-color: var(--color-grey-dark);
     fill: var(--color-white-creme);
     stroke: var(--color-white-creme);  
     transition: 0.3s;
-
-    /*Position the icon inside the input field*/
-    position:absolute;
-    left: 25px; /*Advance Icon to the right*/
-    top: 2px;/*Advance Icon downwards*/       
 }
 
-.topnav .icon:hover {
+.icon-skin:hover {
 	
 	fill: var(--color-blue-middle);
     stroke: var(--color-blue-middle);
@@ -298,46 +370,51 @@ input:focus {
     padding-left: 32px;
 }
 
-@media screen and (max-width: 768px) {
-	/* For mobile phones: */
-	
-	.topnav .icon {
-	display: none;        
-	}
-	
-	.li-icon {
-	display:none;
-	}
-	
-	a {
-	width: auto;
-	}
-	
-	.header {
-	height: auto;
-	}
-	
-	ul.topnav li.right, 
-    ul.topnav li {
-    float: none;
-    }
-	
-	[class*="col-"] {
-		width: 100%;
-	}
-	
-	[class*="side-spacer"] {
-		display: none;
-	}
-	
-	[class*="input"]  {
-		width: 100%;		
-	}
-	
-	[class*="button"] {
-		width: 100%;
-	}
-	
+/******************************************************************/
+/*MOBILE LAYOUT****************************************************/
+/******************************************************************/
+@media(max-width: 768px) {
+/*Hide all spacer**************************************************/
+[class*="bs"] {display: none;}  
+.body-container {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;      
+  grid-template-areas:
+/*Reordering body areas********************************************/ 
+  "b02"
+  "b05"
+  "b08";
+}
+
+.b02 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 	minmax(80px, auto) 
+  						minmax(40px, auto)
+  						minmax(40px, auto)
+  						minmax(40px, auto)
+  						minmax(40px, auto);
+  			
+  						
+  grid-template-areas: 
+/*Reordering header areas******************************************/
+  "h01"
+  "h02"
+  "h03"
+  "h09"
+  "h10";
+}
+
+.b05 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 	auto
+  						auto;
+  grid-template-areas:
+/*Reordering main content areas************************************/
+
+  "m03"
+  "m04";
+}
+
 }
 
 
