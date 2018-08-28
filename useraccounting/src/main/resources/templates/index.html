@@ -7,129 +7,113 @@
 <title>Index</title>
 </head>
 
-<body>
+<body class="body-container">
+
 	
+	<!-- Space left --> 
+	<div class="bs1 side-spacer header"></div>
+
 	<!-- Header -->
-	
-	<!-- Space left -->
-	<div class="col-1 header">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
-	
-	<div class="topmenu">
-	
-		<div class="col-1 header">
-			<div class="headerMenuItem">c1</div>
-		</div>
+	<div class="b02 header">
+
 		
-		<div class="col-1 header">
-			<div class="headerMenuItem">c2</div>
-		</div>
-		
-		<div class="col-1 header">
-			<div class="headerMenuItem">c3</div>
-		</div>
-		
-		<div class="col-1 header">
-			<div class="headerMenuItem">c4</div>
-		</div>
-		
-		<div class="col-3 header">
-			<div class="headerMenuItem">
-			<!--Search-->
-        		<div class="input-section">
-          			<div class="inputWithIcon">                   
-            		<!--INPUTFIELD-->
-            		<input class="input" type="text" name="search" placeholder="search" >                    
-                    </div>
-				</div>
+			<div class="h01">
+			<div class="icon-container">
+			<a class="anchor-topnav" href='index'> 
+			<svg class="icon-big icon-skin"><use xlink:href="#icon-logo"></use></svg></a>
 			</div>
-		</div>
-		
-		<div class="col-1 header">
-			<div class="headerMenuItem">c8</div>
-		</div>
-		
-		<div class="col-1 header">
-			<div class="headerMenuItem">
-			<button class="button" onclick="window.location.href='/'" type="submit">Login</button>
 			</div>
-		</div>
-		
-		<div class="col-1 header left">
-			<div class="headerMenuItem">
-			<button class="button" onclick="window.location.href='signup'" type="submit">Signup</button>	  		
-			</div>
-		</div>
-	
+
+			<div class="h02"><a class="anchor-topnav" href='index' th:text="#{header.signup.explore}"></a></div>
+			
+			<div class="h03"><a class="anchor-topnav" href="#contact" th:text="#{header.signup.help}"></a></div>
+			
+			<div class="h04"><a class="anchor-topnav" href="#about" th:text="#{header.signup.about}"></a></div>
+				
+			<div class="h08"><a class="anchor-topnav" href='login'>Login</a></div>
+			
+			<div class="h09"><a class="anchor-topnav" href='signup'>Signup</a></div>	
+						
+			<div class="h10 dropdown">			
+			<span class="anchor-topnav styled" th:text="#{header.signup.language}"></span>
+			
+					<div class="dropdown-content">
+			      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
+			      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
+			    	</div>
+	    	</div>
+	    	
+	    			
+			
 	</div>
+
+	<!-- Space right --> 
+	<div class="bs03 side-spacer header"></div>
 	
 	
-	<!-- Space right -->
-	<div class="col-1 header">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
 	
-	
+	<!-- Space left --> 
+	<div class="bs04 side-spacer side-spacer-skin"></div>
 	
 	<!-- Main content -->
-	<div class="row main">
+	<div class="b05 main-content-skin"></div>
 
-		<div class="col-12">
-			<div class="top-spacer">&nbsp;</div>
-		</div>
-		
-		<div class="col-1">
-			<div class="side-spacer">&nbsp;</div>
-		</div>
+	<!-- Space right --> 
+	<div class="bs06 side-spacer side-spacer-skin"></div>
+    
+    <div class="bs07 side-spacer footer"></div>
 
-		<div class="col-5">
-			<h1>The Market</h1>
-			<p>A place where you can request anything!</p>
-		</div>
+    <div class="b08 footer"></div>
 
-		<div class="col-5 right">
-			<div class="aside">
-				<form action="">
+    <div class="bs09 side-spacer footer"></div>
 
-		        <!--Username-->
-		        <div class="input-section">
-		          <div class="inputWithIcon">
-		            <!--LABEL------->
-		            <label></label>                   
-		            <!--INPUTFIELD-->
-		            <input type="text" name="uname">                    
-		            <!--ICON-------->                  
-		          </div>
-		          
-		          </div>
-		               
-		      </form>
-			</div>
-		</div>
-		
-		<div class="col-1">
-			<div class="side-spacer">&nbsp;</div>
-		</div>
-		
-		<div class="col-12">
-			<div class="bottom-spacer">&nbsp;</div>
-		</div>
-		
-	</div>
-
-	<!-- Footer -->
-	<div class="col-1 footer">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
 	
-	<div class="col-10 footer">
-		<div class="footermenu">&nbsp;</div>
-	</div>
 	
-	<div class="col-1 footer">
-		<div class="side-spacer">&nbsp;</div>
-	</div>
+	<!--SVG ICONS Recsource-->
+  	<svg style="display:none">  
+	    <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
+	      <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
+	    <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
+	    </symbol>
+	
+	    <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
+	      <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z "/>
+	    </symbol>
+	
+	    <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+	      <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+	    <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+	    </symbol>
+	    
+	    <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+			    <g id="layer1">
+		    <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+		      <g id="g1413"
+			transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+		        <circle r="2.2097087" cy="11.094446" cx="6.9384851"
+			id="path1376" />
+		        <circle r="1.403165" cy="8.0119019" cx="13.534466"
+			id="path1382" />
+		        <g id="g1403">
+		          <circle id="path1378" cx="3.1267376" cy="2.9958642"
+			r="1.2263883" />
+		          <circle id="path1380" cx="8.8056889" cy="6.2220387"
+			r="0.9612233" />
+		          <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z"
+			id="path1386" />
+		          <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z"
+			id="path1388" />
+		          <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z"
+			id="path1390" />
+		        </g>
+		      </g>
+		      <path
+			
+			d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z"
+			id="path1415" />
+		    </g>
+	    </symbol>
+  	</svg>
 
 	
 </body>
