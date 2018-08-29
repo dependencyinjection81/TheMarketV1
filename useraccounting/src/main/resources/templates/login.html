@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
-<title th:text="#{title.signup}"></title>
+<title th:text="#{title.login}"></title>
 </head>
 
 <body class="body-container">
@@ -60,24 +60,9 @@
 
 		<!--SIGNUP-FORM-->
 		<form class="m04 l-container skin-container" action="#"
-			th:action="@{/signup}" th:object="${userForm}" method="post">
+			th:action="@{/login}" th:object="${loginForm}" method="post">
 
-									<!-- USERNAME -->
-			<!--Label-------------------------------------------------------------->
-			<label class="l-label01" for="uname"
-				th:text="#{form.signup.username.label}"></label>
-			<!--Inputfield--------------------------------------------------------->
-			<div class="l-input01 inputWithIcon">
-				<input type="text" name="uname"
-					th:placeholder="#{form.signup.username.placeholder}"
-					th:field="*{uname}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-user"></use></svg>
-			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error01 alert-text" th:if="${#fields.hasErrors('uname')}"
-				th:errors="*{uname}"></p>
+
 
 									<!-- EMAIL -->
 			<!--Label-------------------------------------------------------------->
@@ -113,23 +98,9 @@
 				th:errors="*{pwd}"></p>
 
 
-								<!--PASSWORD CONFIRM-->
-			<!--Inputfield--------------------------------------------------------->
-			<div class="l-input04 inputWithIcon">
-				<input type="password" name="pwdConfirm"
-					th:placeholder="#{form.signup.pwdconfirm.placeholder}"
-					th:field="*{pwdConfirm}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-lock"></use></svg>
-			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error04 alert-text"
-				th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></p>
-
 			<!--Submit section-->
-			<button type="submit" name="action" value="signup"
-				class="l-button01 submitbtn" th:text="#{form.button.signup}"></button>
+			<button type="submit" name="action" value="login"
+				class="l-button01 submitbtn" th:text="#{form.button.login}"></button>
 			<button type="submit" name="action" value="cancel"
 				class="l-button02 cancelbtn" th:text="#{form.button.cancel}"></button>
 		</form>

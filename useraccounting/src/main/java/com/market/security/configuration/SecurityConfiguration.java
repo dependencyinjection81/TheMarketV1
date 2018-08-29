@@ -25,6 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         .antMatchers("/signup").anonymous()
         .antMatchers("/index").anonymous()
+        .antMatchers("/login").anonymous()
         .antMatchers("/welcomeMember").fullyAuthenticated()
         .and().httpBasic();
     httpSecurity.csrf().disable();
