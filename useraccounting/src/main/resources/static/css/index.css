@@ -21,10 +21,11 @@
 }
 
 /*********************************/
-/******BASIC LAYOUT***************/
+/******BASE***********************/
 /*********************************/
 * {
 	box-sizing: border-box;
+	margin: 0;
 	font-family: Segoe UI, Verdana;
 }
 
@@ -32,16 +33,28 @@ body {
 	margin: 0px;
 	background-image: url('../images/background03.jpg');
 	background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: 80% 80%;  
 }
 
-p {
-	font-size: 20px;
+p {font-size: 20px;}
+
+h1 {font-size: 50px;}
+
+a {
+	/*SKIN*/
+	color: var(--color-white-creme);
+	
+	/*Layout*/
+	display: block;
+    text-align: center;
+    
+    /*Content*/
+    font-size: 16px;
+    text-decoration: none;
 }
 
-h1 {
-	font-size: 50px;
+a:hover {
+	color: var(--color-blue-middle);
 }
 
 /******************************************************************/
@@ -57,7 +70,7 @@ h1 {
   display: grid;
   
   grid-template-columns: 1fr 6fr 1fr;
-  grid-template-rows: minmax(80px, auto) 
+  grid-template-rows: minmax(80px, auto)
   					  auto 
   					  80px;
   
@@ -68,6 +81,22 @@ h1 {
   "bs04 b05 bs06"
   "bs07 b08 bs09";
 }
+
+/************************/
+/*MODULES inside BODY****/
+/************************/
+
+/**************Header********************/
+/*THEME*/
+.header {background-color: var(--color-grey-dark);}
+
+/**************Spacer********************/
+
+/**************Main**********************/
+
+
+/**************Footer********************/
+.footer {background-color: var(--color-grey-dark);}
 
 /******************************************************************/
 /*HEADER LAYOUT****************************************************/
@@ -80,8 +109,7 @@ h1 {
 .h10 {grid-area: h10;}
 
 .b02 {
-  display: grid;
-  
+  display: grid;  
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   justify-items: center;
@@ -93,10 +121,14 @@ h1 {
 }
 
 /************************/
-/****ICONS***************/
+/*MODULES inside HEADER**/
 /************************/
+
+/**************Icon Logo***********************/
+/*LAYOUT*/
 .icon-container {position: relative;}
 
+/*LAYOUT*/
 .icon-big {		
 	width: 60px; height: 60px;     
     position:absolute;
@@ -104,43 +136,31 @@ h1 {
     top: -30px;          
 }
 
-.dropdown {
-    position: relative;
-    
-}
-
-.dropdown-content {
-	
+/**************Dropdown menu********************/
+/*LAYOUT*/
+.l-dropdown_content {
 	width: 80px;
 	padding: 10px;
-	
-	text-align: center;
-    display: none;
     position: absolute;
     left: -8px; 
     top: -22px; 
-    background-color: var(--color-grey-dark);    
     z-index: 1;
-    
 }
+/*LAYOUT*/
+.dropdown {position: relative;}
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+/*STATE-HIDDEN*/
+.is-hidden {display: none;}
+/*STATE-VISIBLE*/
+.dropdown:hover .is-hidden {display: block;}
 
-.dropdown-content a {
-    color: var(--color-white-creme);
-    text-decoration: none;   
-    display: block;
-}
-
-.dropdown-content a:hover {
-    color: var(--color-blue-middle);
-}
-
+/*THEME*/
+.skin-dropdown_content {background-color: var(--color-grey-dark);}
+/**THEME**/
+.styled {font-style: italic;}
 
 /******************************************************************/
-/*MAIN CONTENT LAYOUT**********************************************/
+/*MAIN LAYOUT******************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
@@ -162,70 +182,74 @@ h1 {
   "m05 m06";
 }
 
-
-
 /************************/
-/****HEADER SKIN*********/
-/************************/
-.header {background-color: var(--color-grey-dark);}
-
-.anchor-topnav {
-    display: block;
-    color: var(--color-white-creme);
-    text-align: center;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-.anchor-topnav:hover {color: var(--color-blue-middle);}
-
-.styled {font-style: italic;}
-
-
-/************************/
-/****STYLE THE DROPDOWN**/
+/*MODULES inside MAIN****/
 /************************/
 
-
-
-
-
-
-/************************/
-/****STYLE THE MAIN**/
-/************************/
-.main {
-	
-	
-}
-
-.side-spacer-skin {
-	
-}
-
-.main-content-skin {
-	
-}
-
-.form-skin {
+/*LAYOUT*/
+.l-container {
 	padding: 20px;
+}
+
+/*THEME*/
+.skin-container {	
 	border-radius: 5px;
 	background-color: var(--color-grey-light);
 }
 
-.text-container-skin {
-	padding: 20px;
+/*THEME*/
+.skin-container_text {	
 	color: var(--color-grey-almostblack);
 }
 
-.footer {
-	background-color: var(--color-grey-dark);
-}
+.l-label01{grid-area: label01;}
+.l-input01{grid-area: input01;}
+.l-error01{grid-area: error01;}
 
-.footermenu {
-	color: var(--color-white-creme);
-}
+.l-label02{grid-area: label02;}
+.l-input02{grid-area: input02;}
+.l-error02{grid-area: error02;} 
 
+.l-label03{grid-area: label03;}
+.l-input03{grid-area: input03;}
+.l-error03{grid-area: error03;}  
+
+.l-input04{grid-area: input04;}
+.l-error04{grid-area: error04;}
+
+.l-spacer{grid-area: spacer;}  
+
+.l-button01{grid-area: button01;}
+.l-button02{grid-area: button02;}  
+
+
+.m04 {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 20px 50px 20px 20px 50px 20px 20px 50px 40px 50px 20px 20px 1fr 1fr;
+	
+  	align-items: center;
+	grid-template-areas: "label01"
+						 "input01"
+						 "error01"
+						 
+						 "label02"
+						 "input02"
+						 "error02"
+						 
+						 "label03"
+						 "input03"
+						 "error03"
+						 
+						 "input04"
+						 "error04"
+						 
+						 "spacer"
+
+						 "button01"
+						 "button02"
+
+}
 
 /************************/
 /****STYLE THE BUTTONS***/
@@ -233,7 +257,7 @@ h1 {
 
 button {
 	background-color: var(--color-white-creme);
-    color: black; /*Textcolor*/
+    color: var(--color-grey-almostblack);
     border: none;    
     text-align: center;
     text-decoration: none;
@@ -286,7 +310,7 @@ button {
 
 label {
 	color: var(--color-grey-almostblack);
-	padding-left: 2px;
+	padding-left: 6px;
 
 }
 
@@ -297,10 +321,9 @@ label {
 input {
 	background-color: var(--color-white-creme);
     width: 100%;      
-    margin: 6px 1;
+    margin: 6px;
     border: 1px solid var(--color-grey-dark);
     border-radius: 4px;
-    margin: 8px 0 0 0;
     outline: none;
     padding: 8px;
     box-sizing: border-box;
@@ -348,6 +371,17 @@ input:focus {
     top: 37px;/*Advance Icon downwards*/       
 }
 
+.l-icon {
+	width: 20px; height: 20px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 13; /*Advance Icon to the right*/
+    top: 13px;/*Advance Icon downwards*/   
+}
+
 
 
 /************************/
@@ -367,7 +401,7 @@ input:focus {
 .alert-text {
     font-size: small;
     color: var(--color-red-signal);
-    padding-left: 32px;
+    text-align: center;
 }
 
 /******************************************************************/
