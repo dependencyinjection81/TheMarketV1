@@ -71,7 +71,7 @@ a:hover {
   
   grid-template-columns: 1fr 6fr 1fr;
   grid-template-rows: minmax(80px, auto)
-  					  auto 
+  					  minmax(570px, auto) 
   					  80px;
   
   grid-template-areas:
@@ -426,6 +426,7 @@ input:focus {
   						minmax(40px, auto)
   						minmax(40px, auto)
   						minmax(40px, auto)
+  						minmax(40px, auto)
   						minmax(80px, auto);
   			
   						
@@ -434,6 +435,7 @@ input:focus {
   "h01"
   "h02"
   "h03"
+  "h08"
   "h09"
   "h10";
 }

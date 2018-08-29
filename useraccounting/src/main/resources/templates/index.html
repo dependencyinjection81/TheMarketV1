@@ -4,60 +4,54 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
-<title>Index</title>
+<title th:text="#{title.index}"></title>
 </head>
 
 <body class="body-container">
 
-	
 	<!-- Space left --> 
 	<div class="bs1 side-spacer header"></div>
 
 	<!-- Header -->
 	<div class="b02 header">
-
-		
+	
+			
 			<div class="h01">
 			<div class="icon-container">
-			<a class="anchor-topnav" href='index'> 
+			<a href='index'> 
 			<svg class="icon-big icon-skin"><use xlink:href="#icon-logo"></use></svg></a>
 			</div>
 			</div>
 
-			<div class="h02"><a class="anchor-topnav" href='index' th:text="#{header.signup.explore}"></a></div>
+			<div class="h02"><a href="#Explore" th:text="#{header.explore}"></a></div>
 			
-			<div class="h03"><a class="anchor-topnav" href="#contact" th:text="#{header.signup.help}"></a></div>
+			<div class="h03"><a href="#help" th:text="#{header.help}"></a></div>
 			
-			<div class="h04"><a class="anchor-topnav" href="#about" th:text="#{header.signup.about}"></a></div>
-				
-			<div class="h08"><a class="anchor-topnav" href='login'>Login</a></div>
-			
-			<div class="h09"><a class="anchor-topnav" href='signup'>Signup</a></div>	
+			<div class="h08"><a href='login' th:text="#{header.login}"></a></div>
+			<div class="h09"><a href='signup' th:text="#{header.signup}"></a></div>
 						
 			<div class="h10 dropdown">			
-			<span class="anchor-topnav styled" th:text="#{header.signup.language}"></span>
+			<a class="styled" th:text="#{lang.change}"></a>
 			
-					<div class="dropdown-content">
-			      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
-			      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
-			    	</div>
-	    	</div>
-	    	
-	    			
-			
+					<div class="l-dropdown_content is-hidden skin-dropdown_content">
+			      		<a class="styled" th:href="@{/index?lang=de}" th:text="#{lang.de}"></a>
+			      		<a class="styled" th:href="@{/index?lang=en}" th:text="#{lang.eng}"></a>
+			    	</div>	
+	
+	    	</div>			
+	
+	
 	</div>
+	
+	<!-- Space right -->
+	<div class="bs3 side-spacer header"></div>
 
-	<!-- Space right --> 
-	<div class="bs03 side-spacer header"></div>
-	
-	
-	
 	<!-- Space left --> 
 	<div class="bs04 side-spacer side-spacer-skin"></div>
 	
 	<!-- Main content -->
 	<div class="b05 main-content-skin"></div>
-
+	
 	<!-- Space right --> 
 	<div class="bs06 side-spacer side-spacer-skin"></div>
     
@@ -66,9 +60,8 @@
     <div class="b08 footer"></div>
 
     <div class="bs09 side-spacer footer"></div>
-
 	
-	
+		
 	<!--SVG ICONS Recsource-->
   	<svg style="display:none">  
 	    <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">

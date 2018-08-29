@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 @Controller
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
@@ -27,6 +28,7 @@ public class SignupController implements WebMvcConfigurer {
    * 
    * @return signup.html
    */
+  
   @GetMapping(value = "/signup")
   public String showForm(UserForm userForm) {
     return "signup";
@@ -38,6 +40,7 @@ public class SignupController implements WebMvcConfigurer {
    * 
    * @return signup.html
    */
+  
   @GetMapping(value = "/vcode")
   public String showForm(VcodeForm vcodeform) {
     return "vcode";
