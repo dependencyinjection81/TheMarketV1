@@ -7,7 +7,7 @@ import com.market.security.service.TokenService;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +16,10 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
   private UserRepository userRepository;
-
-  /**
-   * CTOR ctor.
-   * 
-   * @param userRepository
-   *          userRepository.
-   */
-  @Autowired
-  public UserService(final UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
- 
   
+  private BCryptPasswordEncoder passwordEncoder;
+
+ 
   @Override
   public UserEntity findByUsername(final String userName) {
     return userRepository.findByUserName(userName);
@@ -65,9 +56,10 @@ public class UserService implements IUserService {
       UserEntity usr = new UserEntity();
       usr.setUserName(userForm.getUname());
       usr.setEmail(userForm.getEmail());
-      usr.setPwd(userForm.getPwd());
+      usr.setPwd(passwordEncoder.encode(userForm.getPwd()));
+      
       // Disable user until they confirm the verification code sent by Email.
-      usr.setEnabled(false);
+      usr.setEnabled(false);      
       // Generate random 8-character verification code.
       usr.setConfirmationToken(new TokenService(8).getToken());
       /**
