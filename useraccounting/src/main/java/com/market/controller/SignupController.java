@@ -85,6 +85,7 @@ public class SignupController implements WebMvcConfigurer {
        * 0 if everything was ok and the account has been registered
        *   
        */
+      
       if (userService.registerNewUserAccount(userForm) == 1) {
         bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
         return "signup";

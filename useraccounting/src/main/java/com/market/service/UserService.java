@@ -7,7 +7,8 @@ import com.market.security.service.TokenService;
 
 import javax.transaction.Transactional;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
+  @Autowired
   private UserRepository userRepository;
   
-  private BCryptPasswordEncoder passwordEncoder;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
  
   @Override
@@ -38,13 +41,14 @@ public class UserService implements IUserService {
   @Override
   public int registerNewUserAccount(final UserForm userForm) {
 
-   
+    System.out.println("bin schonmal in der Userservice");
+    System.out.println(userForm.getUname());
     if (userNameExist(userForm.getUname())) {
-          
+      System.out.println("1");    
       return 1;
  
     } else if (emailExist(userForm.getEmail())) {
-            
+      System.out.println("2");
       return 2;
    
     } else {
@@ -52,16 +56,19 @@ public class UserService implements IUserService {
       /**
        * Everything seems to be ok.
        * Creating and Populating the user entity and finally save it to the repository.
-       */ 
+       */
+      
       UserEntity usr = new UserEntity();
+     
       usr.setUserName(userForm.getUname());
       usr.setEmail(userForm.getEmail());
-      usr.setPwd(passwordEncoder.encode(userForm.getPwd()));
-      
+      usr.setPwd(passwordEncoder.encode(userForm.getPwd())); 
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
       // Generate random 8-character verification code.
+      
       usr.setConfirmationToken(new TokenService(8).getToken());
+      
       /**
        * Save entity to repository
        */
@@ -78,14 +85,16 @@ public class UserService implements IUserService {
   }
 
   private boolean userNameExist(final String userName) {
+    System.out.println("bin in der usernameexist");
     UserEntity user = userRepository.findByUserName(userName);
+    
     if (user != null) {
       return true;
     }
     return false;
   }
   
-  private boolean emailExist(final String email) {
+  private boolean emailExist(final String email) {    
     UserEntity user = userRepository.findByEmail(email);
     if (user != null) {
       return true;
