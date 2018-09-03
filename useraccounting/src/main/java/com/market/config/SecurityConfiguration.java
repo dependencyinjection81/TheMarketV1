@@ -27,13 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.authorizeRequests()
-        
+       
+    httpSecurity.authorizeRequests()        
         .antMatchers("/signup").anonymous()
         .antMatchers("/index").anonymous()
-        .antMatchers("/login").anonymous()
-        .antMatchers("/welcomeMember").fullyAuthenticated()
-        .and().httpBasic();
-    httpSecurity.csrf().disable();
+        .antMatchers("/login").anonymous()       
+        .antMatchers("/welcomeMember").fullyAuthenticated().and().formLogin().loginPage("/login");
+           
+    httpSecurity.csrf().disable(); //Disable cross site scripting
   }
 }
