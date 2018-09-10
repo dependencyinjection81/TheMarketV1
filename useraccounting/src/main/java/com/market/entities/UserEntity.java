@@ -14,6 +14,15 @@ import javax.persistence.OneToMany;
 /* @Immutable */
 public class UserEntity {
 
+  public UserEntity(final String userName, final String password) {
+    this.username = userName;
+    this.password = password;
+  }
+  
+  public UserEntity() {
+    
+  }
+  
   /************************************************************
    * Unique ID for each user.**********************************
    ************************************************************
@@ -66,14 +75,14 @@ public class UserEntity {
    ************************************************************
    */
   @Column
-  private String userName;
+  private String username;
 
-  public String getUserName() {
-    return this.userName;
+  public String getUsername() {
+    return this.username;
   }
 
-  public void setUserName(final String userName) {
-    this.userName = userName;
+  public void setUsername(final String username) {
+    this.username = username;
   }
 
   /************************************************************
@@ -96,14 +105,14 @@ public class UserEntity {
    ************************************************************
    */
   @Column
-  private String pwd;
+  private String password;
 
-  public String getPwd() {
-    return this.pwd;
+  public String getPassword() {
+    return this.password;
   }
 
-  public void setPwd(final String pwd) {
-    this.pwd = pwd;
+  public void setPassword(final String pwd) {
+    this.password = pwd;
   }
 
   /************************************************************

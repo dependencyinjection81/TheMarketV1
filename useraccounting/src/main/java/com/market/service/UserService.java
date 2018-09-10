@@ -25,7 +25,7 @@ public class UserService implements IUserService {
  
   @Override
   public UserEntity findByUsername(final String userName) {
-    return userRepository.findByUserName(userName);
+    return userRepository.findByUsername(userName);
    
   }
 
@@ -60,13 +60,12 @@ public class UserService implements IUserService {
       
       UserEntity usr = new UserEntity();
      
-      usr.setUserName(userForm.getUname());
+      usr.setUsername(userForm.getUname());
       usr.setEmail(userForm.getEmail());
-      usr.setPwd(passwordEncoder.encode(userForm.getPwd())); 
+      usr.setPassword(passwordEncoder.encode(userForm.getPwd())); 
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
-      // Generate random 8-character verification code.
-      
+      // Generate random 8-character verification code. 
       usr.setConfirmationToken(new TokenService(8).getToken());
       
       /**
@@ -86,7 +85,7 @@ public class UserService implements IUserService {
 
   private boolean userNameExist(final String userName) {
     System.out.println("bin in der usernameexist");
-    UserEntity user = userRepository.findByUserName(userName);
+    UserEntity user = userRepository.findByUsername(userName);
     
     if (user != null) {
       return true;
