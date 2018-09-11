@@ -52,6 +52,10 @@ public class LoginController implements WebMvcConfigurer {
     } else if (action.equals("cancel")) {
       return "index";
     } else {
+      /*TODO Check email-adress */
+      /*TODO if email exist exist redirect to enter password */
+      /*TODO Check username */
+      /*TODO Check username */
       return "signup";
     }
   }

@@ -14,12 +14,12 @@ public class AuthenticatedUser extends UserEntity implements UserDetails {
   private static final long serialVersionUID = 1L;
 
   public AuthenticatedUser(UserEntity user) {
-    super(user.getUsername(), user.getPassword());
+    super(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {   
-    return AuthorityUtils.createAuthorityList("ROLE_USER");
+    return AuthorityUtils.createAuthorityList(getRole());
   }
 
   

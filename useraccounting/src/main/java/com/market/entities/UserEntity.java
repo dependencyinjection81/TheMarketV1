@@ -14,9 +14,11 @@ import javax.persistence.OneToMany;
 /* @Immutable */
 public class UserEntity {
 
-  public UserEntity(final String userName, final String password) {
+  public UserEntity(final long id, final String userName, final String password, final String role) {
+    this.id = id;
     this.username = userName;
     this.password = password;
+    this.role = role;
   }
   
   public UserEntity() {

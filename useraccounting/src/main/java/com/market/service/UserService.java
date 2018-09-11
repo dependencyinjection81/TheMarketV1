@@ -41,14 +41,10 @@ public class UserService implements IUserService {
   @Override
   public int registerNewUserAccount(final UserForm userForm) {
 
-    System.out.println("bin schonmal in der Userservice");
-    System.out.println(userForm.getUname());
-    if (userNameExist(userForm.getUname())) {
-      System.out.println("1");    
+    if (userNameExist(userForm.getUname())) {   
       return 1;
  
     } else if (emailExist(userForm.getEmail())) {
-      System.out.println("2");
       return 2;
    
     } else {
@@ -85,7 +81,6 @@ public class UserService implements IUserService {
   }
 
   private boolean userNameExist(final String userName) {
-    System.out.println("bin in der usernameexist");
     UserEntity user = userRepository.findByUsername(userName);
     
     if (user != null) {
