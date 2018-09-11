@@ -62,7 +62,8 @@ public class UserService implements IUserService {
      
       usr.setUsername(userForm.getUname());
       usr.setEmail(userForm.getEmail());
-      usr.setPassword(passwordEncoder.encode(userForm.getPwd())); 
+      usr.setPassword(passwordEncoder.encode(userForm.getPwd()));
+      usr.setRole("ROLE_USER");
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
       // Generate random 8-character verification code. 
