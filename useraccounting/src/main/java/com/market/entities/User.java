@@ -1,27 +1,29 @@
 package com.market.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
-/* @Immutable */
-public class UserEntity {
+@Table(name = "user")
+public class User {
 
-  public UserEntity(final long id, final String userName, final String password, final String role) {
+  /**
+   * Custom Ctor.
+   * @param id unique user id
+   * @param userName username
+   * @param password password
+   * @param role role
+   */
+  public User(final long id, 
+      final String userName, final String password, final Set<Role> roles) {
     this.id = id;
     this.username = userName;
     this.password = password;
-    this.role = role;
+    this.roles = roles;
   }
   
-  public UserEntity() {
+  public User() {
     
   }
   
@@ -121,29 +123,16 @@ public class UserEntity {
    * Role.*****************************************************
    ************************************************************
    */
-  
-  private String role;
+  @ManyToMany
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles;
 
-  public String getRole() {
-    return role;
+  public Set<Role> getRoles() {
+    return roles;
   }
 
-  public void setRole(final String role) {
-    this.role = role;
+  public void setRoles(final Set<Role> roles) {
+    this.roles = roles;
   }
 
-  /************************************************************
-   * Requests of each user.************************************
-   ************************************************************
-   */
-  @OneToMany(mappedBy = "userEntity")
-  private Set<RequestEntity> requests = new HashSet<RequestEntity>();
-
-  public void setRequests(final Set<RequestEntity> requests) {
-    this.requests = requests;
-  }
-
-  public Set<RequestEntity> getRequests() {
-    return requests;
-  }
 }

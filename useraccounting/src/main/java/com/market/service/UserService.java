@@ -1,10 +1,12 @@
 package com.market.service;
 
 import com.market.beans.UserForm;
-import com.market.entities.UserEntity;
+import com.market.entities.User;
+import com.market.repositories.RoleRepository;
 import com.market.repositories.UserRepository;
 import com.market.security.service.TokenService;
 
+import java.util.HashSet;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +22,22 @@ public class UserService implements IUserService {
   private UserRepository userRepository;
   
   @Autowired
+  private RoleRepository roleRepository;
+  
+  @Autowired
   private PasswordEncoder passwordEncoder;
 
  
   @Override
-  public UserEntity findByUsername(final String userName) {
-    return userRepository.findByUsername(userName);
-   
+  public User findByUsername(final String userName) {
+    return userRepository.findByUsername(userName);  
   }
 
-  public UserEntity findByEmail(final String email) {
+  public User findByEmail(final String email) {
     return userRepository.findByEmail(email);
   }
   
-  public UserEntity findByConfirmationToken(final String confirmationToken) {
+  public User findByConfirmationToken(final String confirmationToken) {
     return userRepository.findByConfirmationToken(confirmationToken);
   }
 
@@ -41,25 +45,34 @@ public class UserService implements IUserService {
   @Override
   public int registerNewUserAccount(final UserForm userForm) {
 
-    if (userNameExist(userForm.getUname())) {   
+    if (userNameExist(userForm.getUname())) {
+      /**
+       * The 1 will be interpreted by the caller (SignupController) to determine further steps.
+       */
       return 1;
  
     } else if (emailExist(userForm.getEmail())) {
+      /**
+       * The 2 will be interpreted by the caller (SignupController) to determine further steps.
+       */
       return 2;
    
     } else {
 
       /**
-       * Everything seems to be ok.
-       * Creating and Populating the user entity and finally save it to the repository.
+       * Form Validation has passed with no error.
+       * Creating and populating the UserEntity and finally save it to the repository.
        */
       
-      UserEntity usr = new UserEntity();
+      User usr = new User();
      
       usr.setUsername(userForm.getUname());
       usr.setEmail(userForm.getEmail());
       usr.setPassword(passwordEncoder.encode(userForm.getPwd()));
-      usr.setRole("ROLE_USER");
+      
+      
+      usr.setRoles(new HashSet<>(roleRepository.findAll()));
+      
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
       // Generate random 8-character verification code. 
@@ -69,6 +82,9 @@ public class UserService implements IUserService {
        * Save entity to repository
        */
       saveUser(usr);
+      /**
+       * The 0 will be interpreted by the caller (SignupController) to determine further steps.
+       */
       return 0;
       
     }
@@ -76,12 +92,12 @@ public class UserService implements IUserService {
   
   
   
-  private void saveUser(final UserEntity user) {
+  private void saveUser(final User user) {
     userRepository.save(user);
   }
 
   private boolean userNameExist(final String userName) {
-    UserEntity user = userRepository.findByUsername(userName);
+    User user = userRepository.findByUsername(userName);
     
     if (user != null) {
       return true;
@@ -90,7 +106,7 @@ public class UserService implements IUserService {
   }
   
   private boolean emailExist(final String email) {    
-    UserEntity user = userRepository.findByEmail(email);
+    User user = userRepository.findByEmail(email);
     if (user != null) {
       return true;
     }

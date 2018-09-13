@@ -24,8 +24,8 @@ import com.market.service.AuthenticatedUserService;
  *eingefügt. AuthenticatedUserService ist dabei unsere Implementierung des Interfaces.
  *
  */
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 @ComponentScan(basePackageClasses = AuthenticatedUserService.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
           .defaultSuccessUrl("/welcomeMember")
           .failureUrl("/login?error")
           .usernameParameter("username").passwordParameter("password");
-        //.antMatchers("/welcomeMember").fullyAuthenticated().and().formLogin().loginPage("/login");
+       
            
     httpSecurity.csrf().disable(); //Disable cross site scripting
   }

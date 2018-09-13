@@ -1,17 +1,17 @@
 package com.market.repositories;
 
-import com.market.entities.UserEntity;
+import com.market.entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-  UserEntity findByUsername(final String userName);
+  User findByUsername(final String userName);
   
-  UserEntity findByEmail(final String email);
+  User findByEmail(final String email);
   
-  UserEntity findByConfirmationToken(final String confirmationToken);
+  User findByConfirmationToken(final String confirmationToken);
  
 }
