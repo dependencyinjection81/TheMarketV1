@@ -1,12 +1,16 @@
 package com.market.service;
 
 import com.market.beans.UserForm;
+import com.market.entities.Role;
 import com.market.entities.User;
 import com.market.repositories.RoleRepository;
 import com.market.repositories.UserRepository;
 import com.market.security.service.TokenService;
 
 import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +74,16 @@ public class UserService implements IUserService {
       usr.setEmail(userForm.getEmail());
       usr.setPassword(passwordEncoder.encode(userForm.getPwd()));
       
+      //TODO 
+      Optional<Role> findById = roleRepository.findById(20l);
       
-      usr.setRoles(new HashSet<>(roleRepository.findAll()));
+      if(!findById.isPresent()) {
+        // TODO error;
+      }
+      
+      Set<Role> roles = new HashSet<>();
+      roles.add(findById.get());
+      usr.setRoles(roles);
       
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
