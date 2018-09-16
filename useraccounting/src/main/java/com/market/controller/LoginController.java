@@ -1,8 +1,11 @@
 package com.market.controller;
 
 import com.market.beans.LoginForm;
+import com.market.service.SecurityService;
+
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequestMapping(value = "/")
 public class LoginController implements WebMvcConfigurer {
 
- 
+ @Autowired
+  SecurityService securityService;
 
   /**
    * show the login-page and binds the validation bean to it.
@@ -53,10 +57,9 @@ public class LoginController implements WebMvcConfigurer {
       return "index";
     } else {
       
-      /*TODO Check email-adress */
-      /*TODO if email exist exist redirect to enter password */
-      /*TODO Check username */
-      return "signup";
+      securityService.autologin(loginForm.getEmail(), loginForm.getPwd());
+      
+      return "welcome";
     }
   }
 }

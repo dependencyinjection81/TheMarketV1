@@ -4,18 +4,18 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
-<title th:text="#{title.login}"></title>
+<title th:text="#{title.index}"></title>
 </head>
 
 <body class="body-container">
 
-	
 	<!-- Space left --> 
 	<div class="bs1 side-spacer header"></div>
 
 	<!-- Header -->
 	<div class="b02 header">
-
+	
+			
 			<div class="h01">
 			<div class="icon-container">
 			<a href='index'> 
@@ -23,93 +23,40 @@
 			</div>
 			</div>
 
-			<div class="h02"><a href='index' th:text="#{header.explore}"></a></div>
+			<div class="h02"><a href="#Explore" th:text="#{header.explore}"></a></div>
 			
-			<div class="h08"><a href="#help" th:text="#{header.help}"></a></div>
+			<div class="h03"><a href="#help" th:text="#{header.help}"></a></div>
 			
-			<div class="h09"><a href="#about" th:text="#{header.about}"></a></div>
+			<div class="h08"><a href='login' th:text="#{header.login}"></a></div>
+			<div class="h09"><a href='signup' th:text="#{header.signup}"></a></div>
 						
 			<div class="h10 dropdown">			
 			<a class="styled" th:text="#{lang.change}"></a>
 			
 					<div class="l-dropdown_content is-hidden skin-dropdown_content">
-			      		<a class="styled" th:href="@{/login?lang=de}" th:text="#{lang.de}"></a>
-			      		<a class="styled" th:href="@{/login?lang=en}" th:text="#{lang.eng}"></a>
+			      		<a class="styled" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
+			      		<a class="styled" th:href="@{/welcome?lang=en}" th:text="#{lang.eng}"></a>
 			    	</div>	
 	
 	    	</div>			
-			
+	
+	
 	</div>
+	
+	<!-- Space right -->
+	<div class="bs3 side-spacer header"></div>
 
-	<!-- Space right --> 
-	<div class="bs03 side-spacer header"></div>
-	
-	
-	
 	<!-- Space left --> 
 	<div class="bs04 side-spacer side-spacer-skin"></div>
 	
 	<!-- Main content -->
-	<div class="b05 main-content-skin">
+	<div class="b05 main-content-skin"></div>
 	
-		<div class="m03 l-container">
-			<h1 th:text="#{main.login.heading}"></h1>
-			<p th:text="#{main.login.paragraph}"></p>
-		</div>
-
-		
-		<!--SIGNUP-FORM-->
-		<form class="m04 l-container skin-container" action="#"
-			th:action="@{/login}" th:object="${loginForm}" method="post">
-
-
-
-									<!-- EMAIL -->
-			<!--Label-------------------------------------------------------------->
-			<label class="l-label02" for="email"
-				th:text="#{form.signup.email.label}"></label>
-			<!--Inputfield--------------------------------------------------------->
-			<div class="l-input02 inputWithIcon">
-				<input type="text" name="email"
-					th:placeholder="#{form.login.email.placeholder}"
-					th:field="*{email}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-email"></use></svg>
-			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error02 alert-text" th:if="${#fields.hasErrors('email')}"
-				th:errors="*{email}"></p>
-
-
-									<!--PASSWORD-->
-			<!--Label-------------------------------------------------------------->
-			<label class="l-label03" for="pwd" th:text="#{form.signup.pwd.label}"></label>
-			<!--Inputfield--------------------------------------------------------->
-			<div class="l-input03 inputWithIcon">
-				<input type="password" name="pwd"
-					th:placeholder="#{form.login.pwd.placeholder}" 
-					th:field="*{pwd}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-lock"></use></svg>
-			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error03 alert-text" th:if="${#fields.hasErrors('pwd')}"
-				th:errors="*{pwd}"></p>
-
-
-			<!--Submit section-->
-			<button type="submit" name="action" value="login"
-				class="l-button01 submitbtn" th:text="#{form.button.login}"></button>
-			<button type="submit" name="action" value="cancel"
-				class="l-button02 cancelbtn" th:text="#{form.button.cancel}"></button>
-		</form>
-
-
-
+	<div class="m03 l-container">
+			<h1 th:text="#{main.welcome.heading}"></h1>
+			<p th:text="#{main.welcome.paragraph}"></p>
 	</div>
-
+	
 	<!-- Space right --> 
 	<div class="bs06 side-spacer side-spacer-skin"></div>
     
@@ -118,9 +65,8 @@
     <div class="b08 footer"></div>
 
     <div class="bs09 side-spacer footer"></div>
-
 	
-	
+		
 	<!--SVG ICONS Recsource-->
   	<svg style="display:none">  
 	    <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">

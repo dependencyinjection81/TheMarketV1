@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -29,19 +30,43 @@ import com.market.service.AuthenticatedUserService;
 @ComponentScan(basePackageClasses = AuthenticatedUserService.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+  /**
+   * This is needed to have the AuthenticationManager managed by spring as a bean.
+   */
+  @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+  return super.authenticationManagerBean();
+  }
+  
+  /**
+   * Own implementation of the UserDetailsService.
+   * Is responsible for returning the Principal or UserDetails. NOT Authenticated yet.
+   */
+  @Autowired
+  private AuthenticatedUserService userDetailsService;
+  
+  
+  /**
+   * set up something like an authentication-object. NOT SURE
+   * @param auth the authentification Token/Object
+   * @throws Exception
+   */
+  @Autowired
+  protected void GlobalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+  }
+  
+  /**
+   * Needed to encrypt the password before it gets authenticated against the repository.
+   * @return the BCryptPasswordEncoder
+   */
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
   
-  @Autowired
-  private UserDetailsService userDetailsService;
-
-  @Autowired
-  protected void GlobalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService);
-  }
-  
+ 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
        
@@ -49,12 +74,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/signup").anonymous()
         .antMatchers("/index").anonymous()
         .antMatchers("/login").anonymous()
-        .antMatchers("/welcomeMember").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+        .antMatchers("/welcome").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
         .and()
           .formLogin().loginPage("/login")
-          .defaultSuccessUrl("/welcomeMember")
+          .defaultSuccessUrl("/welcome")
           .failureUrl("/login?error")
-          .usernameParameter("username").passwordParameter("password");
+          .usernameParameter("email").passwordParameter("pwd");
        
            
     httpSecurity.csrf().disable(); //Disable cross site scripting

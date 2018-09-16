@@ -74,16 +74,17 @@ public class UserService implements IUserService {
       usr.setEmail(userForm.getEmail());
       usr.setPassword(passwordEncoder.encode(userForm.getPwd()));
       
-      //TODO 
-      Optional<Role> findById = roleRepository.findById(20l);
-      
+      /**
+       * Adding ROLE_USER to the User
+       */
+      Optional<Role> findById = roleRepository.findById(20l);      
       if(!findById.isPresent()) {
         // TODO error;
-      }
-      
+      }    
       Set<Role> roles = new HashSet<>();
       roles.add(findById.get());
       usr.setRoles(roles);
+      
       
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
