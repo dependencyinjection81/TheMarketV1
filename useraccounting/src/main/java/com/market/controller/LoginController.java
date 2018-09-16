@@ -1,65 +1,40 @@
 package com.market.controller;
 
-import com.market.beans.LoginForm;
-import com.market.service.SecurityService;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
 @RequestMapping(value = "/")
 public class LoginController implements WebMvcConfigurer {
 
- @Autowired
-  SecurityService securityService;
-
+  
   /**
-   * show the login-page and binds the validation bean to it.
+   * 
    * 
    * @return login.html
    */
 
-  @GetMapping(value = "/login")
-  public String showForm(LoginForm loginForm) {
-    return "login";
-  }
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
+  public String login(Model model, String error, String logout) {
+      if (error != null)
+          model.addAttribute("error", "Your username and password is invalid.");
 
-  /**
-   * Fetch data.
-   * @param loginForm backed bean.
-   * @param bindingResult errors.
-   * @param action login or cancel.
-   * @return
-   */
-  @PostMapping(value = "/login")
-  public String checkFormData(final @Valid LoginForm loginForm, /* user form bean */
-      final BindingResult bindingResult, /* result to handle or process errors */
-      final @RequestParam(value = "action", required = true) String action)
-  /* additional parameter because I have also a cancel button in my form */ {
+      if (logout != null)
+          model.addAttribute("message", "You have been logged out successfully.");
 
-    /**
-     * STEP 1 FORM VALIDATION
-     * 
-     * If the user hit the signupButton and the bindingResult has errors return the same page.
-     * Errors will be parsed and displayed automatically.
-     */
-    if (bindingResult.hasErrors() && action.equals("login")) {
       return "login";
-    } else if (action.equals("cancel")) {
-      return "index";
-    } else {
-      
-      securityService.autologin(loginForm.getEmail(), loginForm.getPwd());
-      
-      return "welcome";
-    }
   }
+  
+  
+  @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
+  public String welcome(Model model) {
+      return "welcome";
+  }
+
+  
+  
+
 }
