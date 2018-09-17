@@ -79,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
           .formLogin().loginPage("/login")
           .defaultSuccessUrl("/welcome")
           .failureUrl("/login?error")
-          .usernameParameter("email").passwordParameter("pwd");
+          .usernameParameter("username").passwordParameter("password");
        
            
     httpSecurity.csrf().disable(); //Disable cross site scripting

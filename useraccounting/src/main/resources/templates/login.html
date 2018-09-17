@@ -59,51 +59,36 @@
 
 		
 		<!--SIGNUP-FORM-->
-		<form class="m04 l-container skin-container" action="#"
-			th:action="@{/login}" th:object="${loginForm}" method="post">
-
-
+		<form class="m04 l-container skin-container" 
+			th:action="@{/login}" method="post">
 
 									<!-- EMAIL -->
 			<!--Label-------------------------------------------------------------->
-			<label class="l-label02" for="email"
+			<label class="l-label02" for="username"
 				th:text="#{form.signup.email.label}"></label>
 			<!--Inputfield--------------------------------------------------------->
 			<div class="l-input02 inputWithIcon">
-				<input type="text" name="email"
-					th:placeholder="#{form.login.email.placeholder}"
-					th:field="*{email}">
+				<input type="text" id="username" name="username"
+					th:placeholder="#{form.login.email.placeholder}">
 				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-email"></use></svg>
+				<svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
 			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error02 alert-text" th:if="${#fields.hasErrors('email')}"
-				th:errors="*{email}"></p>
-
-
+			
 									<!--PASSWORD-->
 			<!--Label-------------------------------------------------------------->
-			<label class="l-label03" for="pwd" th:text="#{form.signup.pwd.label}"></label>
+			<label class="l-label03" for="password" th:text="#{form.signup.pwd.label}"></label>
 			<!--Inputfield--------------------------------------------------------->
 			<div class="l-input03 inputWithIcon">
-				<input type="password" name="pwd"
-					th:placeholder="#{form.login.pwd.placeholder}" 
-					th:field="*{pwd}">
+				<input type="password" id="password" name="password"
+				th:placeholder="#{form.login.pwd.placeholder}">
 				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon">
-					<use xlink:href="#icon-lock"></use></svg>
+				<svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
 			</div>
 			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error03 alert-text" th:if="${#fields.hasErrors('pwd')}"
-				th:errors="*{pwd}"></p>
-
-
+			<p class="l-error02 alert-text" th:if="${param.error}" 
+			th:text="#{form.login.error}"></p>
 			<!--Submit section-->
-			<button type="submit" name="action" value="login"
-				class="l-button01 submitbtn" th:text="#{form.button.login}"></button>
-			<button type="submit" name="action" value="cancel"
-				class="l-button02 cancelbtn" th:text="#{form.button.cancel}"></button>
+			<button type="submit" class="l-button01 submitbtn" th:text="#{form.button.login}"></button>
 		</form>
 
 
