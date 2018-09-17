@@ -1,7 +1,6 @@
 package com.market.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -10,14 +9,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class LoginController implements WebMvcConfigurer {
 
   /**
-   * show the login-page and binds the validation bean to it.
+   * 
    * 
    * @return login.html
    */
 
-  @GetMapping(value = "/login")
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String showForm() {
-    return "login";
-  }
+      if (error != null)
+          model.addAttribute("error", "Your username and password is invalid.");
   
+  @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
+  public String welcome(Model model) {
+  
+  
+
 }
