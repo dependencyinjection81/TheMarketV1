@@ -9,15 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequestMapping(value = "/")
 public class LoginController implements WebMvcConfigurer {
 
-  /**
-   * 
-   * 
-   * @return login.html
-   */
-
+  
   @GetMapping(value = "/login")
-  public String showForm() {
+  public String showLogin() {
     return "login";
+  }
+  
+  @GetMapping(value = "/welcome")
+  public String showWelcome() {
+    return "welcome";
   }
 
 }

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 @Component
 @Service
-public class SecurityService implements ISecurityService {
+public class SecurityService {
 
   @Autowired
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private AuthenticatedUserService userDetailsService;
+  private UserDetailsServiceImpl userDetailsService;
 
-  @Override
+  
   public String findLoggedInUsername() {
     Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
     if (userDetails instanceof UserDetails) {
@@ -28,7 +28,7 @@ public class SecurityService implements ISecurityService {
     return null;
   }
 
-  @Override
+
   public void autologin(String username, String password) {
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
     

@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Component
 @Service
-public class UserService implements IUserService {
+public class UserService {
 
   @Autowired
   private UserRepository userRepository;
@@ -32,7 +32,7 @@ public class UserService implements IUserService {
   private PasswordEncoder passwordEncoder;
 
  
-  @Override
+
   public User findByUsername(final String userName) {
     return userRepository.findByUsername(userName);  
   }
@@ -46,7 +46,6 @@ public class UserService implements IUserService {
   }
 
   @Transactional
-  @Override
   public int registerNewUserAccount(final UserForm userForm) {
 
     if (userNameExist(userForm.getUname())) {

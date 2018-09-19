@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.market.service.AuthenticatedUserService;
+import com.market.service.UserDetailsServiceImpl;
 
 /** 
  * @author Johannes Weiss
@@ -27,7 +27,7 @@ import com.market.service.AuthenticatedUserService;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackageClasses = AuthenticatedUserService.class)
+@ComponentScan(basePackageClasses = UserDetailsServiceImpl.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   /**
@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    * Is responsible for returning the Principal or UserDetails. NOT Authenticated yet.
    */
   @Autowired
-  private AuthenticatedUserService userDetailsService;
+  private UserDetailsServiceImpl userDetailsService;
   
   
   /**
@@ -69,11 +69,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
  
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-       
+    
     httpSecurity.authorizeRequests()        
-        .antMatchers("/signup").anonymous()
-        .antMatchers("/index").anonymous()
-        .antMatchers("/login").anonymous()
+        .antMatchers("/signup").permitAll()
+        .antMatchers("/index").permitAll()
+        .antMatchers("/login").permitAll()
         .antMatchers("/welcome").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
         .and()
           .formLogin().loginPage("/login")
