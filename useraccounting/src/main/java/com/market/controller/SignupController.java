@@ -80,8 +80,9 @@ public class SignupController implements WebMvcConfigurer {
        * STEP 2 TRY TO REGISTER THE NEW USER
        * the returned value will be 0 or 1 or 3 if there was an error like
        * 
-       * 1 username is already in use
+       * 
        * 2 email is already in use
+       * 1 username is already in use
        * 0 if everything was ok and the account has been registered
        *   
        */
@@ -93,7 +94,8 @@ public class SignupController implements WebMvcConfigurer {
         bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
         return "signup"; 
       } else if (userService.registerNewUserAccount(userForm) == 0) {
-        return "index"; //TODO weiteres Vorgehen. VCode Verification link etc.
+        return "index"; 
+        //TODO Publish email event to send Verification mail.
       }
       
     }

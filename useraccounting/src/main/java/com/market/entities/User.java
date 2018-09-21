@@ -23,8 +23,13 @@ public class User {
     this.roles = roles;
   }
   
+  /**
+   * Default ctor.
+   * Only called when a new user entity will be created during the registration process.
+   */
   public User() {
-    
+    super();
+    this.enabled=false;
   }
   
   /************************************************************
