@@ -49,21 +49,7 @@ public class User {
     this.id = id;
   }
 
-  /************************************************************
-   * Confirmation-Token.***************************************
-   ************************************************************
-   */
-  @Column(name = "confirmation_token")
-  private String confirmationToken;
-
-  public String getConfirmationToken() {
-    return this.confirmationToken;
-  }
-
-  public void setConfirmationToken(final String confirmationToken) {
-    this.confirmationToken = confirmationToken;
-  }
-
+ 
   /************************************************************
    * User-status.**********************************************
    ************************************************************

@@ -3,10 +3,10 @@ package com.market.service;
 import com.market.beans.UserForm;
 import com.market.entities.Role;
 import com.market.entities.User;
+import com.market.entities.VerificationToken;
 import com.market.repositories.RoleRepository;
+import com.market.repositories.TokenRepository;
 import com.market.repositories.UserRepository;
-import com.market.security.service.TokenService;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -28,23 +29,16 @@ public class UserService {
   @Autowired
   private RoleRepository roleRepository;
   
+  @Autowired 
+  TokenRepository tokenRepository;
+  
   @Autowired
   private PasswordEncoder passwordEncoder;
-
- 
-
-  public User findByUsername(final String userName) {
-    return userRepository.findByUsername(userName);  
-  }
-
-  public User findByEmail(final String email) {
-    return userRepository.findByEmail(email);
-  }
   
-  public User findByConfirmationToken(final String confirmationToken) {
-    return userRepository.findByConfirmationToken(confirmationToken);
-  }
+  @Autowired
+  ApplicationEventPublisher eventPublisher;
 
+  
   @Transactional
   public int registerNewUserAccount(final UserForm userForm) {
 
@@ -87,22 +81,23 @@ public class UserService {
       
       // Disable user until they confirm the verification code sent by Email.
       usr.setEnabled(false);      
-      // Generate random 8-character verification code. 
-      usr.setConfirmationToken(new TokenService(8).getToken());
       
       /**
        * Save entity to repository
        */
-      saveUser(usr);
+      saveUser(usr); 
       /**
        * The 0 will be interpreted by the caller (SignupController) to determine further steps.
        */
-      return 0;
-      
+      return 0;     
     }
   }
   
   
+  public void createVerificationTokenForUser(final User user, final String token) {
+    final VerificationToken myToken = new VerificationToken(token, user);
+    tokenRepository.save(myToken);
+  }
   
   private void saveUser(final User user) {
     userRepository.save(user);

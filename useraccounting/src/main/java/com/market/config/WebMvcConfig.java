@@ -21,7 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
    * currently being used, we need to add a LocaleResolver bean. The LocaleResolver interface has
    * implementations that determine the current locale based on the session, cookies, the
    * Accept-Language header, or a fixed value. In our example, we have used the session based
-   * resolver SessionLocaleResolver and set a default locale with value US.
+   * resolver SessionLocaleResolver and set a default locale with value ENGLISH.
    * 
    * @return SessionLocaleResolver
    */
