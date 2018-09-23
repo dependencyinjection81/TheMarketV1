@@ -22,35 +22,38 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
   private UserRepository userRepository;
-  
-  
+
   @Override
   @Transactional(readOnly = true)
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+    /*TODO These booleans aren't in use for now*/
+    boolean accountNonExpired = true;
+    boolean credentialsNonExpired = true;
+    boolean accountNonLocked = true;
+    
+    try {
       User user = userRepository.findByEmail(email);
-      
       if (user == null) {
-        throw new UsernameNotFoundException ("No user found with email: " + email);
+        throw new UsernameNotFoundException("No user found with username: " + email);
       }
       
-      //TODO diese Werte noch mit businesslogic vereinen und entsprechend zuweisen
-      boolean enabled = true;
-      boolean accountNonExpired = true;
-      boolean credentialsNonExpired = true;
-      boolean accountNonLocked = true;
-
       Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
       for (Role role : user.getRoles()){
           grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
       }
 
-      return new org.springframework.security.core.userdetails.User(user.getEmail(), 
+      return new org.springframework.security.core.userdetails.User(
+          user.getEmail(),
           user.getPassword(), 
-          enabled,
+          user.getEnabled(), 
           accountNonExpired,
-          credentialsNonExpired,
-          accountNonLocked,
+          credentialsNonExpired, 
+          accountNonLocked, 
           grantedAuthorities);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
-    
+
 }

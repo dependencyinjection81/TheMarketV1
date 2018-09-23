@@ -92,8 +92,7 @@ public class UserService {
       return 0;     
     }
   }
-  
-  
+   
   public void createVerificationTokenForUser(final User user, final String token) {
     final VerificationToken myToken = new VerificationToken(token, user);
     tokenRepository.save(myToken);
@@ -103,6 +102,7 @@ public class UserService {
     userRepository.save(user);
   }
 
+  
   private boolean userNameExist(final String userName) {
     User user = userRepository.findByUsername(userName);
     

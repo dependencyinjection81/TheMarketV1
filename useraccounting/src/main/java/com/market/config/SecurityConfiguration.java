@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.market.service.UserDetailsServiceImpl;
 
@@ -46,6 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private UserDetailsServiceImpl userDetailsService;
   
+  /**
+   * Needed to have access to the thrown SpringSecurity authorisation exceptions to handle them.
+   */
+  @Autowired
+  private AuthenticationFailureHandler authenticationFailureHandler;
   
   /**
    * set up something like an authentication-object. NOT SURE
@@ -78,7 +84,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
           .formLogin().loginPage("/login")
           .defaultSuccessUrl("/welcome")
-          .failureUrl("/login?error")
+          .failureUrl("/login?error=true")
+          .failureHandler(authenticationFailureHandler)
           .usernameParameter("username").passwordParameter("password");
        
            

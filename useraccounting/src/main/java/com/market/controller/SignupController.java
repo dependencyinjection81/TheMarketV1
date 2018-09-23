@@ -75,7 +75,7 @@ public class SignupController implements WebMvcConfigurer {
       final BindingResult bindingResult, /* result to handle or process errors */
       final @RequestParam(value = "action", required = true) String action, 
       /* additional parameter because I have also a cancel button in my form */
-      final WebRequest request)
+      final WebRequest request) /**/
    {
 
     /**

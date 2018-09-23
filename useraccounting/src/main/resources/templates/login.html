@@ -55,6 +55,9 @@
 		<div class="m03 l-container">
 			<h1 th:text="#{main.login.heading}"></h1>
 			<p th:text="#{main.login.paragraph}"></p>
+			<!--Alertbox----------------------------------------------------------->
+			<p class="alert-text" th:if="${param.error != null}" 
+			th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
 		</div>
 
 		
@@ -84,9 +87,7 @@
 				<!--Icon----------------------------------------------------------->
 				<svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
 			</div>
-			<!--Alertbox----------------------------------------------------------->
-			<p class="l-error02 alert-text" th:if="${param.error}" 
-			th:text="#{form.login.error}"></p>
+			
 			<!--Submit section-->
 			<button type="submit" class="l-button01 submitbtn" th:text="#{form.button.login}"></button>
 		</form>
