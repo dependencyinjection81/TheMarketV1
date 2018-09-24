@@ -35,9 +35,10 @@ public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFai
     final Locale locale = localeResolver.resolveLocale(request);
 
     String errorMessage = messageSource.getMessage("message.badCredentials", null, locale);
-
+    
     if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
-      errorMessage = messageSource.getMessage("auth.message.disabled", null, locale);
+      errorMessage =  messageSource.getMessage("auth.message.disabled", null, locale);;
+      response.sendRedirect("/verification");
     } else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
       errorMessage = messageSource.getMessage("auth.message.expired", null, locale);
     } else if (exception.getMessage().equalsIgnoreCase("blocked")) {

@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.market.service.UserDetailsServiceImpl;
 
@@ -54,6 +55,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private AuthenticationFailureHandler authenticationFailureHandler;
   
   /**
+   * Needed to have the oportunity to redirect users depending on thier roles after login.
+   */
+  @Autowired
+  public AuthenticationSuccessHandler authenticationSuccessHandler;
+  
+  
+  /**
    * set up something like an authentication-object. NOT SURE
    * @param auth the authentification Token/Object
    * @throws Exception
@@ -80,13 +88,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/signup").permitAll()
         .antMatchers("/index").permitAll()
         .antMatchers("/login").permitAll()
-        .antMatchers("/verification").permitAll()
+        .antMatchers("/verification").access("hasRole('ROLE_USERNOTVERIFIED')")
         .antMatchers("/welcome").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
         .and()
           .formLogin().loginPage("/login")
-          .defaultSuccessUrl("/welcome")
           .failureUrl("/login?error=true")
           .failureHandler(authenticationFailureHandler)
+          .successHandler(authenticationSuccessHandler)
           .usernameParameter("username").passwordParameter("password");
        
            

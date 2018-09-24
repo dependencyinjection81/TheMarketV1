@@ -70,7 +70,7 @@ public class UserService {
       /**
        * Adding ROLE_USER to the User
        */
-      Optional<Role> findById = roleRepository.findById(20l);      
+      Optional<Role> findById = roleRepository.findById(30l);      
       if(!findById.isPresent()) {
         // TODO error;
       }    
@@ -79,8 +79,7 @@ public class UserService {
       usr.setRoles(roles);
       
       
-      // Disable user until they confirm the verification code sent by Email.
-      usr.setEnabled(false);      
+      usr.setEnabled(true);      
       
       /**
        * Save entity to repository
