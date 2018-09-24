@@ -52,9 +52,9 @@ public class SignupController implements WebMvcConfigurer {
    * @return signup.html
    */
   
-  @GetMapping(value = "/vcode")
+  @GetMapping(value = "/verification")
   public String showForm(VcodeForm vcodeform) {
-    return "vcode";
+    return "verification";
 
   }
 

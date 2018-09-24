@@ -80,6 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/signup").permitAll()
         .antMatchers("/index").permitAll()
         .antMatchers("/login").permitAll()
+        .antMatchers("/verification").permitAll()
         .antMatchers("/welcome").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
         .and()
           .formLogin().loginPage("/login")

@@ -36,9 +36,13 @@ body {
     background-position: 80% 80%;  
 }
 
-p {font-size: 20px;}
+
 
 h1 {font-size: 50px;}
+h2 {font-size: 30px;}
+h3 {font-size: 20px;}
+p  {font-size: 18px;
+	text-align: center;}
 
 a {
 	/*SKIN*/
@@ -81,6 +85,33 @@ a:hover {
   "bs04 b05 bs06"
   "bs07 b08 bs09";
 }
+
+/******************************************************************/
+/*BODY LAYOUT FOR CENTERED FORMS LIKE LOGIN************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.bcs01 {grid-area: bcs01;}    .bc02 {grid-area: bc02;}  .bcs03 {grid-area: bcs03;}
+.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}	.bcs06 {grid-area: bcs06;}
+.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
+
+.body-container-center {
+  display: grid;
+	
+  grid-template-columns: 4fr 5fr 4fr;
+  grid-template-rows: minmax(80px, auto)
+  					  minmax(570px, auto) 
+  					  80px;
+  
+  grid-template-areas:
+
+/*Actual displayed order*******************************************/ 
+  "bcs01 bc02 bcs03"
+  "bcs04 bc05 bcs06"
+  "bcs07 bc08 bcs09";
+	
+}
+
 
 /************************/
 /*MODULES inside BODY****/
@@ -136,6 +167,13 @@ a:hover {
     top: -30px;          
 }
 
+.icon-big-form {
+	width: 70px; height: 70px;     
+    position:absolute;
+    left: -35px; 
+    top: -35px;    
+}
+
 /**************Dropdown menu********************/
 /*LAYOUT*/
 .l-dropdown_content {
@@ -180,6 +218,52 @@ a:hover {
   "m01 m02"
   "m03 m04"
   "m05 m06";
+}
+
+/******************************************************************/
+/*MAIN LAYOUT FOR CENTERED FORM Verification***********************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.centered-form-header {grid-area: header;} 
+.centered-form-logo {grid-area: logo;}
+.centered-form-caption {grid-area: caption;}
+.centered-form-description {grid-area: description;}
+.centered-form-input01 {grid-area: input01;}
+.centered-form-error01 {grid-area: error01;}
+.centered-form-spacer02 {grid-area: spacer02;}
+.centered-form-submit01 {grid-area: submit;}
+.centered-form-spacer03 {grid-area: spacer03;}
+.centered-form-footer {grid-area: footer;} 
+
+
+.bc05 {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px  /*header*/
+  					  60px  /*logo*/
+  					  60px  /*caption*/
+  					  80px  /*description*/
+  					  50px  /*input*/
+  					  20px  /*error*/
+  					  40px	/*spacer*/
+  					  1fr  /*submit*/
+  					  40px; /*spacer*/
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: 
+
+/*Actual displayed order*******************************************/
+  "header"
+  "logo"
+  "caption"
+  "description"
+  "input01"
+  "error01"
+  "spacer02"
+  "submit"
+  "footer";
 }
 
 /************************/
@@ -341,12 +425,25 @@ input:focus {
 /****STYLE THE ICONS*****/
 /************************/
 
+.clock {	
+	font-size: 20px;
+	color: var(--color-blue-middle);
+	font-weight: bold;   
+	margin: 0px !important;
+	padding: 5px !important;
+	text-align: center;   	
+}
 
 
 .icon-skin {
 	background-color: var(--color-grey-dark);
     fill: var(--color-white-creme);
     stroke: var(--color-white-creme);  
+    transition: 0.3s;
+}
+
+.icon-skin-form {	
+    fill: var(--color-grey-dark);  
     transition: 0.3s;
 }
 
@@ -403,6 +500,15 @@ input:focus {
     color: var(--color-red-signal);
     text-align: center;
 }
+
+/************************/
+/****TEXT SKIN***********/
+/************************/
+
+.s-dark {
+	color: var(--color-grey-almostblack);	
+}
+
 
 /******************************************************************/
 /*MOBILE LAYOUT****************************************************/

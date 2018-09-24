@@ -18,31 +18,32 @@ import org.springframework.web.servlet.LocaleResolver;
 @Component("authenticationFailureHandler")
 public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandler {
 
-   
-    @Autowired
-    private MessageSource messageSource;
+  @Autowired
+  private MessageSource messageSource;
 
-    @Autowired
-    private LocaleResolver localeResolver;
-   
-    @Override
-    public void onAuthenticationFailure(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException exception) throws IOException, ServletException {
-        setDefaultFailureUrl("/login?error=true");
+  @Autowired
+  private LocaleResolver localeResolver;
 
-        super.onAuthenticationFailure(request, response, exception);
+  @Override
+  public void onAuthenticationFailure(final HttpServletRequest request,
+      final HttpServletResponse response, final AuthenticationException exception)
+      throws IOException, ServletException {
 
-        final Locale locale = localeResolver.resolveLocale(request);
+    setDefaultFailureUrl("/login?error=true");
+    super.onAuthenticationFailure(request, response, exception);
 
-        String errorMessage = messageSource.getMessage("message.badCredentials", null, locale);
+    final Locale locale = localeResolver.resolveLocale(request);
 
-        if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
-            errorMessage = messageSource.getMessage("auth.message.disabled", null, locale);
-        } else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
-            errorMessage = messageSource.getMessage("auth.message.expired", null, locale);
-        } else if (exception.getMessage().equalsIgnoreCase("blocked")) {
-            errorMessage = messageSource.getMessage("auth.message.blocked", null, locale);
-        }
+    String errorMessage = messageSource.getMessage("message.badCredentials", null, locale);
 
-        request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);
+    if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
+      errorMessage = messageSource.getMessage("auth.message.disabled", null, locale);
+    } else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
+      errorMessage = messageSource.getMessage("auth.message.expired", null, locale);
+    } else if (exception.getMessage().equalsIgnoreCase("blocked")) {
+      errorMessage = messageSource.getMessage("auth.message.blocked", null, locale);
     }
+
+    request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);
+  }
 }
