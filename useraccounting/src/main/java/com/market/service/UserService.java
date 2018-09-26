@@ -7,6 +7,8 @@ import com.market.entities.VerificationToken;
 import com.market.repositories.RoleRepository;
 import com.market.repositories.TokenRepository;
 import com.market.repositories.UserRepository;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -97,6 +99,36 @@ public class UserService {
     tokenRepository.save(myToken);
   }
   
+  public int verifyUser(final User user, final String token) {
+    
+    
+    
+    VerificationToken tokenActual = tokenRepository.findByUser(user);
+    VerificationToken tokenGiven = tokenRepository.findByToken(token);
+  
+    if ((tokenActual != null) && (tokenGiven != null)) {
+      
+      Date dateNow = new Date();     
+      /*if (tokenActual.getExpiryDate() >= dateNow) {
+        
+      }*/
+     
+      boolean permitted = (tokenActual.getToken().equals(tokenGiven.getToken()));
+      if(permitted) {
+        //TODO Change Role
+        //Return 0;
+      } else {
+        return 1; /*Token is not correct*/
+      }
+    
+    } else {
+      return 2; /*either no user was found by user or no token was found by token*/
+    }
+    return 3; /*This should never happen*/
+    
+  }
+  
+  
   private void saveUser(final User user) {
     userRepository.save(user);
   }
@@ -111,6 +143,7 @@ public class UserService {
     return false;
   }
   
+
   private boolean emailExist(final String email) {    
     User user = userRepository.findByEmail(email);
     if (user != null) {

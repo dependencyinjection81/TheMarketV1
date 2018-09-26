@@ -47,15 +47,35 @@ public class SignupController implements WebMvcConfigurer {
   }
 
   /**
-   * show the vcode-form and binds the validation bean to it.
+   * show the verificationform and binds the validation bean to it.
    * 
-   * @return signup.html
+   * @return verification.html
    */
-  
   @GetMapping(value = "/verification")
   public String showForm(VcodeForm vcodeform) {
     return "verification";
+  }
+  
+  
+  @PostMapping(value = "/verification")
+  public String checkFormData(
+      final @Valid VcodeForm vcodeForm, /* verificationForm bean */
+      final BindingResult bindingResult, /* result to handle or process errors */
+      final @RequestParam(value = "action", required = true) String action, 
+      /* additional parameter because I have also a cancel button in my form */
+      final WebRequest request) /**/ {
 
+    /**
+     * STEP 1 FORM VALIDATION
+     * 
+     * If the user hit the signupButton and the bindingResult has errors return the same page.
+     * Errors will be parsed and displayed automatically.
+     */
+    if (bindingResult.hasErrors() && action.equals("verification")) {
+      return "verification";
+    } else
+
+      return null;
   }
 
   /**

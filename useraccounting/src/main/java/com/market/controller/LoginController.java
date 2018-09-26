@@ -15,6 +15,7 @@ public class LoginController implements WebMvcConfigurer {
     return "login";
   }
   
+  
   @GetMapping(value = "/welcome")
   public String showWelcome() {
     return "welcome";

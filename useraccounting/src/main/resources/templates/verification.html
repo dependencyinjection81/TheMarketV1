@@ -27,7 +27,7 @@ function next(next) {
 	<!-- Space left --> 
 	<div class="bcs04"></div>
 	
-	<form action="#">
+	<form action="#" th:action="@{/verification}" th:object="${vcodeForm}" method="post">
 	
 	<!-- Main content -->
 	<div class="l-container bc05 skin-container">
@@ -47,20 +47,25 @@ function next(next) {
 			<!-- Verificationcode -->
 			<table class="centered-form-input01">
 			<tr>
-			  <td><input class="clock" type="text" maxlength="1" size="1" onkeyup="next(2)"></td>
-			  <td><input id="2" class="clock" type="text" maxlength="1" size="1" onkeyup="next(3)"></td>
-			  <td><input id="3" class="clock" type="text" maxlength="1" size="1" onkeyup="next(4)"></td>
-			  <td><input id="4" class="clock" type="text" maxlength="1" size="1" onkeyup="next(5)"></td>
-			  <td><input id="5" class="clock" type="text" maxlength="1" size="1" onkeyup="next(6)"></td>
-			  <td><input id="6" class="clock" type="text" maxlength="1" size="1"></td>
+			  <td><input th:field="*{c1}" class="clock" type="text" maxlength="1" size="1" onkeyup="next(2)"></td>
+			  <td><input th:field="*{c2}" id="2" class="clock" type="text" maxlength="1" size="1" onkeyup="next(3)"></td>
+			  <td><input th:field="*{c3}" id="3" class="clock" type="text" maxlength="1" size="1" onkeyup="next(4)"></td>
+			  <td><input th:field="*{c4}" id="4" class="clock" type="text" maxlength="1" size="1" onkeyup="next(5)"></td>
+			  <td><input th:field="*{c5}" id="5" class="clock" type="text" maxlength="1" size="1" onkeyup="next(6)"></td>
+			  <td><input th:field="*{c6}" id="6" class="clock" type="text" maxlength="1" size="1"></td>
 			</tr>
 			</table>
 				
 			<!--Alertbox----------------------------------------------------------->
-			<p class="centered-form-error01 alert-text">your code has been expired!</p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c1')}" th:errors="*{c1}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c2')}" th:errors="*{c2}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c3')}" th:errors="*{c3}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c4')}" th:errors="*{c4}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c5')}" th:errors="*{c5}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c6')}" th:errors="*{c6}"></p>
 		
 			<!--Submit section-->
-			<button type="submit" 
+			<button type="submit" name="action" value="verification" 
 				class="centered-form-submit01 submitbtn" th:text="#{form.button.verify}"></button>
 			
 	</div>
