@@ -11,6 +11,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,10 +60,9 @@ public class SignupController implements WebMvcConfigurer {
   
   
   @PostMapping(value = "/verification")
-  public String checkFormData(
-      final @Valid VcodeForm vcodeForm, /* verificationForm bean */
+  public String checkFormData(final @Valid VcodeForm vcodeForm, /* verificationForm bean */
       final BindingResult bindingResult, /* result to handle or process errors */
-      final @RequestParam(value = "action", required = true) String action, 
+      final @RequestParam(value = "action", required = true) String action,
       /* additional parameter because I have also a cancel button in my form */
       final WebRequest request) /**/ {
 
@@ -72,10 +73,35 @@ public class SignupController implements WebMvcConfigurer {
      * Errors will be parsed and displayed automatically.
      */
     if (bindingResult.hasErrors() && action.equals("verification")) {
+      
       return "verification";
-    } else
 
+    } else if (action.equals("verification")) {
+      
+      /**
+       * Determine the current logged in username.
+       */
+      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      String currentUsername = auth.getName();
+      
+      /**
+       * STEP 2 TRY TO Verify the given token.
+       * the returned value will be 0 or 1 or 2 or 3 if there was an error as described below.
+       * 
+       * 2 email is already in use
+       * 1 username is already in use
+       * 0 if everything was ok and the account has been registered
+       *   
+       */
+      int status = userService.verifyUser(currentUsername, vcodeForm);
+      
       return null;
+    }
+    
+    return null;
+
+    
+
   }
 
   /**
