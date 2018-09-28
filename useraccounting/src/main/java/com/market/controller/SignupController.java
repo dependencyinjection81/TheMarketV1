@@ -5,6 +5,7 @@ import com.market.beans.VcodeForm;
 import com.market.entities.User;
 import com.market.events.OnRegistrationCompleteEvent;
 import com.market.repositories.UserRepository;
+import com.market.security.service.DataPrepareService;
 import com.market.service.UserService;
 
 import javax.validation.Valid;
@@ -35,7 +36,7 @@ public class SignupController implements WebMvcConfigurer {
   
   @Autowired
   UserRepository userRepository;
-  
+   
   /**
    * show the signup-form and binds the validation bean to it.
    * 
@@ -54,13 +55,13 @@ public class SignupController implements WebMvcConfigurer {
    * @return verification.html
    */
   @GetMapping(value = "/verification")
-  public String showForm(VcodeForm vcodeform) {
+  public String showForm(VcodeForm vCodeForm) {
     return "verification";
   }
   
   
   @PostMapping(value = "/verification")
-  public String checkFormData(final @Valid VcodeForm vcodeForm, /* verificationForm bean */
+  public String checkFormData(final @Valid VcodeForm vCodeForm, /* verificationForm bean */
       final BindingResult bindingResult, /* result to handle or process errors */
       final @RequestParam(value = "action", required = true) String action,
       /* additional parameter because I have also a cancel button in my form */
@@ -76,29 +77,52 @@ public class SignupController implements WebMvcConfigurer {
       
       return "verification";
 
-    } else if (action.equals("verification")) {
+    } else if (!bindingResult.hasErrors() && action.equals("verification")) {
       
       /**
        * Determine the current logged in username.
        */
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      String currentUsername = auth.getName();
+      if (auth == null) {
+        /**
+         * if this case happned something very unexpected going on because no unauthenticated client  
+         * should be able to call this controller.
+         *TODO try to remember client and blacklist
+         */
+      } else {
+        
+        String currentUsername = auth.getName();  
+        
+        /**
+         * STEP 2 TRY TO Verify the given token.
+         * the returned value will be 0 or 1 or 2 or 3 if there was an error as described below.
+         * 
+         * 1 wrong token
+         * 2 token expired
+         * 0 successful
+         *   
+         */
+        String incomingToken = new DataPrepareService(vCodeForm).getToken();
+        int status = userService.verifyUser(currentUsername, incomingToken);
+        
+        if (status == 1) {
+          bindingResult.rejectValue("c1", "VcodeForm.vcode.wrong.message");
+          return "verification";
+        
+        } else if (status == 2) {
+          bindingResult.rejectValue("c1", "VcodeForm.vcode.expired.message");
+          return "verification";
+          
+        } else if (status == 0) {
+          return "welcome"; //TODO Verification success page
+        }
       
-      /**
-       * STEP 2 TRY TO Verify the given token.
-       * the returned value will be 0 or 1 or 2 or 3 if there was an error as described below.
-       * 
-       * 2 email is already in use
-       * 1 username is already in use
-       * 0 if everything was ok and the account has been registered
-       *   
-       */
-      int status = userService.verifyUser(currentUsername, vcodeForm);
-      
-      return null;
+      }
+            
+      return null; //TODO cut off client and reject anything!
     }
     
-    return null;
+    return null; //TODO cut off client and reject anything!
 
     
 

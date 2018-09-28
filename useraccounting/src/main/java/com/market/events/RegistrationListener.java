@@ -19,7 +19,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
 
   @Autowired
   private JavaMailSender mailSender;
-
+  
   @Override
   public void onApplicationEvent(final OnRegistrationCompleteEvent event) {
     this.confirmRegistration(event);

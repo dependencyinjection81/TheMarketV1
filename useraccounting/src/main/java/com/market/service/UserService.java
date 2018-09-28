@@ -1,7 +1,6 @@
 package com.market.service;
 
 import com.market.beans.UserForm;
-import com.market.beans.VcodeForm;
 import com.market.entities.Role;
 import com.market.entities.User;
 import com.market.entities.VerificationToken;
@@ -101,69 +100,68 @@ public class UserService {
     tokenRepository.save(myToken);
   }
   
-  public int verifyUser(final String currentUsername, final VcodeForm vcodeForm) {
+  public int verifyUser(final String currentUsername, final String incomingToken) {
 
-    User currentUser = userRepository.findByUsername(currentUsername);
+    /**
+     * The current authenticated requesting clientUser.
+     */
+    User clientUser = userRepository.findByEmail(currentUsername);
     
     /**
-     * Token given by the current logged in user.
+     * If this is null no token was found in repository.
+     * If this is !null any token from any user could have been found in repository.
      */
-    String tokenGiven = vcodeForm.getC1() + vcodeForm.getC2() + vcodeForm.getC3() 
-                      + vcodeForm.getC4() + vcodeForm.getC5() + vcodeForm.getC6();
+    VerificationToken repositoryToken = tokenRepository.findByToken(incomingToken);    
+    if (repositoryToken == null) {
+      return 1; /*Wrong token*/
+    } else {
     
-    /**
-     * Actual Token of the user from repository.
-     */
-    VerificationToken tokenActual = tokenRepository.findByUser(currentUser);
-
-    if ((tokenActual != null)) {
-
-      final Calendar calNow = Calendar.getInstance();
-      calNow.setTimeInMillis(new Date().getTime());
-      Long now = calNow.getTimeInMillis();
-
-      final Calendar calExp = Calendar.getInstance();
-      calExp.setTimeInMillis(tokenActual.getExpiryDate().getTime());
-      Long exp = calExp.getTimeInMillis();
-
-      if (now >= exp) {
-        
-        return 1; /* Token has expired */
-
+      /**
+       * this is the actual owner of the incoming token. Must not be the requesting clientUser.
+       */
+      User repositoryUser = repositoryToken.getUser();
+      if (!clientUser.equals(repositoryUser)) {
+        return 1; /*Wrong token*/
       } else {
         
-        boolean permitted = (tokenActual.getToken().equals(tokenGiven));
+        /**
+         * Time now
+         */
+        final Calendar calNow = Calendar.getInstance();
+        calNow.setTimeInMillis(new Date().getTime());
+        Long now = calNow.getTimeInMillis();
+
+        /**
+         * Expiry time of requested token from repository
+         */
+        final Calendar calExp = Calendar.getInstance();
+        calExp.setTimeInMillis(repositoryToken.getExpiryDate().getTime());
+        Long exp = calExp.getTimeInMillis();
         
-        if (permitted) {
-          
-          
-          // TODO delete ROLE_USERNOTVERIFIED
-          // TODO add ROLE_USER
-          // TODO delete Token
-          
-          return 0; /*Successfully verified*/ 
-        
+        if (now >= exp) {
+          return 2; /*Token has expired*/
         } else {
-        
-          return 2; /* Wrong token */
-        
+          //TODO Change role to acomplish verification.
+          //TODO Delete Token from repository.
+          return 0; /*Successfully verified*/
         }
         
       }
-
     }
-    
-    return 3; /*No Token was found for the given User. If this case happned something really bad and unlikely was going on*/
+      
   }
     
+  
   private void saveUser(final User user) {
     userRepository.save(user);
   }
  
+  @SuppressWarnings("unused")
   private void addRoleToUser(final Long roleId) {
     
   }
   
+  @SuppressWarnings("unused")
   private void deleteRoleFromUser(final Long roleId) {
     
   }
