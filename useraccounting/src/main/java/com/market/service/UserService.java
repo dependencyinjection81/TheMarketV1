@@ -46,51 +46,23 @@ public class UserService {
   public int registerNewUserAccount(final UserForm userForm) {
 
     if (userNameExist(userForm.getUname())) {
-      /**
-       * The 1 will be interpreted by the caller (SignupController) to determine further steps.
-       */
+      
       return 1;
  
     } else if (emailExist(userForm.getEmail())) {
-      /**
-       * The 2 will be interpreted by the caller (SignupController) to determine further steps.
-       */
+
       return 2;
    
     } else {
-
-      /**
-       * Form Validation has passed with no error.
-       * Creating and populating the UserEntity and finally save it to the repository.
-       */
       
       User user = new User();
      
       user.setUsername(userForm.getUname());
       user.setEmail(userForm.getEmail());
       user.setPassword(passwordEncoder.encode(userForm.getPwd()));
-      
-      /**
-       * Adding ROLE_USER to the User
-       */
-      Optional<Role> findById = roleRepository.findById(30l);      
-      if(!findById.isPresent()) {
-        // TODO error;
-      }    
-      Set<Role> roles = new HashSet<>();
-      roles.add(findById.get());
-      user.setRoles(roles);
-      
-      
+      addRoleToUser(user, 30l);
       user.setEnabled(true);      
-      
-      /**
-       * Save entity to repository
-       */
       saveUser(user); 
-      /**
-       * The 0 will be interpreted by the caller (SignupController) to determine further steps.
-       */
       return 0;     
     }
   }
@@ -102,47 +74,41 @@ public class UserService {
   
   public int verifyUser(final String currentUsername, final String incomingToken) {
 
-    /**
-     * The current authenticated requesting clientUser.
-     */
     User clientUser = userRepository.findByEmail(currentUsername);
-    
-    /**
-     * If this is null no token was found in repository.
-     * If this is !null any token from any user could have been found in repository.
-     */
     VerificationToken repositoryToken = tokenRepository.findByToken(incomingToken);    
+    
     if (repositoryToken == null) {
+    
       return 1; /*Wrong token*/
+    
     } else {
     
-      /**
-       * this is the actual owner of the incoming token. Must not be the requesting clientUser.
-       */
       User repositoryUser = repositoryToken.getUser();
+      
       if (!clientUser.equals(repositoryUser)) {
+      
         return 1; /*Wrong token*/
+      
       } else {
         
-        /**
-         * Time now
-         */
         final Calendar calNow = Calendar.getInstance();
         calNow.setTimeInMillis(new Date().getTime());
         Long now = calNow.getTimeInMillis();
 
-        /**
-         * Expiry time of requested token from repository
-         */
         final Calendar calExp = Calendar.getInstance();
         calExp.setTimeInMillis(repositoryToken.getExpiryDate().getTime());
         Long exp = calExp.getTimeInMillis();
         
         if (now >= exp) {
+        
           return 2; /*Token has expired*/
+        
         } else {
-          //TODO Change role to acomplish verification.
+          
+          addRoleToUser(repositoryUser, 10l); //TODO die Role ID immutable machen
+          saveUser(repositoryUser);
           //TODO Delete Token from repository.
+          
           return 0; /*Successfully verified*/
         }
         
@@ -156,13 +122,19 @@ public class UserService {
     userRepository.save(user);
   }
  
-  @SuppressWarnings("unused")
-  private void addRoleToUser(final Long roleId) {
-    
+  private void addRoleToUser(final User user, final Long roleId) {
+ 
+    Optional<Role> findById = roleRepository.findById(roleId);      
+    if(!findById.isPresent()) {
+      // TODO error;
+    }    
+    Set<Role> roles = new HashSet<>();
+    roles.add(findById.get());
+    user.setRoles(roles);
   }
   
   @SuppressWarnings("unused")
-  private void deleteRoleFromUser(final Long roleId) {
+  private void deleteRoleFromUser(final User user, final Long roleId) {
     
   }
   

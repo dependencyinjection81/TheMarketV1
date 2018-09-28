@@ -73,7 +73,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     if (isUserNotVerified) {
       return "/verification";
     } else if (isUserVerified) {
-      return "/welcome.html";
+      return "/welcome";
     } else {
       throw new IllegalStateException();
     }

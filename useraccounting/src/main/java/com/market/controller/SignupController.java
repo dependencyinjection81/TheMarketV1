@@ -73,6 +73,7 @@ public class SignupController implements WebMvcConfigurer {
      * If the user hit the signupButton and the bindingResult has errors return the same page.
      * Errors will be parsed and displayed automatically.
      */
+    bindingResult.getFieldError("c1");
     if (bindingResult.hasErrors() && action.equals("verification")) {
       
       return "verification";
@@ -114,7 +115,7 @@ public class SignupController implements WebMvcConfigurer {
           return "verification";
           
         } else if (status == 0) {
-          return "welcome"; //TODO Verification success page
+          return "redirect:welcome"; //TODO Verification success page
         }
       
       }
@@ -184,7 +185,7 @@ public class SignupController implements WebMvcConfigurer {
         User user = userRepository.findByEmail(userForm.getEmail());
         
         eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
-        return "index";        
+        return "index";  //TODO registration success page und verification Hinweis      
       }
       
     }
