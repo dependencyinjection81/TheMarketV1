@@ -2,6 +2,7 @@
 
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/layout_verification.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
 <title th:text="#{form.vcode.title}"></title>
@@ -57,12 +58,7 @@ function next(next) {
 			</table>
 				
 			<!--Alertbox----------------------------------------------------------->
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c1')}" th:errors="*{c1}"></p>
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c2')}" th:errors="*{c2}"></p>
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c3')}" th:errors="*{c3}"></p>
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c4')}" th:errors="*{c4}"></p>
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c5')}" th:errors="*{c5}"></p>
-			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c6')}" th:errors="*{c6}"></p>
+			<p class="centered-form-error01 alert-text" th:if="${#fields.hasErrors('c7')}" th:errors="*{c7}"></p>
 		
 			<!--Submit section-->
 			<button type="submit" name="action" value="verification" 

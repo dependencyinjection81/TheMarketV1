@@ -11,24 +11,27 @@ public class VcodeForm {
    ************************************************************
    */
   
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c1;
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c2;
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c3;
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c4;
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c5;
-  @NotBlank(message = "{VcodeForm.vcode.NotBlank.message}")
-  @Digits(integer=1, fraction=0, message ="{VcodeForm.vcode.noDigit.message}")
+  @NotBlank
+  @Digits(integer=1, fraction=0)
   private String c6;
+  
+  private String c7;
+  
   
   public String getC1() {
     return c1;
@@ -65,6 +68,13 @@ public class VcodeForm {
   }
   public void setC6(final String c6) {
     this.c6 = c6;
+  }
+  
+  public String getC7() {
+    return c7;
+  }
+  public void setC7(final String c7) {
+    this.c7 = "error";
   }
   
   

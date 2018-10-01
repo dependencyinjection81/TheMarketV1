@@ -22,9 +22,9 @@ import com.market.service.UserDetailsServiceImpl;
  *
  *Anstelle von auth.inMemoryAuthentication() wird auth.userDetailsService() in der Methode
  *globalSecurityConfiguration() verwendet. Das übergebene Interface UserDetailsService wird
- *per @Autowired eingebunden. Damit Spring die Implementation findet, wird an die Klasse
+ *per @Autowired eingebunden. Damit Spring die Implementierung findet, wird an die Klasse
  *die Annotation @ComponentScan(basePackageClasses = AuthenticatedUserService.class)
- *eingefügt. AuthenticatedUserService ist dabei unsere Implementierung des Interfaces.
+ *eingefügt. AuthenticatedUserService ist dabei die Implementierung des Interfaces.
  *
  */
 @Configuration
@@ -89,7 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/index").permitAll()
         .antMatchers("/login").permitAll()
         .antMatchers("/verification").access("hasRole('ROLE_USERNOTVERIFIED')")
-        .antMatchers("/welcome").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+        .antMatchers("/welcome").access("hasRole('ROLE_USER')")
         .and()
           .formLogin().loginPage("/login")
           .failureUrl("/login?error=true")

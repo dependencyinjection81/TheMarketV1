@@ -1,0 +1,78 @@
+body {
+	margin: 0px;
+	background-image: url('../images/background03.jpg');
+	background-repeat: no-repeat;
+    background-position: 80% 80%;  
+}
+
+/******************************************************************/
+/*BODY LAYOUT VERIFICATION*****************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.bcs01 {grid-area: bcs01;}    .bc02 {grid-area: bc02;}  .bcs03 {grid-area: bcs03;}
+.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}	.bcs06 {grid-area: bcs06;}
+.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
+
+.body-container-center {
+  display: grid;
+	
+  grid-template-columns: 4fr 5fr 4fr;
+  grid-template-rows: minmax(80px, auto)
+  					  minmax(570px, auto) 
+  					  80px;
+  
+  grid-template-areas:
+
+/*Actual displayed order*******************************************/ 
+  "bcs01 bc02 bcs03"
+  "bcs04 bc05 bcs06"
+  "bcs07 bc08 bcs09";
+	
+}
+
+/******************************************************************/
+/*MAIN LAYOUT VERIFICATION*****************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.centered-form-header {grid-area: header;} 
+.centered-form-logo {grid-area: logo;}
+.centered-form-caption {grid-area: caption;}
+.centered-form-description {grid-area: description;}
+.centered-form-input01 {grid-area: input01;}
+.centered-form-error01 {grid-area: error01;}
+.centered-form-spacer02 {grid-area: spacer02;}
+.centered-form-submit01 {grid-area: submit;}
+.centered-form-spacer03 {grid-area: spacer03;}
+.centered-form-footer {grid-area: footer;} 
+
+
+.bc05 {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px  /*header*/
+  					  60px  /*logo*/
+  					  60px  /*caption*/
+  					  80px  /*description*/
+  					  50px  /*input*/
+  					  20px  /*error*/
+  					  40px	/*spacer*/
+  					  1fr  /*submit*/
+  					  40px; /*spacer*/
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: 
+
+/*Actual displayed order*******************************************/
+  "header"
+  "logo"
+  "caption"
+  "description"
+  "input01"
+  "error01"
+  "spacer02"
+  "submit"
+  "footer";
+}
