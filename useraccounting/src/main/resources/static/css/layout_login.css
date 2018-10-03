@@ -6,7 +6,7 @@ body {
 }
 
 /******************************************************************/
-/*BODY LAYOUT VERIFICATION*****************************************/
+/*BODY LAYOUT LOGIN************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
@@ -18,9 +18,9 @@ body {
   display: grid;
 	
   grid-template-columns: 4fr 5fr 4fr;
-  grid-template-rows:  minmax(80px, auto)
-  					           minmax(570px, auto) 
-  					           80px;
+  grid-template-rows: minmax(80px, auto)
+  					          minmax(570px, auto) 
+  					          80px;
   
   grid-template-areas:
 

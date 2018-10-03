@@ -1,0 +1,95 @@
+body {
+	margin: 0px;
+	background-image: url('../images/background03.jpg');
+	background-repeat: no-repeat;
+  background-position: 80% 80%;  
+}
+
+/******************************************************************/
+/*BODY LAYOUT SIGNUP***********************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.bs01 {grid-area: bs01;}    .b02 {grid-area: b02;}  .bs03 {grid-area: bs03;}
+.bs04 {grid-area: bs04;}    .b05 {grid-area: b05;}  .bs06 {grid-area: bs06;}
+.bs07 {grid-area: bs07;}    .b08 {grid-area: b08;}  .bs09 {grid-area: bs09;}
+
+.body-container {
+  display: grid;
+  
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-rows: minmax(80px, auto)
+                      minmax(570px, auto) 
+                      80px;
+  
+  grid-template-areas:
+
+/*Actual displayed order*******************************************/ 
+  "bs01 b02 bs03"
+  "bs04 b05 bs06"
+  "bs07 b08 bs09";
+}
+
+/******************************************************************/
+/*HEADER LAYOUT****************************************************/
+/******************************************************************/
+
+/*Declaring the area variables*************************************/
+.h01 {grid-area: h01;}  .h02 {grid-area: h02;}  .h03 {grid-area: h03;}  
+.h04 {grid-area: h04;}  .h05 {grid-area: h05;}  .h06 {grid-area: h06;}
+.h07 {grid-area: h07;}  .h08 {grid-area: h08;}  .h09 {grid-area: h09;}
+.h10 {grid-area: h10;}
+
+.b02 {
+  display: grid;  
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: 
+
+/*Actual displayed order*******************************************/
+  "h01 h02 h03 h04 h05 h06 h07 h08 h09 h10";
+}
+
+/******************************************************************/
+/*MAIN LAYOUT******************************************************/
+/******************************************************************/
+
+/******************************************************************/
+/*MOBILE LAYOUT****************************************************/
+/******************************************************************/
+@media(max-width: 768px) {
+  /*Hide all spacer**************************************************/
+  [class*="bs"] {display: none;}  
+  .body-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;      
+    grid-template-areas:
+  /*Reordering body areas********************************************/ 
+    "b02"
+    "b05"
+    "b08";
+  }
+
+  .b02 {
+    grid-template-columns: 1fr;
+    grid-template-rows:   minmax(80px, auto) 
+                          minmax(40px, auto)
+                          minmax(40px, auto)
+                          minmax(40px, auto)
+                          minmax(40px, auto)
+                          minmax(80px, auto);
+          
+                
+    grid-template-areas: 
+  /*Reordering header areas******************************************/
+    "h01"
+    "h02"
+    "h03"
+    "h08"
+    "h09"
+    "h10";
+  }
+
+}

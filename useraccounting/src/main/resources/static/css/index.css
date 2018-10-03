@@ -33,8 +33,7 @@
 h1 {font-size: 50px;}
 h2 {font-size: 30px;}
 h3 {font-size: 20px;}
-p  {font-size: 18px;
-	text-align: center;}
+p  {font-size: 18px;}
 
 a {
 	/*SKIN*/
@@ -53,70 +52,13 @@ a:hover {
 	color: var(--color-blue-middle);
 }
 
-/******************************************************************/
-/*BODY LAYOUT FOR INDEX********************************************/
-/******************************************************************/
 
-/*Declaring the area variables*************************************/
-.bs01 {grid-area: bs01;}    .b02 {grid-area: b02;}  .bs03 {grid-area: bs03;}
-.bs04 {grid-area: bs04;}    .b05 {grid-area: b05;}	.bs06 {grid-area: bs06;}
-.bs07 {grid-area: bs07;}    .b08 {grid-area: b08;}	.bs09 {grid-area: bs09;}
-
-.body-container {
-  display: grid;
-  
-  grid-template-columns: 1fr 6fr 1fr;
-  grid-template-rows: minmax(80px, auto)
-  					  minmax(570px, auto) 
-  					  80px;
-  
-  grid-template-areas:
-
-/*Actual displayed order*******************************************/ 
-  "bs01 b02 bs03"
-  "bs04 b05 bs06"
-  "bs07 b08 bs09";
-}
-
-
-
-/************************/
-/*MODULES inside BODY****/
-/************************/
-
-/**************Header********************/
 /*THEME*/
 .header {background-color: var(--color-grey-dark);}
 
-/**************Spacer********************/
-
-/**************Main**********************/
-
-
-/**************Footer********************/
 .footer {background-color: var(--color-grey-dark);}
 
-/******************************************************************/
-/*HEADER LAYOUT****************************************************/
-/******************************************************************/
 
-/*Declaring the area variables*************************************/
-.h01 {grid-area: h01;}  .h02 {grid-area: h02;}  .h03 {grid-area: h03;}  
-.h04 {grid-area: h04;}  .h05 {grid-area: h05;}  .h06 {grid-area: h06;}
-.h07 {grid-area: h07;}  .h08 {grid-area: h08;}  .h09 {grid-area: h09;}
-.h10 {grid-area: h10;}
-
-.b02 {
-  display: grid;  
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  justify-items: center;
-  align-items: center;
-  grid-template-areas: 
-
-/*Actual displayed order*******************************************/
-  "h01 h02 h03 h04 h05 h06 h07 h08 h09 h10";
-}
 
 /************************/
 /*MODULES inside HEADER**/
@@ -164,30 +106,6 @@ a:hover {
 /**THEME**/
 .styled {font-style: italic;}
 
-/******************************************************************/
-/*MAIN LAYOUT******************************************************/
-/******************************************************************/
-
-/*Declaring the area variables*************************************/
-.m01 {grid-area: m01;} .m02 {grid-area: m02;}
-.m03 {grid-area: m03;} .m04 {grid-area: m04;}
-.m05 {grid-area: m05;} .m06 {grid-area: m06;}
-
-.b05 {
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: 60px 
-  					  auto
-  					  60px;
-  grid-template-areas: 
-/*Actual displayed order*******************************************/
-  "m01 m02"
-  "m03 m04"
-  "m05 m06";
-}
-
-
 
 /************************/
 /*MODULES inside MAIN****/
@@ -209,54 +127,7 @@ a:hover {
 	color: var(--color-grey-almostblack);
 }
 
-.l-label01{grid-area: label01;}
-.l-input01{grid-area: input01;}
-.l-error01{grid-area: error01;}
 
-.l-label02{grid-area: label02;}
-.l-input02{grid-area: input02;}
-.l-error02{grid-area: error02;} 
-
-.l-label03{grid-area: label03;}
-.l-input03{grid-area: input03;}
-.l-error03{grid-area: error03;}  
-
-.l-input04{grid-area: input04;}
-.l-error04{grid-area: error04;}
-
-.l-spacer{grid-area: spacer;}  
-
-.l-button01{grid-area: button01;}
-.l-button02{grid-area: button02;}  
-
-
-.m04 {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 20px 50px 20px 20px 50px 20px 20px 50px 40px 50px 20px 20px 1fr 1fr;
-	
-  	align-items: center;
-	grid-template-areas: "label01"
-						 "input01"
-						 "error01"
-						 
-						 "label02"
-						 "input02"
-						 "error02"
-						 
-						 "label03"
-						 "input03"
-						 "error03"
-						 
-						 "input04"
-						 "error04"
-						 
-						 "spacer"
-
-						 "button01"
-						 "button02"
-
-}
 
 /************************/
 /****STYLE THE BUTTONS***/
@@ -360,8 +231,7 @@ input:focus {
 
 .icon-skin {
 	background-color: var(--color-grey-dark);
-    fill: var(--color-white-creme);
-    stroke: var(--color-white-creme);  
+    fill: var(--color-white-creme);     
     transition: 0.3s;
 }
 
@@ -373,7 +243,7 @@ input:focus {
 .icon-skin:hover {
 	
 	fill: var(--color-blue-middle);
-    stroke: var(--color-blue-middle);
+    
     
 }
 
@@ -433,53 +303,8 @@ input:focus {
 }
 
 
-/******************************************************************/
-/*MOBILE LAYOUT****************************************************/
-/******************************************************************/
-@media(max-width: 768px) {
-/*Hide all spacer**************************************************/
-[class*="bs"] {display: none;}  
-.body-container {
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;      
-  grid-template-areas:
-/*Reordering body areas********************************************/ 
-  "b02"
-  "b05"
-  "b08";
-}
 
-.b02 {
-  grid-template-columns: 1fr;
-  grid-template-rows: 	minmax(80px, auto) 
-  						minmax(40px, auto)
-  						minmax(40px, auto)
-  						minmax(40px, auto)
-  						minmax(40px, auto)
-  						minmax(80px, auto);
-  			
-  						
-  grid-template-areas: 
-/*Reordering header areas******************************************/
-  "h01"
-  "h02"
-  "h03"
-  "h08"
-  "h09"
-  "h10";
-}
 
-.b05 {
-  grid-template-columns: 1fr;
-  grid-template-rows: 	auto
-  						auto;
-  grid-template-areas:
-/*Reordering main content areas************************************/
 
-  "m03"
-  "m04";
-}
-
-}
 
 
