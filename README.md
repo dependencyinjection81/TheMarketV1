@@ -1,2 +1,2 @@
 # TheMarketV1
-learning project SpringBoot MVC Hybernate Thymeleaf Bootstrap 
+learning project SpringBoot MVC Hybernate Thymeleaf
