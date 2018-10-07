@@ -2,7 +2,11 @@ body {
 	margin: 0px;
 	background-image: url('../images/background03.jpg');
 	background-repeat: no-repeat;
-    background-position: 80% 80%;  
+    background-position: 50% 80%; 
+}
+
+p {
+	text-align: center;
 }
 
 /******************************************************************/
@@ -19,8 +23,8 @@ body {
 	
   grid-template-columns: 4fr 5fr 4fr;
   grid-template-rows: minmax(80px, auto)
-  					          minmax(570px, auto) 
-  					          80px;
+  					  minmax(570px, auto) 
+  					  80px;
   
   grid-template-areas:
 
@@ -32,7 +36,7 @@ body {
 }
 
 /******************************************************************/
-/*MAIN LAYOUT VERIFICATION*****************************************/
+/*MAIN LAYOUT Login************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
@@ -40,25 +44,43 @@ body {
 .centered-form-logo {grid-area: logo;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
-.centered-form-input01 {grid-area: input01;}
-.centered-form-error01 {grid-area: error01;}
-.centered-form-spacer02 {grid-area: spacer02;}
-.centered-form-submit01 {grid-area: submit;}
-.centered-form-spacer03 {grid-area: spacer03;}
-.centered-form-footer {grid-area: footer;} 
 
+.centered-form-spacer01 {grid-area: spacer01;}
+
+
+.centered-form-input01 {grid-area: input01; justify-self: stretch;}
+.centered-form-bar01 {grid-area: bar01; justify-self: stretch;}
+
+
+.centered-form-input02 {grid-area: input02; justify-self: stretch;}
+.centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
+
+.centered-form-spacer02 {grid-area: spacer02;}
+
+.centered-form-submit {grid-area: submit;}
+.centered-form-footer {grid-area: footer;} 
 
 .bc05 {
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
-  grid-template-rows: 40px  /*header*/
-  					  60px  /*logo*/
-  					  60px  /*caption*/
-  					  80px  /*description*/
-  					  50px  /*input*/
-  					  20px  /*error*/
-  					  40px	/*spacer*/
+  grid-template-rows: 30px  /*header*/
+  					  80px  /*logo*/
+  					  40px  /*caption*/
+  					  40px  /*description*/
+  					  
+  					  40px	/*spacer01*/
+  					  
+  					  
+  					  50px  /*input01*/
+  					  20px	/*spacer02*/
+  					  
+  					  
+  					  50px  /*input02*/
+  					  20px  /*spacer03*/
+  					  
+  					  40px	/*spacer04*/
+  					  
   					  1fr  /*submit*/
   					  40px; /*spacer*/
   justify-items: center;
@@ -70,9 +92,18 @@ body {
   "logo"
   "caption"
   "description"
+  
+  "spacer01"
+  
+  
   "input01"
-  "error01"
+  "bar01"
+  
+  "input02"
+  "bar02"
+  
   "spacer02"
-  "submit"
-  "footer";
+  
+  "submit";
 }
+

@@ -26,13 +26,14 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	font-family: Segoe UI, Verdana;
+	font-family: Helvetica;	
+	-webkit-font-smoothing: antialiased;
 }
 
 
 h1 {font-size: 50px;}
-h2 {font-size: 30px;}
-h3 {font-size: 20px;}
+h2 {font-size: 30px; font-weight: 500;}
+h3 {font-size: 25px; font-weight: 500;}
 p  {font-size: 18px;}
 
 a {
@@ -215,6 +216,7 @@ input:focus {
     padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
+
 /************************/
 /****STYLE THE ICONS*****/
 /************************/
@@ -292,6 +294,12 @@ input:focus {
     font-size: small;
     color: var(--color-red-signal);
     text-align: center;
+}
+
+.alert-text-big {
+	font-size: 18px;
+	color: var(--color-red-signal);
+	text-align: center;
 }
 
 /************************/

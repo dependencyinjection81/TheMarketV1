@@ -1,11 +1,13 @@
 <html xmlns:th="http//thymeleaf.org">
 
 <head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/theme-login.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout_login.css}" />
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
-<title th:text="#{form.login.title}"></title>
+<title th:text="#{title.login}"></title>
 </head>
 
 
@@ -37,34 +39,29 @@
 		</div>
 		</div>
 		
-		<div class="centered-form-caption"><h2 class="s-dark" th:text="#{form.vcode.vcode.caption}"></h2></div>
-		<div class="centered-form-description"><p class="s-dark" th:text="#{form.vcode.description}"></p></div>
+		<div class="centered-form-caption"><h2 class="s-light" th:text="#{form.login.caption}"></h2></div>
+		<div class="centered-form-description"><p class="s-light" th:text="#{form.login.description}"></p></div>
+		<!--Alertbox----------------------------------------------------------->
+		<p class="centered-form-alert alert-text-big" th:if="${param.error != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>		
 
-									<!-- EMAIL -->
-			<!--Label-------------------------------------------------------------->
-			<label class="centered-form-label01" for="username"
-				th:text="#{form.signup.email.label}"></label>
-			<!--Inputfield--------------------------------------------------------->
-			<div class="centered-form-input01 inputWithIcon">
-				<input type="text" id="username" name="username"
-					th:placeholder="#{form.login.email.placeholder}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
-			</div>
 			
-									<!--PASSWORD-->
-			<!--Label-------------------------------------------------------------->
-			<label class="centered-form-label02" for="password" th:text="#{form.signup.pwd.label}"></label>
-			<!--Inputfield--------------------------------------------------------->
-			<div class="centered-form-input02 inputWithIcon">
-				<input type="password" id="password" name="password"
-				th:placeholder="#{form.login.pwd.placeholder}">
-				<!--Icon----------------------------------------------------------->
-				<svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
-			</div>
+			
+									<!-- EMAIL -->						
+      		<div class="centered-form-input01">
+      		<input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}">    		
+      		<span class="bar01"></span>
+      		</div>	
+			
+									<!--PASSWORD-->			
+      		<div class="centered-form-input02">
+      		<input type="password" id="password" name="password" th:placeholder="#{form.login.pwd.placeholder}">
+      		<span class="bar01"></span>
+      		</div>     			
+			
+			
 			
 			<!--Submit section-->
-			<button type="submit" class="centered-form-submit01 submitbtn" th:text="#{form.button.login}"></button>					
+			<button type="submit" class="centered-form-submit submitbtn" th:text="#{form.button.login}"></button>					
 			
 			
 	</div>

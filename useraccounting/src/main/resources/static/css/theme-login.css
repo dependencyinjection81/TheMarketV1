@@ -1,0 +1,180 @@
+/*********************************/
+/******COLOR SHEME****************/
+/*********************************/
+
+:root {
+
+    --color-red-signal: rgb(235,116,100);
+    
+    --color-white-creme: rgb(230,230,230);
+    
+    --color-red-light: #FFB789;
+    --color-green-light: #B7f081;
+    --color-blue-middle: #4BA7CD;
+    
+    
+    --color-grey-light: rgb(230,230,230);
+    --color-grey-middle: rgb(180,180,180);
+    --color-grey-dark: rgb(100,100,100);
+    --color-grey-almostblack: rgb(50,50,50);
+
+}
+
+/*********************************/
+/******BASE***********************/
+/*********************************/
+* {
+	box-sizing: border-box;
+	margin: 0;
+	font-family: Helvetica;	
+	-webkit-font-smoothing: antialiased;
+}
+
+
+h1 {font-size: 50px;}
+h2 {font-size: 30px; font-weight: 500;}
+h3 {font-size: 25px; font-weight: 500;}
+p  {font-size: 18px;}
+
+
+input {
+	font-size: 16px;
+	box-sizing: border-box;
+	padding: 10px 10px 10px 5px;	
+	-webkit-appearance: none;
+	display: block;
+	background-color: var(--color-grey-dark);
+	color: var(--color-white-creme);
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 2px solid var(--color-white-creme);
+}
+
+label {
+	color: var(--color-white-creme);
+	padding-left: 6px;
+
+}
+
+
+input:focus {
+	outline: none;
+}
+
+.icon-skin-form {	
+    fill: var(--color-blue-middle);  
+    transition: 0.3s;
+}
+
+.alert-text-big {
+	font-size: 16px;
+	color: var(--color-red-signal);
+	text-align: center;
+}
+
+.s-light {
+	color: var(--color-white-creme);	
+}
+
+/************************/
+/****STYLE THE BUTTONS***/
+/************************/
+
+button {
+	background-color: var(--color-white-creme);
+    color: var(--color-grey-almostblack);
+    border: none;    
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.submitbtn {
+	padding: 16px 32px;
+    margin-bottom: 8px;
+    background-color: var(--color-white-creme);
+    color: var(--color-grey-dark); /*Textcolor*/
+}
+
+.submitbtn:hover {
+	padding: 16px 32px;
+    margin-bottom: 8px;
+    background-color: var(--color-green-light); 
+    color: var(--color-grey-almostblack);
+}
+
+.cancelbtn {
+	padding: 16px 32px;
+    margin-bottom: 8px;
+    background-color: var(--color-white-creme);
+    color: var(--color-grey-dark);
+}
+
+.cancelbtn:hover {
+	padding: 16px 32px;
+    margin-bottom: 8px;
+    background-color: var(--color-red-light); 
+    color: var(--color-grey-almostblack);
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .submitbtn {
+    float: left;
+    width: 100%;
+}
+
+.skin-container {	
+	border-radius: 6px;
+	background-color: var(--color-grey-dark);
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.l-container {
+	padding: 20px;
+}
+
+.icon-container {position: relative;}
+
+
+.icon-big-form {
+	width: 70px; height: 70px;     
+    position:absolute;
+    left: -35px; 
+    top: -35px;    
+}
+
+/* Underline */
+
+.bar01 {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.bar01:before, .bar01:after {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 0px;
+	position: absolute;
+	background: var(--color-blue-middle);
+	-webkit-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
+}
+
+.bar01:before {
+	left: 50%;
+}
+.bar01:after {
+	right: 50%;
+}
+
+input:focus ~ .bar01:before, input:focus ~ .bar01:after {
+	width: 50%;
+}
+
