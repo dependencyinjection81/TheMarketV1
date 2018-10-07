@@ -49,6 +49,7 @@ input {
 	border: none;
 	border-radius: 0;
 	border-bottom: 2px solid var(--color-white-creme);
+	padding-left: 40px; /**Advance the placeholder to the left**/
 }
 
 label {
@@ -60,7 +61,10 @@ label {
 
 input:focus {
 	outline: none;
+	padding-left: 40px; /**Advance the placeholder to the left**/
 }
+
+.inputWithIcon {position: relative;}
 
 .icon-skin-form {	
     fill: var(--color-blue-middle);  
@@ -105,7 +109,7 @@ button {
 	padding: 16px 32px;
     margin-bottom: 8px;
     background-color: var(--color-green-light); 
-    color: var(--color-grey-almostblack);
+    color: var(--color-grey-dark); /*Textcolor*/
 }
 
 .cancelbtn {
@@ -136,6 +140,17 @@ button {
 
 .l-container {
 	padding: 20px;
+}
+
+.l-icon {
+	width: 20px; height: 20px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 13; /*Advance Icon to the right*/
+    top: 8px;/*Advance Icon downwards*/   
 }
 
 .icon-container {position: relative;}
@@ -176,5 +191,6 @@ button {
 
 input:focus ~ .bar01:before, input:focus ~ .bar01:after {
 	width: 50%;
+	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
 

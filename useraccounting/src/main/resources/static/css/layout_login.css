@@ -21,7 +21,7 @@ p {
 .body-container-center {
   display: grid;
 	
-  grid-template-columns: 4fr 5fr 4fr;
+  grid-template-columns: 8fr 9fr 8fr;
   grid-template-rows: minmax(80px, auto)
   					  minmax(570px, auto) 
   					  80px;
@@ -70,12 +70,10 @@ p {
   					  40px  /*description*/
   					  
   					  40px	/*spacer01*/
-  					  
-  					  
+  					  					  
   					  50px  /*input01*/
   					  20px	/*spacer02*/
-  					  
-  					  
+  					    					  
   					  50px  /*input02*/
   					  20px  /*spacer03*/
   					  
@@ -105,5 +103,20 @@ p {
   "spacer02"
   
   "submit";
+}
+
+@media(max-width: 768px) {
+  /*Hide all spacer**************************************************/
+  [class*="bcs"] {display: none;}  
+  .body-container-center {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;      
+    grid-template-areas:
+  /*Reordering body areas********************************************/ 
+    "bc02"
+    "bc05"
+    "bc08";
+  }
+
 }
 
