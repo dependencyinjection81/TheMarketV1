@@ -40,7 +40,7 @@ p {
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
-.centered-form-header {grid-area: header;} 
+
 .centered-form-logo {grid-area: logo;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
@@ -54,17 +54,18 @@ p {
 
 .centered-form-input02 {grid-area: input02; justify-self: stretch;}
 .centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
+.centered-form-alert {grid-area: alert; justify-self: stretch;}
 
 .centered-form-spacer02 {grid-area: spacer02;}
 
-.centered-form-submit {grid-area: submit;}
+.centered-form-submit {grid-area: submit; justify-self: stretch;}
 .centered-form-footer {grid-area: footer;} 
 
 .bc05 {
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
-  grid-template-rows: 30px  /*header*/
+  grid-template-rows: 
   					  80px  /*logo*/
   					  40px  /*caption*/
   					  40px  /*description*/
@@ -76,33 +77,38 @@ p {
   					    					  
   					  50px  /*input02*/
   					  20px  /*spacer03*/
+  					  20px	/*alert*/
   					  
-  					  40px	/*spacer04*/
+  					  20px	/*spacer04*/
   					  
   					  1fr  /*submit*/
-  					  40px; /*spacer*/
+  					  40px; /*footer*/
   justify-items: center;
   align-items: center;
   grid-template-areas: 
 
 /*Actual displayed order*******************************************/
-  "header"
+  
   "logo"
   "caption"
   "description"
-  
   "spacer01"
-  
-  
   "input01"
   "bar01"
-  
   "input02"
   "bar02"
-  
-  "spacer02"
-  
-  "submit";
+  "alert"
+  "spacer02"  
+  "submit"
+  "footer";
+}
+
+.centered-form-submit {
+	display: grid;
+  	grid-template-columns: 2fr 1fr 2fr;
+  	justify-items: center;
+  	align-items: center;
+  	
 }
 
 @media(max-width: 768px) {

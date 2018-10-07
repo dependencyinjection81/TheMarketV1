@@ -41,11 +41,8 @@
 		
 		<div class="centered-form-caption"><h2 class="s-light" th:text="#{form.login.caption}"></h2></div>
 		<div class="centered-form-description"><p class="s-light" th:text="#{form.login.description}"></p></div>
-		<!--Alertbox----------------------------------------------------------->
-		<p class="centered-form-alert alert-text-big" th:if="${param.error != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>		
-
-			
-			
+		
+					
 									<!-- EMAIL -->						
       		<div class="centered-form-input01 inputWithIcon">
       		<input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}">    		
@@ -62,11 +59,16 @@
 			<svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
       		</div>     			
 			
+			<!------------------------ALERTBOX--------------------------------->
+			<p class="centered-form-alert alert-text-big" th:if="${param.error != null}" 
+			   th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
 			
-			
-			<!--Submit section-->
-			<button type="submit" class="centered-form-submit submitbtn" th:text="#{form.button.login}"></button>					
-			
+			<!--------------------------SUBMIT--------------------------------->
+			<div class="centered-form-submit">
+				<button style="justify-self: start;" type="submit" class="submitbtn" th:text="#{form.button.login}"></button>
+				<p style="justify-self: end;" class="s-light" th:text="#{form.login.or}"></p>
+				<a style="justify-self: end;" href="signup" th:text="#{form.login.signup}"></a>						
+			</div>
 			
 	</div>
 	
