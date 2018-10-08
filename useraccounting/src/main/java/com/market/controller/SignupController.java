@@ -24,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
 
+  
   @Autowired
   private UserService userService;
   
@@ -53,7 +54,8 @@ public class SignupController implements WebMvcConfigurer {
     } else if (action.equals("cancel")) {
       return "index";
     } else {
-
+      //TODO Username proposal based on policy
+     
       int status = userService.registerNewUserAccount(userForm);
       
       if (status == 1) {
