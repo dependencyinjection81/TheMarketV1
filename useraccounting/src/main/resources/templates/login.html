@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/theme-login.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout_login.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -29,7 +30,7 @@
 	<form th:action="@{/login}" method="post">
 	
 	<!-- Main content -->
-	<div class="l-container bc05 skin-container">
+	<div class="bc05 skin-container">
 	
 	
 	
@@ -70,6 +71,13 @@
 				<a style="justify-self: end;" href="signup" th:text="#{form.login.signup}"></a>						
 			</div>
 			
+	</div>
+	
+	<div class="centered-footer">
+	<a style="justify-self: start;" class="excluded">Language</a>
+	<a style="justify-self: end;" class="excluded">Help</a>
+	<a style="justify-self: end;" class="excluded">Privacy</a>
+	<a style="justify-self: end;" class="excluded">Terms</a>
 	</div>
 	
 	</form>

@@ -26,20 +26,10 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	font-family: Helvetica;	
-	-webkit-font-smoothing: antialiased;
 }
 
 
-h1 {font-size: 50px;}
-h2 {font-size: 30px; font-weight: 500;}
-h3 {font-size: 25px; font-weight: 500;}
-p  {font-size: 18px;}
-a  {font-size: 18px;}
-
-
-input {
-	font-size: 16px;
+input {	
 	box-sizing: border-box;
 	padding: 10px 10px 10px 5px;	
 	-webkit-appearance: none;
@@ -86,11 +76,6 @@ a:hover {
     transition: 0.3s;
 }
 
-.alert-text-big {
-	font-size: 16px;
-	color: var(--color-red-signal);
-	text-align: center;
-}
 
 .s-light {
 	color: var(--color-white-creme);	
@@ -107,7 +92,6 @@ button {
     text-align: center;
     text-decoration: none;
     
-    font-size: 16px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
@@ -153,9 +137,6 @@ button {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
-.l-container {
-	padding: 20px;
-}
 
 .l-icon {
 	width: 20px; height: 20px; /*Size of Icon*/
@@ -207,5 +188,11 @@ button {
 input:focus ~ .bar01:before, input:focus ~ .bar01:after {
 	width: 50%;
 	box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+@media(max-width: 768px) {
+	.skin-container {	
+	border-radius: 0px;
+	box-shadow: none;
 }
 

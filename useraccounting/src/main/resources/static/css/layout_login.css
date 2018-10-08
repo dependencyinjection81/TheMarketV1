@@ -54,14 +54,18 @@ p {
 
 .centered-form-input02 {grid-area: input02; justify-self: stretch;}
 .centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
+
 .centered-form-alert {grid-area: alert; justify-self: stretch;}
 
 .centered-form-spacer02 {grid-area: spacer02;}
 
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
-.centered-form-footer {grid-area: footer;} 
+
+..centered-form-spacer03 {grid-area: spacer03; justify-self: stretch;}
+
 
 .bc05 {
+  padding: 20px;
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
@@ -70,19 +74,23 @@ p {
   					  40px  /*caption*/
   					  40px  /*description*/
   					  
-  					  40px	/*spacer01*/
+  					  30px	/*spacer01*/
   					  					  
   					  50px  /*input01*/
-  					  20px	/*spacer02*/
+  					  20px	/*bar01*/
   					    					  
   					  50px  /*input02*/
-  					  20px  /*spacer03*/
+  					  20px  /*bar02*/
+  					  
   					  20px	/*alert*/
   					  
-  					  20px	/*spacer04*/
+  					  40px	/*spacer02*/
   					  
   					  1fr  /*submit*/
-  					  40px; /*footer*/
+  					  
+  					  40px;	/*spacer03*/
+  					  
+  					  
   justify-items: center;
   align-items: center;
   grid-template-areas: 
@@ -92,15 +100,22 @@ p {
   "logo"
   "caption"
   "description"
+  
   "spacer01"
+  
   "input01"
   "bar01"
+  
   "input02"
   "bar02"
+  
   "alert"
-  "spacer02"  
+  
+  "spacer04"  
+  
   "submit"
-  "footer";
+  
+  "spacer03";
 }
 
 .centered-form-submit {
@@ -109,6 +124,14 @@ p {
   	justify-items: center;
   	align-items: center;
   	
+}
+
+.centered-footer {
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	justify-items: center;
+  	align-items: center;
 }
 
 @media(max-width: 768px) {
