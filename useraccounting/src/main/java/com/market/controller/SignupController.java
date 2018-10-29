@@ -37,7 +37,7 @@ public class SignupController implements WebMvcConfigurer {
   
   @GetMapping(value = "/signup")
   public String showForm(UserForm userForm) {
-    return "signup";
+    return "signup_centered";
   }
 
   @PostMapping(value = "/signup")
@@ -50,7 +50,7 @@ public class SignupController implements WebMvcConfigurer {
    {
 
     if (bindingResult.hasErrors() && action.equals("signup")) {
-      return "signup";
+      return "signup_centered";
     } else if (action.equals("cancel")) {
       return "index";
     } else {
@@ -60,11 +60,11 @@ public class SignupController implements WebMvcConfigurer {
       
       if (status == 1) {
         bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
-        return "signup";
+        return "signup_centered";
         
       } else if (status == 2) {
         bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
-        return "signup";
+        return "signup_centered";
       
       } else if (status == 0) {
         String appUrl = request.getContextPath();
