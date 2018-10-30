@@ -3,9 +3,10 @@ package com.market.controller;
 import com.market.beans.UserForm;
 import com.market.entities.User;
 import com.market.events.OnRegistrationCompleteEvent;
-import com.market.formValidators.EmailValidator;
-import com.market.formValidators.UsernameValidator;
 import com.market.repositories.UserRepository;
+import com.market.security.validation.EmailValidator;
+import com.market.security.validation.PasswordValidator;
+import com.market.security.validation.UsernameValidator;
 import com.market.service.UserService;
 
 import javax.validation.Valid;
@@ -30,6 +31,9 @@ public class SignupController implements WebMvcConfigurer {
 
   @Autowired
   EmailValidator emailValidator;
+  
+  @Autowired
+  PasswordValidator passwordValidator;
 
   @Autowired
   private UserService userService;
@@ -46,11 +50,11 @@ public class SignupController implements WebMvcConfigurer {
   }
 
   /**
-   * 
-   * @param userForm
-   * @param bindingResult
-   * @param action
-   * @param request
+   * Controls the flow of registering a new user.
+   * @param userForm user form
+   * @param bindingResult binding result
+   * @param action action
+   * @param request request
    * @return
    */
   @PostMapping(value = "/signup")
@@ -60,7 +64,7 @@ public class SignupController implements WebMvcConfigurer {
       /* additional parameter because I have also a cancel button in my form */
       final WebRequest request) {
 
-    int usernameValidatorStatus = usernameValidator.ValidateUsername(userForm.getUname());
+    int usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
 
     if (usernameValidatorStatus == 1) {
       bindingResult.rejectValue("uname", "UserForm.uname.NotBlank.message");
@@ -86,7 +90,7 @@ public class SignupController implements WebMvcConfigurer {
         return "signup_centered";
       } else if (emailValidatorStatus == 0) {
         
-        //int passwordValidatorStatus = passowrdValidator.validatePassword(userForm.getPwd());
+        int passwordValidatorStatus = passwordValidator.validatePassword(userForm.getPwd());
         
       }
     }

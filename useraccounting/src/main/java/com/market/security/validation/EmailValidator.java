@@ -1,4 +1,4 @@
-package com.market.formValidators;
+package com.market.security.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,8 +10,9 @@ public class EmailValidator {
 
   /**
    * Validates an Email-adress of a given input from a form field.
+   * 
    * @param email Email
-   * @return
+   * @return 0 everything is OK, 1 given input is empty, 2 not an Email
    */
   public int valdateEmail(final String email) {
 
@@ -38,14 +39,14 @@ public class EmailValidator {
 
   private boolean violatedPattern(final String email) {
 
-    Pattern pattern = Pattern.compile("(?:[a-z0-9!#$%&'*" + "+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'"
-        + "*+/=?^_`{|}~-]+)"
-        + "*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\"
-        + "[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+"
-        + "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)"
-        + "{3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:"
-        + "(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\"
-        + "[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+    Pattern pattern = Pattern
+        .compile("(?:[a-z0-9!#$%&'*" + "+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'" + "*+/=?^_`{|}~-]+)"
+            + "*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\"
+            + "[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+"
+            + "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)"
+            + "{3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:"
+            + "(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\"
+            + "[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
     Matcher matcher = pattern.matcher(email);
 
     if (!matcher.matches()) {
