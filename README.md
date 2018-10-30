@@ -43,5 +43,5 @@ You have to create a table "Roles" with ROLE_USER ROLE_ADMIN and ROLE_USERNOTVER
 When you start the application for the first time it will create automatically the rest of needed tables by itself.
 Don't forget to start the database server before you start the application by going into the bin folder of the MySQL installation and type in: mysqld --console
 
-Entrypoint for the application on your machine will be http://localhost:8080/index as soon as u got it to run.
+Entrypoint for the application on your machine will be http://localhost:8090/index as soon as u got it to run.
 
