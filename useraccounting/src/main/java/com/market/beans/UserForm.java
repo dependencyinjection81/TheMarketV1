@@ -5,7 +5,6 @@ import com.market.security.constraint.ValidPassword;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @FieldMatch(first = "pwd", second = "pwdConfirm", 
@@ -22,7 +21,7 @@ public class UserForm {
   public String getLanguage() {
     return this.language;
   }
-
+  
   public void setLanguage(final String language) {
     this.language = language;
   }
@@ -32,9 +31,6 @@ public class UserForm {
    * Username.*************************************************
    ************************************************************
    */
-  @NotBlank(message = "{UserForm.uname.NotBlank.message}")
-  @Pattern(regexp = "^[a-zA-Z](([a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]$", message = "{UserForm.uname.Whitelist.message}")
-  @Size(min = 3, max = 20, message = "{UserForm.uname.Size.message}")
   private String uname;
 
   public String getUname() {

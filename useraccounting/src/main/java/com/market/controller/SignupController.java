@@ -3,6 +3,8 @@ package com.market.controller;
 import com.market.beans.UserForm;
 import com.market.entities.User;
 import com.market.events.OnRegistrationCompleteEvent;
+import com.market.formValidators.EmailValidator;
+import com.market.formValidators.UsernameValidator;
 import com.market.repositories.UserRepository;
 import com.market.service.UserService;
 
@@ -19,65 +21,78 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 @Controller
 @RequestMapping(value = "/")
 public class SignupController implements WebMvcConfigurer {
 
-  
+  @Autowired
+  private UsernameValidator usernameValidator;
+
+  @Autowired
+  EmailValidator emailValidator;
+
   @Autowired
   private UserService userService;
-  
+
   @Autowired
   private ApplicationEventPublisher eventPublisher;
-  
+
   @Autowired
   private UserRepository userRepository;
- 
-  
+
   @GetMapping(value = "/signup")
   public String showForm(UserForm userForm) {
     return "signup_centered";
   }
 
+  /**
+   * 
+   * @param userForm
+   * @param bindingResult
+   * @param action
+   * @param request
+   * @return
+   */
   @PostMapping(value = "/signup")
-  public String processForm(
-      final @Valid UserForm userForm, /* user form bean */
+  public String processForm(final @Valid UserForm userForm, /* user form bean */
       final BindingResult bindingResult, /* result to handle or process errors */
-      final @RequestParam(value = "action", required = true) String action, 
+      final @RequestParam(value = "action", required = true) String action,
       /* additional parameter because I have also a cancel button in my form */
-      final WebRequest request) /**/
-   {
+      final WebRequest request) {
 
-    if (bindingResult.hasErrors() && action.equals("signup")) {
+    int usernameValidatorStatus = usernameValidator.ValidateUsername(userForm.getUname());
+
+    if (usernameValidatorStatus == 1) {
+      bindingResult.rejectValue("uname", "UserForm.uname.NotBlank.message");
       return "signup_centered";
-    } else if (action.equals("cancel")) {
-      return "index";
-    } else {
-      //TODO Username proposal based on policy
-     
-      int status = userService.registerNewUserAccount(userForm);
-      
-      if (status == 1) {
-        bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
+    } else if (usernameValidatorStatus == 2) {
+      bindingResult.rejectValue("uname", "UserForm.uname.Whitelist.message");
+      return "signup_centered";
+    } else if (usernameValidatorStatus == 3) {
+      bindingResult.rejectValue("uname", "UserForm.uname.TooShort.message");
+      return "signup_centered";
+    } else if (usernameValidatorStatus == 4) {
+      bindingResult.rejectValue("uname", "UserForm.uname.TooLong.message");
+      return "signup_centered";
+    } else if (usernameValidatorStatus == 0) {
+
+      int emailValidatorStatus = emailValidator.valdateEmail(userForm.getEmail());
+
+      if (emailValidatorStatus == 1) {
+        bindingResult.rejectValue("email", "UserForm.email.NotBlank.message");
         return "signup_centered";
-        
-      } else if (status == 2) {
-        bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
+      } else if (emailValidatorStatus == 2) {
+        bindingResult.rejectValue("email", "UserForm.email.Email.message");
         return "signup_centered";
-      
-      } else if (status == 0) {
-        String appUrl = request.getContextPath();
-        User user = userRepository.findByEmail(userForm.getEmail());
+      } else if (emailValidatorStatus == 0) {
         
-        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
-        return "index";  //TODO registration success page und verification Hinweis      
+        //int passwordValidatorStatus = passowrdValidator.validatePassword(userForm.getPwd());
+        
       }
-      
     }
-    
+
     return "index";
-  
-   }
-  
+
+  }
+
 }
