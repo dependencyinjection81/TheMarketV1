@@ -59,31 +59,35 @@ public class PasswordValidator {
   /**
    * Check the strength of a given password.
    * @param pwd password
-   * @return
+   * @return 0 2 4 6 10 depending on password strenght
    */
   public int checkPwdStrength(final String pwd) {
-
-    if (!checkPwdLength(pwd)) {
-      return 10;
+    
+    int length = 0;
+    if (checkPwdLength(pwd)) {
+      length = 2;
     }
-
-    if (!checkPwdComplexity(pwd)) {
-      return 11;
+    
+    int complexity = 0;
+    if (checkPwdComplexity(pwd)) {
+      complexity = 2;
     }
-
-    if (!checkCharSequence(pwd)) {
-      return 12;
+    int charSequence = 0;
+    if (checkCharSequence(pwd)) {
+      charSequence = 2;
     }
-
-    if (!checkForKeyboardCombinations(pwd)) {
-      return 13;
+    int keyboardCombination = 0;
+    if (checkForKeyboardCombinations(pwd)) {
+      keyboardCombination = 2;
     }
-
-    if (!checkForRepeatingPatterns(pwd)) {
-      return 14;
+    int repeatingPattern = 0;
+    if (checkForRepeatingPatterns(pwd)) {
+      repeatingPattern = 2;
     }
+    
+    int pwdStrength = length + complexity + charSequence + keyboardCombination + repeatingPattern;
 
-    return 0;
+    return pwdStrength;
   }
   
   private boolean nullOrEmpty(final String pwd) {

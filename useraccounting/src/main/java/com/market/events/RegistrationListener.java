@@ -47,7 +47,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     final SimpleMailMessage email = new SimpleMailMessage();
     email.setTo(recipientAddress);
     email.setSubject(subject);
-    email.setText(message + "Verifiaction-code: " + token + "\n" + confirmationUrl);
+    email.setText(message + "verifiaction code: " + token + "\n" + confirmationUrl);
     email.setFrom("springbootdev@gmx.de");
     return email;
   }

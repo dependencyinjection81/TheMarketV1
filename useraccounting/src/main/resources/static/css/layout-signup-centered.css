@@ -21,7 +21,7 @@ p {
 .body-container-center {
   display: grid;
 	
-  grid-template-columns: 8fr 9fr 8fr;
+  grid-template-columns: 7fr 9fr 7fr;
   grid-template-rows: minmax(10px, auto)
   					         minmax(570px, auto) 
   					         80px;
@@ -64,11 +64,13 @@ p {
 .centered-form-bar03 {grid-area: bar03; justify-self: stretch;}
 .centered-form-alert03 {grid-area: alert03; justify-self: stretch;}
 
+.centered-form-spacer04 {grid-area: spacer04;}
+
 .centered-form-input04 {grid-area: input04; justify-self: stretch;}
 .centered-form-bar04 {grid-area: bar04; justify-self: stretch;}
 .centered-form-alert04 {grid-area: alert04; justify-self: stretch;}
 
-.centered-form-spacer04 {grid-area: spacer04;}
+.centered-form-spacer05 {grid-area: spacer05;}
 
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
 
@@ -85,33 +87,35 @@ p {
   					  	40px  /*caption*/
   					  	40px  /*description*/
   					  
-  					  	30px	/*spacer01*/
+  					  	40px	/*spacer01*/
   					  					  
   					  	50px  /*input01*/
-  					  	2px	/*bar01*/
-              		  	10px  /*alert01*/
+  					  	2px	  /*bar01*/
+              		  	20px  /*alert01*/
 
               		  	20px  /*spacer02*/
   					    					  
   					  	50px  /*input02*/
               			2px  /*bar02*/
-              			10px  /*alert02*/
+              			20px  /*alert02*/
 
               			20px  /*spacer03*/
   					  
   					  	50px  /*input03*/
               			2px  /*bar03*/
-              			10px  /*alert03*/
+              			20px  /*alert03*/
+
+              			20px /*spacer04*/
 
               			50px  /*input04*/
               			2px  /*bar04*/
-              			10px  /*alert04*/
+              			20px  /*alert04*/
   					  
-  					  	20px	/*spacer04*/
+  					  	20px	/*spacer05*/
   					  
   					  	1fr  /*submit*/
   					  
-  					  	20px;	/*spacer05*/
+  					  	20px;	/*spacer06*/
   					  
   					  
   justify-items: center;
@@ -145,16 +149,18 @@ p {
   "bar03"
   "alert03"
 
+  "spacer04"
+
   /*Password Confirm*/
   "input04"
   "bar04"
   "alert04"
     
-  "spacer04"
+  "spacer05"
   
   "submit"
   
-  "spacer05";
+  "spacer06";
 }
 
 .centered-form-submit {

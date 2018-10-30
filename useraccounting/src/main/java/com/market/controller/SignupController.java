@@ -9,8 +9,6 @@ import com.market.security.validation.PasswordValidator;
 import com.market.security.validation.UsernameValidator;
 import com.market.service.UserService;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
@@ -59,7 +57,7 @@ public class SignupController implements WebMvcConfigurer {
    * @return
    */
   @PostMapping(value = "/signup")
-  public String processForm(final @Valid UserForm userForm, /* user form bean */
+  public String processForm(final UserForm userForm, /* user form bean */
       final BindingResult bindingResult, /* result to handle or process errors */
       final @RequestParam(value = "action", required = true) String action,
       /* additional parameter because I have also a cancel button in my form */
@@ -103,7 +101,16 @@ public class SignupController implements WebMvcConfigurer {
           bindingResult.rejectValue("pwd", "UserForm.pwd.Size.message");
           return "signup_centered";
         } else if (passwordValidatorStatus == 0) {
-
+          
+          
+          /* Tell the user how strong his password is */
+          int passwordStrength = passwordValidator.checkPwdStrength(userForm.getPwd());
+          if (passwordStrength < 10) {
+            bindingResult.rejectValue("pwd", "UserForm.pwd.strength.message");
+            return "signup_centered";
+          }
+          
+          
           /* Try to validate passwordConfirm field */
           int passwordFieldMatchStatus = passwordValidator.fieldMatch(userForm.getPwd(),
               userForm.getPwdConfirm());

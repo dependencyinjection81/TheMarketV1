@@ -3,22 +3,7 @@ package com.market.beans;
 
 public class UserForm {
   
-  /************************************************************
-   * Language.*************************************************
-   ************************************************************
-   */
   
-  private String language;
-
-  public String getLanguage() {
-    return this.language;
-  }
-  
-  public void setLanguage(final String language) {
-    this.language = language;
-  }
-  
-
   /************************************************************
    * Username.*************************************************
    ************************************************************
@@ -77,5 +62,5 @@ public class UserForm {
   public void setPwdConfirm(final String pwdConfirm) {
     this.pwdConfirm = pwdConfirm;
   }
-
+  
 }
