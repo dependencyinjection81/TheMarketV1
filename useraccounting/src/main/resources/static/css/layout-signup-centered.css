@@ -22,7 +22,7 @@ p {
   display: grid;
 	
   grid-template-columns: 8fr 9fr 8fr;
-  grid-template-rows: minmax(80px, auto)
+  grid-template-rows: minmax(10px, auto)
   					         minmax(570px, auto) 
   					         80px;
   
@@ -81,37 +81,37 @@ p {
   grid-gap: 1px;
   grid-template-columns: 1fr;
   grid-template-rows: 
-  					  80px  /*logo*/
-  					  40px  /*caption*/
-  					  40px  /*description*/
+  					  	80px  /*logo*/
+  					  	40px  /*caption*/
+  					  	40px  /*description*/
   					  
-  					  30px	/*spacer01*/
+  					  	30px	/*spacer01*/
   					  					  
-  					  50px  /*input01*/
-  					  20px	/*bar01*/
-              20px  /*alert01*/
+  					  	50px  /*input01*/
+  					  	2px	/*bar01*/
+              		  	10px  /*alert01*/
 
-              30px  /*spacer02*/
+              		  	20px  /*spacer02*/
   					    					  
-  					  50px  /*input02*/
-              20px  /*bar02*/
-              20px  /*alert02*/
+  					  	50px  /*input02*/
+              			2px  /*bar02*/
+              			10px  /*alert02*/
 
-              30px  /*spacer03*/
+              			20px  /*spacer03*/
   					  
-  					  50px  /*input03*/
-              20px  /*bar03*/
-              20px  /*alert03*/
+  					  	50px  /*input03*/
+              			2px  /*bar03*/
+              			10px  /*alert03*/
 
-              50px  /*input04*/
-              20px  /*bar04*/
-              20px  /*alert04*/
+              			50px  /*input04*/
+              			2px  /*bar04*/
+              			10px  /*alert04*/
   					  
-  					  30px	/*spacer04*/
+  					  	20px	/*spacer04*/
   					  
-  					  1fr  /*submit*/
+  					  	1fr  /*submit*/
   					  
-  					  40px;	/*spacer05*/
+  					  	20px;	/*spacer05*/
   					  
   					  
   justify-items: center;

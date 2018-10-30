@@ -31,7 +31,7 @@ public class SignupController implements WebMvcConfigurer {
 
   @Autowired
   EmailValidator emailValidator;
-  
+
   @Autowired
   PasswordValidator passwordValidator;
 
@@ -51,10 +51,11 @@ public class SignupController implements WebMvcConfigurer {
 
   /**
    * Controls the flow of registering a new user.
-   * @param userForm user form
+   * 
+   * @param userForm      user form
    * @param bindingResult binding result
-   * @param action action
-   * @param request request
+   * @param action        action
+   * @param request       request
    * @return
    */
   @PostMapping(value = "/signup")
@@ -64,6 +65,7 @@ public class SignupController implements WebMvcConfigurer {
       /* additional parameter because I have also a cancel button in my form */
       final WebRequest request) {
 
+    /* Try to validate username field */
     int usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
 
     if (usernameValidatorStatus == 1) {
@@ -80,6 +82,7 @@ public class SignupController implements WebMvcConfigurer {
       return "signup_centered";
     } else if (usernameValidatorStatus == 0) {
 
+      /* Try to validate email field */
       int emailValidatorStatus = emailValidator.valdateEmail(userForm.getEmail());
 
       if (emailValidatorStatus == 1) {
@@ -89,14 +92,54 @@ public class SignupController implements WebMvcConfigurer {
         bindingResult.rejectValue("email", "UserForm.email.Email.message");
         return "signup_centered";
       } else if (emailValidatorStatus == 0) {
-        
+
+        /* Try to validate password field */
         int passwordValidatorStatus = passwordValidator.validatePassword(userForm.getPwd());
-        
+
+        if (passwordValidatorStatus == 1) {
+          bindingResult.rejectValue("pwd", "UserForm.pwd.NotBlank.message");
+          return "signup_centered";
+        } else if (passwordValidatorStatus == 2) {
+          bindingResult.rejectValue("pwd", "UserForm.pwd.Size.message");
+          return "signup_centered";
+        } else if (passwordValidatorStatus == 0) {
+
+          /* Try to validate passwordConfirm field */
+          int passwordFieldMatchStatus = passwordValidator.fieldMatch(userForm.getPwd(),
+              userForm.getPwdConfirm());
+
+          if (passwordFieldMatchStatus == 1) {
+            bindingResult.rejectValue("pwdConfirm", "UserForm.pwdconfirm.NotBlank.message");
+            return "signup_centered";
+          } else if (passwordFieldMatchStatus == 2) {
+            bindingResult.rejectValue("pwdConfirm", "UserForm.pwdconfirm.FieldMatch.message");
+            return "signup_centered";
+          } else if (passwordFieldMatchStatus == 0) {
+
+            /* Try to register new user */
+            int status = userService.registerNewUserAccount(userForm);
+
+            if (status == 1) {
+              bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
+              return "signup_centered";
+
+            } else if (status == 2) {
+              bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
+              return "signup_centered";
+
+            } else if (status == 0) {
+              String appUrl = request.getContextPath();
+              User user = userRepository.findByEmail(userForm.getEmail());
+
+              eventPublisher
+                  .publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
+              return "index"; // TODO registration success page und verification Hinweis
+            }
+          }
+        }
       }
     }
-
     return "index";
-
   }
 
 }

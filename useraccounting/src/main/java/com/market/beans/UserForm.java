@@ -1,9 +1,6 @@
 package com.market.beans;
 
-import com.market.security.constraint.FieldMatch;
 
-@FieldMatch(first = "pwd", second = "pwdConfirm", 
-    message = "{UserForm.pwdconfirm.FieldMatch.message}")
 public class UserForm {
   
   /************************************************************

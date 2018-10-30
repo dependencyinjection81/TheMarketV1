@@ -25,8 +25,34 @@ public class PasswordValidator {
   private final Integer passwdMinLength = 8;
   private final Integer maxKeyCombinationLength = 3;
 
+  /**
+   * Check if the given password matches the minimum criteria.
+   * @param pwd password
+   * @return 0 if all is OK, 1 if null or empty, 2 if too short
+   */
   public int validatePassword(final String pwd) {
 
+    if (nullOrEmpty(pwd)) {
+      return 1;
+    } else if (!checkPwdLength(pwd)) {
+      return 2;
+    }
+    return 0;
+  }
+  
+  /**
+   * check if two given passwords matches.
+   * @param pwd password
+   * @param pwdConfirm confirmed password
+   * @return 0 password matches, 1 if null or empty, 2 if does not match
+   */
+  public int fieldMatch(final String pwd, final String pwdConfirm) {
+    
+    if (nullOrEmpty(pwdConfirm)) {
+      return 1;
+    } else if (!pwd.equals(pwdConfirm)) {
+      return 2;
+    }
     return 0;
   }
 
@@ -58,6 +84,19 @@ public class PasswordValidator {
     }
 
     return 0;
+  }
+  
+  private boolean nullOrEmpty(final String pwd) {
+
+    if (pwd == null) {
+      return true;
+    } else if (pwd.equals("")) {
+      return true;
+    } else if (pwd.length() < 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private boolean checkPwdLength(final String pwd) {

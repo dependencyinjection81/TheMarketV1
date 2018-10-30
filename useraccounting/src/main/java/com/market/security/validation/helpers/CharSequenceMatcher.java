@@ -4,75 +4,82 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CharSequenceMatcher {
-  
+
+  /**
+   * Find out if a given string contains a sequence of chars.
+   * 
+   * @param inputStr     input string
+   * @param maxKeyLength max key length
+   * @return
+   */
   public String match(final String inputStr, final int maxKeyLength) {
     char[] characters = inputStr.toCharArray();
     StringBuilder builder = new StringBuilder();
 
     for (int i = 0; i < characters.length; i++) {
-      Character current_character = characters[i];
-      
+      Character currentCharacter = characters[i];
+
       if (i + 1 < characters.length) {
-        Character next_character = characters[i + 1];
+        Character nextCharacter = characters[i + 1];
         // Alpha upper case
-        if (next_character >= 65 && next_character <= 90) {
+        if (nextCharacter >= 65 && nextCharacter <= 90) {
           // Forward matches
-          if (next_character == current_character + 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter + 1) {
+            builder.append(currentCharacter);
             continue;
           }
-          if (next_character + 32 == current_character + 1) {
-            builder.append(current_character);
+          if (nextCharacter + 32 == currentCharacter + 1) {
+            builder.append(currentCharacter);
             continue;
           }
           // Reverse matches
-          if (next_character == current_character - 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter - 1) {
+            builder.append(currentCharacter);
             continue;
           }
-          if (next_character + 32 == current_character - 1) {
-            builder.append(current_character);
+          if (nextCharacter + 32 == currentCharacter - 1) {
+            builder.append(currentCharacter);
             continue;
           }
         }
         // Alpha lower case
-        if (next_character >= 97 && next_character <= 122) {
+        if (nextCharacter >= 97 && nextCharacter <= 122) {
           // Forward matches
-          if (next_character == current_character + 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter + 1) {
+            builder.append(currentCharacter);
             continue;
           }
-          if (next_character - 32 == current_character + 1) {
-            builder.append(current_character);
+          if (nextCharacter - 32 == currentCharacter + 1) {
+            builder.append(currentCharacter);
             continue;
           }
           // Reverse matches
-          if (next_character == current_character - 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter - 1) {
+            builder.append(currentCharacter);
             continue;
           }
-          if (next_character - 32 == current_character - 1) {
-            builder.append(current_character);
+          if (nextCharacter - 32 == currentCharacter - 1) {
+            builder.append(currentCharacter);
             continue;
           }
         }
         // Numeric
-        if (next_character >= 48 && next_character <= 57) {
+        if (nextCharacter >= 48 && nextCharacter <= 57) {
           // Forward matches
-          if (next_character == current_character + 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter + 1) {
+            builder.append(currentCharacter);
             continue;
           }
           // Reverse matches
-          if (next_character == current_character - 1) {
-            builder.append(current_character);
+          if (nextCharacter == currentCharacter - 1) {
+            builder.append(currentCharacter);
             continue;
           }
         }
       }
 
       if (builder.length() > 0) {
-        builder.append(current_character);
+        builder.append(currentCharacter);
         if (builder.length() >= maxKeyLength) {
           return builder.toString();
         }
@@ -81,30 +88,30 @@ public class CharSequenceMatcher {
     }
     return matchSimple(inputStr, maxKeyLength);
   }
-  
+
   /**
-   * Find simple character repetitions like 'aaaaa' '88888'
-   * @param inputStr
+   * Find simple character repetitions like 'aaaaa' '88888'.
+   * 
+   * @param inputStr     input String
    * @param maxKeyLength maximum allowed repetitions
    * @return
    */
   private static String matchSimple(final String inputStr, final int maxKeyLength) {
     char[] characters = inputStr.toCharArray();
     StringBuilder builder = new StringBuilder();
-    Character last_character = null;
-    
-    for(int i = 0; i < characters.length; i++) {
-      Character current_character = characters[i];
-      if(last_character == current_character) {
-        builder.append(current_character);
-      }
-      else {
+    Character lastCharacter = null;
+
+    for (int i = 0; i < characters.length; i++) {
+      Character currentCharacter = characters[i];
+      if (lastCharacter == currentCharacter) {
+        builder.append(currentCharacter);
+      } else {
         builder.setLength(0);
       }
-      if(builder.length() >= maxKeyLength) {
+      if (builder.length() >= maxKeyLength) {
         return builder.toString();
       }
-      last_character = current_character;
+      lastCharacter = currentCharacter;
     }
     return "";
   }
