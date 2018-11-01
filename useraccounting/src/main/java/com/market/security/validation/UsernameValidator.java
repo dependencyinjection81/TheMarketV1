@@ -13,18 +13,18 @@ public class UsernameValidator {
    * @param uname username
    * @return status
    */
-  public int validateUsername(final String uname) {
+  public String validateUsername(final String uname) {
 
     if (nullOrEmpty(uname)) {
-      return 1;
+      return "UserForm.uname.NotBlank.message";
     } else if (violatedPattern(uname)) {
-      return 2;
+      return "UserForm.uname.Whitelist.message";
     } else if (tooShort(uname)) {
-      return 3;
+      return "UserForm.uname.TooShort.message";
     } else if (tooLong(uname)) {
-      return 4;
+      return "UserForm.uname.TooLong.message";
     }
-    return 0;
+    return null;
   }
 
   private boolean nullOrEmpty(final String uname) {

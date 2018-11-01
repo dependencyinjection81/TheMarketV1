@@ -30,14 +30,12 @@ public class PasswordValidator {
    * @param pwd password
    * @return 0 if all is OK, 1 if null or empty, 2 if too short
    */
-  public int validatePassword(final String pwd) {
+  public String validatePassword(final String pwd) {
 
     if (nullOrEmpty(pwd)) {
-      return 1;
-    } else if (!checkPwdLength(pwd)) {
-      return 2;
-    }
-    return 0;
+      return "UserForm.pwd.NotBlank";
+    } else 
+      return checkPwdStrength(pwd);
   }
   
   /**
@@ -46,48 +44,38 @@ public class PasswordValidator {
    * @param pwdConfirm confirmed password
    * @return 0 password matches, 1 if null or empty, 2 if does not match
    */
-  public int fieldMatch(final String pwd, final String pwdConfirm) {
+  public String fieldMatch(final String pwd, final String pwdConfirm) {
     
     if (nullOrEmpty(pwdConfirm)) {
-      return 1;
+      return "UserForm.pwdconfirm.NotBlank.message";
     } else if (!pwd.equals(pwdConfirm)) {
-      return 2;
+      return "UserForm.pwdconfirm.FieldMatch";
     }
-    return 0;
+    return null;
   }
 
-  /**
-   * Check the strength of a given password.
-   * @param pwd password
-   * @return 0 2 4 6 10 depending on password strenght
-   */
-  public int checkPwdStrength(final String pwd) {
-    
-    int length = 0;
-    if (checkPwdLength(pwd)) {
-      length = 2;
+  private String checkPwdStrength(final String pwd) {
+        
+    if (!checkPwdLength(pwd)) {
+      return "UserForm.pwd.strength.length";
     }
     
-    int complexity = 0;
-    if (checkPwdComplexity(pwd)) {
-      complexity = 2;
-    }
-    int charSequence = 0;
-    if (checkCharSequence(pwd)) {
-      charSequence = 2;
-    }
-    int keyboardCombination = 0;
-    if (checkForKeyboardCombinations(pwd)) {
-      keyboardCombination = 2;
-    }
-    int repeatingPattern = 0;
-    if (checkForRepeatingPatterns(pwd)) {
-      repeatingPattern = 2;
+    if (!checkPwdComplexity(pwd)) {
+      return "UserForm.pwd.strength.complexity";
     }
     
-    int pwdStrength = length + complexity + charSequence + keyboardCombination + repeatingPattern;
-
-    return pwdStrength;
+    if (!checkCharSequence(pwd)) {
+      return "UserForm.pwd.strength.sequence";
+    }
+    
+    if (!checkForKeyboardCombinations(pwd)) {
+      return "UserForm.pwd.strength.combinations";
+    }
+    if (!checkForRepeatingPatterns(pwd)) {
+      return "UserForm.pwd.strength.repeating";
+    }
+   
+    return null;
   }
   
   private boolean nullOrEmpty(final String pwd) {

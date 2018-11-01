@@ -64,7 +64,7 @@ p {
 .centered-form-bar03 {grid-area: bar03; justify-self: stretch;}
 .centered-form-alert03 {grid-area: alert03; justify-self: stretch;}
 
-.centered-form-spacer04 {grid-area: spacer04;}
+.centered-form-meter {grid-area: meter; justify-self: stretch;}
 
 .centered-form-input04 {grid-area: input04; justify-self: stretch;}
 .centered-form-bar04 {grid-area: bar04; justify-self: stretch;}
@@ -105,13 +105,13 @@ p {
               			2px  /*bar03*/
               			20px  /*alert03*/
 
-              			20px /*spacer04*/
+              			20px /*meter*/
 
               			50px  /*input04*/
               			2px  /*bar04*/
               			20px  /*alert04*/
   					  
-  					  	20px	/*spacer05*/
+  					  	20px /*spacer05*/
   					  
   					  	1fr  /*submit*/
   					  
@@ -147,9 +147,8 @@ p {
   /*Password*/
   "input03"
   "bar03"
+  "meter"
   "alert03"
-
-  "spacer04"
 
   /*Password Confirm*/
   "input04"
@@ -161,6 +160,14 @@ p {
   "submit"
   
   "spacer06";
+}
+
+.centered-form-meter {
+	
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: left;
+  align-items: center;
 }
 
 .centered-form-submit {

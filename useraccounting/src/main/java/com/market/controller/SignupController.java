@@ -64,64 +64,38 @@ public class SignupController implements WebMvcConfigurer {
       final WebRequest request) {
 
     /* Try to validate username field */
-    int usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
+    String usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
 
-    if (usernameValidatorStatus == 1) {
-      bindingResult.rejectValue("uname", "UserForm.uname.NotBlank.message");
+    
+    if (usernameValidatorStatus != null) {
+      bindingResult.rejectValue("uname", usernameValidatorStatus);
       return "signup_centered";
-    } else if (usernameValidatorStatus == 2) {
-      bindingResult.rejectValue("uname", "UserForm.uname.Whitelist.message");
-      return "signup_centered";
-    } else if (usernameValidatorStatus == 3) {
-      bindingResult.rejectValue("uname", "UserForm.uname.TooShort.message");
-      return "signup_centered";
-    } else if (usernameValidatorStatus == 4) {
-      bindingResult.rejectValue("uname", "UserForm.uname.TooLong.message");
-      return "signup_centered";
-    } else if (usernameValidatorStatus == 0) {
+    } else {
 
       /* Try to validate email field */
-      int emailValidatorStatus = emailValidator.valdateEmail(userForm.getEmail());
+      String emailValidatorStatus = emailValidator.valdateEmail(userForm.getEmail());
 
-      if (emailValidatorStatus == 1) {
-        bindingResult.rejectValue("email", "UserForm.email.NotBlank.message");
+      if (emailValidatorStatus != null) {
+        bindingResult.rejectValue("email", emailValidatorStatus);
         return "signup_centered";
-      } else if (emailValidatorStatus == 2) {
-        bindingResult.rejectValue("email", "UserForm.email.Email.message");
-        return "signup_centered";
-      } else if (emailValidatorStatus == 0) {
+      } else {
 
         /* Try to validate password field */
-        int passwordValidatorStatus = passwordValidator.validatePassword(userForm.getPwd());
+        String passwordValidatorStatus = passwordValidator.validatePassword(userForm.getPwd());
 
-        if (passwordValidatorStatus == 1) {
-          bindingResult.rejectValue("pwd", "UserForm.pwd.NotBlank.message");
+        if (passwordValidatorStatus != null) {
+          bindingResult.rejectValue("pwd", passwordValidatorStatus);
           return "signup_centered";
-        } else if (passwordValidatorStatus == 2) {
-          bindingResult.rejectValue("pwd", "UserForm.pwd.Size.message");
-          return "signup_centered";
-        } else if (passwordValidatorStatus == 0) {
-          
-          
-          /* Tell the user how strong his password is */
-          int passwordStrength = passwordValidator.checkPwdStrength(userForm.getPwd());
-          if (passwordStrength < 10) {
-            bindingResult.rejectValue("pwd", "UserForm.pwd.strength.message");
-            return "signup_centered";
-          }
-          
+        } else {
           
           /* Try to validate passwordConfirm field */
-          int passwordFieldMatchStatus = passwordValidator.fieldMatch(userForm.getPwd(),
+          String passwordFieldMatchStatus = passwordValidator.fieldMatch(userForm.getPwd(),
               userForm.getPwdConfirm());
 
-          if (passwordFieldMatchStatus == 1) {
-            bindingResult.rejectValue("pwdConfirm", "UserForm.pwdconfirm.NotBlank.message");
+          if (passwordFieldMatchStatus != null) {
+            bindingResult.rejectValue("pwdConfirm", passwordFieldMatchStatus);
             return "signup_centered";
-          } else if (passwordFieldMatchStatus == 2) {
-            bindingResult.rejectValue("pwdConfirm", "UserForm.pwdconfirm.FieldMatch.message");
-            return "signup_centered";
-          } else if (passwordFieldMatchStatus == 0) {
+          } else {
 
             /* Try to register new user */
             int status = userService.registerNewUserAccount(userForm);

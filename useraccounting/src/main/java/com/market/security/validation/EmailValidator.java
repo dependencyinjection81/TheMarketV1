@@ -14,14 +14,14 @@ public class EmailValidator {
    * @param email Email
    * @return 0 everything is OK, 1 given input is empty, 2 not an Email
    */
-  public int valdateEmail(final String email) {
+  public String valdateEmail(final String email) {
 
     if (nullOrEmpty(email)) {
-      return 1;
+      return "UserForm.email.NotBlank.message";
     } else if (violatedPattern(email)) {
-      return 2;
+      return "UserForm.email.Email.message";
     }
-    return 0;
+    return null;
   }
 
   private boolean nullOrEmpty(final String email) {
