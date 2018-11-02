@@ -165,6 +165,30 @@ button {
     top: -35px;    
 }
 
+/**************Dropdown menu********************/
+/*LAYOUT*/
+.l-dropdown_content {
+	width: 80px;
+	padding: 10px;
+    position: absolute;
+    left: -8px; 
+    top: -22px; 
+    z-index: 1;
+}
+/*LAYOUT*/
+.dropdown {position: relative;}
+
+/*STATE-HIDDEN*/
+.is-hidden {display: none;}
+/*STATE-VISIBLE*/
+.dropdown:hover .is-hidden {display: block;}
+
+/*THEME*/
+.skin-dropdown_content {background-color: var(--color-grey-dark);}
+/**THEME**/
+.styled {font-style: italic;}
+
+
 /* Underline */
 .bar01 {
 	position: relative;

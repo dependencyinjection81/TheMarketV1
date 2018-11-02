@@ -44,7 +44,7 @@ public class SignupController implements WebMvcConfigurer {
 
   @GetMapping(value = "/signup")
   public String showForm(UserForm userForm) {
-    return "signup_centered";
+    return "signup";
   }
 
   /**
@@ -65,11 +65,10 @@ public class SignupController implements WebMvcConfigurer {
 
     /* Try to validate username field */
     String usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
-
     
     if (usernameValidatorStatus != null) {
       bindingResult.rejectValue("uname", usernameValidatorStatus);
-      return "signup_centered";
+      return "signup";
     } else {
 
       /* Try to validate email field */
@@ -77,7 +76,7 @@ public class SignupController implements WebMvcConfigurer {
 
       if (emailValidatorStatus != null) {
         bindingResult.rejectValue("email", emailValidatorStatus);
-        return "signup_centered";
+        return "signup";
       } else {
 
         /* Try to validate password field */
@@ -85,7 +84,7 @@ public class SignupController implements WebMvcConfigurer {
 
         if (passwordValidatorStatus != null) {
           bindingResult.rejectValue("pwd", passwordValidatorStatus);
-          return "signup_centered";
+          return "signup";
         } else {
           
           /* Try to validate passwordConfirm field */
@@ -94,7 +93,7 @@ public class SignupController implements WebMvcConfigurer {
 
           if (passwordFieldMatchStatus != null) {
             bindingResult.rejectValue("pwdConfirm", passwordFieldMatchStatus);
-            return "signup_centered";
+            return "signup";
           } else {
 
             /* Try to register new user */
@@ -102,11 +101,11 @@ public class SignupController implements WebMvcConfigurer {
 
             if (status == 1) {
               bindingResult.rejectValue("uname", "UserForm.uname.UnameInUse.message");
-              return "signup_centered";
+              return "signup";
 
             } else if (status == 2) {
               bindingResult.rejectValue("email", "UserForm.email.EmailInUse.message");
-              return "signup_centered";
+              return "signup";
 
             } else if (status == 0) {
               String appUrl = request.getContextPath();

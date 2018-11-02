@@ -41,7 +41,7 @@ p {
 
 /*Declaring the area variables*************************************/
 
-.centered-form-logo {grid-area: logo;}
+.centered-form-logo {grid-area: logo; justify-self: stretch;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
 
@@ -162,10 +162,25 @@ p {
   "spacer06";
 }
 
+.centered-form-logo {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.cancel {
+  justify-self: left;
+}
+
+.dropdown {
+  justify-self: right;
+}
+
 .centered-form-meter {
 	
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   justify-items: left;
   align-items: center;
 }
@@ -186,7 +201,7 @@ p {
   	align-items: center;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
   /*Hide all spacer**************************************************/
   [class*="bcs"] {display: none;}  
   .body-container-center {
@@ -198,6 +213,14 @@ p {
     "bc05"
     "bc08";
   }
+  
+  .centered-form-meter {
+	
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: left;
+  align-items: center;
+}
 
 }
 
