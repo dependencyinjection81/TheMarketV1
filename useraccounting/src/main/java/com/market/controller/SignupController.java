@@ -113,13 +113,13 @@ public class SignupController implements WebMvcConfigurer {
 
               eventPublisher
                   .publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
-              return "index"; // TODO registration success page und verification Hinweis
+              return "signup-success";
             }
           }
         }
       }
     }
-    return "index";
+    return "index"; //TODO Ban connection and retrieve any further Request for the next 24 hours
   }
 
 }
