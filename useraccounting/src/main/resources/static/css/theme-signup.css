@@ -165,10 +165,75 @@ button {
     top: -35px;    
 }
 
+
+/**************Dropdown menu********************/
+.lang {
+  display: inline-block;
+  text-align: left;
+}
+.lang a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lang__list,
+.lang__option {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.lang__chevron {
+  display: none;
+}
+
+.js .lang {
+  border: solid 1px black;
+  min-width: 4rem;
+  position: relative;
+}
+.js .lang__list,
+.js .lang__option {
+  display: block;
+}
+.js .lang__chevron {
+  display: inline-block;
+  float: right;
+  transform: rotate(90deg);
+}
+.js .lang__option {
+  padding: 0.5rem;
+}
+.js .lang__option:hover, .js .lang__option:focus {
+  background-color: white;
+}
+.js .lang__list {
+  display: none;
+  list-style-type: none;
+}
+.js .is-open {
+  border-bottom: none;
+}
+.js .is-open .lang__list {
+  border: solid 1px;
+  border-top: none;
+  display: block;
+  position: absolute;
+  left: -1px;
+  width: 100%;
+}
+.js .is-open .lang__chevron {
+  transform: rotate(270deg);
+}
+
+
+
+
 /**************Dropdown menu********************/
 /*LAYOUT*/
 .l-dropdown_content {
-	width: 100px;
+	width: 80px;
 	padding: 10px;
     position: absolute;
     left: -8px; 
@@ -344,7 +409,7 @@ input:focus ~ .bar04:before, input:focus ~ .bar04:after {
 	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
 	.skin-container {	
 	border-radius: 0px;
 	box-shadow: none;

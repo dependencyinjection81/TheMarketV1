@@ -2,7 +2,7 @@ body {
 	margin: 0px;
 	background-image: url('../images/background03.jpg');
 	background-repeat: no-repeat;
-    background-position: 50% 80%; 
+  background-position: 50% 80%; 
 }
 
 p {
@@ -10,7 +10,7 @@ p {
 }
 
 /******************************************************************/
-/*BODY LAYOUT LOGIN************************************************/
+/*BODY LAYOUT SIGNUP***********************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
@@ -19,12 +19,11 @@ p {
 .bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
 
 .body-container-center {
-  display: grid;
-	
+  display: grid;	
   grid-template-columns: 7fr 9fr 7fr;
-  grid-template-rows: minmax(10px, auto)
-  					         minmax(570px, auto) 
-  					         80px;
+  grid-template-rows:  minmax(20px, auto)
+  					           minmax(570px, auto) 
+  					           80px;
   
   grid-template-areas:
 
@@ -41,6 +40,7 @@ p {
 
 /*Declaring the area variables*************************************/
 
+.centered-form-header{grid-area: header; justify-self: stretch;}
 .centered-form-logo {grid-area: logo; justify-self: stretch;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
@@ -74,48 +74,50 @@ p {
 
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
 
-..centered-form-spacer04 {grid-area: spacer05; justify-self: stretch;}
+.centered-form-spacer04 {grid-area: spacer05; justify-self: stretch;}
 
 
 .bc05 {
-  padding: 20px;
+  padding: 30px;
+  padding-top: 0px;
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
   grid-template-rows: 
-  					  	80px  /*logo*/
-  					  	40px  /*caption*/
-  					  	40px  /*description*/
-  					  
-  					  	40px	/*spacer01*/
-  					  					  
-  					  	50px  /*input01*/
-  					  	2px	  /*bar01*/
-              		  	20px  /*alert01*/
+                      40px  /*header*/
+                      80px  /*logo*/
+                      40px  /*caption*/
+                      40px  /*description*/
 
-              		  	20px  /*spacer02*/
-  					    					  
-  					  	50px  /*input02*/
-              			2px  /*bar02*/
-              			20px  /*alert02*/
+                      30px	/*spacer01*/
+                      				  
+                      30px  /*input01*/
+                      2px	  /*bar01*/
+                      20px  /*alert01*/
 
-              			20px  /*spacer03*/
-  					  
-  					  	50px  /*input03*/
-              			2px  /*bar03*/
-              			20px  /*alert03*/
+                      20px  /*spacer02*/
+                      					  
+                      30px  /*input02*/
+                      2px  /*bar02*/
+                      20px  /*alert02*/
 
-              			20px /*meter*/
+                      20px  /*spacer03*/
 
-              			50px  /*input04*/
-              			2px  /*bar04*/
-              			20px  /*alert04*/
-  					  
-  					  	20px /*spacer05*/
-  					  
-  					  	1fr  /*submit*/
-  					  
-  					  	20px;	/*spacer06*/
+                      30px  /*input03*/
+                      2px  /*bar03*/
+                      20px  /*alert03*/
+
+                      20px /*meter*/
+
+                      30px  /*input04*/
+                      2px  /*bar04*/
+                      20px  /*alert04*/
+
+                      20px /*spacer05*/
+
+                      50px  /*submit*/
+
+                      20px;	/*spacer06*/
   					  
   					  
   justify-items: center;
@@ -124,6 +126,7 @@ p {
 
 /*Actual displayed order*******************************************/
   
+  "header"
   "logo"
   "caption"
   "description"
@@ -160,6 +163,10 @@ p {
   "submit"
   
   "spacer06";
+}
+
+.centered-form-header {
+	justify-self: right;
 }
 
 .centered-form-logo {

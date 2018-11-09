@@ -45,36 +45,13 @@ p {
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
 
-.centered-form-spacer01 {grid-area: spacer01;}
-
-
-.centered-form-input01 {grid-area: input01; justify-self: stretch;}
-.centered-form-bar01 {grid-area: bar01; justify-self: stretch;}
-.centered-form-alert01 {grid-area: alert01; justify-self: stretch;}
-
-.centered-form-spacer02 {grid-area: spacer02;}
-
-.centered-form-input02 {grid-area: input02; justify-self: stretch;}
-.centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
-.centered-form-alert02 {grid-area: alert02; justify-self: stretch;}
-
-.centered-form-spacer03 {grid-area: spacer03;}
-
-.centered-form-input03 {grid-area: input03; justify-self: stretch;}
-.centered-form-bar03 {grid-area: bar03; justify-self: stretch;}
-.centered-form-alert03 {grid-area: alert03; justify-self: stretch;}
-
-.centered-form-meter {grid-area: meter; justify-self: stretch;}
-
-.centered-form-input04 {grid-area: input04; justify-self: stretch;}
-.centered-form-bar04 {grid-area: bar04; justify-self: stretch;}
-.centered-form-alert04 {grid-area: alert04; justify-self: stretch;}
-
-.centered-form-spacer05 {grid-area: spacer05;}
-
+.centered-form-textarea01 {grid-area: textarea01;}
+.centered-form-textarea02 {grid-area: textarea02;}
+.centered-form-textarea03 {grid-area: textarea03;}
+.centered-form-textarea04 {grid-area: textarea04;}
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
 
-..centered-form-spacer04 {grid-area: spacer05; justify-self: stretch;}
+
 
 
 .bc05 {
@@ -82,84 +59,31 @@ p {
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
-  grid-template-rows: 
-  					  	80px  /*logo*/
-  					  	40px  /*caption*/
-  					  	40px  /*description*/
-  					  
-  					  	40px	/*spacer01*/
-  					  					  
-  					  	50px  /*input01*/
-  					  	2px	  /*bar01*/
-              		  	20px  /*alert01*/
-
-              		  	20px  /*spacer02*/
-  					    					  
-  					  	50px  /*input02*/
-              			2px  /*bar02*/
-              			20px  /*alert02*/
-
-              			20px  /*spacer03*/
-  					  
-  					  	50px  /*input03*/
-              			2px  /*bar03*/
-              			20px  /*alert03*/
-
-              			20px /*meter*/
-
-              			50px  /*input04*/
-              			2px  /*bar04*/
-              			20px  /*alert04*/
-  					  
-  					  	20px /*spacer05*/
-  					  
-  					  	1fr  /*submit*/
-  					  
-  					  	20px;	/*spacer06*/
-  					  
-  					  
   justify-items: center;
   align-items: center;
-  grid-template-areas: 
-
-/*Actual displayed order*******************************************/
+  grid-template-rows: 
+  80px
+  40px
+  40px
+  40px
+  1fr
+  1fr
+  1fr
+  1fr
+  1fr;
   
-  "logo"
+  
+  grid-template-areas: 
+/*Actual displayed order*******************************************/  
+  "logo" 
   "caption"
   "description"
-  
-  "spacer01"
-  
-  /*Username*/
-  "input01"
-  "bar01"
-  "alert01"
-  
-  "spacer02"
-  
-  /*Email*/
-  "input02"
-  "bar02"
-  "alert02"
-
-  "spacer03"
-  
-  /*Password*/
-  "input03"
-  "bar03"
-  "meter"
-  "alert03"
-
-  /*Password Confirm*/
-  "input04"
-  "bar04"
-  "alert04"
-    
-  "spacer05"
-  
-  "submit"
-  
-  "spacer06";
+  "spacer"
+  "textarea01"
+  "textarea02"
+  "textarea03"
+  "textarea04"
+  "submit";
 }
 
 .centered-form-logo {
@@ -196,7 +120,7 @@ p {
 .centered-footer {
 	padding: 20px;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	justify-items: center;
   	align-items: center;
 }
@@ -214,13 +138,5 @@ p {
     "bc08";
   }
   
-  .centered-form-meter {
-	
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: left;
-  align-items: center;
-}
-
 }
 

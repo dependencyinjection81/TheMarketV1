@@ -10,6 +10,11 @@ public class StaticBlackListOnRuntime {
 
   static Map<String, Integer> BLACKLIST = new HashMap<>();
 
+  /**
+   * Add blacklisted IP adress to a static Map.
+   * @param ipAddress
+   * @return true if the IP adress was new false if the IP adress has already been added
+   */
   public boolean addIp(final String ipAddress) {
     if (BLACKLIST.containsKey(ipAddress)) {
       return false;
@@ -19,6 +24,11 @@ public class StaticBlackListOnRuntime {
     }   
   }
 
+  /**
+   * 
+   * @param ipAddress
+   * @return
+   */
   public boolean increaseCounter(final String ipAddress) {
 
     if (BLACKLIST.containsKey(ipAddress)) {
@@ -31,6 +41,11 @@ public class StaticBlackListOnRuntime {
     return true;
   }
 
+  /**
+   * 
+   * @param ipAddress
+   * @return
+   */
   public Integer getIpCounter(final String ipAddress) {
     return BLACKLIST.get(ipAddress);
   }

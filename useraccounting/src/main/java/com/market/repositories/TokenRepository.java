@@ -11,13 +11,13 @@ import com.market.entities.VerificationToken;
 
 public interface TokenRepository extends JpaRepository<VerificationToken, Long> {
 
-  VerificationToken findByToken(String token);
+  VerificationToken findByToken(final String token);
 
-  Stream<VerificationToken> findAllByExpiryDateLessThan(Date now);
+  Stream<VerificationToken> findAllByExpiryDateLessThan(final Date now);
 
-  void deleteByExpiryDateLessThan(Date now);
+  void deleteByExpiryDateLessThan(final Date now);
 
   @Modifying
   @Query("delete from VerificationToken t where t.expiryDate <= ?1")
-  void deleteAllExpiredSince(Date now);
+  void deleteAllExpiredSince(final Date now);
 }

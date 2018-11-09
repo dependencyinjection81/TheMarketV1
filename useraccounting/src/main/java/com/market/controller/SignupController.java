@@ -11,6 +11,8 @@ import com.market.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,7 +64,9 @@ public class SignupController implements WebMvcConfigurer {
       final @RequestParam(value = "action", required = true) String action,
       /* additional parameter because I have also a cancel button in my form */
       final WebRequest request) {
-
+    
+    String ipAddress = ((WebAuthenticationDetails)SecurityContextHolder.getContext().getAuthentication().getDetails()).getRemoteAddress();
+    
     /* Try to validate username field */
     String usernameValidatorStatus = usernameValidator.validateUsername(userForm.getUname());
     

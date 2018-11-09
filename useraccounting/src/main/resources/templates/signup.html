@@ -28,6 +28,16 @@
         <!--MAIN CONTENT-->
         <div class="bc05 skin-container">
 
+            <div class="centered-form-header lang">
+            <a href="#" id="lang-toggle" class="lang__option lang__option--current" th:text="#{lang.change}">
+                <span class="lang__chevron">›</span></a>
+            <ul class="lang__list">
+                <li><a th:href="@{/signup?lang=de}" th:text="#{lang.de}" class="lang__option"></a></li>
+                <li><a th:href="@{/signup?lang=en}" th:text="#{lang.eng}" class="lang__option"></a></li>
+            </ul>  
+            </div>
+            
+            
             <div class="centered-form-logo">
                 
                 <a class="cancel" href="index" th:text="#{title.index}"></a>
@@ -47,7 +57,6 @@
 				    	</div>	
 		
 		    	</div>		
-
             </div>
 
             
@@ -167,6 +176,14 @@
             complexity.setAttribute("class", "worst");
         }
         
+        });
+
+
+        // Clicking the current language toggles the 'is-open' class 
+        // on the 'lang' block:
+        document.getElementById('lang-toggle').addEventListener('click', function(e){
+        e.preventDefault();
+        $(this).parent().toggleClass('is-open');
         });
 
     </script>

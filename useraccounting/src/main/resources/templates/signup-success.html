@@ -1,5 +1,6 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
+
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme-signup-success.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/layout-signup-success.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -27,7 +28,7 @@
 
             <div class="centered-form-logo">
                 
-                <a class="cancel" href="index" th:text="#{title.index}"></a>
+                <div></div>
 
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
@@ -36,11 +37,11 @@
                 </div>
 			
 				<div class="dropdown">			
-				<a class="styled" th:text="#{lang.change}"></a>
+				<a class="styled" th:text="#{lang.change}">language</a>
 				
 						<div class="l-dropdown_content is-hidden skin-dropdown_content">
-				      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
-				      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
+				      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}">de</a>
+				      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}">en</a>
 				    	</div>	
 		
 		    	</div>		
@@ -48,26 +49,39 @@
             </div>
 
             <div class="centered-form-caption">
-                <h2 class="s-light" th:text="#{form.signupSuccess.caption}"></h2></div>
+                <h2 class="s-success" th:text="#{form.signupSuccess.caption}">Looks good!</h2></div>
             <div class="centered-form-description">
-                <p class="s-light" th:text="#{form.signupSuccess.description}"></p>
+                <p class="s-light" th:text="#{form.signupSuccess.description}">One last step:</p>
             </div>
 
-            <div class="centered-form-text">
-                <p class="s-light" th:text="#{form.signupSuccess.text}"></p>
+            <div class="centered-form-textarea01">
+                <p class="f-light s-light" th:text="#{form.signupSuccess.text}">In order to start using your anyRequest account,<br /> you need to confirm your Email. <br /> We sent a 6-digit verification code to:</p>
+            </div>
+
+            <div class="centered-form-textarea02">
+                <p class="s-light" th:text="#{form.signupSuccess.text}">example@email.com</p>
+            </div>
+
+            <div class="centered-form-textarea03">
+                <p class="f-light s-light" th:text="#{form.signupSuccess.text}">When you log in to your account for the first time,<br /> you will be asked for it.</p>
+            </div>
+
+            <div class="centered-form-textarea04">
+                <p class="alert-text" th:text="#{form.signupSuccess.text}">Note: The code will expire in</p>
+                <p class="alert-text" id="clockdiv"></p>
             </div>
             
             <!--SUBMIT-->
             <div class="centered-form-submit">
-                <a style="justify-self: end;" href="login" th:text="#{form.signupSuccess.ok}"></a>
-                <p style="justify-self: end;" class="s-light" th:text="#{form.signup.or}"></p>
-                <a style="justify-self: end;" href="index" th:text="#{form.signupSuccess.later}"></a>
+                <a style="justify-self: center;" href="login" th:text="#{form.signupSuccess.ok}">Ok. Let me do this now</a>
+                <p style="justify-self: center;" class="s-light" th:text="#{form.signup.or}">or</p>
+                <a style="justify-self: center;" href="index" th:text="#{form.signupSuccess.later}">Let me do that later</a>
             </div>
 
         </div>
 
         <div class="centered-footer">
-            <a style="justify-self: start;" class="excluded">Language</a>
+            
             <a style="justify-self: end;" class="excluded">Help</a>
             <a style="justify-self: end;" class="excluded">Privacy</a>
             <a style="justify-self: end;" class="excluded">Terms</a>
@@ -83,50 +97,36 @@
     <div class="bcs09"></div>
 
     <script>
+	// 10 minutes from now
+	var time_in_minutes = 10;
+	var current_time = Date.parse(new Date());
+	var deadline = new Date(current_time + time_in_minutes*60*1000);
 
-        var password = document.getElementById('inputPassword');
-        var complexity = document.getElementById('complexity');
 
-        password.addEventListener('input', function() {
-        
-        var val = password.value;
-        var result = zxcvbn(val);
-        var passwordScore = result.score;
-
-        if (passwordScore == 0) {
-            complexity.setAttribute("class", "worst");
-        } else if (passwordScore == 1) {
-            complexity.setAttribute("class", "bad");
-        } else if (passwordScore == 2) {
-            complexity.setAttribute("class", "weak");
-        } else if (passwordScore == 3) {
-            complexity.setAttribute("class", "good");
-        } else if (passwordScore == 4) {
-            complexity.setAttribute("class", "strong");
-        } else {
-            complexity.setAttribute("class", "worst");
-        }
-        
-        });
+	function time_remaining(endtime){
+		var t = Date.parse(endtime) - Date.parse(new Date());
+		var seconds = Math.floor( (t/1000) % 60 );
+		var minutes = Math.floor( (t/1000/60) % 60 );
+		var hours = Math.floor( (t/(1000*60*60)) % 24 );
+		var days = Math.floor( t/(1000*60*60*24) );
+		return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
+	}
+	function run_clock(id,endtime){
+		var clock = document.getElementById(id);
+		function update_clock(){
+			var t = time_remaining(endtime);
+			clock.innerHTML = 'minutes: '+t.minutes+'<br>seconds: '+t.seconds;
+			if(t.total<=0){ clearInterval(timeinterval); }
+		}
+		update_clock(); // run function once at first to avoid delay
+		var timeinterval = setInterval(update_clock,1000);
+	}
+	run_clock('clockdiv',deadline);
 
     </script>
 
-    <!--SVG ICONS Recsource-->
+        <!--SVG ICONS Recsource-->
     <svg style="display:none">
-        <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
-            <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
-            <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
-        </symbol>
-
-        <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
-            <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z " />
-        </symbol>
-
-        <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
-            <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
-            <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
-        </symbol>
-
         <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
             <g id="layer1">
                 <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
