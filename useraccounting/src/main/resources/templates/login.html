@@ -28,7 +28,8 @@
         <!-- Main content -->
         <div class="bc05 skin-container">
 
-            <div class="dropdown" id="language-dropdown">  
+            <!------------------------Dropdown--------------------------------->            
+            <div class="centered-form-header dropdown" id="language-dropdown">  
                 <div class="dropdown-button" th:text="#{lang.change}"></div>
 
                     <ul class="dropdown-selection">
@@ -38,10 +39,10 @@
                         <li>
                         <a class="list-anchor" th:href="@{/login?lang=en}" th:text="#{lang.eng}"></a>
                         </li>
-                    </ul>
-            
+                    </ul>         
             </div>      
 
+            <!------------------------Logo------------------------------------->
             <div class="centered-form-logo">
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
@@ -50,36 +51,45 @@
                 </div>
             </div>
 
+            <!------------------------Caption---------------------------------->
             <div class="centered-form-caption">
-                <h2 class="s-light" th:text="#{form.login.caption}"></h2></div>
+                <h2 class="s-light" th:text="#{form.login.caption}"></h2>
+            </div>
+            
+            <!------------------------Description------------------------------>
             <div class="centered-form-description">
                 <p class="s-light" th:text="#{form.login.description}"></p>
             </div>
 
-            <!-- EMAIL -->
-            <div class="centered-form-input01 inputWithIcon">
-                <input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}">
-                <span class="bar01"></span>
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------Email------------------------------------>
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
+                <input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}"> 
+                <span class="bar"></span>
             </div>
 
-            <!--PASSWORD-->
-            <div class="centered-form-input02 inputWithIcon">
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------Password--------------------------------->
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
                 <input type="password" id="password" name="password" th:placeholder="#{form.login.pwd.placeholder}">
-                <span class="bar01"></span>
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-lock"></use>
-                </svg>
+                <span class="bar"></span>
             </div>
 
             <!------------------------ALERTBOX--------------------------------->
-            <p class="centered-form-alert alert-text-big" th:if="${param.error != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
+            <div class="centered-form-alert">
+                <p class="alert-text-big" th:if="${param.error != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
+            </div>
 
-            <!--------------------------SUBMIT--------------------------------->
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------SUBMIT----------------------------------->
             <div class="centered-form-submit">
                 <button style="justify-self: start;" type="submit" class="submitbtn" th:text="#{form.button.login}"></button>
                 <p style="justify-self: end;" class="s-light" th:text="#{form.login.or}"></p>
@@ -89,10 +99,9 @@
         </div>
 
         <div class="centered-footer">
-            <a style="justify-self: start;" class="excluded">Language</a>
-            <a style="justify-self: end;" class="excluded">Help</a>
-            <a style="justify-self: end;" class="excluded">Privacy</a>
-            <a style="justify-self: end;" class="excluded">Terms</a>
+            <div class="centered-footer-item"><a class="excluded" href="">Help</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Privacy</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Terms</a></div>
         </div>
 
     </form>

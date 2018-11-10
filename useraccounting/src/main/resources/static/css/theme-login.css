@@ -78,8 +78,6 @@ a:hover {
 color: var(--color-grey-dark);
 }
 
-.inputWithIcon {position: relative;}
-
 .icon-skin-form {	
     fill: var(--color-blue-middle);  
     transition: 0.3s;
@@ -148,24 +146,21 @@ button {
 
 
 .l-icon {
-	width: 20px; height: 20px; /*Size of Icon*/
-    background-color: transparent;
-    fill: var(--color-grey-middle);
-    stroke: var(--color-grey-middle);  
-    /*Position the icon inside the input field*/
-    position:absolute;
-    left: 13; /*Advance Icon to the right*/
-    top: 8px;/*Advance Icon downwards*/   
+	width: 25px;
+	height: 25px;
+	background-color: transparent;
+	fill: var(--color-grey-middle);
+	stroke: var(--color-grey-middle);
+	position: absolute;
+	left: 7px;
+	top: 5px;
 }
 
 .icon-container {position: relative;}
 
 
 .icon-big-form {
-	width: 70px; height: 70px;     
-    position:absolute;
-    left: -35px; 
-    top: -35px;    
+	width: 70px; height: 70px;      
 }
 
 /**************Dropdown menu********************/
@@ -205,9 +200,7 @@ button {
 	padding: 0;
 	list-style: none;
 	position: absolute;
-	left: 0;
-	margin-top: 0px;
-	top: 85%;
+	top: 50%;
 	min-width: 90%;
 }
 
@@ -225,13 +218,13 @@ button {
 
 /* Underline */
 
-.bar01 {
+.bar {
 	position: relative;
 	display: block;
 	width: 100%;
 }
 
-.bar01:before, .bar01:after {
+.bar:before, .bar:after {
 	content: '';
 	height: 2px;
 	width: 0;
@@ -242,14 +235,14 @@ button {
 	transition: all 0.2s ease-in;
 }
 
-.bar01:before {
+.bar:before {
 	left: 50%;
 }
-.bar01:after {
+.bar:after {
 	right: 50%;
 }
 
-input:focus ~ .bar01:before, input:focus ~ .bar01:after {
+input:focus ~ .bar:before, input:focus ~ .bar:after {
 	width: 50%;
 	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
