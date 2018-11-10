@@ -28,35 +28,27 @@
         <!--MAIN CONTENT-->
         <div class="bc05 skin-container">
 
-            <div class="centered-form-header lang">
-            <a href="#" id="lang-toggle" class="lang__option lang__option--current" th:text="#{lang.change}">
-                <span class="lang__chevron">›</span></a>
-            <ul class="lang__list">
-                <li><a th:href="@{/signup?lang=de}" th:text="#{lang.de}" class="lang__option"></a></li>
-                <li><a th:href="@{/signup?lang=en}" th:text="#{lang.eng}" class="lang__option"></a></li>
-            </ul>  
-            </div>
+            <div class="dropdown" id="language-dropdown">  
+                <div class="dropdown-button" th:text="#{lang.change}"></div>
+
+                    <ul class="dropdown-selection">
+                        <li>
+                            <a class="list-anchor" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
+                        </li>
+                        <li>
+                        <a class="list-anchor" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
+                        </li>
+                    </ul>
+            
+            </div>      
             
             
             <div class="centered-form-logo">
-                
-                <a class="cancel" href="index" th:text="#{title.index}"></a>
-
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
                         <use xlink:href="#icon-logo"></use>
                     </svg>
                 </div>
-			
-				<div class="dropdown">			
-				<a class="styled" th:text="#{lang.change}"></a>
-				
-						<div class="l-dropdown_content is-hidden skin-dropdown_content">
-				      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
-				      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
-				    	</div>	
-		
-		    	</div>		
             </div>
 
             
@@ -151,8 +143,27 @@
 
     <div class="bcs09"></div>
 
-    <script>
+    <script type="text/javascript">
 
+        var activeDropdown = {};  
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
+
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+
+        //Responsible for the password strength meter
         var password = document.getElementById('inputPassword');
         var complexity = document.getElementById('complexity');
 
@@ -176,14 +187,6 @@
             complexity.setAttribute("class", "worst");
         }
         
-        });
-
-
-        // Clicking the current language toggles the 'is-open' class 
-        // on the 'lang' block:
-        document.getElementById('lang-toggle').addEventListener('click', function(e){
-        e.preventDefault();
-        $(this).parent().toggleClass('is-open');
         });
 
     </script>

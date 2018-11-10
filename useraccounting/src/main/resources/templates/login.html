@@ -28,6 +28,20 @@
         <!-- Main content -->
         <div class="bc05 skin-container">
 
+            <div class="dropdown" id="language-dropdown">  
+                <div class="dropdown-button" th:text="#{lang.change}"></div>
+
+                    <ul class="dropdown-selection">
+                        <li>
+                            <a class="list-anchor" th:href="@{/login?lang=de}" th:text="#{lang.de}"></a>
+                        </li>
+                        <li>
+                        <a class="list-anchor" th:href="@{/login?lang=en}" th:text="#{lang.eng}"></a>
+                        </li>
+                    </ul>
+            
+            </div>      
+
             <div class="centered-form-logo">
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
@@ -91,6 +105,29 @@
     <div class="bc08"></div>
 
     <div class="bcs09"></div>
+
+    <script type="text/javascript">
+        
+        var activeDropdown = {};  
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
+
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+
+
+    </script>
 
     <!--SVG ICONS Recsource-->
     <svg style="display:none">

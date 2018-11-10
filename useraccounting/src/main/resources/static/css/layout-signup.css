@@ -1,81 +1,62 @@
 body {
-	margin: 0px;
-	background-image: url('../images/background03.jpg');
-	background-repeat: no-repeat;
+  margin: 0px;
+  background-image: url('../images/background03.jpg');
+  background-repeat: no-repeat;
   background-position: 50% 80%; 
 }
 
-p {
-	text-align: center;
-}
+p {text-align: center;}
 
 /******************************************************************/
-/*BODY LAYOUT SIGNUP***********************************************/
+/*BODY LAYOUT******************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
 .bcs01 {grid-area: bcs01;}    .bc02 {grid-area: bc02;}  .bcs03 {grid-area: bcs03;}
-.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}	.bcs06 {grid-area: bcs06;}
-.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
+.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}  .bcs06 {grid-area: bcs06;}
+.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}  .bcs09 {grid-area: bcs09;}
 
 .body-container-center {
-  display: grid;	
+  display: grid;  
   grid-template-columns: 7fr 9fr 7fr;
-  grid-template-rows:  minmax(20px, auto)
-  					           minmax(570px, auto) 
-  					           80px;
-  
+  grid-template-rows: minmax(20px, auto)
+                      minmax(570px, auto) 
+                      80px;
   grid-template-areas:
-
 /*Actual displayed order*******************************************/ 
   "bcs01 bc02 bcs03"
   "bcs04 bc05 bcs06"
-  "bcs07 bc08 bcs09";
-	
+  "bcs07 bc08 bcs09";  
 }
 
 /******************************************************************/
-/*MAIN LAYOUT Login************************************************/
+/*MAIN LAYOUT SIGNUP***********************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
-
 .centered-form-header{grid-area: header; justify-self: stretch;}
-.centered-form-logo {grid-area: logo; justify-self: stretch;}
+.centered-form-logo {grid-area: logo;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
-
 .centered-form-spacer01 {grid-area: spacer01;}
-
-
 .centered-form-input01 {grid-area: input01; justify-self: stretch;}
 .centered-form-bar01 {grid-area: bar01; justify-self: stretch;}
 .centered-form-alert01 {grid-area: alert01; justify-self: stretch;}
-
 .centered-form-spacer02 {grid-area: spacer02;}
-
 .centered-form-input02 {grid-area: input02; justify-self: stretch;}
 .centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
 .centered-form-alert02 {grid-area: alert02; justify-self: stretch;}
-
 .centered-form-spacer03 {grid-area: spacer03;}
-
 .centered-form-input03 {grid-area: input03; justify-self: stretch;}
 .centered-form-bar03 {grid-area: bar03; justify-self: stretch;}
 .centered-form-alert03 {grid-area: alert03; justify-self: stretch;}
-
 .centered-form-meter {grid-area: meter; justify-self: stretch;}
-
 .centered-form-input04 {grid-area: input04; justify-self: stretch;}
 .centered-form-bar04 {grid-area: bar04; justify-self: stretch;}
 .centered-form-alert04 {grid-area: alert04; justify-self: stretch;}
-
 .centered-form-spacer05 {grid-area: spacer05;}
-
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
-
 .centered-form-spacer04 {grid-area: spacer05; justify-self: stretch;}
-
 
 .bc05 {
   padding: 30px;
@@ -89,37 +70,37 @@ p {
                       40px  /*caption*/
                       40px  /*description*/
 
-                      30px	/*spacer01*/
-                      				  
+                      30px  /*spacer01*/
+                                
                       30px  /*input01*/
-                      2px	  /*bar01*/
-                      20px  /*alert01*/
+                      2px   /*bar01*/
+                      40px  /*alert01*/
 
                       20px  /*spacer02*/
-                      					  
+                                  
                       30px  /*input02*/
                       2px  /*bar02*/
-                      20px  /*alert02*/
+                      40px  /*alert02*/
 
                       20px  /*spacer03*/
 
                       30px  /*input03*/
                       2px  /*bar03*/
-                      20px  /*alert03*/
+                      40px  /*alert03*/
 
                       20px /*meter*/
 
                       30px  /*input04*/
                       2px  /*bar04*/
-                      20px  /*alert04*/
+                      40px  /*alert04*/
 
                       20px /*spacer05*/
 
                       50px  /*submit*/
 
-                      20px;	/*spacer06*/
-  					  
-  					  
+                      20px; /*spacer06*/
+              
+              
   justify-items: center;
   align-items: center;
   grid-template-areas: 
@@ -166,14 +147,7 @@ p {
 }
 
 .centered-form-header {
-	justify-self: right;
-}
-
-.centered-form-logo {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  justify-items: center;
-  align-items: center;
+  justify-self: right;
 }
 
 .cancel {
@@ -185,7 +159,7 @@ p {
 }
 
 .centered-form-meter {
-	
+  
   display: grid;
   grid-template-columns: 3fr 2fr;
   justify-items: left;
@@ -193,19 +167,19 @@ p {
 }
 
 .centered-form-submit {
-	display: grid;
-  	grid-template-columns: 2fr 1fr 2fr;
-  	justify-items: center;
-  	align-items: center;
-  	
+  display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    justify-items: center;
+    align-items: center;
+    
 }
 
 .centered-footer {
-	padding: 20px;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	justify-items: center;
-  	align-items: center;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+    align-items: center;
 }
 
 @media(max-width: 1024px) {
@@ -222,12 +196,17 @@ p {
   }
   
   .centered-form-meter {
-	
+  
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: left;
   align-items: center;
-}
+  }
+
+  .bc05 {
+    padding: 10px;
+    padding-top: 0px;
+  }
 
 }
 

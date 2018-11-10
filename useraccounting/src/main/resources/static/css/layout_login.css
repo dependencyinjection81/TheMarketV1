@@ -1,16 +1,14 @@
 body {
-	margin: 0px;
-	background-image: url('../images/background03.jpg');
-	background-repeat: no-repeat;
-    background-position: 50% 80%; 
+  margin: 0px;
+  background-image: url('../images/background03.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 80%; 
 }
 
-p {
-	text-align: center;
-}
+p {text-align: center;}
 
 /******************************************************************/
-/*BODY LAYOUT LOGIN************************************************/
+/*BODY LAYOUT******************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
@@ -19,76 +17,65 @@ p {
 .bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
 
 .body-container-center {
-  display: grid;
-	
-  grid-template-columns: 8fr 9fr 8fr;
-  grid-template-rows: minmax(80px, auto)
-  					  minmax(570px, auto) 
-  					  80px;
-  
+  display: grid;	
+  grid-template-columns: 7fr 9fr 7fr;
+  grid-template-rows: minmax(20px, auto)
+                      minmax(570px, auto) 
+                      80px;
   grid-template-areas:
-
 /*Actual displayed order*******************************************/ 
   "bcs01 bc02 bcs03"
   "bcs04 bc05 bcs06"
-  "bcs07 bc08 bcs09";
-	
+  "bcs07 bc08 bcs09";	
 }
 
 /******************************************************************/
-/*MAIN LAYOUT Login************************************************/
+/*MAIN LAYOUT LOGIN************************************************/
 /******************************************************************/
 
 /*Declaring the area variables*************************************/
 
+.centered-form-header{grid-area: header; justify-self: stretch;}
 .centered-form-logo {grid-area: logo;}
 .centered-form-caption {grid-area: caption;}
 .centered-form-description {grid-area: description;}
-
 .centered-form-spacer01 {grid-area: spacer01;}
-
-
 .centered-form-input01 {grid-area: input01; justify-self: stretch;}
 .centered-form-bar01 {grid-area: bar01; justify-self: stretch;}
-
-
 .centered-form-input02 {grid-area: input02; justify-self: stretch;}
 .centered-form-bar02 {grid-area: bar02; justify-self: stretch;}
-
 .centered-form-alert {grid-area: alert; justify-self: stretch;}
-
 .centered-form-spacer02 {grid-area: spacer02;}
-
 .centered-form-submit {grid-area: submit; justify-self: stretch;}
-
-..centered-form-spacer03 {grid-area: spacer03; justify-self: stretch;}
-
+.centered-form-spacer03 {grid-area: spacer03; justify-self: stretch;}
 
 .bc05 {
-  padding: 20px;
+  padding: 30px;
+  padding-top: 0px;
   display: grid;
   grid-gap: 1px;
   grid-template-columns: 1fr;
-  grid-template-rows: 
+  grid-template-rows:
+              40px  /*header*/ 
   					  80px  /*logo*/
   					  40px  /*caption*/
   					  40px  /*description*/
   					  
   					  30px	/*spacer01*/
   					  					  
-  					  50px  /*input01*/
+  					  30px  /*input01*/
   					  20px	/*bar01*/
   					    					  
-  					  50px  /*input02*/
+  					  30px  /*input02*/
   					  20px  /*bar02*/
   					  
-  					  20px	/*alert*/
+  					  40px	/*alert*/
   					  
-  					  40px	/*spacer02*/
+  					  30px	/*spacer02*/
   					  
-  					  1fr  /*submit*/
+  					  50px  /*submit*/
   					  
-  					  40px;	/*spacer03*/
+  					  20px;	/*spacer03*/
   					  
   					  
   justify-items: center;
@@ -97,6 +84,7 @@ p {
 
 /*Actual displayed order*******************************************/
   
+  "header"
   "logo"
   "caption"
   "description"
@@ -118,6 +106,14 @@ p {
   "spacer03";
 }
 
+.centered-form-header {
+  justify-self: right;
+}
+
+.dropdown {
+  justify-self: right;
+}
+
 .centered-form-submit {
 	display: grid;
   	grid-template-columns: 2fr 1fr 2fr;
@@ -131,10 +127,10 @@ p {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	justify-items: center;
-  	align-items: center;
+  align-items: center;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
   /*Hide all spacer**************************************************/
   [class*="bcs"] {display: none;}  
   .body-container-center {
@@ -145,6 +141,11 @@ p {
     "bc02"
     "bc05"
     "bc08";
+  }
+
+  .bc05 {
+    padding: 10px;
+    padding-top: 0px;
   }
 
 }
