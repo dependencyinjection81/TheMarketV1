@@ -13,11 +13,11 @@ p {text-align: center;}
 
 /*Declaring the area variables*************************************/
 .bcs01 {grid-area: bcs01;}    .bc02 {grid-area: bc02;}  .bcs03 {grid-area: bcs03;}
-.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}	.bcs06 {grid-area: bcs06;}
-.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}	.bcs09 {grid-area: bcs09;}
+.bcs04 {grid-area: bcs04;}    .bc05 {grid-area: bc05;}  .bcs06 {grid-area: bcs06;}
+.bcs07 {grid-area: bcs07;}    .bc08 {grid-area: bc08;}  .bcs09 {grid-area: bcs09;}
 
 .body-container-center {
-  display: grid;	
+  display: grid;  
   grid-template-columns: 7fr 9fr 7fr;
   grid-template-rows: minmax(20px, auto)
                       minmax(570px, auto) 
@@ -26,11 +26,11 @@ p {text-align: center;}
 /*Actual displayed order*******************************************/ 
   "bcs01 bc02 bcs03"
   "bcs04 bc05 bcs06"
-  "bcs07 bc08 bcs09";	
+  "bcs07 bc08 bcs09";  
 }
 
 /******************************************************************/
-/*MAIN LAYOUT LOGIN ITEMS******************************************/
+/*MAIN LAYOUT SIGNUP ITEMS*****************************************/
 /******************************************************************/
 .centered-form-spacer{height: 40px;}
 
@@ -79,6 +79,16 @@ p {text-align: center;}
   align-items: center;
 }
 
+.centered-form-meter {
+  height: 40px;
+  justify-self: stretch;
+  justify-items: left;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
 .bc05 {
   padding: 30px;
   padding-top: 0px;
@@ -92,11 +102,11 @@ p {text-align: center;}
 }
 
 .centered-footer {
-	padding-top: 20px;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-self: stretch;
-	justify-items: center;
+  justify-items: center;
   align-items: center;
 }
 
@@ -117,6 +127,14 @@ p {text-align: center;}
     "bc02"
     "bc05"
     "bc08";
+  }
+  
+  .centered-form-meter {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: left;
+  align-items: center;
   }
 
   .bc05 {

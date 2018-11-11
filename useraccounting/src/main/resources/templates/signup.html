@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-signup.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
@@ -72,8 +72,9 @@
             </div>
             
             <!------------------------Username errors--------------------------->
-            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></p>
-
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></p>
+        	</div>
 
             <!------------------------Email------------------------------------>
             <div class="centered-form-input">
@@ -83,8 +84,9 @@
             </div>
 
             <!------------------------Email errors----------------------------->
-            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-           
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+           	</div>
             <!------------------------Password--------------------------------->
             <div class="centered-form-input">
                 <svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
@@ -101,8 +103,9 @@
             </div>
 
             <!------------------------Password errors-------------------------->
-            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
-
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
+        	</div>
             
 
             <!------------------------Password confirm------------------------->
@@ -113,9 +116,11 @@
             </div>
             
             <!------------------------Password confirm errors------------------>
-            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></p>
-            <p class="centered-form-alert alert-text" th:text="${param.passwordStrength}">Test</p>
-
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></p>
+            	<p class="alert-text" th:text="${param.passwordStrength}">Test</p>
+            </div>
+            
             <!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
 
