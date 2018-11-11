@@ -84,9 +84,7 @@ p {text-align: center;}
   padding-top: 0px;
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: 1fr; 					  
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: 1fr;
 }
 
 .dropdown {
