@@ -1,7 +1,7 @@
 <html xmlns:th="http//thymeleaf.org">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/theme-signup.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/layout-signup.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 
@@ -28,21 +28,21 @@
         <!--MAIN CONTENT-->
         <div class="bc05 skin-container">
 
-            <div class="dropdown" id="language-dropdown">  
+            <!------------------------Dropdown--------------------------------->            
+            <div class="centered-form-header dropdown" id="language-dropdown">  
                 <div class="dropdown-button" th:text="#{lang.change}"></div>
 
                     <ul class="dropdown-selection">
                         <li>
-                            <a class="list-anchor" th:href="@{/signup?lang=de}" th:text="#{lang.de}"></a>
+                            <a class="list-anchor" th:href="@{/login?lang=de}" th:text="#{lang.de}"></a>
                         </li>
                         <li>
-                        <a class="list-anchor" th:href="@{/signup?lang=en}" th:text="#{lang.eng}"></a>
+                        <a class="list-anchor" th:href="@{/login?lang=en}" th:text="#{lang.eng}"></a>
                         </li>
-                    </ul>
-            
+                    </ul>         
             </div>      
             
-            
+            <!------------------------Logo------------------------------------->
             <div class="centered-form-logo">
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
@@ -51,72 +51,75 @@
                 </div>
             </div>
 
-            
+            <!------------------------Caption---------------------------------->
             <div class="centered-form-caption">
-                <h2 class="s-light" th:text="#{form.signup.caption}"></h2></div>
+                <h2 class="s-light" th:text="#{form.signup.caption}"></h2>
+            </div>
+            
+            <!------------------------Description------------------------------>
             <div class="centered-form-description">
                 <p class="s-light" th:text="#{form.signup.description}"></p>
             </div>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
             
-            <!-- USERNAME -->
-            <div class="centered-form-input01 inputWithIcon">
+            <!------------------------Username---------------------------------->
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-user"></use></svg>
                 <input type="text" name="uname" th:placeholder="#{form.signup.username.placeholder}" th:field="*{uname}">
-                <span class="bar01"></span>
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-user"></use>
-                </svg>
+                <span class="bar"></span>                
             </div>
-            <!-- Alert -->
-            <p class="centered-form-alert01 alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></p>
+            
+            <!------------------------Username errors--------------------------->
+            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></p>
 
 
-            <!-- EMAIL -->
-            <div class="centered-form-input02 inputWithIcon">
+            <!------------------------Email------------------------------------>
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
                 <input type="text" name="email" th:placeholder="#{form.signup.email.placeholder}" th:field="*{email}">
-                <span class="bar02"></span>
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
+                <span class="bar"></span>
             </div>
-            <!-- Alert -->
-            <p class="centered-form-alert02 alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-           
-           <!-- PASSWORD -->
-            <div class="centered-form-input03 inputWithIcon">
-                <input id="inputPassword" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
-                <span class="bar03"></span>                
-                    
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-lock"></use>
-                </svg>
-            </div>
-            <!-- Alert -->
-            <p class="centered-form-alert03 alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
 
+            <!------------------------Email errors----------------------------->
+            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+           
+            <!------------------------Password--------------------------------->
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
+                <input id="inputPassword" type="password" name="pwd" th:placeholder="#{form.signup.pwd.placeholder}" th:field="*{pwd}">
+                <span class="bar"></span>                    
+            </div>
+
+            <!------------------------Password meter---------------------------->
             <div class="centered-form-meter">
                 <div class="empty-meter">               
-                	<span id="complexity" class="worst"></span>
+                    <span id="complexity" class="worst"></span>
                 </div>
                 <span class="f-light s-desc" style="justify-self: right" th:text="#{form.signup.pwdStrength}"></span>
             </div>
 
-            <!-- PASSWORD CONFIRM -->
-            <div class="centered-form-input04 inputWithIcon">
-                <input type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
-                <span class="bar04"></span>
-                <!--Icon----------------------------------------------------------->
-                <svg class="l-icon">
-                    <use xlink:href="#icon-lock"></use>
-                </svg>
-            </div>
-            <!-- Alert -->
-            <p class="centered-form-alert04 alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></p>
-            <p class="centered-form-alert04 alert-text" th:text="${param.passwordStrength}">Test</p>
+            <!------------------------Password errors-------------------------->
+            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
 
-            <!--SUBMIT-->
+            
+
+            <!------------------------Password confirm------------------------->
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
+                <input type="password" name="pwdConfirm" th:placeholder="#{form.signup.pwdconfirm.placeholder}" th:field="*{pwdConfirm}">
+                <span class="bar"></span>
+            </div>
+            
+            <!------------------------Password confirm errors------------------>
+            <p class="centered-form-alert alert-text" th:if="${#fields.hasErrors('pwdConfirm')}" th:errors="*{pwdConfirm}"></p>
+            <p class="centered-form-alert alert-text" th:text="${param.passwordStrength}">Test</p>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------SUBMIT----------------------------------->
             <div class="centered-form-submit">
                 <button style="justify-self: start;" type="submit" class="submitbtn" name="action" value="signup" th:text="#{form.button.signup}"></button>
                 <p style="justify-self: end;" class="s-light" th:text="#{form.signup.or}"></p>
@@ -126,10 +129,9 @@
         </div>
 
         <div class="centered-footer">
-            <a style="justify-self: start;" class="excluded">Language</a>
-            <a style="justify-self: end;" class="excluded">Help</a>
-            <a style="justify-self: end;" class="excluded">Privacy</a>
-            <a style="justify-self: end;" class="excluded">Terms</a>
+            <div class="centered-footer-item"><a class="excluded" href="">Help</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Privacy</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Terms</a></div>
         </div>
 
     </form>

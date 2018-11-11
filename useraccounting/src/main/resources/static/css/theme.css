@@ -63,8 +63,8 @@ a {
 	
 	/*Layout*/
 	display: block;
-  text-align: center;    
-  text-decoration: none;
+    text-align: center;    
+    text-decoration: none;
 }
 
 a:hover {
@@ -80,13 +80,10 @@ a:hover {
 color: var(--color-grey-dark);
 }
 
-.inputWithIcon {position: relative;}
-
 .icon-skin-form {	
     fill: var(--color-blue-middle);  
     transition: 0.3s;
 }
-
 
 .s-light {
 	color: var(--color-white-creme);	
@@ -154,29 +151,24 @@ button {
 
 
 .l-icon {
-	width: 20px; height: 20px; /*Size of Icon*/
-    background-color: transparent;
-    fill: var(--color-grey-middle);
-    stroke: var(--color-grey-middle);  
-    /*Position the icon inside the input field*/
-    position:absolute;
-    left: 13; /*Advance Icon to the right*/
-    top: 8px;/*Advance Icon downwards*/   
+	width: 25px;
+	height: 25px;
+	background-color: transparent;
+	fill: var(--color-grey-middle);
+	stroke: var(--color-grey-middle);
+	position: absolute;
+	left: 7px;
+	top: 4px;
 }
 
 .icon-container {position: relative;}
 
 
 .icon-big-form {
-	width: 70px; height: 70px;     
-    position:absolute;
-    left: -35px; 
-    top: -35px;    
+	width: 70px; height: 70px;      
 }
 
-
 /**************Dropdown menu********************/
-
 .dropdown {
 	display: inline-block;
 	position: relative;
@@ -213,9 +205,7 @@ button {
 	padding: 0;
 	list-style: none;
 	position: absolute;
-	left: 0;
-	margin-top: 0px;
-	top: 85%;
+	top: 50%;
 	min-width: 90%;
 }
 
@@ -232,39 +222,14 @@ button {
 }
 
 /* Underline */
-.bar01 {
+
+.bar {
 	position: relative;
 	display: block;
 	width: 100%;
-}
-.bar01:before, .bar01:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 0px;
-	position: absolute;
-	background: var(--color-blue-middle);
-	-webkit-transition: all 0.2s ease-in;
-	transition: all 0.2s ease-in;
-}
-.bar01:before {
-	left: 50%;
-}
-.bar01:after {
-	right: 50%;
-}
-input:focus ~ .bar01:before, input:focus ~ .bar01:after {
-	width: 50%;
-	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
 
-/* Underline */
-.bar02 {
-	position: relative;
-	display: block;
-	width: 100%;
-}
-.bar02:before, .bar02:after {
+.bar:before, .bar:after {
 	content: '';
 	height: 2px;
 	width: 0;
@@ -273,41 +238,16 @@ input:focus ~ .bar01:before, input:focus ~ .bar01:after {
 	background: var(--color-blue-middle);
 	-webkit-transition: all 0.2s ease-in;
 	transition: all 0.2s ease-in;
-}
-.bar02:before {
-	left: 50%;
-}
-.bar02:after {
-	right: 50%;
-}
-input:focus ~ .bar02:before, input:focus ~ .bar02:after {
-	width: 50%;
-	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
 
-/* Underline */
-.bar03 {
-	position: relative;
-	display: block;
-	width: 100%;
-}
-.bar03:before, .bar03:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 0px;
-	position: absolute;
-	background: var(--color-blue-middle);
-	-webkit-transition: all 0.2s ease-in;
-	transition: all 0.2s ease-in;
-}
-.bar03:before {
+.bar:before {
 	left: 50%;
 }
-.bar03:after {
+.bar:after {
 	right: 50%;
 }
-input:focus ~ .bar03:before, input:focus ~ .bar03:after {
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
 	width: 50%;
 	box-shadow: 0 0 8px 0 var(--color-blue-middle);
 }
@@ -319,7 +259,6 @@ input:focus ~ .bar03:before, input:focus ~ .bar03:after {
 	display: block;
 	height: 5px;   
 }
-
 
 .empty-meter{
 	border-radius: 5px;
@@ -357,42 +296,12 @@ input:focus ~ .bar03:before, input:focus ~ .bar03:after {
 	box-shadow: 0 0 8px 0 var(--color-green-light);
 }
 
-
-/* Underline */
-.bar04 {
-	position: relative;
-	display: block;
-	width: 100%;
-}
-.bar04:before, .bar04:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 0px;
-	position: absolute;
-	background: var(--color-blue-middle);
-	-webkit-transition: all 0.2s ease-in;
-	transition: all 0.2s ease-in;
-}
-.bar04:before {
-	left: 50%;
-}
-.bar04:after {
-	right: 50%;
-}
-
-input:focus ~ .bar04:before, input:focus ~ .bar04:after {
-	width: 50%;
-	box-shadow: 0 0 8px 0 var(--color-blue-middle);
-}
-
 @media(max-width: 1024px) {
-
 	.skin-container {	
 	border-radius: 0px;
 	box-shadow: none;
 	}
-	
+
 	.dropdown {
 	display: inline-block;
 	position: relative;
@@ -400,6 +309,4 @@ input:focus ~ .bar04:before, input:focus ~ .bar04:after {
 	left: 0px;
 	}
 }
-
-
 
