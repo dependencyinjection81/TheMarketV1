@@ -18,7 +18,8 @@ button {font-size: 14px; font-weight: 600;}
 }
 
 .alert-text {
-	font-size: 0.8em;
+	font-size: 13px !important; 
+	font-weight: 300 !important;
 	color: var(--color-red-signal);
 	text-align: center;
 }

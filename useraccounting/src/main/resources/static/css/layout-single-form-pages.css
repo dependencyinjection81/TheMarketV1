@@ -32,12 +32,12 @@ p {text-align: center;}
 /******************************************************************/
 /*MAIN LAYOUT SIGNUP ITEMS*****************************************/
 /******************************************************************/
-.centered-form-spacer{height: 40px;}
+.centered-form-spacer{height: 30px;}
 
 .centered-form-header{height: 60px;}
 
 .centered-form-logo {
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,10 +64,7 @@ p {text-align: center;}
 }
 
 .centered-form-alert {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 30px;
 }
 
 .centered-form-submit {
@@ -80,7 +77,7 @@ p {text-align: center;}
 }
 
 .centered-form-meter {
-  height: 40px;
+  height: 30px;
   justify-self: stretch;
   justify-items: left;
   align-items: center;
