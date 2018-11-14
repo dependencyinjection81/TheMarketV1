@@ -18,7 +18,11 @@ public class SecurityService {
   @Autowired
   private UserDetailsServiceImpl userDetailsService;
 
-  
+  /**
+   * Find the current logged in username from context.
+   * 
+   * @return
+   */
   public String findLoggedInUsername() {
     Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
     if (userDetails instanceof UserDetails) {
@@ -27,12 +31,18 @@ public class SecurityService {
     return null;
   }
 
-
+  /**
+   * Provides automatic login ability.
+   * 
+   * @param username username
+   * @param password password
+   */
   public void autologin(String username, String password) {
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-    
-    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken 
-    = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+
+    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
+        new UsernamePasswordAuthenticationToken(
+        userDetails, password, userDetails.getAuthorities());
 
     authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 

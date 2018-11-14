@@ -5,6 +5,8 @@
 :root {
 
     --color-red-signal: rgb(235,116,100);
+    --color-orange-signal: rgb(235,164,100);
+   	--color-yellow-signal: rgb(235,210,100);
     
     --color-white-creme: rgb(230,230,230);
     
@@ -79,6 +81,10 @@ a:hover {
 
 .s-light {
 	color: var(--color-white-creme);	
+}
+
+.s-desc {
+	color: var(--color-grey-middle);
 }
 
 /************************/
@@ -159,38 +165,31 @@ button {
     top: -35px;    
 }
 
-/* Underline */
-
-.bar01 {
-	position: relative;
-	display: block;
-	width: 100%;
+/**************Dropdown menu********************/
+/*LAYOUT*/
+.l-dropdown_content {
+	width: 100px;
+	padding: 10px;
+    position: absolute;
+    left: -8px; 
+    top: -22px; 
+    z-index: 1;
 }
+/*LAYOUT*/
+.dropdown {position: relative;}
 
-.bar01:before, .bar01:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 0px;
-	position: absolute;
-	background: var(--color-blue-middle);
-	-webkit-transition: all 0.2s ease-in;
-	transition: all 0.2s ease-in;
-}
+/*STATE-HIDDEN*/
+.is-hidden {display: none;}
+/*STATE-VISIBLE*/
+.dropdown:hover .is-hidden {display: block;}
 
-.bar01:before {
-	left: 50%;
-}
-.bar01:after {
-	right: 50%;
-}
+/*THEME*/
+.skin-dropdown_content {background-color: var(--color-grey-dark);}
+/**THEME**/
+.styled {font-style: italic;}
 
-input:focus ~ .bar01:before, input:focus ~ .bar01:after {
-	width: 50%;
-	box-shadow: 0 0 8px 0 var(--color-blue-middle);
-}
 
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
 	.skin-container {	
 	border-radius: 0px;
 	box-shadow: none;

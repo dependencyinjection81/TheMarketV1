@@ -1,141 +1,173 @@
 <html xmlns:th="http//thymeleaf.org">
 
 <head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/theme-login.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/layout_login.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-	charset="UTF-8">
-<title th:text="#{title.login}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title th:text="#{title.login}"></title>
 </head>
-
 
 <body class="body-container-center">
 
-	<!-- Space left --> 
-	<div class="bcs1"></div>
+    <!-- Space left -->
+    <div class="bcs1"></div>
 
-	<!-- Header -->
-	<div class="bc02"></div>
-	
-	<!-- Space right --> 
-	<div class="bcs03"></div>
+    <!-- Header -->
+    <div class="bc02"></div>
 
-	<!-- Space left --> 
-	<div class="bcs04"></div>
-	
-	
-	<form th:action="@{/login}" method="post">
-	
-	<!-- Main content -->
-	<div class="bc05 skin-container">
-	
-	
-	
-		<div class="centered-form-logo">
-		<div class="icon-container"> 
-				<svg class="icon-big-form icon-skin-form"><use xlink:href="#icon-logo"></use></svg>
-		</div>
-		</div>
-		
-		<div class="centered-form-caption"><h2 class="s-light" th:text="#{form.login.caption}"></h2></div>
-		<div class="centered-form-description"><p class="s-light" th:text="#{form.login.description}"></p></div>
-		
-					
-									<!-- EMAIL -->						
-      		<div class="centered-form-input01 inputWithIcon">
-      		<input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}">    		
-      		<span class="bar01"></span>
-      		<!--Icon----------------------------------------------------------->
-			<svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
-      		</div>	
-			
-									<!--PASSWORD-->			
-      		<div class="centered-form-input02 inputWithIcon">
-      		<input type="password" id="password" name="password" th:placeholder="#{form.login.pwd.placeholder}">
-      		<span class="bar01"></span>
-      		<!--Icon----------------------------------------------------------->
-			<svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
-      		</div>     			
-			
-			<!------------------------ALERTBOX--------------------------------->
-			<p class="centered-form-alert alert-text-big" th:if="${param.error != null}" 
-			   th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
-			
-			<!--------------------------SUBMIT--------------------------------->
-			<div class="centered-form-submit">
-				<button style="justify-self: start;" type="submit" class="submitbtn" th:text="#{form.button.login}"></button>
-				<p style="justify-self: end;" class="s-light" th:text="#{form.login.or}"></p>
-				<a style="justify-self: end;" href="signup" th:text="#{form.login.signup}"></a>						
-			</div>
-			
-	</div>
-	
-	<div class="centered-footer">
-	<a style="justify-self: start;" class="excluded">Language</a>
-	<a style="justify-self: end;" class="excluded">Help</a>
-	<a style="justify-self: end;" class="excluded">Privacy</a>
-	<a style="justify-self: end;" class="excluded">Terms</a>
-	</div>
-	
-	</form>
-	
-	
-	<!-- Space right --> 
-	<div class="bcs06"></div>
-    
+    <!-- Space right -->
+    <div class="bcs03"></div>
+
+    <!-- Space left -->
+    <div class="bcs04"></div>
+
+    <form th:action="@{/login}" method="post">
+
+        <!-- Main content -->
+        <div class="bc05 skin-container">
+
+            <!------------------------Dropdown--------------------------------->            
+            <div class="centered-form-header dropdown" id="language-dropdown">  
+                <div class="dropdown-button" th:text="#{lang.change}"></div>
+
+                    <ul class="dropdown-selection">
+                        <li>
+                            <a class="list-anchor" th:href="@{/login?lang=de}" th:text="#{lang.de}"></a>
+                        </li>
+                        <li>
+                        <a class="list-anchor" th:href="@{/login?lang=en}" th:text="#{lang.eng}"></a>
+                        </li>
+                    </ul>         
+            </div>      
+
+            <!------------------------Logo------------------------------------->
+            <div class="centered-form-logo">
+                <div class="icon-container">
+                    <svg class="icon-big-form icon-skin-form">
+                        <use xlink:href="#icon-logo"></use>
+                    </svg>
+                </div>
+            </div>
+
+            <!------------------------Caption---------------------------------->
+            <div class="centered-form-caption">
+                <h2 class="s-light" th:text="#{form.login.caption}"></h2>
+            </div>
+            
+            <!------------------------Description------------------------------>
+            <div class="centered-form-description">
+                <p class="s-light" th:text="#{form.login.description}"></p>
+            </div>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------Email------------------------------------>
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-email"></use></svg>
+                <input type="text" id="username" name="username" th:placeholder="#{form.login.email.placeholder}"> 
+                <span class="bar"></span>
+            </div>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------Password--------------------------------->
+            <div class="centered-form-input">
+                <svg class="l-icon"><use xlink:href="#icon-lock"></use></svg>
+                <input type="password" id="password" name="password" th:placeholder="#{form.login.pwd.placeholder}">
+                <span class="bar"></span>
+            </div>
+
+            <!------------------------ALERTBOX--------------------------------->
+            <div class="centered-form-alert">
+                <p class="alert-text-big" th:if="${param.error != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</p>
+            </div>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+
+            <!------------------------SUBMIT----------------------------------->
+            <div class="centered-form-submit">
+                <button style="justify-self: start;" type="submit" class="submitbtn" th:text="#{form.button.login}"></button>
+                <p style="justify-self: end;" class="s-light" th:text="#{form.login.or}"></p>
+                <a style="justify-self: end;" href="signup" th:text="#{form.login.signup}"></a>
+            </div>
+
+        </div>
+
+        <div class="centered-footer">
+            <div class="centered-footer-item"><a class="excluded" href="">Help</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Privacy</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Terms</a></div>
+        </div>
+
+    </form>
+
+    <!-- Space right -->
+    <div class="bcs06"></div>
+
     <div class="bcs07"></div>
 
     <div class="bc08"></div>
 
     <div class="bcs09"></div>
-	
-		
-	<!--SVG ICONS Recsource-->
-  	<svg style="display:none">  
-	    
-	   	<symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
-	      <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z "/>
-	    </symbol>
-	
-	    <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
-	      <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
-	    <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
-	    </symbol>
-	    
-	    <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
-			    <g id="layer1">
-		    <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
-		      <g id="g1413"
-			transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
-		        <circle r="2.2097087" cy="11.094446" cx="6.9384851"
-			id="path1376" />
-		        <circle r="1.403165" cy="8.0119019" cx="13.534466"
-			id="path1382" />
-		        <g id="g1403">
-		          <circle id="path1378" cx="3.1267376" cy="2.9958642"
-			r="1.2263883" />
-		          <circle id="path1380" cx="8.8056889" cy="6.2220387"
-			r="0.9612233" />
-		          <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z"
-			id="path1386" />
-		          <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z"
-			id="path1388" />
-		          <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z"
-			id="path1390" />
-		        </g>
-		      </g>
-		      <path
-			
-			d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z"
-			id="path1415" />
-		    </g>
-	    </symbol>
-  	</svg>
 
-	
+    <script type="text/javascript">
+        
+        var activeDropdown = {};  
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
+
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+        
+    </script>
+
+    <!--SVG ICONS Recsource-->
+    <svg style="display:none">
+
+        <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
+            <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z " />
+        </symbol>
+
+        <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+            <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+            <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+        </symbol>
+
+        <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+            <g id="layer1">
+                <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+                    <g id="g1413" transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+                        <circle r="2.2097087" cy="11.094446" cx="6.9384851" id="path1376" />
+                        <circle r="1.403165" cy="8.0119019" cx="13.534466" id="path1382" />
+                        <g id="g1403">
+                            <circle id="path1378" cx="3.1267376" cy="2.9958642" r="1.2263883" />
+                            <circle id="path1380" cx="8.8056889" cy="6.2220387" r="0.9612233" />
+                            <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z" id="path1386" />
+                            <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z" id="path1388" />
+                            <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z" id="path1390" />
+                        </g>
+                    </g>
+                    <path d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z" id="path1415" />
+                </g>
+        </symbol>
+    </svg>
+
 </body>
 
 </html>

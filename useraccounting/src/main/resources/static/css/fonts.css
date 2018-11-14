@@ -3,13 +3,26 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-h1 {font-size: 50px; font-weight: 600;}
+h1 {font-size: 60px; font-weight: 600;}
 h2 {font-size: 30px; font-weight: 600;}
-h3 {font-size: 25px; font-weight: 500;}
-p  {font-size: 18px; font-weight: 300;}
-a  {font-size: 18px; font-weight: 600;}
-input {font-size: 16px; font-weight: 500;}
-button{font-size: 16px; font-weight: 600;}
+h3 {font-size: 18px; font-weight: 500;}
+p  {font-size: 16px; font-weight: 300;}
+a  {font-size: 14px; font-weight: 600;}
+div {font-size: 14px; font-weight: 600;}
+li {font-size: 13px; font-weight: 300;}
+input {font-size: 13px; font-weight: 300;}
+button {font-size: 14px; font-weight: 600;}
+
+.f-light {
+	font-size: 0.9em;
+}
+
+.alert-text {
+	font-size: 13px !important; 
+	font-weight: 300 !important;
+	color: var(--color-red-signal);
+	text-align: center;
+}
 
 .alert-text-big {
 	font-size: 1em;
@@ -22,4 +35,8 @@ button{font-size: 16px; font-weight: 600;}
 	color: var(--color-grey-dark);
 	font-weight: 200 !important;
 	text-align: center;		
+}
+
+.s-success {
+	color: var(--color-green-light);
 }

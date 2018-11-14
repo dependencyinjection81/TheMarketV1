@@ -135,12 +135,11 @@ public class UserService {
   
   @SuppressWarnings("unused")
   private void deleteRoleFromUser(final User user, final Long roleId) {
-    
+    //TODO implementation
   }
   
   private boolean userNameExist(final String userName) {
-    User user = userRepository.findByUsername(userName);
-    
+    User user = userRepository.findByUsername(userName);    
     if (user != null) {
       return true;
     }
