@@ -88,7 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/signup").permitAll()
         .antMatchers("/index").permitAll()
         .antMatchers("/login").permitAll()
-        .antMatchers("/verification").access("hasRole('ROLE_USERNOTVERIFIED')")
+        .antMatchers("/signup-verification").access("hasRole('ROLE_USERNOTVERIFIED')")
         .antMatchers("/welcome").access("hasRole('ROLE_USER')")
         .and()
           .formLogin().loginPage("/login")

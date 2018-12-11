@@ -18,6 +18,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class UserService {
     tokenRepository.save(myToken);
   }
   
-  public int verifyUser(final String currentUsername, final String incomingToken) {
+  public int verifyUser(final String currentUsername, final String incomingToken, final Authentication auth) {
 
     User clientUser = userRepository.findByEmail(currentUsername);
     VerificationToken repositoryToken = tokenRepository.findByToken(incomingToken);    
@@ -107,6 +108,7 @@ public class UserService {
           
           addRoleToUser(repositoryUser, 10l); //TODO die Role ID immutable machen
           saveUser(repositoryUser);
+          auth.getAuthorities();
           //TODO Delete Token from repository.
           
           return 0; /*Successfully verified*/

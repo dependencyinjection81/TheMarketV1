@@ -86,6 +86,14 @@ p {text-align: center;}
   grid-template-columns: 3fr 2fr;
 }
 
+.centered-form-code {
+  height: 50px;  
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
 .bc05 {
   padding: 30px;
   padding-top: 0px;

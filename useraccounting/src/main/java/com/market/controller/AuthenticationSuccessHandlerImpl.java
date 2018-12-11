@@ -71,7 +71,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     }
 
     if (isUserNotVerified) {
-      return "/verification";
+      return "/signup-verification";
     } else if (isUserVerified) {
       return "/welcome";
     } else {

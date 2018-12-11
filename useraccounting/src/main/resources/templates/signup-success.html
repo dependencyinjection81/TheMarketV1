@@ -1,10 +1,8 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/css/theme-signup-success.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-signup-success.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title th:text="#{title.signup}"></title>
 </head>
@@ -23,69 +21,62 @@
     <!-- Space left -->
     <div class="bcs04"></div>
 
+    <div>
+
         <!--MAIN CONTENT-->
         <div class="bc05 skin-container">
 
+            <!------------------------Logo------------------------------------->
             <div class="centered-form-logo">
-                
-                <div></div>
-
                 <div class="icon-container">
                     <svg class="icon-big-form icon-skin-form">
                         <use xlink:href="#icon-logo"></use>
                     </svg>
                 </div>
-			
-				<div class="dropdown">			
-				<a class="styled" th:text="#{lang.change}">language</a>
-				
-						<div class="l-dropdown_content is-hidden skin-dropdown_content">
-				      		<a class="styled" th:href="@{/signup?lang=de}" th:text="#{lang.de}">de</a>
-				      		<a class="styled" th:href="@{/signup?lang=en}" th:text="#{lang.eng}">en</a>
-				    	</div>	
-		
-		    	</div>		
-
             </div>
 
+            <!------------------------Caption---------------------------------->
             <div class="centered-form-caption">
-                <h2 class="s-success" th:text="#{form.signupSuccess.caption}">Looks good!</h2></div>
+                <h2 class="s-light" th:text="#{form.signupSuccess.caption}"></h2>
+            </div>
+            
+            <!------------------------Description------------------------------>
             <div class="centered-form-description">
-                <p class="s-light" th:text="#{form.signupSuccess.description}">One last step:</p>
+                <p class="s-light" th:text="#{form.signupSuccess.description}"></p>
             </div>
-
-            <div class="centered-form-textarea01">
-                <p class="f-light s-light" th:text="#{form.signupSuccess.text}">In order to start using your anyRequest account,<br /> you need to confirm your Email. <br /> We sent a 6-digit verification code to:</p>
+            
+             <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+			
+			<!------------------------Text------------------------------------->
+            <div class="centered-form-description">
+                <p class="f-light s-light" th:text="#{form.signupSuccess.text}"></p>
             </div>
+            
+             <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
 
-            <div class="centered-form-textarea02">
-                <p class="s-light" th:text="#{form.signupSuccess.text}">example@email.com</p>
-            </div>
-
-            <div class="centered-form-textarea03">
-                <p class="f-light s-light" th:text="#{form.signupSuccess.text}">When you log in to your account for the first time,<br /> you will be asked for it.</p>
-            </div>
-
-            <div class="centered-form-textarea04">
-                <p class="alert-text" th:text="#{form.signupSuccess.text}">Note: The code will expire in</p>
+			<!------------------------Note------------------------------------->
+            <div>
+                <p class="alert-text" th:text="#{form.signupSuccess.note}"></p>
                 <p class="alert-text" id="clockdiv"></p>
             </div>
             
             <!--SUBMIT-->
             <div class="centered-form-submit">
-                <a style="justify-self: center;" href="login" th:text="#{form.signupSuccess.ok}">Ok. Let me do this now</a>
-                <p style="justify-self: center;" class="s-light" th:text="#{form.signup.or}">or</p>
-                <a style="justify-self: center;" href="index" th:text="#{form.signupSuccess.later}">Let me do that later</a>
+                <a style="justify-self: center;" href="login" th:text="#{form.signupSuccess.ok}"></a>
+                <p style="justify-self: center;" class="s-light" th:text="#{form.signup.or}"></p>
+                <a style="justify-self: center;" href="index" th:text="#{form.signupSuccess.later}"></a>
             </div>
-
         </div>
 
         <div class="centered-footer">
-            
-            <a style="justify-self: end;" class="excluded">Help</a>
-            <a style="justify-self: end;" class="excluded">Privacy</a>
-            <a style="justify-self: end;" class="excluded">Terms</a>
-        </div>
+            <div class="centered-footer-item"><a class="excluded" href="">Help</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Privacy</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Terms</a></div>
+		</div>
+	
+	</div>
 
     <!-- Space right -->
     <div class="bcs06"></div>
@@ -97,6 +88,7 @@
     <div class="bcs09"></div>
 
     <script>
+
 	// 10 minutes from now
 	var time_in_minutes = 10;
 	var current_time = Date.parse(new Date());
