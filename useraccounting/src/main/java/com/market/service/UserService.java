@@ -8,9 +8,11 @@ import com.market.repositories.RoleRepository;
 import com.market.repositories.TokenRepository;
 import com.market.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -18,7 +20,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -133,9 +139,9 @@ public class UserService {
 
         } else {
 
-          addRoleToUser(repositoryUser, 10L); // TODO die Role ID immutable machen
+          addRoleToUser(repositoryUser, 10L); // TODO die Roles als Enum implementieren
           saveUser(repositoryUser);
-          auth.getAuthorities();
+          updateRoleInSession(repositoryUser, 10L, auth);
           // TODO Delete Token from repository.
 
           return 0; /* Successfully verified */
@@ -152,14 +158,31 @@ public class UserService {
 
   private void addRoleToUser(final User user, final Long roleId) {
 
+    
     Optional<Role> findById = roleRepository.findById(roleId);
     if (!findById.isPresent()) {
       // TODO error;
     }
     Set<Role> roles = new HashSet<>();
     roles.add(findById.get());
-    user.setRoles(roles);
+    user.setRoles(roles);   
   }
+  
+  private void updateRoleInSession(final User user, final Long roleId, final Authentication auth) {
+    
+    // TODO try to make this simpler and more reliable
+    List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
+    String role = roleRepository.findById(roleId).get().getName();
+    SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
+    updatedAuthorities.add(simpleGrantedAuthority); 
+    
+    Authentication newAuth = new UsernamePasswordAuthenticationToken(
+        auth.getPrincipal(), 
+        auth.getCredentials(), 
+        updatedAuthorities);
+    SecurityContextHolder.getContext().setAuthentication(newAuth);
+  }
+  
 
   @SuppressWarnings("unused")
   private void deleteRoleFromUser(final User user, final Long roleId) {

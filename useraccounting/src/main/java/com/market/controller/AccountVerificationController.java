@@ -95,6 +95,10 @@ public class AccountVerificationController implements WebMvcConfigurer {
           return "signup-verification";
 
         } else if (status == 0) {
+          
+          
+          
+          
           return "redirect:welcome"; // TODO Verification success page
         }
 
