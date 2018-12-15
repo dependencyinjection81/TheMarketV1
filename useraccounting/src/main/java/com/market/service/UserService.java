@@ -93,6 +93,11 @@ public class UserService {
     return false;
   }
 
+  /**
+   * 
+   * @param user
+   * @param token
+   */
   public void createVerificationTokenForUser(final User user, final String token) {
     final VerificationToken myToken = new VerificationToken(token, user);
     tokenRepository.save(myToken);
