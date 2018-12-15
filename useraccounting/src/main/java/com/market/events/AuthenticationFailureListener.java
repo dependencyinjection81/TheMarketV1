@@ -1,13 +1,13 @@
 package com.market.events;
 
+import com.market.service.LoginAttemptService;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.stereotype.Component;
-
-import com.market.service.LoginAttemptService;
 
 /**
  * Listener for the AuthenticationFailureBadCredentialsEvent The corresponding event is implemented

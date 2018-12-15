@@ -20,9 +20,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
   private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-  /**
-   * 
-   */
+
   @Override
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
       Authentication authentication) throws IOException {
@@ -31,13 +29,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     clearAuthenticationAttributes(request);
   }
 
-  /**
-   * 
-   * @param request
-   * @param response
-   * @param authentication
-   * @throws IOException
-   */
+  
   protected void handle(HttpServletRequest request, HttpServletResponse response,
       Authentication authentication) throws IOException {
 
@@ -50,11 +42,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     redirectStrategy.sendRedirect(request, response, targetUrl);
   }
 
-  /**
-   * 
-   * @param authentication
-   * @return
-   */
+
   protected String determineTargetUrl(Authentication authentication) {
     boolean isUserNotVerified = false;
     boolean isUserVerified = false;
@@ -79,10 +67,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     }
   }
 
-  /**
-   * 
-   * @param request
-   */
+
   protected void clearAuthenticationAttributes(HttpServletRequest request) {
     HttpSession session = request.getSession(false);
     if (session == null) {

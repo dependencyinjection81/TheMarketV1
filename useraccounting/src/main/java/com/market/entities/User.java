@@ -2,18 +2,26 @@ package com.market.entities;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
 public class User {
 
   /**
-   * Custom Ctor.
-   * @param id unique user id
-   * @param userName username
-   * @param password password
-   * @param role role
+   * Ctor.
+   * @param id ID
+   * @param userName Username
+   * @param password Password
+   * @param roles Roles
    */
   public User(final long id, 
       final String userName, final String password, final Set<Role> roles) {
@@ -29,7 +37,7 @@ public class User {
    */
   public User() {
     super();
-    this.enabled=false;
+    this.enabled = false;
   }
   
   /************************************************************
@@ -115,7 +123,10 @@ public class User {
    ************************************************************
    */
   @ManyToMany
-  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  @JoinTable(
+      name = "user_role", 
+      joinColumns = @JoinColumn(name = "user_id"), 
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
 
   public Set<Role> getRoles() {

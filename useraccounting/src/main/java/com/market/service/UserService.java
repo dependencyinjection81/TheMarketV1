@@ -29,69 +29,96 @@ public class UserService {
 
   @Autowired
   private UserRepository userRepository;
-  
+
   @Autowired
   private RoleRepository roleRepository;
-  
-  @Autowired 
+
+  @Autowired
   TokenRepository tokenRepository;
-  
+
   @Autowired
   private PasswordEncoder passwordEncoder;
-  
+
   @Autowired
   ApplicationEventPublisher eventPublisher;
 
-  
+  /**
+   * Register a new user account.
+   * @param userForm User form.
+   * @return
+   */
   @Transactional
-  public int registerNewUserAccount(final UserForm userForm) {
+  public boolean registerNewUserAccount(final UserForm userForm) {
 
-    if (userNameExist(userForm.getUname())) {
-      
-      return 1;
- 
-    } else if (emailExist(userForm.getEmail())) {
-
-      return 2;
-   
-    } else {
-      
-      User user = new User();
-     
-      user.setUsername(userForm.getUname());
-      user.setEmail(userForm.getEmail());
-      user.setPassword(passwordEncoder.encode(userForm.getPwd()));
-      addRoleToUser(user, 30l);
-      user.setEnabled(true);      
-      saveUser(user); 
-      return 0;     
-    }
+    User user = new User();
+    user.setUsername(userForm.getUname());
+    user.setEmail(userForm.getEmail());
+    user.setPassword(passwordEncoder.encode(userForm.getPwd()));
+    addRoleToUser(user, 30L);
+    user.setEnabled(true);
+    saveUser(user);
+    /* Status */
+    return true;
   }
-   
+
+  /**
+   * Check if the given username already exist.
+   * @param userName username.
+   * @return
+   */
+  public boolean userNameExist(final String userName) {
+    User user = userRepository.findByUsername(userName);
+    if (user != null) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Check if the given email exist.
+   * @param email Email adress.
+   * @return
+   */
+  public boolean emailExist(final String email) {
+    User user = userRepository.findByEmail(email);
+    if (user != null) {
+      return true;
+    }
+    return false;
+  }
+
   public void createVerificationTokenForUser(final User user, final String token) {
     final VerificationToken myToken = new VerificationToken(token, user);
     tokenRepository.save(myToken);
   }
-  
-  public int verifyUser(final String currentUsername, final String incomingToken, final Authentication auth) {
+
+  /**
+   * Verify a new useraccount with the given token.
+   * @param currentUsername current authenticated user.
+   * @param incomingToken given token from client.
+   * @param auth current auth object.
+   * @return
+   */
+  public int verifyUser(final String currentUsername, final String incomingToken,
+      final Authentication auth) {
 
     User clientUser = userRepository.findByEmail(currentUsername);
-    VerificationToken repositoryToken = tokenRepository.findByToken(incomingToken);    
-    
+    VerificationToken repositoryToken = tokenRepository.findByToken(incomingToken);
+
     if (repositoryToken == null) {
-    
-      return 1; /*Wrong token*/
-    
+
+      return 1; /* Wrong token */
+
     } else {
-    
+
       User repositoryUser = repositoryToken.getUser();
-      
+
       if (!clientUser.equals(repositoryUser)) {
-      
-        return 1; /*Wrong token*/
-      
+
+        return 1; /* Wrong token */
+
       } else {
-        
+
         final Calendar calNow = Calendar.getInstance();
         calNow.setTimeInMillis(new Date().getTime());
         Long now = calNow.getTimeInMillis();
@@ -99,61 +126,44 @@ public class UserService {
         final Calendar calExp = Calendar.getInstance();
         calExp.setTimeInMillis(repositoryToken.getExpiryDate().getTime());
         Long exp = calExp.getTimeInMillis();
-        
+
         if (now >= exp) {
-        
-          return 2; /*Token has expired*/
-        
+
+          return 2; /* Token has expired */
+
         } else {
-          
-          addRoleToUser(repositoryUser, 10l); //TODO die Role ID immutable machen
+
+          addRoleToUser(repositoryUser, 10L); // TODO die Role ID immutable machen
           saveUser(repositoryUser);
           auth.getAuthorities();
-          //TODO Delete Token from repository.
-          
-          return 0; /*Successfully verified*/
+          // TODO Delete Token from repository.
+
+          return 0; /* Successfully verified */
         }
-        
+
       }
     }
-      
+
   }
-    
-  
+
   private void saveUser(final User user) {
     userRepository.save(user);
   }
- 
+
   private void addRoleToUser(final User user, final Long roleId) {
- 
-    Optional<Role> findById = roleRepository.findById(roleId);      
-    if(!findById.isPresent()) {
+
+    Optional<Role> findById = roleRepository.findById(roleId);
+    if (!findById.isPresent()) {
       // TODO error;
-    }    
+    }
     Set<Role> roles = new HashSet<>();
     roles.add(findById.get());
     user.setRoles(roles);
   }
-  
+
   @SuppressWarnings("unused")
   private void deleteRoleFromUser(final User user, final Long roleId) {
-    //TODO implementation
+    // TODO implementation
   }
-  
-  private boolean userNameExist(final String userName) {
-    User user = userRepository.findByUsername(userName);    
-    if (user != null) {
-      return true;
-    }
-    return false;
-  }
-  
-  private boolean emailExist(final String email) {    
-    User user = userRepository.findByEmail(email);
-    if (user != null) {
-      return true;
-    }
-    return false;
-  }
-  
+
 }

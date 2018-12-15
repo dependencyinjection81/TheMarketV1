@@ -3,7 +3,14 @@ package com.market.entities;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * Verification Token which is linked back to the User via an unidirectional relation.
@@ -33,6 +40,9 @@ public class VerificationToken {
 
   /**
    * The User the token is related to.
+   * FetchType EAGER is the pendant to LAZY
+   * It means that the userentity will defenitly loaded together with
+   * the verification token.
    */
   @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
   @JoinColumn(nullable = false, name = "user_id", foreignKey = @ForeignKey(name = "FK_VERIFY_USER"))
@@ -51,8 +61,8 @@ public class VerificationToken {
   }
 
   /**
-   * Custom ctor.
-   * @param token
+   * Ctor.
+   * @param token Token
    */
   public VerificationToken(final String token) {
     super();

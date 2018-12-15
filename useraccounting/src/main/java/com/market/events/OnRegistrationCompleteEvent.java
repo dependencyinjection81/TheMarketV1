@@ -1,10 +1,10 @@
 package com.market.events;
 
+import com.market.entities.User;
+
 import java.util.Locale;
 
 import org.springframework.context.ApplicationEvent;
-
-import com.market.entities.User;
 
 @SuppressWarnings("serial")
 public class OnRegistrationCompleteEvent extends ApplicationEvent {

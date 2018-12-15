@@ -31,11 +31,11 @@ public class PasswordValidator {
    * @return 0 if all is OK, 1 if null or empty, 2 if too short
    */
   public String validatePassword(final String pwd) {
-
     if (nullOrEmpty(pwd)) {
       return "UserForm.pwd.NotBlank";
-    } else 
+    } else {
       return checkPwdStrength(pwd);
+    }
   }
   
   /**

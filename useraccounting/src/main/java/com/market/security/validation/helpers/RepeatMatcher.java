@@ -45,6 +45,13 @@ public class RepeatMatcher {
     return "";
   }
 
+  /**
+   * Description is missing.
+   * @param inputStr Password
+   * @param maxLength Max length
+   * @param times How many times a pattern is allowed
+   * @return
+   */
   public String match(final String inputStr, final int maxLength, final int times) {
 
     Pattern greedy = Pattern.compile("(.+)\\1+");

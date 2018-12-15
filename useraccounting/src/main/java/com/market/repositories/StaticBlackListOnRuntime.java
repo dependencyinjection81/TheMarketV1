@@ -12,7 +12,7 @@ public class StaticBlackListOnRuntime {
 
   /**
    * Add blacklisted IP adress to a static Map.
-   * @param ipAddress
+   * @param ipAddress Ip-adress.
    * @return true if the IP adress was new false if the IP adress has already been added
    */
   public boolean addIp(final String ipAddress) {
@@ -25,8 +25,8 @@ public class StaticBlackListOnRuntime {
   }
 
   /**
-   * 
-   * @param ipAddress
+   * Increase counter.
+   * @param ipAddress IP-adress
    * @return
    */
   public boolean increaseCounter(final String ipAddress) {
@@ -42,8 +42,8 @@ public class StaticBlackListOnRuntime {
   }
 
   /**
-   * 
-   * @param ipAddress
+   * Getter.
+   * @param ipAddress IP-adress
    * @return
    */
   public Integer getIpCounter(final String ipAddress) {

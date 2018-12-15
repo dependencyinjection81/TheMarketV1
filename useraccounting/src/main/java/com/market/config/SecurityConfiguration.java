@@ -1,5 +1,7 @@
 package com.market.config;
 
+import com.market.service.UserDetailsServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,16 +17,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.market.service.UserDetailsServiceImpl;
 
-/** 
+
+/**
+ * Security Configuration.
  * @author Johannes Weiss
  *
- *Anstelle von auth.inMemoryAuthentication() wird auth.userDetailsService() in der Methode
- *globalSecurityConfiguration() verwendet. Das übergebene Interface UserDetailsService wird
- *per @Autowired eingebunden. Damit Spring die Implementierung findet, wird an die Klasse
- *die Annotation @ComponentScan(basePackageClasses = AuthenticatedUserService.class)
- *eingefügt. AuthenticatedUserService ist dabei die Implementierung des Interfaces.
+ *         Anstelle von auth.inMemoryAuthentication() wird auth.userDetailsService() in der Methode
+ *         globalSecurityConfiguration() verwendet. Das übergebene Interface UserDetailsService wird
+ *         per @Autowired eingebunden. Damit Spring die Implementierung findet, wird an die Klasse
+ *         die Annotation @ComponentScan(basePackageClasses = AuthenticatedUserService.class)
+ *         eingefügt. AuthenticatedUserService ist dabei die Implementierung des Interfaces.
  *
  */
 @Configuration
@@ -38,66 +41,60 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
   @Override
   public AuthenticationManager authenticationManagerBean() throws Exception {
-  return super.authenticationManagerBean();
+    return super.authenticationManagerBean();
   }
-  
+
   /**
-   * Own implementation of the UserDetailsService.
-   * Is responsible for returning the Principal or UserDetails. NOT Authenticated yet.
+   * Own implementation of the UserDetailsService. Is responsible for returning the Principal or
+   * UserDetails. NOT Authenticated yet.
    */
   @Autowired
   private UserDetailsServiceImpl userDetailsService;
-  
+
   /**
    * Needed to have access to the thrown SpringSecurity authorisation exceptions to handle them.
    */
   @Autowired
   private AuthenticationFailureHandler authenticationFailureHandler;
-  
+
   /**
    * Needed to have the oportunity to redirect users depending on thier roles after login.
    */
   @Autowired
   public AuthenticationSuccessHandler authenticationSuccessHandler;
-  
-  
+
   /**
    * set up something like an authentication-object. NOT SURE
+   * 
    * @param auth the authentification Token/Object
-   * @throws Exception
+   * @throws Exception any Exception.
    */
   @Autowired
-  protected void GlobalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
+  protected void globalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
   }
-  
+
   /**
    * Needed to encrypt the password before it gets authenticated against the repository.
+   * 
    * @return the BCryptPasswordEncoder
    */
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-  
- 
+
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    
-    httpSecurity.authorizeRequests()        
-        .antMatchers("/signup").permitAll()
-        .antMatchers("/index").permitAll()
-        .antMatchers("/login").permitAll()
-        .antMatchers("/signup-verification").access("hasRole('ROLE_USERNOTVERIFIED')")
-        .antMatchers("/welcome").access("hasRole('ROLE_USER')")
-        .and()
-          .formLogin().loginPage("/login")
-          .failureUrl("/login?error=true")
-          .failureHandler(authenticationFailureHandler)
-          .successHandler(authenticationSuccessHandler)
-          .usernameParameter("username").passwordParameter("password");
-       
-           
-    httpSecurity.csrf().disable(); //Disable cross site scripting
+
+    httpSecurity.authorizeRequests().antMatchers("/signup").permitAll().antMatchers("/index")
+        .permitAll().antMatchers("/login").permitAll().antMatchers("/signup-verification")
+        .access("hasRole('ROLE_USERNOTVERIFIED')").antMatchers("/welcome")
+        .access("hasRole('ROLE_USER')").and().formLogin().loginPage("/login")
+        .failureUrl("/login?error=true").failureHandler(authenticationFailureHandler)
+        .successHandler(authenticationSuccessHandler).usernameParameter("username")
+        .passwordParameter("password");
+
+    httpSecurity.csrf().disable(); // Disable cross site scripting
   }
 }

@@ -1,5 +1,7 @@
 package com.market.repositories;
 
+import com.market.entities.VerificationToken;
+
 import java.sql.Date;
 import java.util.stream.Stream;
 
@@ -7,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.market.entities.VerificationToken;
+
 
 public interface TokenRepository extends JpaRepository<VerificationToken, Long> {
 

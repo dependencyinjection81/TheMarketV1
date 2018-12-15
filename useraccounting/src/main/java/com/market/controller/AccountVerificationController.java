@@ -1,7 +1,11 @@
 package com.market.controller;
 
-import javax.validation.Valid;
+import com.market.beans.VcodeForm;
+import com.market.repositories.StaticBlackListOnRuntime;
+import com.market.security.service.DataPrepareService;
+import com.market.service.UserService;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.market.beans.VcodeForm;
-import com.market.repositories.StaticBlackListOnRuntime;
-import com.market.security.service.DataPrepareService;
-import com.market.service.UserService;
 
 @Controller
 @RequestMapping(value = "/")
@@ -31,12 +31,21 @@ public class AccountVerificationController implements WebMvcConfigurer {
   StaticBlackListOnRuntime blacklist;
 
   @GetMapping(value = "/signup-verification")
-  public String showForm(VcodeForm vCodeForm) {
+  public String showForm(final VcodeForm verificationCodeForm) {
     return "signup-verification";
   }
 
+  /**
+   * Post controller account verification form.
+   * @param verificationCodeForm Form
+   * @param bindingResult Binding result
+   * @param action Action
+   * @param request Request
+   * @return
+   */
   @PostMapping(value = "/signup-verification")
-  public String processForm(final @Valid VcodeForm vCodeForm, final BindingResult bindingResult,
+  public String processForm(final @Valid VcodeForm verificationCodeForm, 
+      final BindingResult bindingResult,
       final @RequestParam(value = "action", required = true) String action,
       final WebRequest request) {
 
@@ -70,11 +79,11 @@ public class AccountVerificationController implements WebMvcConfigurer {
 
       } else {
 
-    	/*Try to validate token */
+        /* Try to validate token */
         String currentUsername = auth.getName();
 
-        String incomingToken = new DataPrepareService(vCodeForm).getToken();
-        
+        String incomingToken = new DataPrepareService(verificationCodeForm).getToken();
+
         int status = userService.verifyUser(currentUsername, incomingToken, auth);
 
         if (status == 1) {

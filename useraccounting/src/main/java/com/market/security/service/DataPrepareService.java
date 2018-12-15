@@ -13,8 +13,8 @@ public class DataPrepareService {
   
   private final String token;
 
-  public DataPrepareService(final VcodeForm vCodeForm ) {
-    this.token = extractData(vCodeForm);
+  public DataPrepareService(final VcodeForm verificationCodeForm) {
+    this.token = extractData(verificationCodeForm);
   }
 
   /**
@@ -22,10 +22,15 @@ public class DataPrepareService {
    * @param vCodeForm Account verification-form.
    * @return the cleared extracted token.
    */
-  private String extractData(final VcodeForm vCodeForm) {
+  private String extractData(final VcodeForm verificationCodeForm) {
 
-    String tokenGiven = vCodeForm.getC1() + vCodeForm.getC2() + vCodeForm.getC3()
-                      + vCodeForm.getC4() + vCodeForm.getC5() + vCodeForm.getC6();
+    String tokenGiven = 
+          verificationCodeForm.getC1() 
+        + verificationCodeForm.getC2() 
+        + verificationCodeForm.getC3()
+        + verificationCodeForm.getC4() 
+        + verificationCodeForm.getC5() 
+        + verificationCodeForm.getC6();
 
     String tokenPrepared = null;
 
