@@ -208,8 +208,5 @@ public class User {
     return "User [id=" + id + ", enabled=" + enabled + ", username=" + username + ", email=" + email
         + ", password=" + password + ", roles=" + roles.toString() + "]";
   }
-  
-  
-  
 
 }
