@@ -14,7 +14,8 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
   /**
-   * Here, we can see that the method configureMessageBroker is used to configure the message broker.
+   * Here, we can see that the method configureMessageBroker is used to configure 
+   * the message broker.
    * First, we enable an in-memory message broker to carry the messages back to
    * the client on destinations prefixed with “/topic”.
    * @param config Configuration
@@ -28,16 +29,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   /**
    * Registers the “/chat” endpoint and enabling Spring’s STOMP support.
    * Also adds an endpoint that works without the SockJS for the sake of elasticity.
-   *
    * This endpoint, when prefixed with “/app”,
    * is the endpoint that the ChatController.send() method is mapped to handle.
-   *
    * It also enables the SockJS fallback options,
    * so that alternative messaging options may be used if WebSockets are not available.
    * This is useful since WebSocket is not supported in all browsers yet and
    * may be precluded by restrictive network proxies.
-   *
-   * The fallbacks let the applications use a WebSocket API but gracefully degrade to non-WebSocket alternatives
+   * The fallbacks let the applications use a WebSocket API but gracefully degrade to 
+   * non-WebSocket alternatives
    * when necessary at runtime.
    * @param registry Registry
    */
