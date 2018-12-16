@@ -1,22 +1,21 @@
 package com.market.entities;
 
-/**
- * This is the message payload that will be exchanged between the clients and the server.
- * By default, Spring will use the Jackson library to convert this model object to and from JSON.
- */
-public class ChatMessage {
+public class OutputMessage {
 
   private String from;
   private String text;
+  private String time;
   
   /**
    * Ctor.
    * @param from Sender
    * @param text Text
+   * @param time Time
    */
-  public ChatMessage(final String from, final String text) {
+  public OutputMessage(final String from, final String text, final String time) {
     this.from = from;
     this.text = text;
+    this.time = time;
   }
 
   public String getFrom() {
@@ -35,5 +34,14 @@ public class ChatMessage {
     this.text = text;
   }
 
+  public String getTime() {
+    return time;
+  }
+
+  public void setTime(final String time) {
+    this.time = time;
+  }
+
 }
+  
 
