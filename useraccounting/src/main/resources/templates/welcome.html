@@ -1,28 +1,237 @@
 <html xmlns:th="http//thymeleaf.org">
-    <head>
-        <title>Welcome</title>
-        <script type="text/javascript" th:src="@{/js/sockjs.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/stomp.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/chat.js}"></script>
-    </head>
-    <body onload="disconnect()">
-        <div>
-            <div>
-                <input type="text" id="from" placeholder="Choose a nickname"/>
-            </div>
-            <br />
-            <div>
-                <button id="connect" onclick="connect();">Connect</button>
-                <button id="disconnect" disabled="disabled" onclick="disconnect();">
-                    Disconnect
-                </button>
-            </div>
-            <br />
-            <div id="conversationDiv">
-                <input type="text" id="text" placeholder="Write a message..."/>
-                <button id="sendMessage" onclick="sendMessage();">Send</button>
-                <p id="response"></p>
-            </div>
-        </div>
-    </body>
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/layout_index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/chatbox.css}" />
+<script type="text/javascript" th:src="@{/js/sockjs.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/stomp.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/chat.js}"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="UTF-8">
+<title>Welcome</title>
+</head>
+
+<body class="body-container">
+
+	<!-- Space left -->
+	<div class="bs1 side-spacer header"></div>
+
+	<!-- Header -->
+	<div class="b02 header">
+
+
+		<div class="h01">
+			<div class="icon-container">
+				<a href='welcome'> <svg class="icon-big icon-skin">
+						<use xlink:href="#icon-logo"></use></svg></a>
+			</div>
+		</div>
+
+		<div class="h02">
+			<a href="#Explore" th:text="#{header.explore}"></a>
+		</div>
+
+		<div class="h03">
+			<a href="#help" th:text="#{header.help}"></a>
+		</div>
+
+		<div class="h09">
+			<a href='logout' th:text="#{header.logout}"></a>
+		</div>
+
+
+		<div class="h10 dropdown">
+			<a class="styled" th:text="#{lang.change}"></a>
+
+			<div class="l-dropdown_content is-hidden skin-dropdown_content">
+				<a class="styled" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
+				<a class="styled" th:href="@{/welcome?lang=en}"
+					th:text="#{lang.eng}"></a>
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<!-- Space right -->
+	<div class="bs3 side-spacer header"></div>
+
+	<!-- Space left -->
+	<div class="bs04 side-spacer side-spacer-skin"></div>
+
+	<!-- Main content -->
+
+
+	<div class="b05 main-content-skin">
+
+		<div class="request-area">
+
+			<div class="container clearfix">
+				<div class="people-list" id="people-list">
+					
+					<div class="search"><p>Offers</p></div>
+					
+					<ul class="list">
+
+						<li class="clearfix"><img
+							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
+							alt="avatar" />
+							<div class="about">
+								<div class="name">Erica Hughes</div>
+								<div class="status">
+									<i class="fa fa-circle online"></i> online
+								</div>
+							</div>
+						</li>
+							
+					</ul>
+				</div>
+
+				<div class="chat">
+					<div class="chat-header clearfix">
+						<img
+							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
+							alt="avatar" />
+
+						<div class="chat-about">
+							<div class="chat-with">Erica Hughes</div>
+							<div class="chat-num-messages">Already helped 5 people</div>
+						</div>
+						<i class="fa fa-star"></i>
+					</div>
+					<!-- end chat-header -->
+
+					<div class="chat-history">
+						<ul>
+							<li class="clearfix">
+								<div class="message-data align-right">
+									<span class="message-data-time">10:10 AM, Today</span>
+									<span class="message-data-name">Erica Hughes</span> 	
+								</div>
+								
+								<div class="message other-message float-right">
+									Hi Vincent,
+									how are you? How is the project coming along?
+								</div>
+							</li>
+
+							<li>
+								<div class="message-data">
+									<span class="message-data-name">Me</span> 
+									<span class="message-data-time">10:12 AM, Today</span>
+								</div>
+								
+								<div class="message my-message">
+									Are we meeting today?
+									Project has been already finished and I have results to show
+									you.
+								</div>
+							</li>
+							
+						</ul>
+
+					</div>
+					<!-- end chat-history -->
+
+					<div class="chat-message clearfix">
+						<textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+
+						<button>Send</button>
+
+					</div>
+					<!-- end chat-message -->
+
+				</div>
+				<!-- end chat -->
+
+			</div>
+			<!-- end container -->
+
+			<script id="message-template" type="text/x-handlebars-template">
+  			<li class="clearfix">
+    		<div class="message-data align-right">
+      		<span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      		<span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    		</div>
+    		<div class="message other-message float-right">
+      		{{messageOutput}}
+    		</div>
+  			</li>
+			</script>
+
+			<script id="message-response-template" type="text/x-handlebars-template">
+  			<li>
+    		<div class="message-data">
+      		<span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+      		<span class="message-data-time">{{time}}, Today</span>
+    		</div>
+    		<div class="message my-message">
+      		{{response}}
+    		</div>
+  			</li>
+			</script>
+
+		</div>
+
+		<div class="chat-container">
+			<div>
+				<input type="text" id="from" placeholder="Choose a nickname" />
+			</div>
+			<br />
+			<div>
+				<button id="connect" onclick="connect();">Connect</button>
+				<button id="disconnect" disabled="disabled" onclick="disconnect();">
+					Disconnect</button>
+			</div>
+			<br />
+			<div id="conversationDiv">
+				<p id="response"></p>
+
+				<input type="text" id="text" placeholder="Write a message..." />
+				<button id="sendMessage" onclick="sendMessage();">Send</button>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Space right -->
+	<div class="bs06 side-spacer side-spacer-skin"></div>
+
+	<div class="bs07 side-spacer footer"></div>
+
+	<div class="b08 footer"></div>
+
+	<div class="bs09 side-spacer footer"></div>
+
+	<!--SVG ICONS Recsource-->
+	<svg style="display: none">
+
+		<symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+			<g id="layer1">
+
+				<g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+
+					<g id="g1413"
+			transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+						<circle r="2.2097087" cy="11.094446" cx="6.9384851" id="path1376" />
+						<circle r="1.403165" cy="8.0119019" cx="13.534466" id="path1382" />
+
+						<g id="g1403">
+							<circle id="path1378" cx="3.1267376" cy="2.9958642" r="1.2263883" />
+							<circle id="path1380" cx="8.8056889" cy="6.2220387" r="0.9612233" />
+						</g>
+					</g>
+					<path
+			d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z"
+			id="path1415" />
+
+				</g>
+			</g>
+		</symbol>
+	</svg>
+
+</body>
+
 </html>
