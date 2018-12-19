@@ -1,9 +1,9 @@
-
 .user-list {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 80px auto;
   
+  grid-gap: 1em;
   align-content: center;
   align-items: center;
   justify-content: center;

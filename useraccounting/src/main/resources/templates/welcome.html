@@ -36,6 +36,10 @@
 			<a href="#help" th:text="#{header.help}"></a>
 		</div>
 
+		<div class="h04">
+			<a href='drag-and-drop'>drag and drop</a>
+		</div>
+
 		<div class="h09">
 			<a href='execute-logout' th:text="#{header.logout}"></a>
 		</div>
@@ -66,16 +70,16 @@
 
 	<div class="b05 main-content-skin">
 
-		<div class="request-area">
+		<!-- <div class="request-area">
 			<div sec:authorize="hasRole('ROLE_USER')">
 			<span sec:authentication="name"></span>
 			<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
-		</div>
+		</div> -->
 		
 		<!--Currently logged in users -->
 		<th:block th:include="fragments/online-users :: online-users"></th:block>
 
-		<!--Chat -->
+		<!-- 
 		<div class="chat">
 			<div>
 				<input type="text" id="from" placeholder="Choose a nickname" />
@@ -97,7 +101,7 @@
 			
 		</div>
 		
-	</div>
+	</div> -->
 
 	<!-- Space right -->
 	<div class="bs06 side-spacer side-spacer-skin"></div>
