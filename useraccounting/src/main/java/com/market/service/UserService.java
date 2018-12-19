@@ -48,6 +48,34 @@ public class UserService {
   @Autowired
   ApplicationEventPublisher eventPublisher;
 
+  
+  /**
+   * Find all users.
+   * TODO gefährlich! Nicht einfach so durchgeben!
+   * @return
+   */
+  public List<User> findAll() {
+    return userRepository.findAll();
+  }
+  
+  /**
+   * Find all online users.
+   * TODO evetuell nur die usernamen als string rausholen und zurückgeben
+   * @return
+   */
+  public List<String> findAllOnlineUsers() {
+    List<String> onlineUsersHard = new ArrayList<>();
+    onlineUsersHard.clear();
+    onlineUsersHard.addAll(userRepository.findAllOnlineUsers());
+    System.out.println(onlineUsersHard.toString());
+    List<String> onlineUsersSoft = new ArrayList<>();
+    for (String u: onlineUsersHard) {
+      onlineUsersSoft.add(u);
+    }
+    System.out.println(onlineUsersSoft.toString());
+    return onlineUsersSoft;
+  }
+  
   /**
    * Register a new user account.
    * @param userForm User form.
@@ -94,9 +122,9 @@ public class UserService {
   }
 
   /**
-   * 
-   * @param user
-   * @param token
+   * Save a verification token to a user.
+   * @param user User
+   * @param token Token
    */
   public void createVerificationTokenForUser(final User user, final String token) {
     final VerificationToken myToken = new VerificationToken(token, user);
@@ -156,6 +184,23 @@ public class UserService {
     }
 
   }
+  
+  /**
+   * Set a given user online.
+   * @param email Email
+   */
+  public void setUserOnline(final String email) {
+    userRepository.setUserOnline(email);
+  }
+  
+  /**
+   * Set a given user offline.
+   * @param email Email
+   */
+  public void setUserOffline(final String email) {
+    userRepository.setUserOffline(email);
+  }
+
 
   private void saveUser(final User user) {
     userRepository.save(user);
@@ -193,5 +238,7 @@ public class UserService {
   private void deleteRoleFromUser(final User user, final Long roleId) {
     // TODO implementation
   }
+
+  
 
 }

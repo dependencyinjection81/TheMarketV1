@@ -1,13 +1,16 @@
 var stompClient = null;
              
 function setConnected(connected) {
-    document.getElementById('connect').disabled = connected;
-    document.getElementById('disconnect').disabled = !connected;
+    
     document.getElementById('conversationDiv').style.visibility 
       = connected ? 'visible' : 'hidden';
+    document.getElementById('disconnect').style.visibility 
+      = connected ? 'visible' : 'hidden';
+    document.getElementById('connect').style.visibility 
+      = connected ? 'hidden' : 'visible';
     document.getElementById('response').innerHTML = '';
 }
- 
+
 function connect() {
     var socket = new SockJS('/chat');
     stompClient = Stomp.over(socket);  

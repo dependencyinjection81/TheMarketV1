@@ -29,6 +29,7 @@ public class User {
     this.username = userName;
     this.password = password;
     this.roles = roles;
+    this.online = false;
   }
   
   /**
@@ -38,6 +39,7 @@ public class User {
   public User() {
     super();
     this.enabled = false;
+    this.online = false;
   }
   
   /************************************************************
@@ -72,7 +74,22 @@ public class User {
   public void setEnabled(final boolean value) {
     this.enabled = value;
   }
+  
+  /************************************************************
+   * User-online?.**********************************************
+   ************************************************************
+   */
+  @Column(name = "online")
+  private boolean online;
 
+  public boolean getOnline() {
+    return this.online;
+  }
+
+  public void setOnline(final boolean value) {
+    this.online = value;
+  }
+  
   /************************************************************
    * Username.*************************************************
    ************************************************************

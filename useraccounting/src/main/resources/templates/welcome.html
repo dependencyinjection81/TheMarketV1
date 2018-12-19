@@ -1,6 +1,7 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/layout_index.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/chatbox.css}" />
@@ -12,7 +13,7 @@
 <title>Welcome</title>
 </head>
 
-<body class="body-container">
+<body onload="disconnect()" class="body-container">
 
 	<!-- Space left -->
 	<div class="bs1 side-spacer header"></div>
@@ -40,19 +41,19 @@
 			<a href='logout' th:text="#{header.logout}"></a>
 		</div>
 
+		 <!------------------------Dropdown--------------------------------->            
+         <div class="h10 dropdown" id="language-dropdown">  
+             <div class="dropdown-button" th:text="#{lang.change}"></div>
 
-		<div class="h10 dropdown">
-			<a class="styled" th:text="#{lang.change}"></a>
-
-			<div class="l-dropdown_content is-hidden skin-dropdown_content">
-				<a class="styled" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
-				<a class="styled" th:href="@{/welcome?lang=en}"
-					th:text="#{lang.eng}"></a>
-			</div>
-
-		</div>
-
-
+                 <ul class="dropdown-selection">
+                     <li>
+                         <a class="list-anchor" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
+                     </li>
+                     <li>
+                     <a class="list-anchor" th:href="@{/welcome?lang=en}" th:text="#{lang.eng}"></a>
+                     </li>
+                 </ul>         
+         </div>      
 	</div>
 
 	<!-- Space right -->
@@ -67,133 +68,39 @@
 	<div class="b05 main-content-skin">
 
 		<div class="request-area">
-
-			<div class="container clearfix">
-				<div class="people-list" id="people-list">
-					
-					<div class="search"><p>Offers</p></div>
-					
-					<ul class="list">
-
-						<li class="clearfix"><img
-							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
-							alt="avatar" />
-							<div class="about">
-								<div class="name">Erica Hughes</div>
-								<div class="status">
-									<i class="fa fa-circle online"></i> online
-								</div>
-							</div>
-						</li>
-							
-					</ul>
-				</div>
-
-				<div class="chat">
-					<div class="chat-header clearfix">
-						<img
-							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
-							alt="avatar" />
-
-						<div class="chat-about">
-							<div class="chat-with">Erica Hughes</div>
-							<div class="chat-num-messages">Already helped 5 people</div>
-						</div>
-						<i class="fa fa-star"></i>
-					</div>
-					<!-- end chat-header -->
-
-					<div class="chat-history">
-						<ul>
-							<li class="clearfix">
-								<div class="message-data align-right">
-									<span class="message-data-time">10:10 AM, Today</span>
-									<span class="message-data-name">Erica Hughes</span> 	
-								</div>
-								
-								<div class="message other-message float-right">
-									Hi Vincent,
-									how are you? How is the project coming along?
-								</div>
-							</li>
-
-							<li>
-								<div class="message-data">
-									<span class="message-data-name">Me</span> 
-									<span class="message-data-time">10:12 AM, Today</span>
-								</div>
-								
-								<div class="message my-message">
-									Are we meeting today?
-									Project has been already finished and I have results to show
-									you.
-								</div>
-							</li>
-							
-						</ul>
-
-					</div>
-					<!-- end chat-history -->
-
-					<div class="chat-message clearfix">
-						<textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
-
-						<button>Send</button>
-
-					</div>
-					<!-- end chat-message -->
-
-				</div>
-				<!-- end chat -->
-
-			</div>
-			<!-- end container -->
-
-			<script id="message-template" type="text/x-handlebars-template">
-  			<li class="clearfix">
-    		<div class="message-data align-right">
-      		<span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
-      		<span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
-    		</div>
-    		<div class="message other-message float-right">
-      		{{messageOutput}}
-    		</div>
-  			</li>
-			</script>
-
-			<script id="message-response-template" type="text/x-handlebars-template">
-  			<li>
-    		<div class="message-data">
-      		<span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-      		<span class="message-data-time">{{time}}, Today</span>
-    		</div>
-    		<div class="message my-message">
-      		{{response}}
-    		</div>
-  			</li>
-			</script>
-
+			<div sec:authorize="hasRole('ROLE_USER')">
+			<span sec:authentication="name"></span>
+			<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+		</div>
+		
+		<h2>Currently logged in users</h2>
+	    <div th:each="user : ${users}">
+	        <p th:text="${user}">user</p>
+	    </div>
+			
 		</div>
 
-		<div class="chat-container">
+		<div class="chat">
 			<div>
 				<input type="text" id="from" placeholder="Choose a nickname" />
 			</div>
-			<br />
+			
 			<div>
-				<button id="connect" onclick="connect();">Connect</button>
-				<button id="disconnect" disabled="disabled" onclick="disconnect();">
+				<button class="submitbtn" id="connect" onclick="connect();">Connect</button>
+				<button class="cancelbtn" id="disconnect" onclick="disconnect();">
 					Disconnect</button>
 			</div>
-			<br />
-			<div id="conversationDiv">
-				<p id="response"></p>
-
-				<input type="text" id="text" placeholder="Write a message..." />
-				<button id="sendMessage" onclick="sendMessage();">Send</button>
-
+			
+			<div id="conversationDiv">			
+				<div class="chat-history">
+					<p id="response"></p>
+				</div>
+				<textarea class="textbox" id="text" placeholder="Write a message..." rows="3"></textarea>
+				<button class="submitbtn" id="sendMessage" onclick="sendMessage();">Send</button>
 			</div>
+			
 		</div>
+		
 	</div>
 
 	<!-- Space right -->
@@ -204,6 +111,28 @@
 	<div class="b08 footer"></div>
 
 	<div class="bs09 side-spacer footer"></div>
+
+	<script type="text/javascript">
+        
+        var activeDropdown = {};  
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
+
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+        
+    </script>
 
 	<!--SVG ICONS Recsource-->
 	<svg style="display: none">
