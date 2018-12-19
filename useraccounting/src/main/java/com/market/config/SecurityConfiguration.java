@@ -1,5 +1,6 @@
 package com.market.config;
 
+import com.market.controller.LogoutSuccessHandlerImpl;
 import com.market.service.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 
 
@@ -83,18 +85,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+  
+  @Bean
+  public LogoutSuccessHandler logoutSuccessHandler() {
+    return new LogoutSuccessHandlerImpl();
+  }
 
   @Override
-  protected void configure(HttpSecurity httpSecurity) throws Exception {
+  protected void configure(final HttpSecurity httpSecurity) throws Exception {
 
-    httpSecurity.authorizeRequests().antMatchers("/signup").permitAll().antMatchers("/index")
-        .permitAll().antMatchers("/login").permitAll().antMatchers("/signup-verification")
-        .access("hasRole('ROLE_USERNOTVERIFIED')").antMatchers("/welcome")
-        .access("hasRole('ROLE_USER')").and().formLogin().loginPage("/login")
+    httpSecurity.authorizeRequests()
+    .antMatchers("/signup").permitAll()
+    .antMatchers("/index").permitAll()
+    .antMatchers("/login").permitAll()
+    .antMatchers("/signup-verification").access("hasRole('ROLE_USERNOTVERIFIED')")
+    .antMatchers("/welcome").access("hasRole('ROLE_USER')").and().formLogin().loginPage("/login")
         .failureUrl("/login?error=true").failureHandler(authenticationFailureHandler)
-        .successHandler(authenticationSuccessHandler).usernameParameter("username")
-        .passwordParameter("password");
-
-    httpSecurity.csrf().disable(); // Disable cross site scripting
+        .successHandler(authenticationSuccessHandler)
+        .usernameParameter("username")
+        .passwordParameter("password").and()
+        .logout()
+        .logoutUrl("/execute-logout")
+        .invalidateHttpSession(true) // should be true by default anyways
+        .deleteCookies("JSESSIONID")
+        .logoutSuccessHandler(logoutSuccessHandler());
+        
+    httpSecurity.csrf().disable(); // Disable cross site request forgery
   }
 }

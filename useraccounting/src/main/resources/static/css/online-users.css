@@ -1,0 +1,33 @@
+
+.user-list {
+  width: 200px;
+  color: var(--color-white-creme);
+  background: var(--color-grey-dark);
+  border-radius: 0px;
+}
+
+  
+.avatar {
+  border-radius: 50%;
+  background: var(--color-grey-dark);
+  box-shadow: 0 0 10px 0 var(--color-green-light);
+}
+
+.about {
+    padding-left: 8px;
+}
+
+.user-item {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+  
+  
+  
+
+
+
+

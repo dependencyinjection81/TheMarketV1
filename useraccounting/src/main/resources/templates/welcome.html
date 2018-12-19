@@ -8,8 +8,7 @@
 <script type="text/javascript" th:src="@{/js/sockjs.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/stomp.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/chat.js}"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-	charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 <title>Welcome</title>
 </head>
 
@@ -38,7 +37,7 @@
 		</div>
 
 		<div class="h09">
-			<a href='logout' th:text="#{header.logout}"></a>
+			<a href='execute-logout' th:text="#{header.logout}"></a>
 		</div>
 
 		 <!------------------------Dropdown--------------------------------->            
@@ -73,13 +72,10 @@
 			<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
 		</div>
 		
-		<h2>Currently logged in users</h2>
-	    <div th:each="user : ${users}">
-	        <p th:text="${user}">user</p>
-	    </div>
-			
-		</div>
+		<!--Currently logged in users -->
+		<th:block th:include="fragments/online-users :: online-users"></th:block>
 
+		<!--Chat -->
 		<div class="chat">
 			<div>
 				<input type="text" id="from" placeholder="Choose a nickname" />
