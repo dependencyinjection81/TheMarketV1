@@ -1,49 +1,23 @@
 <html xmlns:th="http//thymeleaf.org">
+
 <div th:fragment="online-users">
-<link rel="stylesheet" type="text/css" th:href="@{/css/online-users.css}"/>
-<script type="text/javascript" th:src="@{/js/online-users.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/online-users.css}">
+	<script type="text/javascript" th:src="@{/js/online-users.js}"></script>
 
+	<div class="user-list">
 
-<div class="user-list">
+		<h3>Online users</h3>
 
-	<h3>Online users</h3>
-		
-	<ul class="list" th:each="user : ${users}">
+		<ul class="list" th:each="user : ${users}">
 
-		<li class="user-item">
-			<img class="avatar" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"/>
-			<div class="about">
-            	<div class="name" th:text="${user}"></div>
-          	</div>
-		</li>
+			<li class="user-item"><img class="avatar"
+				src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" />
+				<div class="about">
+					<div class="name" th:text="${user}"></div>
+				</div></li>
 
-	</ul>
+		</ul>
+
+	</div>
 
 </div>
-	
-</div>
-
-
-<!--   <div class="container clearfix">
-    
-    <div class="people-list" id="people-list">
-      
-      <ul class="list">
-        
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Vincent Porter</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-        
-       
-      </ul>
-    </div>   
-  </div>  -->
-
-
-

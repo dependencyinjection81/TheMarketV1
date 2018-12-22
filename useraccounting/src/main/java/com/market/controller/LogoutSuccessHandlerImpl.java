@@ -15,10 +15,8 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 import org.springframework.stereotype.Component;
 
 /**
- * TODO SimpleUrlLogoutSuccessHandler implementieren da er noch nicht das event erfasst.
- * 
+ * Logout.
  * @author Johannes Weiß
- *
  */
 @Component("logoutSuccessHandlerImpl")
 public class LogoutSuccessHandlerImpl extends SimpleUrlLogoutSuccessHandler

@@ -16,6 +16,23 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+  //  /**
+  //   * Thymeleaf template resolver serving HTML 5.
+  //   * @return
+  //   */
+  //  @Bean
+  //  public ClassLoaderTemplateResolver templateResolver() {
+  //
+  //    ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+  //
+  //    //templateResolver.setCacheable(false);
+  //    
+  //    //templateResolver.setTemplateMode("HTML5");
+  //    //templateResolver.setCharacterEncoding("UTF-8");
+  //
+  //    return templateResolver;
+  //  }
+  
   /**
    * INTERNATIONALIZATION In order for our application to be able to determine which locale is
    * currently being used, we need to add a LocaleResolver bean. The LocaleResolver interface has
