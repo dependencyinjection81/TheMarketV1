@@ -2,7 +2,6 @@
 
 <div th:fragment="online-users">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/online-users.css}">
-	<script type="text/javascript" th:src="@{/js/online-users.js}"></script>
 
 	<div class="user-list">
 
@@ -10,11 +9,17 @@
 
 		<ul class="list" th:each="user : ${users}">
 
-			<li class="user-item"><img class="avatar"
-				src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" />
+			<li class="user-item">
+				
+				<div class="centered-form-input">
+					<svg class="l-icon" style="position: relative"><use xlink:href="#icon-user"></use></svg>
+				</div>
+				
 				<div class="about">
 					<div class="name" th:text="${user}"></div>
-				</div></li>
+				</div>
+			
+			</li>
 
 		</ul>
 
