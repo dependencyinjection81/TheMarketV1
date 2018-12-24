@@ -77,7 +77,7 @@ a:hover {
 }
 
 .list-anchor:hover {
-color: var(--color-grey-dark);
+	color: var(--color-grey-dark);
 }
 
 .icon-skin-form {	

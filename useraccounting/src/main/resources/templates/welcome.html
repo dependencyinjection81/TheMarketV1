@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout_index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/layout_chatbox.css}" />
 
 <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 
@@ -74,24 +75,46 @@
 	
 		<h3>empty</h3>
 		
+		<div class="chatbox">
+		
+			<div class="chat-with">chat with</div>
+			
+			<div id="conversation" class="conversation">
+			
+			</div>
+			
+			<form th:action="@{/send-message}" th:object="${messageForm}" method="post">
+			
+				<div class="message">
+				<textarea id="message-outgoing" rows="3" placeholder="Write a message..." th:field="*{message}"></textarea>
+				</div>
+				
+				<div class="send">
+				<button type="submit" class="submitbtn" name="action" value="send-message" th:text="#{form.button.send}"></button>
+				</div>
+			
+			</form>
+			
+		</div>
+		
 		<div class="ajax-example">
 		
 			<div id="resultsBlock">This will be updated</div>
 			
 			<div class="search-block">
-	            <input type="text" id="searchSurname" name="searchSurname"/>
+	            <input type="text" id="searchUsername" name="searchUsername"/>
 	            <br />
-	            <label for="searchSurname">Search label:</label>
-	            <button id="searchButton" name="searchButton" onclick="retrieveGuests()" type="button">Search button</button>
+	            <label for="searchUsername">Search label:</label>
+	            <button id="searchButton" name="searchButton" onclick="retrieveUsers()" type="button">Search button</button>
 	        </div>
 	
 			
 			<script type="text/javascript">
-				function retrieveGuests() {
-				    var url = '/guests';
+				function retrieveUsers() {
+				    var url = '/online-users';
 		
-				    if ($('#searchSurname').val() != '') {
-				        url = url + '/' + $('#searchSurname').val();
+				    if ($('#searchUsername').val() != '') {
+				        url = url + '/' + $('#searchUsername').val();
 				    }
 		
 				    $("#resultsBlock").load(url);
@@ -100,9 +123,6 @@
 		
 		</div>
 					
-		<!--Currently logged in users -->
-		<th:block th:include="fragments/online-users :: online-users"></th:block>
-	
 	</div>
 
 	<!-- Space right -->
