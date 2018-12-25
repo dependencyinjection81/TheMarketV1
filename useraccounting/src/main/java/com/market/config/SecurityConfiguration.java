@@ -100,6 +100,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     .antMatchers("/login").permitAll()
     .antMatchers("/drag-and-drop01").permitAll()
     .antMatchers("/signup-verification").access("hasRole('ROLE_USERNOTVERIFIED')")
+    .antMatchers("/online-users").access("hasRole('ROLE_USER')")
     .antMatchers("/welcome").access("hasRole('ROLE_USER')").and().formLogin().loginPage("/login")
         .failureUrl("/login?error=true").failureHandler(authenticationFailureHandler)
         .successHandler(authenticationSuccessHandler)

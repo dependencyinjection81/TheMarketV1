@@ -60,7 +60,6 @@ public class UserService {
   
   /**
    * Find all online users.
-   * TODO evetuell nur die usernamen als string rausholen und zurückgeben
    * @return
    */
   public List<String> findAllOnlineUsers() {
