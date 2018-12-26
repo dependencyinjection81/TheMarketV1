@@ -30,7 +30,7 @@ public class OnlineUsersController {
     
     users.addAttribute("users", userService.findAllOnlineUsers());
 
-    return "online-users :: online-users";
+    return "fragments/online-users :: online-users";
     
   }
 
@@ -45,7 +45,7 @@ public class OnlineUsersController {
     
     users.addAttribute("users", userService.findAllOnlineUsers());
 
-    return "online-users :: online-users";
+    return "fragments/online-users :: online-users";
   
   }
    

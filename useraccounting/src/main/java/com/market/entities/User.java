@@ -23,8 +23,12 @@ public class User {
    * @param password Password
    * @param roles Roles
    */
-  public User(final long id, 
-      final String userName, final String password, final Set<Role> roles) {
+  public User(
+      final long id, 
+      final String userName, 
+      final String password, 
+      final Set<Role> roles) {
+    
     this.id = id;
     this.username = userName;
     this.password = password;

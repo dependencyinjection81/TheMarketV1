@@ -45,6 +45,7 @@ public class UserService {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  // TODO prüfen ob ich den hier brauche
   @Autowired
   ApplicationEventPublisher eventPublisher;
 

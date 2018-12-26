@@ -16,8 +16,17 @@ public class ChatController implements WebMvcConfigurer {
   
   public String message;
 
+  /**
+   * Listen for incoming messages.
+   * @param message Message
+   * @return
+   */
   @PostMapping(value = "/send-message", produces = MediaType.APPLICATION_JSON_VALUE)
-  public @ResponseBody String postRequest(@RequestParam("message") String message) {
+  public @ResponseBody String postRequest(final @RequestParam("message") String message) {
+    
+    // TODO create a new message entity
+    // TODO store message entity to db
+    
     this.message = message;
     return "Message sent";
   }

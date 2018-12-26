@@ -19,75 +19,75 @@
 
 	</div>
 	
-<script type="text/javascript">
+	<script type="text/javascript">
+	
+	var send = function() {
+		    $.ajax({
+		    type: 'POST',
+		    url: '/send-message',
+		    dataType: 'html',
+		    data: { message: $('textarea#message-outgoing').val()},
+		    async: true,
+		    success: function(result) {
+		    	/*Update the desired element*/
+		    	$("#message-outgoing").val('');
+			    $("#status").html(result);
+		    }
+		});
+	}
+	
+	var update = function() {
+	        $.ajax({
+	        type: 'GET',
+	        url: '/update-conversation',
+	        dataType: 'html',
+	        async: true,
+	        success: function(result) {
+	        	/*Update the desired element*/
+			    $("#chatbox").html(result);	
+	        }
+	   });
+	}
+	
+	</script>
 
-var send = function() {
-	    $.ajax({
-	    type: 'POST',
-	    url: '/send-message',
-	    dataType: 'html',
-	    data: { message: $('textarea#message-outgoing').val()},
-	    async: true,
-	    success: function(result) {
-	    	/*Update the desired element*/
-	    	$("#message-outgoing").val('');
-		    $("#status").html(result);
-	    }
-	});
-}
-
-var update = function() {
-        $.ajax({
-        type: 'GET',
-        url: '/update-conversation',
-        dataType: 'html',
-        async: true,
-        success: function(result) {
-        	/*Update the desired element*/
-		    $("#chatbox").html(result);	
-        }
-   });
-}
-
-</script>
-
-<style>
-.chatbox {
-	padding: 1em;
-	grid-gap: 1em;
-	background: var(--color-grey-dark);
-	display: grid;
-	max-height: 500px;
-	grid-template-columns: 1fr;
-	grid-template-rows: 60px 200px auto auto 20px;
-}
-
-.chat-with {
-	background: var(--color-grey-dark);
-	color: var(--color-white-creme);
-}
-
-.conversation {
-	padding: 1em;
-	background: var(--color-white-creme);
-	color: var(--color-grey-dark);
-}
-
-.message textarea {
-	padding: 1em;
-	width: 100%;
-    border: none;
-    resize: none;
-  	outline: none;
-	background: var(--color-white-creme);
-	color: var(--color-grey-dark);
-}
-
-.send {
-	background: var(--color-grey-dark);
-	color: var(--color-white-creme);
-}
-</style>
+	<style>
+	.chatbox {
+		padding: 1em;
+		grid-gap: 1em;
+		background: var(--color-grey-dark);
+		display: grid;
+		max-height: 500px;
+		grid-template-columns: 1fr;
+		grid-template-rows: 60px 200px auto auto 20px;
+	}
+	
+	.chat-with {
+		background: var(--color-grey-dark);
+		color: var(--color-white-creme);
+	}
+	
+	.conversation {
+		padding: 1em;
+		background: var(--color-white-creme);
+		color: var(--color-grey-dark);
+	}
+	
+	.message textarea {
+		padding: 1em;
+		width: 100%;
+	    border: none;
+	    resize: none;
+	  	outline: none;
+		background: var(--color-white-creme);
+		color: var(--color-grey-dark);
+	}
+	
+	.send {
+		background: var(--color-grey-dark);
+		color: var(--color-white-creme);
+	}
+	</style>
 
 </div>
 

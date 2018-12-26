@@ -3,15 +3,13 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout_index.css}" />
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/layout_chatbox.css}" /> -->
-
 <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 <title>Welcome</title>
 </head>
 
-<body onload="GetAllOnlineUsers()" class="body-container">
+<body class="body-container">
 
 	<!-- Space left -->
 	<div class="bs1 side-spacer header"></div>
@@ -78,39 +76,9 @@
 		<!--Chatbox -->
 		<th:block th:replace="fragments/chatbox :: chatbox"></th:block>
 		
-		
-		<div class="ajax-example">
-		
-			<div id="resultsBlock">This will be updated</div>
-			
-			<div class="search-block">
-	            <input type="text" id="searchUsername" name="searchUsername"/>
-	            <br />
-	            <label for="searchUsername">Search label:</label>
-	            <button class="submitbtn" id="searchButton" name="searchButton" onclick="GetAllOnlineUsers()" type="button">Search button</button>
-	        </div>
-	
-			
-			<script type="text/javascript">	
-					
-			/**Get request to ajax endpoint online-users**/
-			function GetAllOnlineUsers() {
-			        $.ajax({
-			        type: 'GET',
-			        url: '/online-users',
-			        dataType: 'html',
-			        async: true,
-			        success: function(result) {	
-			        	/*Update the desired element*/
-					    $("#resultsBlock").html(result);			        	
-			        }			        
-			   });
-			}
-			
-			</script>
-		
-		</div>
-					
+		<!--Chatbox -->
+		<th:block th:replace="fragments/online-users :: online-users"></th:block>
+
 	</div>
 
 	<!-- Space right -->
