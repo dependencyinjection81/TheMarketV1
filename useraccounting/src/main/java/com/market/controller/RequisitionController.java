@@ -64,10 +64,17 @@ public class RequisitionController {
       bindingResult.rejectValue("title", requestTitleValidatorStatus);
       return "new-request";
     } else {
-      
-    }
-    
-    return "requisition";
+      /**Try to validate request text.**/
+      String requestTextValidatorStatus = 
+          requestValidator.validateRequestText(requestForm.getText());
+      if (requestTextValidatorStatus != null) {
+        bindingResult.rejectValue("text", requestTextValidatorStatus);
+        return "new-request";
+      } else {
+        //TODO publish Request
+        return "requisition";
+      }
+    }    
   }
 }
 

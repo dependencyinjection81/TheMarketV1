@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title th:text="#{title.newrequest}"></title>
@@ -56,18 +57,18 @@
                 <h2 class="s-light" th:text="#{form.request.caption}"></h2>
             </div>
             
-            <!------------------------Description------------------------------>
-            <div class="centered-form-description">
-                <p class="s-light" th:text="#{form.request.description}"></p>
-            </div>
-
             <!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
             
             <!------------------------Title------------------------------------>
+            <div class="centered-form-input-endcut">
             <div class="centered-form-input">
-                <input type="text" name="title" th:placeholder="#{form.request.title.placeholder}" th:field="*{title}">
+                <input class="input-title" id="title" type="text" name="title" 
+                th:placeholder="#{form.request.title.placeholder}" 
+                th:field="*{title}" maxlength="40">
                 <span class="bar"></span>                
+            </div>
+            <p class="input-character-feedback" id="title_feedback">Test</p>
             </div>
             
             <!------------------------Title errors----------------------------->
@@ -77,8 +78,17 @@
             
             <!------------------------Text------------------------------------->
             <div class="centered-form-message message">
-			<textarea type="text" name="text" rows="3" th:placeholder="#{form.request.text.placeholder}" th:field="*{text}"></textarea>
+				<textarea id="description" type="text" name="text" rows="3" 
+				th:placeholder="#{form.request.text.placeholder}" 
+				th:field="*{text}" maxlength="300">
+				</textarea>
 			</div>
+			
+			<!------------------------Remaining Characters--------------------->
+            <div class="centered-form-remaining-characters">
+            <div></div>              
+            <p id="textarea_feedback"></p>
+            </div>
             
             <!------------------------Text errors------------------------------>
             <div class="centered-form-alert">
@@ -113,8 +123,16 @@
             <div class="centered-form-spacer"></div>
             
             <!------------------------SUBMIT----------------------------------->
-            <div class="centered-form-submit">
-                <button style="justify-self: start;" type="submit" class="submitbtn" name="action" value="new-request" th:text="#{form.button.send}"></button>
+            <div class="centered-form-submit-single">
+                
+                <div></div>
+                
+                <button type="submit" class="submitbtn" name="action" value="new-request" 
+                th:text="#{form.button.send}">
+                </button>
+                
+                <div></div>
+                
             </div>
 
         </div>
@@ -167,6 +185,32 @@
             activeDropdown.element.style.visibility = 'hidden';
           }
         }
+        
+        /************************************************************************************/
+        
+        $(document).ready(function() {
+	    	var text_max = 300;
+	    	$('#textarea_feedback').html(text_max);
+	
+	    	$('#description').keyup(function() {
+	        var text_length = $('#description').val().length;
+	        var text_remaining = text_max - text_length;
+	
+	        $('#textarea_feedback').html(text_remaining);
+	    	});
+		});
+        
+        $(document).ready(function() {
+	    	var text_max = 40;
+	    	$('#title_feedback').html(text_max);
+	
+	    	$('#title').keyup(function() {
+	        var text_length = $('#title').val().length;
+	        var text_remaining = text_max - text_length;
+	
+	        $('#title_feedback').html(text_remaining);
+	    	});
+		});
 
     </script>
 

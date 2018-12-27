@@ -157,6 +157,11 @@ public class User {
   public void setRoles(final Set<Role> roles) {
     this.roles = roles;
   }
+  
+  /************************************************************
+   * Requests.*************************************************
+   ************************************************************
+   */
 
   @Override
   public int hashCode() {
