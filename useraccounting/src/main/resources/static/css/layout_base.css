@@ -53,7 +53,19 @@ body {
 }
 
 .dropdown {
-  justify-self: right;
+    display: inline-block;
+    position: relative;
+    justify-self: center;
+    top: 5px;
+    left: 0px;
+}
+
+.dropdown ul {
+	width: 80px;	
+	padding: 0;	
+	position: absolute;
+	top: 79%;
+	min-width: 90%;
 }
 /******************************************************************/
 /*MAIN LAYOUT******************************************************/

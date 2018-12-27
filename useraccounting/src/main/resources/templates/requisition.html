@@ -1,10 +1,10 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
 	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-	<title th:text="#{title.welcome}"></title>
+	<title th:text="#{title.requisition}"></title>
 </head>
 
 <body class="body-container">
@@ -21,6 +21,10 @@
 				<a href='welcome'> <svg class="icon-big icon-skin">
 						<use xlink:href="#icon-logo"></use></svg></a>
 			</div>
+		</div>
+
+		<div class="h02">
+			<a href="contribution" th:text="#{header.contribution.link}"></a>
 		</div>
 		
 		<!-- Displays logged in user -->
@@ -39,10 +43,10 @@
 
                  <ul class="dropdown-selection">
                      <li>
-                         <a class="list-anchor" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
+                         <a class="list-anchor" th:href="@{/requisition?lang=de}" th:text="#{lang.de}"></a>
                      </li>
                      <li>
-                     <a class="list-anchor" th:href="@{/welcome?lang=en}" th:text="#{lang.eng}"></a>
+                     <a class="list-anchor" th:href="@{/requisition?lang=en}" th:text="#{lang.eng}"></a>
                      </li>
                  </ul>         
          </div>      
@@ -57,8 +61,12 @@
 	<!-- Main content -->
 	<div class="b05 main-content-skin">
 	
-	<a href="contribution" th:text="#{header.contribution.link}"></a>
-	<a href="requisition" th:text="#{header.requisition.link}"></a>
+	<div>Requests</div>
+	
+	<!--Online Users -->
+	<div class="scrollable">
+		<th:block th:replace="fragments/online-users :: online-users"></th:block>
+	</div>
 		
 	</div>
 
