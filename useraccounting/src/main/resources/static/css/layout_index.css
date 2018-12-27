@@ -61,7 +61,13 @@ body {
 
 .b05 {
   display: grid;
-  grid-template-columns: 3fr 2fr 1fr;
+  grid-template-columns: 6fr 3fr;
+}
+
+.scrollable {
+	
+	height: 800px;
+	overflow: auto;
 }
 
 /******************************************************************/

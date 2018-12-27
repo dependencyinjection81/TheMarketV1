@@ -22,13 +22,16 @@ public class ChatController implements WebMvcConfigurer {
    * @return
    */
   @PostMapping(value = "/send-message", produces = MediaType.APPLICATION_JSON_VALUE)
-  public @ResponseBody String postRequest(final @RequestParam("message") String message) {
+  public @ResponseBody String postRequest(
+      final @RequestParam("message") String message,
+      final @RequestParam("to") String to) {
     
     // TODO create a new message entity
     // TODO store message entity to db
-    
+    System.out.println(to);
+    System.out.println(message);
     this.message = message;
-    return "Message sent";
+    return "Message sent to: " + to;
   }
   
   

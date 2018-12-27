@@ -1,14 +1,16 @@
-<div id="chatbox" th:fragment="chatbox">
+<div class="chat-container" id="chatbox" th:fragment="chatbox">
 
 	<div class="chatbox">
 	
-		<div class="chat-with">chat with</div>
+		<p id="to" class="chat-with" th:text="${user}">test</p>
 
 		<div id="conversation" class="conversation"></div>
 
 		<div class="message">
 			<textarea id="message-outgoing" rows="3" placeholder="Write a message..."></textarea>
+			
 		</div>
+		
 
 		<div class="send">
 			<button type='button' onclick='send()'>Send</button>
@@ -26,7 +28,10 @@
 		    type: 'POST',
 		    url: '/send-message',
 		    dataType: 'html',
-		    data: { message: $('textarea#message-outgoing').val()},
+		    data: { 
+		    		message: $('textarea#message-outgoing').val(),
+		    		to: $('p#to').val()		
+		    },
 		    async: true,
 		    success: function(result) {
 		    	/*Update the desired element*/
@@ -52,6 +57,7 @@
 	</script>
 
 	<style>
+	
 	.chatbox {
 		padding: 1em;
 		grid-gap: 1em;
@@ -60,6 +66,7 @@
 		max-height: 500px;
 		grid-template-columns: 1fr;
 		grid-template-rows: 60px 200px auto auto 20px;
+		
 	}
 	
 	.chat-with {

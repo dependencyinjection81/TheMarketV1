@@ -36,7 +36,7 @@
 		<div class="h04">
 			<a href='drag-and-drop'>drag and drop</a>
 		</div>
-		
+				
 		<!-- Displays logged in user -->
 		<div sec:authorize="hasRole('ROLE_USER')" class="h08"> 	
 			<a href='user-settings' sec:authentication="name"></a> 
@@ -71,14 +71,13 @@
 	<!-- Main content -->
 	<div class="b05 main-content-skin">
 	
-		<h3>empty</h3>
-		
-		<!--Chatbox -->
-		<th:block th:replace="fragments/chatbox :: chatbox"></th:block>
-		
-		<!--Chatbox -->
+	<div>Requests</div>
+	
+	<!--Online Users -->
+	<div class="scrollable">
 		<th:block th:replace="fragments/online-users :: online-users"></th:block>
-
+	</div>
+		
 	</div>
 
 	<!-- Space right -->
