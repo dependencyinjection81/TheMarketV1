@@ -207,8 +207,26 @@ button {
 	top: 4px;
 }
 
-.l-icon-old {
-	width: 20px; height: 20px; /*Size of Icon*/
+.l-icon-button {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	fill: var(--color-grey-middle);	
+	position: absolute;
+	left: -22px;
+	top: -22px;
+}
+
+.l-icon-button:hover {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	fill: var(--color-blue-middle);
+	cursor: pointer;	
+}
+
+.icon-as-button {
+	width: 60px; height: 60px; /*Size of Icon*/
     background-color: transparent;
     fill: var(--color-grey-middle);
     stroke: var(--color-grey-middle);  
@@ -229,6 +247,33 @@ button {
 
 .icon-big-form {
 	width: 70px; height: 70px;      
+}
+
+.pane {		  
+  
+  color: var(--color-grey-dark);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  border-radius: 6px;
+  
+}
+	
+.pane:hover  {
+  color: var(--color-grey-almostblack);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.c-bg-green {
+  background-color: var(--color-green-light);	
+}
+
+.c-bg-blue {
+	background-color: var(--color-blue-middle);
 }
 
 /**************Dropdown menu********************/

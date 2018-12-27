@@ -103,6 +103,22 @@ p {text-align: center;}
   align-items: center;
 }
 
+.centered-form-message {
+  height: auto; 
+  justify-self: stretch;
+  position: relative;
+}
+
+.centered-form-location {
+  height: 70px;  
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: 50px 30px;
+  align-items: center;
+  justify-items: center;
+}
+
 .bc05 {
   padding: 30px;
   padding-top: 0px;

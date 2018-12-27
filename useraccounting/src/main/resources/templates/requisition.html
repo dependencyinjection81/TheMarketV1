@@ -1,6 +1,7 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_requisition.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
 	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
@@ -61,13 +62,9 @@
 	<!-- Main content -->
 	<div class="b05 main-content-skin">
 	
-	<div>Requests</div>
-	
-	<!--Online Users -->
-	<div class="scrollable">
-		<th:block th:replace="fragments/online-users :: online-users"></th:block>
+	<div class="my-requests">
+	<button class="pane c-bg-green" onclick="location.href='new-request';" th:text="#{main.requisition.new}"></button>
 	</div>
-		
 	</div>
 
 	<!-- Space right -->

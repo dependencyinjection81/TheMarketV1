@@ -1,6 +1,7 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_welcome.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
@@ -57,8 +58,14 @@
 	<!-- Main content -->
 	<div class="b05 main-content-skin">
 	
-	<a href="contribution" th:text="#{header.contribution.link}"></a>
-	<a href="requisition" th:text="#{header.requisition.link}"></a>
+	<div></div>
+	
+	<div class="centered-field">
+	<button class="pane c-bg-green" onclick="location.href='requisition';" th:text="#{header.requisition.start}"></button>
+	
+	<div></div>
+	<button class="pane c-bg-blue" onclick="location.href='contribution';" th:text="#{header.contribution.start}"></button>
+	</div>
 		
 	</div>
 

@@ -1,0 +1,233 @@
+<html xmlns:th="http//thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title th:text="#{title.newrequest}"></title>
+</head>
+
+<body class="body-container-center">
+
+    <!-- Space left -->
+    <div class="bcs1"></div>
+
+    <!-- Header -->
+    <div class="bc02"></div>
+
+    <!-- Space right -->
+    <div class="bcs03"></div>
+
+    <!-- Space left -->
+    <div class="bcs04"></div>
+
+    <form action="#" th:action="@{/new-request}" th:object="${requestForm}" method="post">
+
+        <!--MAIN CONTENT-->
+        <div class="bc05 skin-container">
+
+            <!------------------------Dropdown--------------------------------->            
+            <div class="centered-form-header dropdown" id="language-dropdown">  
+                <div class="dropdown-button" th:text="#{lang.change}"></div>
+
+                    <ul class="dropdown-selection">
+                        <li>
+                            <a class="list-anchor" th:href="@{/new-request?lang=de}" th:text="#{lang.de}"></a>
+                        </li>
+                        <li>
+                        <a class="list-anchor" th:href="@{/new-request?lang=en}" th:text="#{lang.eng}"></a>
+                        </li>
+                    </ul>         
+            </div>      
+            
+            <!------------------------Logo------------------------------------->
+            <div class="centered-form-logo">
+                <div class="icon-container">
+                    <svg class="icon-big-form icon-skin-form">
+                        <use xlink:href="#icon-logo"></use>
+                    </svg>
+                </div>
+            </div>
+
+            <!------------------------Caption---------------------------------->
+            <div class="centered-form-caption">
+                <h2 class="s-light" th:text="#{form.request.caption}"></h2>
+            </div>
+            
+            <!------------------------Description------------------------------>
+            <div class="centered-form-description">
+                <p class="s-light" th:text="#{form.request.description}"></p>
+            </div>
+
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+            
+            <!------------------------Title------------------------------------>
+            <div class="centered-form-input">
+                <input type="text" name="title" th:placeholder="#{form.request.title.placeholder}" th:field="*{title}">
+                <span class="bar"></span>                
+            </div>
+            
+            <!------------------------Title errors----------------------------->
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+        	</div>
+            
+            <!------------------------Text------------------------------------->
+            <div class="centered-form-message message">
+			<textarea type="text" name="text" rows="3" th:placeholder="#{form.request.text.placeholder}" th:field="*{text}"></textarea>
+			</div>
+            
+            <!------------------------Text errors------------------------------>
+            <div class="centered-form-alert">
+            	<p class="alert-text" th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></p>
+        	</div>
+        	
+        	
+        	<!------------------------Location--------------------------------->
+        	<div class="centered-form-location">
+        	
+	        	<div class="icon-container">
+	        		<a href='#'>
+	        		<svg class="l-icon-button"><use xlink:href="#icon-location"></use></svg></a>
+	        	</div>
+        	
+        		<p class="s-light" th:text="#{form.signup.or}"></p>
+        	
+	        	<div class="icon-container">
+	        		<a href='#'>
+	        		<svg class="l-icon-button"><use xlink:href="#icon-location-circle"></use></svg></a>
+	        	</div>
+        	
+	        	<p class="s-light" th:text="#{form.button.getlocation}"></p>
+	        	
+	        	<div></div>
+	        	
+	        	<p class="s-light" th:text="#{form.button.setlocation}"></p> 
+	        	           
+            </div>
+            
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+            
+            <!------------------------SUBMIT----------------------------------->
+            <div class="centered-form-submit">
+                <button style="justify-self: start;" type="submit" class="submitbtn" name="action" value="new-request" th:text="#{form.button.send}"></button>
+            </div>
+
+        </div>
+
+        <div class="centered-footer">
+            <div class="centered-footer-item"><a class="excluded" href="">Help</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Privacy</a></div>
+            <div class="centered-footer-item"><a class="excluded" href="">Terms</a></div>
+        </div>
+
+    </form>
+
+    <!-- Space right -->
+    <div class="bcs06"></div>
+
+    <div class="bcs07"></div>
+
+    <div class="bc08"></div>
+
+    <div class="bcs09"></div>
+    
+    <style>
+    .message textarea {
+		padding: 1em;
+		width: 100%;
+	    border: none;
+	    resize: none;
+	  	outline: none;
+		background: var(--color-white-creme);
+		color: var(--color-grey-dark);
+	}
+    </style>
+
+    <script type="text/javascript">
+
+        var activeDropdown = {};  
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
+
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+
+    </script>
+
+    <!--SVG ICONS Recsource-->
+    <svg style="display:none">
+        <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
+            <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
+            <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
+        </symbol>
+
+        <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
+            <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z " />
+        </symbol>
+
+        <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+            <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+            <path style="
+            fill: none;
+            stroke-width: 2px;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+            stroke-opacity: 1" 
+            d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+        </symbol>
+        
+        <symbol id="icon-location" viewBox="0 0 16 15" width="100%" height="100%">
+		  
+  		<path
+	     d="m 7.9904306,0.24880378 c -3.2337416,0 -5.8564593,2.57450592 -5.8564593,5.74880382 0,3.6926485 4.2176268,8.3003154 4.8803827,9.0045424 0.2742776,0.292233 0.5036556,0.576798 0.9760766,0.576798 0.472421,0 0.701799,-0.284565 0.9760766,-0.576798 0.6627559,-0.704227 4.8803828,-5.3118939 4.8803828,-9.0045424 0,-3.1742979 -2.622718,-5.74880382 -5.8564594,-5.74880382 z m 0,9.58134052 c -2.1561531,0 -3.9043062,-1.7160187 -3.9043062,-3.8325367 0,-2.116518 1.7481531,-3.8325359 3.9043062,-3.8325359 2.1561534,0 3.9043064,1.7160179 3.9043064,3.8325359 0,2.116518 -1.748153,3.8325367 -3.9043064,3.8325367 z m 0,-5.7488047 c -1.0775885,0 -1.9521531,0.8584882 -1.9521531,1.916268 0,1.05778 0.8745646,1.916268 1.9521531,1.916268 1.0775886,0 1.9521531,-0.858488 1.9521531,-1.916268 0,-1.0577798 -0.8745645,-1.916268 -1.9521531,-1.916268 z"
+	     id="path4563"
+	      />
+     	</symbol>
+     	
+     	<symbol id="icon-location-circle" viewBox="0 0 16 15" width="100%" height="100%">
+     	<path
+     inkscape:connector-curvature="0"
+     d="m 7.9941837,5.1391954 c -1.5664099,0 -2.835131,1.2687213 -2.835131,2.8351311 0,1.5664097 1.2687211,2.8351305 2.835131,2.8351305 1.5664093,0 2.8351313,-1.2687208 2.8351313,-2.8351305 0,-1.5664098 -1.268722,-2.8351311 -2.8351313,-2.8351311 z M 14.330702,7.2655438 C 14.004661,4.3099195 11.658591,1.9638496 8.702966,1.637809 V 0.17771619 H 7.2854009 V 1.637809 C 4.3297768,1.9638496 1.9837069,4.3099195 1.6576663,7.2655438 H 0.1975735 v 1.4175653 h 1.4600928 c 0.3260406,2.9556239 2.6721105,5.3016949 5.6277346,5.6277349 v 1.460092 H 8.702966 v -1.460092 c 2.955625,-0.32604 5.301695,-2.672111 5.627736,-5.6277349 h 1.460092 V 7.2655438 Z M 7.9941837,12.935805 c -2.7394448,0 -4.9614795,-2.222034 -4.9614795,-4.9614785 0,-2.7394449 2.2220347,-4.9614795 4.9614795,-4.9614795 2.7394453,0 4.9614793,2.2220346 4.9614793,4.9614795 0,2.7394445 -2.222034,4.9614785 -4.9614793,4.9614785 z"
+     id="path5144"
+     style="stroke-width:0.35439137" />
+	     </symbol>
+
+
+        <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+            <g id="layer1">
+                <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+                    <g id="g1413" transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+                        <circle r="2.2097087" cy="11.094446" cx="6.9384851" id="path1376" />
+                        <circle r="1.403165" cy="8.0119019" cx="13.534466" id="path1382" />
+                        <g id="g1403">
+                            <circle id="path1378" cx="3.1267376" cy="2.9958642" r="1.2263883" />
+                            <circle id="path1380" cx="8.8056889" cy="6.2220387" r="0.9612233" />
+                            <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z" id="path1386" />
+                            <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z" id="path1388" />
+                            <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z" id="path1390" />
+                        </g>
+                    </g>
+                    <path d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z" id="path1415" />
+                </g>
+        </symbol>
+    </svg>
+
+</body>
+
+</html>
