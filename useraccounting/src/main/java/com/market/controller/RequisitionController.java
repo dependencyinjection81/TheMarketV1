@@ -2,6 +2,7 @@ package com.market.controller;
 
 import com.market.beans.RequestForm;
 import com.market.security.validation.RequestValidator;
+import com.market.service.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class RequisitionController {
   
   @Autowired
   RequestValidator requestValidator;
+  
+  @Autowired
+  RequestService requestService;
 
  
   /**
@@ -71,7 +75,7 @@ public class RequisitionController {
         bindingResult.rejectValue("text", requestTextValidatorStatus);
         return "new-request";
       } else {
-        //TODO publish Request
+        requestService.createNewRequest(requestForm);
         return "requisition";
       }
     }    
