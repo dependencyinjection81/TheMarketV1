@@ -1,0 +1,67 @@
+<html xmlns:th="http//thymeleaf.org">
+
+<div id="request" th:fragment="request">
+
+	
+	<button class="collapsible" th:text="${myRequest.title}"></button>
+	
+
+	<div class="details">
+		<div class="request-id" th:text="${myRequest.id}"></div>
+		<div class="request-title" th:text="${myRequest.title}"></div>
+		<div class="request-description" th:text="${myRequest.description}"></div>
+	</div>
+
+<script>
+	var coll = document.getElementsByClassName("collapsible");
+			
+	var i;
+	
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.maxHeight){
+	      content.style.maxHeight = null;
+	    } else {
+	      content.style.maxHeight = content.scrollHeight + "px";
+	    } 
+	  });
+	}
+</script>
+	
+<style>
+
+.collapsible {		  
+  background-color: var(--color-grey-dark);
+  color: var(--color-white-creme);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+		
+.active, .collapsible:hover {
+  background-color: var(--color-blue-middle);
+}
+	
+.details {
+  height: 300px;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: var(--color-grey-dark);
+  color: var(--color-white-creme);
+  border-radius: 6px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+</style>
+
+</div>

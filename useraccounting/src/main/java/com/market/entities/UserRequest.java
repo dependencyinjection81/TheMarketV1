@@ -26,7 +26,7 @@ public class UserRequest {
   @Column(name = "title", updatable = false)
   private String title;
   
-  @Column(name = "description", updatable = false)
+  @Column(name = "description", columnDefinition = "TEXT", length = 400, updatable = false)
   private String description;
   
   @ManyToOne(fetch = FetchType.EAGER)

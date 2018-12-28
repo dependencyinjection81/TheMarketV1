@@ -60,23 +60,68 @@
             <!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
             
-            <!------------------------Title------------------------------------>
-            <div class="centered-form-input-endcut">
-            <div class="centered-form-input">
-                <input class="input-title" id="title" type="text" name="title" 
-                th:placeholder="#{form.request.title.placeholder}" 
-                th:field="*{title}" maxlength="40">
-                <span class="bar"></span>                
-            </div>
-            <p class="input-character-feedback" id="title_feedback">Test</p>
-            </div>
+            
+            <!------------------------Bar-------------------------------------->
+            <span class="static-bar"></span>
+            
+            <!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+            
+            <!------------------------Urgency---------------------------------->
+        	<div id="urgency" class="centered-form-urgency">
+        	
+        		<p class="s-light">set urgency:</p>
+	        	
+	        	<div class="clumsyworkaround">
+					<input type="radio" name="size" id="size_1" value="small" checked />
+					<label id="anytime" for="size_1">1</label>
+				</div>
+				
+				<div class="clumsyworkaround">
+					<input type="radio" name="size" id="size_2" value="small" />
+					<label id="today" for="size_2">2</label>
+				</div>
+				
+				<div class="clumsyworkaround">  
+					<input type="radio" name="size" id="size_3" value="small" />
+					<label id="now" for="size_3">3</label>
+				</div>
+        	
+        	</div>
+        	
+        	<!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+        	
+        	<!------------------------Bar-------------------------------------->
+            <span class="static-bar"></span>
+        	
+        	<!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+            
+                    	
+        	<!------------------------Title------------------------------------->
+            <div class="centered-form-message-title title">
+				
+				<textarea id="title" type="text" name="text" rows="1" 
+				th:placeholder="#{form.request.title.placeholder}" 
+				th:field="*{title}" maxlength="40">
+				</textarea>
+			
+				<!------------------------Remaining Characters--------------------->
+	            <div class="centered-form-remaining-characters-title">              
+	            <p id="title_feedback"></p>
+	            </div>
+			
+			</div>
+        	
             
             <!------------------------Title errors----------------------------->
             <div class="centered-form-alert">
             	<p class="alert-text" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
         	</div>
             
-            <!------------------------Text------------------------------------->
+            
+            <!------------------------Description------------------------------->
             <div class="centered-form-message message">
 				<textarea id="description" type="text" name="text" rows="3" 
 				th:placeholder="#{form.request.text.placeholder}" 
@@ -155,15 +200,70 @@
     <div class="bcs09"></div>
     
     <style>
+
     .message textarea {
-		padding: 1em;
-		width: 100%;
-	    border: none;
-	    resize: none;
-	  	outline: none;
-		background: var(--color-white-creme);
-		color: var(--color-grey-dark);
+	 padding: 1em;
+	 width: 100%;
+     border: none;
+     resize: none;
+  	 outline: none;
+	 background: var(--color-white-creme);
+	 color: var(--color-grey-dark);
 	}
+	
+	.title textarea {
+	 padding: 1em;
+	 width: 100%;
+	 height: 60px;
+     border: none;
+     resize: none;
+  	 outline: none;
+	 background: var(--color-white-creme);
+	 color: var(--color-grey-dark);
+	}
+	
+	.static-bar {
+	  content: '';
+	  height: 2px;
+	  width: 0;
+	  bottom: 0px;  
+	  background: var(--color-grey-middle);
+	  position: relative;
+	  display: block;
+	  width: 100%;
+	  box-shadow: 0 0 8px 0 var(--color-grey-middle);
+	}
+	
+	input[type="radio"] {
+	  visibility: hidden;
+	  height: 0;
+	  width: 0;
+	}
+	
+	label {
+	  display: block;
+	  text-align: center;
+	  cursor: pointer;
+	  background-color: var(--color-white-creme);
+	  color: var(--color-grey-dark);
+	  padding: 5px 10px;
+	  border-radius: 3px;
+	  transition: all 0.3s ease-out;
+	}
+	input[type="radio"]:checked + #anytime {
+	  background-color: var(--color-green-light);
+	}
+	input[type="radio"]:checked + #today {
+	  background-color: var(--color-yellow-signal);
+	}	
+	input[type="radio"]:checked + #now {
+	  background-color: var(--color-red-signal);
+	}
+	
+	.clumsyworkaround {
+	display: flex;
+	}
+	
     </style>
 
     <script type="text/javascript">
@@ -185,6 +285,25 @@
             activeDropdown.element.style.visibility = 'hidden';
           }
         }
+        
+        /*************************Radiobuttons*********************************************/
+        
+        var grd = function(){
+        	  $("input[type='radio']").click(function() {
+        	    var previousValue = $(this).attr('previousValue');
+        	    var name = $(this).attr('name');
+
+        	    if (previousValue == 'checked') {
+        	      $(this).removeAttr('checked');
+        	      $(this).attr('previousValue', false);
+        	    } else {
+        	      $("input[name="+name+"]:radio").attr('previousValue', false);
+        	      $(this).attr('previousValue', 'checked');
+        	    }
+        	  });
+        	};
+
+        	grd('1');
         
         /************************************************************************************/
         

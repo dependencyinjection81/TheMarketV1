@@ -4,10 +4,12 @@ import com.market.beans.RequestForm;
 import com.market.entities.User;
 import com.market.entities.UserRequest;
 import com.market.repositories.UserRepository;
+import com.market.security.service.IAuthenticationFacade;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +20,20 @@ import org.springframework.stereotype.Service;
 public class RequestService {
   
   @Autowired
+  private IAuthenticationFacade authenticationFacade;
+  
+  @Autowired
   UserRepository userRepository;
 
   /**
    * create a new Request.
-   * @param requestForm Bean backed form
+   * @param requestForm Bean backed form   
    * @return
    */
   public boolean createNewRequest(final RequestForm requestForm) {
     
-    /**The clumsy workaround to retrieve the currently authenticated user as object.
-     * TODO try to find a better solution for retriveing the currently authenticated user as object
-     */
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    String currentUsername = auth.getName();
-    User clientUser = userRepository.findByEmail(currentUsername);
+    Authentication auth = authenticationFacade.getAuthentication();
+    User clientUser = userRepository.findByEmail(auth.getName());
     
     UserRequest userRequest = new UserRequest();
     userRequest.setTitle(requestForm.getTitle());
@@ -42,6 +43,19 @@ public class RequestService {
     //RequestEntity request = new RequestEntity()
     
     return true;
+  }
+
+  /**
+   * Get Requests from current client.
+   * @return
+   */
+  public List<UserRequest> getMyRequests() {
+    
+    // TODO use this workaround everywhere!
+    Authentication auth = authenticationFacade.getAuthentication();
+    
+    User clientUser = userRepository.findByEmail(auth.getName());
+    return clientUser.getRequests();
   }
   
 }

@@ -62,9 +62,16 @@
 	<!-- Main content -->
 	<div class="b05 main-content-skin">
 	
-	<div class="my-requests">
-	<button class="pane c-bg-green" onclick="location.href='new-request';" th:text="#{main.requisition.new}"></button>
-	</div>
+		<div class="my-requests">
+		
+			<button class="pane c-bg-green" onclick="location.href='new-request';" th:text="#{main.requisition.new}"></button>
+		
+			<div class="scrollable">
+				<th:block th:replace="fragments/my-requests :: my-requests"></th:block>
+			</div>
+		
+		</div>
+		
 	</div>
 
 	<!-- Space right -->

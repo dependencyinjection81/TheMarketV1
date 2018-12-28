@@ -9,7 +9,7 @@ public class RequestValidator {
   //private Map<String, Integer> badWords;
   
   private final int minTitleLength = 15;
-  private final int maxTitleLength = 35;
+  private final int maxTitleLength = 40;
   private final int minTextLength = 35;
   private final int maxTextLength = 300;
   

@@ -10,10 +10,13 @@
 		<div class="container" th:each="user : ${users}">
 
 			<div class="user-item">
+				
 				<button class="collapsible" th:text="${user}"></button>
+				
 				<div class="Content">
 		  		<th:block th:insert="fragments/chatbox :: chatbox"></th:block>	
 				</div>
+			
 			</div>
 				
 		</div>
