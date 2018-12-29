@@ -7,12 +7,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
 @RequestMapping(value = "/")
-public class LoginController implements WebMvcConfigurer {
+public class DragAndDropController implements WebMvcConfigurer {
 
   
-  @GetMapping(value = "/login")
+  @GetMapping(value = "/drag-and-drop")
   public String showLogin() {
-    return "login";
+    return "drag-and-drop01";
   }
  
 }

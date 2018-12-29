@@ -28,7 +28,14 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
+	font-family: Helvetica;	
+	-webkit-font-smoothing: antialiased;
 }
+
+h1 {font-size: 50px;}
+h2 {font-size: 30px; font-weight: 500;}
+h3 {font-size: 25px; font-weight: 500;}
+p  {font-size: 18px;}
 
 
 input {	
@@ -63,7 +70,10 @@ a {
 	
 	/*Layout*/
 	display: block;
-    text-align: center;    
+    text-align: center;
+    
+    /*Content*/
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -71,18 +81,43 @@ a:hover {
 	color: var(--color-blue-middle);
 }
 
+/*THEME*/
+.header {background-color: var(--color-grey-dark);}
+
+.footer {background-color: var(--color-grey-dark);}
+
 .list-anchor {
 	font-size: 0.8em;
 	color: var(--color-grey-dark);
 }
 
 .list-anchor:hover {
-color: var(--color-grey-dark);
+	color: var(--color-grey-dark);
+}
+
+.clock {	
+	font-size: 20px;
+	color: var(--color-blue-middle);
+	font-weight: bold;   
+	margin: 0px !important;
+	padding: 5px !important;
+	text-align: center;   	
+}
+
+
+.icon-skin {
+	background-color: var(--color-grey-dark);
+    fill: var(--color-white-creme);     
+    transition: 0.3s;
 }
 
 .icon-skin-form {	
     fill: var(--color-blue-middle);  
     transition: 0.3s;
+}
+
+.icon-skin:hover {
+	fill: var(--color-blue-middle);   
 }
 
 .s-light {
@@ -149,6 +184,17 @@ button {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
+.icon {
+    
+    width: 20px; height: 20px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 12; /*Advance Icon to the left*/
+    top: 37px;/*Advance Icon downwards*/       
+}
 
 .l-icon {
 	width: 25px;
@@ -161,19 +207,81 @@ button {
 	top: 4px;
 }
 
+.l-icon-button {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	fill: var(--color-grey-middle);	
+	position: absolute;
+	left: -22px;
+	top: -22px;
+}
+
+.l-icon-button:hover {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	fill: var(--color-blue-middle);
+	cursor: pointer;	
+}
+
+.icon-as-button {
+	width: 60px; height: 60px; /*Size of Icon*/
+    background-color: transparent;
+    fill: var(--color-grey-middle);
+    stroke: var(--color-grey-middle);  
+    /*Position the icon inside the input field*/
+    position:absolute;
+    left: 13; /*Advance Icon to the right*/
+    top: 13px;/*Advance Icon downwards*/   
+}
+
 .icon-container {position: relative;}
 
+.icon-big {		
+	width: 60px; height: 60px;     
+    position:absolute;
+    left: -35px; 
+    top: -30px;          
+}
 
 .icon-big-form {
 	width: 70px; height: 70px;      
 }
 
+.pane {		  
+  
+  color: var(--color-grey-dark);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  border-radius: 6px;
+  
+}
+	
+.pane:hover  {
+  color: var(--color-grey-almostblack);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.c-bg-green {
+  background-color: var(--color-green-light);	
+}
+
+.c-bg-blue {
+	background-color: var(--color-blue-middle);
+}
+
 /**************Dropdown menu********************/
-.dropdown {
+.dropdown-header {
 	display: inline-block;
 	position: relative;
-	top: 14px;
-	left: 20px;
+	top: 5px;
+	left: 0px;
 }
 
 .dropdown-button {
@@ -199,14 +307,9 @@ button {
 }
 
 .dropdown ul {
-	width: 80px;
 	visibility: hidden;
 	background: var(--color-white-creme);
-	padding: 0;
-	list-style: none;
-	position: absolute;
-	top: 50%;
-	min-width: 90%;
+	list-style: none;	
 }
 
 .dropdown li {
@@ -250,6 +353,42 @@ button {
 input:focus ~ .bar:before, input:focus ~ .bar:after {
 	width: 50%;
 	box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+.inputWithIcon {position: relative;}
+
+/************************/
+/****STYLE THE ALERT*****/
+/************************/
+
+.alert-box {
+    width: 100%;
+    padding-left: 10px;
+    padding-right:10px;    
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.alert-text {
+    font-size: small;
+    color: var(--color-red-signal);
+    text-align: center;
+}
+
+.alert-text-big {
+	font-size: 18px;
+	color: var(--color-red-signal);
+	text-align: center;
+}
+
+/************************/
+/****TEXT SKIN***********/
+/************************/
+
+.s-dark {
+	color: var(--color-grey-almostblack);	
 }
 
 /*Password strength meter*/
@@ -296,17 +435,26 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 	box-shadow: 0 0 8px 0 var(--color-green-light);
 }
 
+
+/************************/
+/*MODULES inside MAIN****/
+/************************/
+
+/*LAYOUT*/
+.l-container {
+	padding: 20px;
+}
+
+/*THEME*/
+.skin-container_text {	
+	color: var(--color-grey-almostblack);
+}
+
 @media(max-width: 1024px) {
 	.skin-container {	
 	border-radius: 0px;
 	box-shadow: none;
 	}
 
-	.dropdown {
-	display: inline-block;
-	position: relative;
-	top: 10px;
-	left: 0px;
-	}
 }
 

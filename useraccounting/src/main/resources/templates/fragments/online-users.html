@@ -1,0 +1,109 @@
+<html xmlns:th="http//thymeleaf.org">
+
+<div id="online-users" th:fragment="online-users">
+	
+	<div class="user-list">
+
+		<h3></h3>
+
+		
+		<div class="container" th:each="user : ${users}">
+
+			<div class="user-item">
+				
+				<button class="collapsible" th:text="${user}"></button>
+				
+				<div class="Content">
+		  		<th:block th:insert="fragments/chatbox :: chatbox"></th:block>	
+				</div>
+			
+			</div>
+				
+		</div>
+		   
+        <button class="submitbtn" id="searchButton" name="searchButton" onclick="GetAllOnlineUsers()" type="button">Update</button>
+		
+	</div>
+	
+	<script type="text/javascript">	
+					
+			/**Get request to ajax endpoint online-users**/
+			function GetAllOnlineUsers() {
+			        $.ajax({
+			        type: 'GET',
+			        url: '/online-users',
+			        dataType: 'html',
+			        async: true,
+			        success: function(result) {	
+			        	/*Update the desired element*/
+					    $("#online-users").html(result);			        	
+			        }			        
+			   });
+			}
+			
+			/****************************************************************/
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+			
+			for (i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+			    this.classList.toggle("active");
+			    var content = this.nextElementSibling;
+			    if (content.style.maxHeight){
+			      content.style.maxHeight = null;
+			    } else {
+			      content.style.maxHeight = content.scrollHeight + "px";
+			    } 
+			  });
+			}
+			
+	</script>
+	
+	<style>
+	
+	.user-list {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;	
+	}
+	
+	.user-item {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;
+	}
+	
+	.collapsible {		  
+	  background-color: var(--color-grey-dark);
+	  color: var(--color-white-creme);
+	  cursor: pointer;
+	  padding: 18px;
+	  width: 100%;
+	  border: none;
+	  text-align: center;
+	  outline: none;
+	  font-size: 15px;
+	  border-radius: 6px;
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	}
+		
+	.active, .collapsible:hover {
+	  background-color: var(--color-blue-middle);
+	}
+		
+	.content {
+	  padding: 0 18px;
+	  max-height: 0;
+	  overflow: hidden;
+	  transition: max-height 0.2s ease-out;
+	  background-color: var(--color-grey-dark);
+	  color: var(--color-white-creme);
+	  border-radius: 6px;
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	}
+	
+	</style>
+
+</div>

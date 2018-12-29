@@ -1,7 +1,10 @@
 package com.market.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,12 +27,17 @@ public class User {
    * @param password Password
    * @param roles Roles
    */
-  public User(final long id, 
-      final String userName, final String password, final Set<Role> roles) {
+  public User(
+      final long id, 
+      final String userName, 
+      final String password, 
+      final Set<Role> roles) {
+    
     this.id = id;
     this.username = userName;
     this.password = password;
     this.roles = roles;
+    this.online = false;
   }
   
   /**
@@ -38,6 +47,7 @@ public class User {
   public User() {
     super();
     this.enabled = false;
+    this.online = false;
   }
   
   /************************************************************
@@ -72,7 +82,22 @@ public class User {
   public void setEnabled(final boolean value) {
     this.enabled = value;
   }
+  
+  /************************************************************
+   * User-online?.**********************************************
+   ************************************************************
+   */
+  @Column(name = "online")
+  private boolean online;
 
+  public boolean getOnline() {
+    return this.online;
+  }
+
+  public void setOnline(final boolean value) {
+    this.online = value;
+  }
+  
   /************************************************************
    * Username.*************************************************
    ************************************************************
@@ -136,6 +161,36 @@ public class User {
   public void setRoles(final Set<Role> roles) {
     this.roles = roles;
   }
+  
+  /************************************************************
+   * Requests.*************************************************
+   ************************************************************
+   */
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true
+  )
+  private List<UserRequest> requests = new ArrayList<>();
+  
+  public List<UserRequest> getRequests() {
+    return requests;
+  }
+  
+  public void setRequests(final List<UserRequest> requests) {
+    this.requests = requests;
+  }
+  
+  public void addRequest(final UserRequest request) {
+    requests.add(request);
+    request.setUser(this);
+  }
+
+  public void removeRequest(final UserRequest request) {
+    requests.remove(request);
+    request.setUser(null);
+  }
+  
 
   @Override
   public int hashCode() {
@@ -146,6 +201,7 @@ public class User {
     result = prime * result + ((id == null) ? 0 : id.hashCode());
     result = prime * result + ((password == null) ? 0 : password.hashCode());
     result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+    result = prime * result + ((requests == null) ? 0 : requests.hashCode());
     result = prime * result + ((username == null) ? 0 : username.hashCode());
     return result;
   }
@@ -162,6 +218,7 @@ public class User {
       return false;
     }
     User other = (User) obj;
+    
     if (email == null) {
       if (other.email != null) {
         return false;
@@ -186,6 +243,7 @@ public class User {
     } else if (!password.equals(other.password)) {
       return false;
     }
+    
     if (roles == null) {
       if (other.roles != null) {
         return false;
@@ -193,6 +251,15 @@ public class User {
     } else if (!roles.equals(other.roles)) {
       return false;
     }
+    
+    if (requests == null) {
+      if (other.requests != null) {
+        return false;
+      }
+    } else if (!requests.equals(other.requests)) {
+      return false;
+    }
+    
     if (username == null) {
       if (other.username != null) {
         return false;
@@ -202,14 +269,5 @@ public class User {
     }
     return true;
   }
-
-  @Override
-  public String toString() {
-    return "User [id=" + id + ", enabled=" + enabled + ", username=" + username + ", email=" + email
-        + ", password=" + password + ", roles=" + roles.toString() + "]";
-  }
-  
-  
-  
 
 }

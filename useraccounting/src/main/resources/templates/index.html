@@ -1,11 +1,10 @@
 <html xmlns:th="http//thymeleaf.org">
-
 <head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/layout_index.css}" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-	charset="UTF-8">
-<title th:text="#{title.index}"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+	<title th:text="#{title.index}"></title>
 </head>
 
 <body class="body-container">
@@ -24,22 +23,22 @@
 			</div>
 			</div>
 
-			<div class="h02"><a href="#Explore" th:text="#{header.explore}"></a></div>
-			
-			<div class="h03"><a href="#help" th:text="#{header.help}"></a></div>
-			
 			<div class="h08"><a href='login' th:text="#{header.login}"></a></div>
 			<div class="h09"><a href='signup' th:text="#{header.signup}"></a></div>
 						
-			<div class="h10 dropdown">			
-			<a class="styled" th:text="#{lang.change}"></a>
-			
-					<div class="l-dropdown_content is-hidden skin-dropdown_content">
-			      		<a class="styled" th:href="@{/index?lang=de}" th:text="#{lang.de}"></a>
-			      		<a class="styled" th:href="@{/index?lang=en}" th:text="#{lang.eng}"></a>
-			    	</div>	
+			<!------------------------Language dropdown--------------------------------->            
+	         <div class="h10 dropdown" id="language-dropdown">  
+	             <div class="dropdown-button" th:text="#{lang.change}"></div>
 	
-	    	</div>			
+	                 <ul class="dropdown-selection">
+	                     <li>
+	                         <a class="list-anchor" th:href="@{/index?lang=de}" th:text="#{lang.de}"></a>
+	                     </li>
+	                     <li>
+	                     <a class="list-anchor" th:href="@{/index?lang=en}" th:text="#{lang.eng}"></a>
+	                     </li>
+	                 </ul>         
+	         </div>      	
 	
 	
 	</div>
@@ -61,35 +60,62 @@
     <div class="b08 footer"></div>
 
     <div class="bs09 side-spacer footer"></div>
-	
-		
-	<!--SVG ICONS Recsource-->
-  	<svg style="display:none">  
-	    
-	    <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
-			    <g id="layer1">
-		    <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
-		      <g id="g1413"
-			transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
-		        <circle r="2.2097087" cy="11.094446" cx="6.9384851"
-			id="path1376" />
-		        <circle r="1.403165" cy="8.0119019" cx="13.534466"
-			id="path1382" />
-		        <g id="g1403">
-		          <circle id="path1378" cx="3.1267376" cy="2.9958642"
-			r="1.2263883" />
-		          <circle id="path1380" cx="8.8056889" cy="6.2220387"
-			r="0.9612233" />		          
-		        </g>
-		      </g>
-		      <path
-			d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z"
-			id="path1415" />
-		    </g>
-	    </symbol>
-  	</svg>
+    
+    <script type="text/javascript">
+        
+        var activeDropdown = null;
+        activeDropdown = {};
+        document.getElementById('language-dropdown').addEventListener('click',function(){  
+          for (var i = 0;i<this.children.length;i++){
+            if (this.children[i].classList.contains('dropdown-selection')){
+                //saving the data into our object, so we can recall it easily
+                activeDropdown.id = this.id;
+                activeDropdown.element = this.children[i];
+                this.children[i].style.visibility = 'visible';
+                }
+          }
+        });
 
-	
+        window.onclick = function(event){  
+          if (!event.target.classList.contains('dropdown-button')){
+            activeDropdown.element.style.visibility = 'hidden';
+          }
+        }
+        
+    </script>
+
+
+	<!--SVG ICONS Recsource-->
+	<svg style="display:none">
+
+		<symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+			<g id="layer1">
+
+				<g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+
+					<g id="g1413"
+					   transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+						<circle r="2.2097087" cy="11.094446" cx="6.9384851"
+								id="path1376" />
+						<circle r="1.403165" cy="8.0119019" cx="13.534466"
+								id="path1382" />
+
+						<g id="g1403">
+							<circle id="path1378" cx="3.1267376" cy="2.9958642"
+									r="1.2263883" />
+							<circle id="path1380" cx="8.8056889" cy="6.2220387"
+									r="0.9612233" />
+						</g>
+					</g>
+					<path
+							d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z"
+							id="path1415" />
+
+				</g>
+			</g>
+		</symbol>
+	</svg>
+
 </body>
 
 </html>

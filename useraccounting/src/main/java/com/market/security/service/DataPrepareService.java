@@ -39,16 +39,9 @@ public class DataPrepareService {
 
     } else {
 
+      //TODO prüfen ob die übergebenen Werte wirklich Zahlen sind sonst tschüss
       tokenPrepared = tokenGiven;
-      Integer tokenAsInt = 000000;
       
-      try {
-        tokenAsInt = Integer.parseInt(tokenPrepared);
-      } catch (NumberFormatException e) {
-        return "000000";
-      }
-      
-      tokenPrepared = tokenAsInt.toString();
       return tokenPrepared;
 
     }

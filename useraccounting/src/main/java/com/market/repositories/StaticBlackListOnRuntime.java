@@ -5,6 +5,11 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * TODO Ersetzen durch DB und dann evtl. mit caching arbeiten.
+ * @author Johannes Weiß
+ *
+ */
 @Component
 public class StaticBlackListOnRuntime {
 

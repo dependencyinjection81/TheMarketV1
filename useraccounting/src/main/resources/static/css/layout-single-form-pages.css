@@ -32,6 +32,15 @@ p {text-align: center;}
 /******************************************************************/
 /*MAIN LAYOUT SIGNUP ITEMS*****************************************/
 /******************************************************************/
+
+.dropdown {
+	display: inline-block;
+	position: relative;
+	justify-self: right;
+	top: 14px;
+	left: 20px;
+}
+
 .centered-form-spacer{height: 30px;}
 
 .centered-form-header{height: 60px;}
@@ -63,6 +72,28 @@ p {text-align: center;}
   position: relative;
 }
 
+.input-title {
+ font-size: 16px; 
+ font-weight: 300;
+}
+
+.centered-form-input-endcut {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  height: 50px; 
+  justify-self: stretch;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+}
+
+.input-character-feedback {
+ font-size: 16px; 
+ font-weight: 300;
+  
+ color: var(--color-blue-middle);
+}
+
 .centered-form-alert {
   height: 30px;
 }
@@ -73,6 +104,15 @@ p {text-align: center;}
   justify-items: center;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
+  align-items: center;
+}
+
+.centered-form-submit-single {
+  height: 50px;
+  justify-self: stretch;
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
 }
 
@@ -94,6 +134,51 @@ p {text-align: center;}
   align-items: center;
 }
 
+.centered-form-message {
+  height: auto; 
+  justify-self: stretch;
+  position: relative;
+}
+
+.centered-form-message-title {
+  display: grid;
+  grid-template-columns: 11fr 2fr;	
+  justify-self: stretch;
+  justify-content: center;
+  align-items: center;  
+  position: relative;
+}
+
+.centered-form-remaining-characters-title {
+  padding: 1em;
+  height: 60px;
+  display: grid;
+  align-content: center;
+  background-color: var(--color-white-creme);
+  color: var(--color-blue-middle);
+}
+
+.centered-form-location {
+  height: auto;  
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: 50px 60px;
+  align-items: center;
+  justify-items: center;
+}
+
+.centered-form-remaining-characters {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  height: auto;
+  align-items: center;
+  justify-items: center;
+  background-color: var(--color-white-creme);
+  color: var(--color-blue-middle);
+}
+
 .bc05 {
   padding: 30px;
   padding-top: 0px;
@@ -104,6 +189,14 @@ p {text-align: center;}
 
 .dropdown {
   justify-self: right;
+}
+
+.dropdown ul {
+	width: 80px;	
+	padding: 0;	
+	position: absolute;
+	top: 50%;
+	min-width: 90%;
 }
 
 .centered-footer {
@@ -117,6 +210,13 @@ p {text-align: center;}
 
 .centered-footer-item {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-form-urgency {
+  display: grid;
+  grid-template-columns: 7fr 1fr 1fr 1fr 3fr;
   align-items: center;
   justify-content: center;
 }
@@ -145,6 +245,13 @@ p {text-align: center;}
   .bc05 {
     padding: 10px;
     padding-top: 0px;
+  }
+  
+	.dropdown {
+	display: inline-block;
+	position: relative;
+	top: 10px;
+	left: 0px;
   }
 
 }

@@ -64,7 +64,7 @@ public class AccountVerificationController implements WebMvcConfigurer {
           return "signup-verification";
         } else {
 
-          return "logout"; // If counter not ok
+          return "execute-logout"; // If counter not ok
         }
 
       } else { // If this ipAddress has been added for the first time
@@ -104,10 +104,10 @@ public class AccountVerificationController implements WebMvcConfigurer {
 
       }
 
-      return "logout"; // TODO cut off client and reject everything!
+      return "execute-logout"; // TODO cut off client and reject everything!
     }
 
-    return "logout"; // TODO cut off client and reject everything!
+    return "execute-logout"; // TODO cut off client and reject everything!
   }
 
 }

@@ -85,8 +85,12 @@
   			<version>21.0</version> 
 		</dependency>
 		
+		<dependency>
+	    	<groupId>org.springframework</groupId>
+	    	<artifactId>spring-messaging</artifactId>
+	    </dependency>
+	    			
 	</dependencies>
-
 
 	<build>
 		<plugins>

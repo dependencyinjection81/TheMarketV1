@@ -52,9 +52,32 @@ body {
   "h01 h02 h03 h04 h05 h06 h07 h08 h09 h10";
 }
 
+.dropdown {
+    display: inline-block;
+    position: relative;
+    justify-self: center;
+    top: 5px;
+    left: 0px;
+}
+
+.dropdown ul {
+	width: 80px;	
+	padding: 0;	
+	position: absolute;
+	top: 79%;
+	min-width: 90%;
+}
 /******************************************************************/
 /*MAIN LAYOUT******************************************************/
 /******************************************************************/
+
+
+
+.scrollable {
+	
+	height: 800px;
+	overflow: auto;
+}
 
 /******************************************************************/
 /*MOBILE LAYOUT****************************************************/
