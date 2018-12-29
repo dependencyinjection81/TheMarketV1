@@ -73,17 +73,17 @@
         		<p class="s-light">set urgency:</p>
 	        	
 	        	<div class="clumsyworkaround">
-					<input type="radio" name="size" id="size_1" value="small" checked />
+					<input type="radio" name="size" id="size_1" th:field="*{urgency}" value="anytime" checked="checked" />
 					<label id="anytime" for="size_1">1</label>
 				</div>
 				
 				<div class="clumsyworkaround">
-					<input type="radio" name="size" id="size_2" value="small" />
+					<input type="radio" name="size" id="size_2" th:field="*{urgency}" value="today" />
 					<label id="today" for="size_2">2</label>
 				</div>
 				
 				<div class="clumsyworkaround">  
-					<input type="radio" name="size" id="size_3" value="small" />
+					<input type="radio" name="size" id="size_3" th:field="*{urgency}" value="now" />
 					<label id="now" for="size_3">3</label>
 				</div>
         	

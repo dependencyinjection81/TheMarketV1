@@ -174,6 +174,7 @@ public class User {
   private List<UserRequest> requests = new ArrayList<>();
   
   public List<UserRequest> getRequests() {
+    requests.forEach((r) -> r.setElapsedtime());
     return requests;
   }
   

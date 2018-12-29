@@ -6,6 +6,9 @@ import com.market.entities.UserRequest;
 import com.market.repositories.UserRepository;
 import com.market.security.service.IAuthenticationFacade;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +29,32 @@ public class RequestService {
   UserRepository userRepository;
 
   /**
+   * TODO further checks and proper return-value
    * create a new Request.
    * @param requestForm Bean backed form   
-   * @return
+   * @return true
    */
   public boolean createNewRequest(final RequestForm requestForm) {
-    
-    Authentication auth = authenticationFacade.getAuthentication();
-    User clientUser = userRepository.findByEmail(auth.getName());
     
     UserRequest userRequest = new UserRequest();
     userRequest.setTitle(requestForm.getTitle());
     userRequest.setDescription(requestForm.getText());
-    clientUser.addRequest(userRequest);
-    userRepository.save(clientUser);
-    //RequestEntity request = new RequestEntity()
+    userRequest.setUrgency(requestForm.getUrgency());
     
+    /**
+     * Workaraound to get the current Timestamp.
+     */
+    Calendar calendar = Calendar.getInstance();
+    Date now = calendar.getTime();
+    Timestamp currentTimestamp = new Timestamp(now.getTime());
+    
+    userRequest.setTimestamp(currentTimestamp);
+    
+    Authentication auth = authenticationFacade.getAuthentication();
+    User clientUser = userRepository.findByEmail(auth.getName());
+    
+    clientUser.addRequest(userRequest);
+    userRepository.save(clientUser);    
     return true;
   }
 
