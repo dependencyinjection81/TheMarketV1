@@ -174,7 +174,6 @@ public class User {
   private List<UserRequest> requests = new ArrayList<>();
   
   public List<UserRequest> getRequests() {
-    requests.forEach((r) -> r.setElapsedtime());
     return requests;
   }
   
@@ -191,7 +190,6 @@ public class User {
     requests.remove(request);
     request.setUser(null);
   }
-  
 
   @Override
   public int hashCode() {
@@ -200,9 +198,10 @@ public class User {
     result = prime * result + ((email == null) ? 0 : email.hashCode());
     result = prime * result + (enabled ? 1231 : 1237);
     result = prime * result + ((id == null) ? 0 : id.hashCode());
+    result = prime * result + (online ? 1231 : 1237);
     result = prime * result + ((password == null) ? 0 : password.hashCode());
-    result = prime * result + ((roles == null) ? 0 : roles.hashCode());
     result = prime * result + ((requests == null) ? 0 : requests.hashCode());
+    result = prime * result + ((roles == null) ? 0 : roles.hashCode());
     result = prime * result + ((username == null) ? 0 : username.hashCode());
     return result;
   }
@@ -219,7 +218,6 @@ public class User {
       return false;
     }
     User other = (User) obj;
-    
     if (email == null) {
       if (other.email != null) {
         return false;
@@ -237,6 +235,9 @@ public class User {
     } else if (!id.equals(other.id)) {
       return false;
     }
+    if (online != other.online) {
+      return false;
+    }
     if (password == null) {
       if (other.password != null) {
         return false;
@@ -244,15 +245,6 @@ public class User {
     } else if (!password.equals(other.password)) {
       return false;
     }
-    
-    if (roles == null) {
-      if (other.roles != null) {
-        return false;
-      }
-    } else if (!roles.equals(other.roles)) {
-      return false;
-    }
-    
     if (requests == null) {
       if (other.requests != null) {
         return false;
@@ -260,7 +252,13 @@ public class User {
     } else if (!requests.equals(other.requests)) {
       return false;
     }
-    
+    if (roles == null) {
+      if (other.roles != null) {
+        return false;
+      }
+    } else if (!roles.equals(other.roles)) {
+      return false;
+    }
     if (username == null) {
       if (other.username != null) {
         return false;
