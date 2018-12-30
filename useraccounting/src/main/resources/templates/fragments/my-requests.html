@@ -4,11 +4,11 @@
 	
 	<div class="requests-list">
 
-		<div class="container" th:each="myRequest : ${myRequests}">
+		<div class="accordion" th:each="myRequest : ${myRequests}">
 			
 			<div class="request-item">
 				
-				<button class="collapsible" th:text="${myRequest.title}"></button>	
+				<div class="collapsible" th:text="${myRequest.title}"></div>	
 				
 				<div class="details">
 					<div class="request-details">
@@ -37,6 +37,7 @@
 						
 					</div>			
 				</div>
+			
 			</div>	
 		</div>
 	</div>
@@ -127,150 +128,142 @@
     </svg>
 	
 <script>
-	var coll = document.getElementsByClassName("collapsible");
-			
-	var i;
-	
-	for (i = 0; i < coll.length; i++) {
-	  coll[i].addEventListener("click", function() {
-	    this.classList.toggle("active");
-	    var content = this.nextElementSibling;
-	    if (content.style.maxHeight){
-	      content.style.maxHeight = null;
-	    } else {
-	      content.style.maxHeight = content.scrollHeight + "px";
-	    } 
-	  });
-	}
+$(document).ready(function(){
+	$(".accordion").on("click", ".collapsible", function() {
+		$(this).toggleClass("active").next().slideToggle('slow');
+		$(".details").not($(this).next()).slideUp('slow');
+		$(this).siblings().removeClass("active");
+	});
+});
 </script>
 	
 <style>
+
+
+.collapsible {
+   background-color: var(--color-grey-dark); 
+   color: var(--color-white-creme);
+   cursor: pointer;
+   padding: 18px;
+   width: 100%;
+   border: none;
+   text-align: center;
+   outline: none;
+   font-size: 15px;
+   border-radius: 6px;
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.collapsible:hover { 
+   background-color: var(--color-blue-middle); 
+}  
 
 .requests-list {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 1fr;
-	grid-template-rows: auto;	
-}
-
-.request-item {
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 1fr;
 	grid-template-rows: auto;
-}
+} 
 
-.collapsible {		  
-  background-color: var(--color-grey-dark);
-  color: var(--color-white-creme);
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: center;
-  outline: none;
-  font-size: 15px;
-  border-radius: 6px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-}
-		
-.active, .collapsible:hover {
-  background-color: var(--color-blue-middle);
-}
-	
-.details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: var(--color-grey-dark);
-  color: var(--color-white-creme);
-  border-radius: 6px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-}
+.request-item { 
+ 	display: grid;
+ 	grid-gap: 10px; 
+ 	grid-template-columns: 1fr; 
+ 	grid-template-rows: auto; 
+} 
 
-.request-details {
-  height: auto;
-  padding: 1em;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1em;
-}
 
-.request-details-content {
-  padding: 1em;
-  background-color: var(--color-grey-dark);
+ .details {     
+   background-color: var(--color-grey-dark); 
+   color: var(--color-white-creme); 
+   border-radius: 6px; 
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); 
+   display: none; 
+} 
+
+.request-details { 
+  height: auto; 
+  padding: 1em; 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  grid-gap: 1em; 
+} 
+
+.request-details-content { 
+  padding: 1em; 
+  background-color: var(--color-grey-dark); 
   color: var(--color-grey-middle);
+} 
+
+.request-details-bar { 
+   content: ''; 
+   height: 2px; 
+   width: 0; 
+   bottom: 0px;   
+   background: var(--color-blue-middle); 
+   position: relative; 
+   display: block; 
+   width: 100%; 
+   box-shadow: 0 0 8px 0 var(--color-blue-middle); 
+} 
+
+.request-details-status { 
+   display: grid; 
+   grid-template-columns: 1f; 
+   grid-template-rows: 1fr 1fr; 
+   background-color: var(--color-grey-dark); 
+   color: var(--color-white-creme); 
+   grid-gap: 1em; 
+} 
+
+.request-details-options { 
+   display: grid; 
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr; 
+   align-items: center; 
+   grid-template-areas: "rdo01 rdo02 rdo03 rdo04 rdo05 rdo06"; 
+   background-color: var(--color-grey-dark); 
 }
 
-.request-details-bar {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 0px;  
-  background: var(--color-blue-middle);
-  position: relative;
-  display: block;
-  width: 100%;
-  box-shadow: 0 0 8px 0 var(--color-blue-middle);
-}
+ /*Declaring the area variables*************************************/ 
+ .rdo01 {grid-area: rdo01;}
+ .rdo02 {grid-area: rdo02;} 
+ .rdo03 {grid-area: rdo03;} 
+ .rdo04 {grid-area: rdo04;} 
+ .rdo05 {grid-area: rdo05;} 
+ .rdo06 {grid-area: rdo06;} 
 
-.request-details-status {
-  display: grid;
-  grid-template-columns: 1f;
-  grid-template-rows: 1fr 1fr;
-  background-color: var(--color-grey-dark);
-  color: var(--color-white-creme);
-  grid-gap: 1em;
-}
+.request-description { 
+  padding: 1em; 
+  text-align: justify; 
+} 
 
-.request-details-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
-  align-items: center;
-  grid-template-areas: "rdo01 rdo02 rdo03 rdo04 rdo05 rdo06";
-  background-color: var(--color-grey-dark);
-}
+.l-icon-delete { 
+  width: 40px; 
+  height: 40px; 
+  align-self: end; 
+  background-color: transparent; 
+  fill: var(--color-red-light);	 
+} 
 
-/*Declaring the area variables*************************************/
-.rdo01 {grid-area: rdo01;}
-.rdo02 {grid-area: rdo02;}
-.rdo03 {grid-area: rdo03;}
-.rdo04 {grid-area: rdo04;}
-.rdo05 {grid-area: rdo05;}
-.rdo06 {grid-area: rdo06;}
+.l-icon-delete:hover { 
+  width: 40px; 
+  height: 40px; 
+  align-self: end; 
+  background-color: transparent; 
+  fill: var(--color-red-signal);	 
+} 
 
-.request-description {
-  padding: 1em;
-  text-align: justify;
-}
+.showbtn { 
+  padding: 16px 32px; 
+  background-color: var(--color-white-creme); 
+  color: var(--color-grey-dark); /*Textcolor*/ 
+} 
 
-.l-icon-delete {
-	width: 40px;
-	height: 40px;
-	align-self: end;
-	background-color: transparent;
-	fill: var(--color-red-light);	
-}
-
-.l-icon-delete:hover {
-	width: 40px;
-	height: 40px;
-	align-self: end;
-	background-color: transparent;
-	fill: var(--color-red-signal);	
-}
-
-.showbtn {
-	padding: 16px 32px;
-    background-color: var(--color-white-creme);
-    color: var(--color-grey-dark); /*Textcolor*/
-}
-
-.showbtn:hover {
-	padding: 16px 32px;
-    background-color: var(--color-green-light); 
-    color: var(--color-grey-dark); /*Textcolor*/
-}
+.showbtn:hover { 
+  padding: 16px 32px; 
+  background-color: var(--color-green-light);  
+  color: var(--color-grey-dark); /*Textcolor*/ 
+} 
 
 </style>
 

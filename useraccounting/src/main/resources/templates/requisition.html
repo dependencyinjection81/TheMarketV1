@@ -31,7 +31,6 @@
 		<!-- Displays logged in user -->
 		<div sec:authorize="hasRole('ROLE_USER')" class="h08"> 	
 			<a href='user-settings' sec:authentication="name"></a> 
-			<!-- <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
 		</div>
 			
 		<div class="h09">
@@ -65,7 +64,9 @@
 		<div class="my-requests">
 		
 			<button class="pane c-bg-green" onclick="location.href='new-request';" th:text="#{main.requisition.new}"></button>
-		
+			
+			<div class="spacer"></div>
+			
 			<div class="scrollable">
 				<th:block th:replace="fragments/my-requests :: my-requests"></th:block>
 			</div>

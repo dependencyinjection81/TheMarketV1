@@ -74,21 +74,30 @@
 	        	
 	        	<div class="clumsyworkaround">
 					<input type="radio" name="size" id="size_1" th:field="*{urgency}" value="anytime" checked="checked" />
-					<label id="anytime" for="size_1">1</label>
+					<label id="anytime" for="size_1" onclick="showInfo(anytime)">1</label>
 				</div>
 				
 				<div class="clumsyworkaround">
 					<input type="radio" name="size" id="size_2" th:field="*{urgency}" value="today" />
-					<label id="today" for="size_2">2</label>
+					<label id="today" for="size_2" onclick="showInfo(today)">2</label>
 				</div>
 				
 				<div class="clumsyworkaround">  
 					<input type="radio" name="size" id="size_3" th:field="*{urgency}" value="now" />
-					<label id="now" for="size_3">3</label>
+					<label id="now" for="size_3" onclick="showInfo(now)">3</label>
 				</div>
-        	
+
         	</div>
         	
+        	<!------------------------Spacer----------------------------------->
+            <div class="centered-form-spacer"></div>
+        	
+        	<!------------------------Explenation------------------------------>
+        	<div class="centered-form-info">
+	        	<p class="s-light" id="1"></p>
+	        	<p class="s-light" id="2"></p>
+	        	<p class="s-light" id="3"></p>
+        	</div>
         	<!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
         	
@@ -330,6 +339,12 @@
 	        $('#title_feedback').html(text_remaining);
 	    	});
 		});
+        
+        
+        function showInfo() {
+          document.getElementById("1").innerHTML = "Hello World";
+        }
+        
 
     </script>
 

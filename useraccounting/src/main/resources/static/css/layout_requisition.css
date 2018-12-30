@@ -4,6 +4,11 @@
 }
 
 .my-requests {
-	display grid;
-	grid-template-columns: 1fr;	
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.spacer {
+	height: 2em;
 }

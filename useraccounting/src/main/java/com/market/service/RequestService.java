@@ -9,6 +9,7 @@ import com.market.security.service.IAuthenticationFacade;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,14 +74,18 @@ public class RequestService {
     Authentication auth = authenticationFacade.getAuthentication();
     User clientUser = userRepository.findByEmail(auth.getName());
    
-    
+    // Cache as a new list
     List<UserRequest> myRequests = new ArrayList<>();
     myRequests.addAll(clientUser.getRequests());
-    for (UserRequest r : myRequests) {
-      
-      String elapsedTime = calculateEclapsedTime(r.getTimestamp());
+    
+    // Create specific elapsed time string for each UserRequest
+    for (UserRequest r : myRequests) {  
+      String elapsedTime = calculateElapsedTime(r.getTimestamp());
       r.setElapsedtime(elapsedTime);
     }
+    
+    // Sort descending
+    myRequests.sort(Comparator.comparing(UserRequest::getTimestamp).reversed());
     return myRequests;
   }
 
@@ -89,11 +94,11 @@ public class RequestService {
    * @param timestamp Timestamp
    * @return elapsed time as readable string
    */
-  private String calculateEclapsedTime(final Timestamp timestamp) {
+  private String calculateElapsedTime(final Timestamp timestamp) {
     
     long start = timestamp.getTime();
     /**
-     * Workaraound to get the current Timestamp.
+     * Workaraound to get the current Timestamp as millis.
      */
     Calendar calendar = Calendar.getInstance();
     Date now = calendar.getTime();
@@ -118,27 +123,48 @@ public class RequestService {
       
       Integer minutes = (int) (elapsedTimeInMillis / minuteInMillis);
       final String[] params = new String[] {minutes.toString()};
-      return messageSource
-          .getMessage("info.elapsedtime.minutes", params, LocaleContextHolder.getLocale());
-    
+      
+      if (minutes == 1) {
+        return messageSource
+            .getMessage("info.elapsedtime.minute", params, LocaleContextHolder.getLocale());
+      } else {
+        return messageSource
+            .getMessage("info.elapsedtime.minutes", params, LocaleContextHolder.getLocale());  
+      }
+      
     } else if ((elapsedTimeInMillis > hourInMillis) && (elapsedTimeInMillis <= dayInMillis)) {
       
       Integer hours = (int) (elapsedTimeInMillis / hourInMillis);
       final String[] params = new String[] {hours.toString()};
-      return messageSource
-          .getMessage("info.elapsedtime.hours", params, LocaleContextHolder.getLocale());
       
+      if (hours == 1) {
+        return messageSource
+            .getMessage("info.elapsedtime.hour", params, LocaleContextHolder.getLocale());
+      } else {
+      
+        return messageSource
+            .getMessage("info.elapsedtime.hours", params, LocaleContextHolder.getLocale());       
+      }
+            
     } else if (elapsedTimeInMillis > dayInMillis) {
       
       Integer days = (int) (elapsedTimeInMillis / dayInMillis);
       final String[] params = new String[] {days.toString()};
-      return messageSource
-          .getMessage("info.elapsedtime.days", params, LocaleContextHolder.getLocale());
-    
+      
+      if (days == 1) {
+        return messageSource
+            .getMessage("info.elapsedtime.day", params, LocaleContextHolder.getLocale());
+      } else {
+      
+        return messageSource
+            .getMessage("info.elapsedtime.days", params, LocaleContextHolder.getLocale());  
+      }
+      
     } else {
       return messageSource
           .getMessage("info.elapsedtime.error", null, LocaleContextHolder.getLocale());
     }
+    
   }
   
 }
