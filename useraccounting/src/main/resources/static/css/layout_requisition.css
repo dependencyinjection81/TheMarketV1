@@ -12,3 +12,17 @@
 .spacer {
 	height: 2em;
 }
+
+@media(max-width: 1024px) {
+
+	.b05 {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	
+	.my-requests {	
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+}

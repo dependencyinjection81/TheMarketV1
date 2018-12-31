@@ -82,5 +82,10 @@ public class RequisitionController {
       }
     }    
   }
+  
+  @GetMapping(value = "/get-location")
+  public String showGoogleMaps(final RequestForm requestForm) {
+    return "get-location";
+  }
 }
 

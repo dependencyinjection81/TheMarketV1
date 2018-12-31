@@ -1,0 +1,104 @@
+<html xmlns:th="http//thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leaflet/leaflet.css}"/>
+    <script type="text/javascript" th:src="@{/js/leaflet/leaflet.js}"></script>    
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title th:text="#{title.getlocation}"></title>
+</head>
+
+<body class="body-container-center">
+
+    <!-- Space left -->
+    <div class="bcs1"></div>
+
+    <!-- Header -->
+    <div class="bc02"></div>
+
+    <!-- Space right -->
+    <div class="bcs03"></div>
+
+    <!-- Space left -->
+    <div class="bcs04"></div>
+	
+	<!--MAIN CONTENT-->
+    <div class="bc05 skin-container">
+    
+    	<!------------------------Spacer----------------------------------->
+        <div class="centered-form-spacer"></div>
+        <button onclick="getLocation()">Get Geolocation</button>
+        <p id="demo"></p>
+        <div id="mapid"></div>
+  
+    </div>
+    
+    <!-- Space right -->
+    <div class="bcs06"></div>
+
+    <div class="bcs07"></div>
+
+    <div class="bc08"></div>
+
+    <div class="bcs09"></div>
+
+	<script>
+	
+	
+	//var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	
+// 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+// 	    attribution: '',
+// 	    maxZoom: 18,
+// 	    id: 'mapbox.streets',
+// 	    accessToken: 'pk.eyJ1IjoiYW55cmVxdWVzdCIsImEiOiJjanFjYXViZG4zdHM2NDRueW4xbWF5YWY5In0.7j73UMbOjgGWcFM-0Irzbg'
+// 	}).addTo(mymap);
+		
+ 	var x = document.getElementById("demo");
+		
+		function getLocation() {
+		  if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(showPosition);
+		  } else { 
+		    x.innerHTML = "Geolocation is not supported by this browser.";
+		  }
+		}
+		
+		function showPosition(position) {
+			
+			  function round(value, decimals) {
+				return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+			  }
+			
+			  var latlon = round(position.coords.latitude, 3) + ", " + round(position.coords.longitude, 2);
+			  console.log(latlon);
+			  
+			  var mymap = L.map('mapid').setView([48.098, 11.78], 13);
+			  
+			  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				    attribution: '',
+				    maxZoom: 18,
+				    id: 'mapbox.streets',
+				    accessToken: 'pk.eyJ1IjoiYW55cmVxdWVzdCIsImEiOiJjanFjYXViZG4zdHM2NDRueW4xbWF5YWY5In0.7j73UMbOjgGWcFM-0Irzbg'
+				}).addTo(mymap);
+		
+		}
+		
+    </script>
+    
+    <style>
+    
+    #mapid { height: 300px; }
+    
+    .leaflet-control-attribution {
+    	display: none;
+    } 
+    
+    .leaflet-control {
+    	display: none;
+    }
+    
+    </style>
+</body>
