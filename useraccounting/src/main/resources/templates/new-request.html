@@ -4,7 +4,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/layout-single-form-pages.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leaflet/leaflet.css}"/>
+    <script type="text/javascript" th:src="@{/js/leaflet/leaflet.js}"></script>    
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title th:text="#{title.newrequest}"></title>
 </head>
@@ -27,8 +30,8 @@
 
         <!--MAIN CONTENT-->
         <div class="bc05 skin-container">
-
-            <!------------------------Dropdown--------------------------------->            
+    
+            <!------------------------Language-dropdown--------------------------------->        
             <div class="centered-form-header dropdown" id="language-dropdown">  
                 <div class="dropdown-button" th:text="#{lang.change}"></div>
 
@@ -40,8 +43,8 @@
                         <a class="list-anchor" th:href="@{/new-request?lang=en}" th:text="#{lang.eng}"></a>
                         </li>
                     </ul>         
-            </div>      
-            
+            </div>
+                              
             <!------------------------Logo------------------------------------->
             <div class="centered-form-logo">
                 <div class="icon-container">
@@ -73,17 +76,17 @@
 	        	
 	        	<div class="clumsyworkaround">
 					<input type="radio" name="size" id="size_1" th:field="*{urgency}" value="anytime" checked="checked" />
-					<label id="anytime" for="size_1" onclick="showInfo(anytime)">1</label>
+					<label id="anytime" for="size_1" onclick="showInfo('anytime')">1</label>
 				</div>
 				
 				<div class="clumsyworkaround">
 					<input type="radio" name="size" id="size_2" th:field="*{urgency}" value="today" />
-					<label id="today" for="size_2" onclick="showInfo(today)">2</label>
+					<label id="today" for="size_2" onclick="showInfo('today')">2</label>
 				</div>
 				
 				<div class="clumsyworkaround">  
 					<input type="radio" name="size" id="size_3" th:field="*{urgency}" value="now" />
-					<label id="now" for="size_3" onclick="showInfo(now)">3</label>
+					<label id="now" for="size_3" onclick="showInfo('now')">3</label>
 				</div>
 
         	</div>
@@ -93,9 +96,7 @@
             
         	<!------------------------Explenation------------------------------>
         	<div class="centered-form-info">
-	        	<p class="s-light" id="1"></p>
-	        	<p class="s-light" id="2"></p>
-	        	<p class="s-light" id="3"></p>
+	        	<p class="s-light" id="status"></p>
         	</div>
         	<!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
@@ -153,7 +154,7 @@
         	<div class="centered-form-location">
         	
 	        	<div class="icon-container">
-	        		<a th:href="@{/get-location}">
+	        		<a href='#' onclick="getLocation()">
 	        		<svg class="l-icon-button"><use xlink:href="#icon-location"></use></svg></a>
 	        	</div>
         	
@@ -172,8 +173,13 @@
 	        	           
             </div>
             
+            <!------------------------Spacer----------------------------------->
+	        <div class="centered-form-spacer"></div>
+	        <p id="demo"></p>
+	        <div id="mapid"></div>
             
-    		
+            
+            		
             <!------------------------Spacer----------------------------------->
             <div class="centered-form-spacer"></div>
             
@@ -275,10 +281,26 @@
 	display: flex;
 	}
 	
+	#mapid { 
+	
+	height: 300px; 
+	
+	}
+    
+    .leaflet-control-attribution {
+    	display: none;
+    } 
+    
+    .leaflet-control {
+    	display: none;
+    }
+    
+    
+	
     </style>
 
-    <script type="text/javascript">
-    
+    <script th:inline="javascript">
+    /*<![CDATA[*/
 	    
         var activeDropdown = {};  
         document.getElementById('language-dropdown').addEventListener('click',function(){  
@@ -344,10 +366,55 @@
 		});
         
         
-        function showInfo() {
-          document.getElementById("1").innerHTML = "Hello World";
+        function showInfo(status) {
+          if (status === "anytime") {
+        	  document.getElementById("status").innerHTML = "Your request will expire until you delete it";  
+          } else if (status === "today") {
+        	  document.getElementById("status").innerHTML = "Your request will expire in 24 hours";
+          } else if (status === "now") {
+        	  document.getElementById("status").innerHTML = "Your request will expire in 6 hours";
+          } else {
+        	  document.getElementById("status").innerHTML = "error";
+          }
+        	
+          
         }
+        
+	    /************************************************************************************/
+        
+        var x = document.getElementById("demo");
+		
+		function getLocation() {
+		  if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(showPosition);
+		  } else { 
+		    x.innerHTML = "Geolocation is not supported by this browser.";
+		  }
+		}
+		
+		function showPosition(position) {
+			
+			  function round(value, decimals) {
+				return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+			  }
 
+			  var lat = round(position.coords.latitude, 4);
+			  var lon = round(position.coords.longitude, 3);
+			  console.log(lat);
+			  console.log(lon);
+			  
+			  var mymap = L.map('mapid').setView([lat, lon], 13);
+			  var marker = L.marker([lat, lon]).addTo(mymap);
+			  
+			  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				    attribution: '',
+				    maxZoom: 18,
+				    id: 'mapbox.streets',
+				    accessToken: 'pk.eyJ1IjoiYW55cmVxdWVzdCIsImEiOiJjanFjYXViZG4zdHM2NDRueW4xbWF5YWY5In0.7j73UMbOjgGWcFM-0Irzbg'
+				}).addTo(mymap);		
+		}
+
+	/*]]>*/
     </script>
 
     <!--SVG ICONS Recsource-->
