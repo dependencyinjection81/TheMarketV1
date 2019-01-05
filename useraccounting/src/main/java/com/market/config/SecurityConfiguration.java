@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 
-
 /**
  * Security Configuration.
  * @author Johannes Weiss
@@ -36,7 +35,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = UserDetailsServiceImpl.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+  
   /**
    * This is needed to have the AuthenticationManager managed by spring as a bean.
    */
@@ -94,13 +93,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(final HttpSecurity httpSecurity) throws Exception {
 
-    httpSecurity.authorizeRequests()
+    httpSecurity
+    .headers().httpStrictTransportSecurity().includeSubDomains(true).maxAgeInSeconds(31536000);
+    httpSecurity
+    .authorizeRequests()
     .antMatchers("/signup").permitAll()
     .antMatchers("/index").permitAll()
     .antMatchers("/login").permitAll()
     .antMatchers("/drag-and-drop01").permitAll()
     .antMatchers("/signup-verification").access("hasRole('ROLE_USERNOTVERIFIED')")
     .antMatchers("/online-users").access("hasRole('ROLE_USER')")
+    .antMatchers("/my-requests").access("hasRole('ROLE_USER')")
+    .antMatchers("/request").access("hasRole('ROLE_USER')")
+    .antMatchers("/new-request").access("hasRole('ROLE_USER')")
+    .antMatchers("/chatbox").access("hasRole('ROLE_USER')")
     .antMatchers("/contribution").access("hasRole('ROLE_USER')")
     .antMatchers("/requisition").access("hasRole('ROLE_USER')")
     .antMatchers("/welcome").access("hasRole('ROLE_USER')").and().formLogin().loginPage("/login")
@@ -114,6 +120,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .deleteCookies("JSESSIONID")
         .logoutSuccessHandler(logoutSuccessHandler());
         
-    httpSecurity.csrf().disable(); // Disable cross site request forgery
+        //httpSecurity.csrf().disable(); // Disable cross site request forgery protection!!!
   }
+  
 }

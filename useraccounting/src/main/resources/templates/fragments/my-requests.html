@@ -109,8 +109,8 @@
 <script>
 $(document).ready(function(){
 	$(".accordion").on("click", ".collapsible", function() {
-		$(this).toggleClass("active").next().slideToggle('slow');
-		$(".details").not($(this).next()).slideUp('slow');
+		$(this).toggleClass("active").next().slideToggle('fast');
+		$(".details").not($(this).next()).slideUp('fast');
 		$(this).siblings().removeClass("active");
 	});
 });

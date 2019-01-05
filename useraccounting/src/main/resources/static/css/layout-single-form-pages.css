@@ -1,8 +1,8 @@
 body {
   margin: 0px;
-  background-image: url('../images/background03.jpg');
-  background-repeat: no-repeat;
-  background-position: 50% 80%; 
+  /**background-image: url('../images/background03.jpg');**/
+  /**background-repeat: no-repeat;**/
+  /**background-position: 50% 80%; **/
 }
 
 p {text-align: center;}
