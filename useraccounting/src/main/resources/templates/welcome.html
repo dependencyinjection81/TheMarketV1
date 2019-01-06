@@ -1,141 +1,501 @@
 <html xmlns:th="http//thymeleaf.org">
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_base.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/layout_welcome.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 	<title th:text="#{title.welcome}"></title>
 </head>
 
-<body class="body-container">
+<body>
 
-	<!-- Space left -->
-	<div class="bs1 side-spacer header"></div>
-
-	<!-- Header -->
-	<div class="b02 header">
-
-
-		<div class="h01">
-			<div class="icon-container">
-				<a href='welcome'> <svg class="icon-big icon-skin">
-						<use xlink:href="#icon-logo"></use></svg></a>
+<!-- Header -->
+<header id="header" class="grid">
+	<div class="content-wrap">	
+		<nav class="nav">
+	  	
+	  	<div class="logo">
+	  		<div class="icon-container">
+				<a href='welcome'> 
+					<svg class="icon-big icon-skin"><use xlink:href="#icon-logo"></use></svg>
+				</a>
 			</div>
 		</div>
-		
-		<!-- Displays logged in user -->
-		<div sec:authorize="hasRole('ROLE_USER')" class="h08"> 	
-			<a href='user-settings' sec:authentication="name"></a> 
-			<!-- <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
-		</div>
+	  	
+	  	<button onclick="this.classList.toggle('collapsed');document.getElementById('nav-links').classList.toggle('expanded')">
+	    <span></span>
+	    <span></span>
+	    <span></span>
+	  	</button>
+	    
+	    <ul id="nav-links">
+		    <li><a href="contribution" th:text="#{header.contribution.link}"></a></li>
 			
-		<div class="h09">
-			<a href='execute-logout' th:text="#{header.logout}"></a>
+		    <li><div class="empty"></div></li>
+		    <li><div class="empty"></div></li>
+		    <li><div class="empty"></div></li>
+		    <li><div class="empty"></div></li>
+		    <li><a href='user-settings' sec:authentication="name"></a></li>
+		    <li><a href='execute-logout' th:text="#{header.logout}"></a></li>
+		    <li><button id="open-modal-btn">language</button></li>
+	    </ul>
+	    
+		</nav>
+	</div>
+</header>
+
+<!-- dropback -->
+<div class="dropback"></div>
+
+<!-- Modal markup -->
+<div class="modal">
+    <a class="list-anchor" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
+    <a class="list-anchor" th:href="@{/welcome?lang=en}" th:text="#{lang.eng}"></a>
+</div>	
+
+<div class="site-description" th:text="#{title.welcome}"></div>
+	
+<!-- Main Area -->
+<main id="main">
+
+	<section id="section-a" class="grid">
+		<div class="content-wrap">
+			<button class="pane c-bg-green" onclick="location.href='requisition';" th:text="#{header.requisition.start}"></button>
 		</div>
-
-		 <!------------------------Language dropdown--------------------------------->            
-         <div class="h10 dropdown" id="language-dropdown">  
-             <div class="dropdown-button" th:text="#{lang.change}"></div>
-
-                 <ul class="dropdown-selection">
-                     <li>
-                         <a class="list-anchor" th:href="@{/welcome?lang=de}" th:text="#{lang.de}"></a>
-                     </li>
-                     <li>
-                     <a class="list-anchor" th:href="@{/welcome?lang=en}" th:text="#{lang.eng}"></a>
-                     </li>
-                 </ul>         
-         </div>      
-	</div>
-
-	<!-- Space right -->
-	<div class="bs3 side-spacer header"></div>
-
-	<!-- Space left -->
-	<div class="bs04 side-spacer side-spacer-skin"></div>
-
-	<!-- Main content -->
-	<div class="b05 main-content-skin">
+	</section>
 	
-	<div></div>
+	<section id="section-b" class="grid">
+		<div class="content-wrap">
+			<button class="pane c-bg-blue" onclick="location.href='contribution';" th:text="#{header.contribution.start}"></button>			
+		</div>
+	</section>
 	
-	<div class="centered-field">
-	<button class="pane c-bg-green" onclick="location.href='requisition';" th:text="#{header.requisition.start}"></button>
-	
-	<div></div>
-	<button class="pane c-bg-blue" onclick="location.href='contribution';" th:text="#{header.contribution.start}"></button>
-	</div>
-		
-	</div>
+</main>
 
-	<!-- Space right -->
-	<div class="bs06 side-spacer side-spacer-skin"></div>
+<script type="text/javascript">
+window.addEventListener('load', function () {
 
-	<div class="bs07 side-spacer footer"></div>
+    let closeModalBtn = this.document.getElementById('close-modal-btn');
+    let openModalBtn = this.document.getElementById('open-modal-btn');
+    let dropback = this.document.getElementsByClassName('dropback')[0];
+    let modal = this.document.getElementsByClassName('modal')[0];
 
-	<div class="b08 footer"></div>
+    //show modal
 
-	<div class="bs09 side-spacer footer"></div>
+    openModalBtn.addEventListener('click', showModal);
 
-	<script type="text/javascript">
-        
-        var activeDropdown = null;
-        activeDropdown = {};
-        document.getElementById('language-dropdown').addEventListener('click',function(){  
-          for (var i = 0;i<this.children.length;i++){
-            if (this.children[i].classList.contains('dropdown-selection')){
-                //saving the data into our object, so we can recall it easily
-                activeDropdown.id = this.id;
-                activeDropdown.element = this.children[i];
-                this.children[i].style.visibility = 'visible';
-                }
-          }
-        });
+    function showModal() {
+        dropback.classList.add('showDropback');
+        modal.classList.add('showModal');
+    }
 
-        window.onclick = function(event){  
-          if (!event.target.classList.contains('dropdown-button')){
-            activeDropdown.element.style.visibility = 'hidden';
-          }
-        }
-        
-    </script>
+    /*
+    click listener on dropback and close-modal-btn
+    to hide modal and dropback
+    */
 
-	<!--SVG ICONS Recsource-->
-    <svg style="display:none">
-        <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
-            <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
-            <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
-        </symbol>
+    dropback.addEventListener('click', hideModal);
+    closeModalBtn.addEventListener('click', hideModal);
 
-        <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
-            <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z " />
-        </symbol>
 
-        <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
-            <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
-            <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
-        </symbol>
+    function hideModal() {
+        dropback.classList.remove('showDropback');
+        modal.classList.remove('showModal');
+    }
+});   
+       
+       
+</script>
+    
+<!--SVG ICONS Recsource-->
+<svg style="display:none">
+    <symbol id="icon-user" viewBox="0 0 16 15" width="100%" height="100%">
+        <circle id="path3731" cx="8.0095701" cy="4.210526" r="3.7492054" />
+        <path d="M 8.0025625,9 A 7.0212142,6.2493242 0 0 0 0.98121724,15.248355 7.0212142,6.2493242 0 0 0 1,15.681262 H 15.000002 A 7.0212142,6.2493242 0 0 0 15.02391,15.248355 7.0212142,6.2493242 0 0 0 8.0025645,9 Z" id="path3733" />
+    </symbol>
 
-        <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
-            <g id="layer1">
-                <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
-                    <g id="g1413" transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
-                        <circle r="2.2097087" cy="11.094446" cx="6.9384851" id="path1376" />
-                        <circle r="1.403165" cy="8.0119019" cx="13.534466" id="path1382" />
-                        <g id="g1403">
-                            <circle id="path1378" cx="3.1267376" cy="2.9958642" r="1.2263883" />
-                            <circle id="path1380" cx="8.8056889" cy="6.2220387" r="0.9612233" />
-                            <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z" id="path1386" />
-                            <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z" id="path1388" />
-                            <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z" id="path1390" />
-                        </g>
+    <symbol id="icon-email" viewBox="0 0 16 15" width="100%" height="100%">
+        <path id="rect4587" d="M 1 4 L 1 12 L 15 12 L 15 4 L 1 4 z M 1.5 5.59375 L 14.5 5.59375 L 8 9 L 1.5 5.59375 z " />
+    </symbol>
+
+    <symbol id="icon-lock" viewBox="0 0 16 15" width="100%" height="100%">
+        <rect id="rect4593" width="14" height="7" x="1" y="7"></rect>
+        <path style="fill:none;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 2,9 C 2,0 14,0 14,9 v 0 z" id="path4595" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"></path>
+    </symbol>
+
+    <symbol id="icon-logo" width="100%" height="100%" viewBox="0 0 16 15">
+        <g id="layer1">
+            <g transform="translate(-0.75130096,-1.1490485)" id="g1435">
+                <g id="g1413" transform="matrix(0.90677966,0,0,0.90341772,0.13295703,2.2351204)">
+                    <circle r="2.2097087" cy="11.094446" cx="6.9384851" id="path1376" />
+                    <circle r="1.403165" cy="8.0119019" cx="13.534466" id="path1382" />
+                    <g id="g1403">
+                        <circle id="path1378" cx="3.1267376" cy="2.9958642" r="1.2263883" />
+                        <circle id="path1380" cx="8.8056889" cy="6.2220387" r="0.9612233" />
+                        <path d="M 3.0935921,3.051107 6.2534755,9.8791073 Z" id="path1386" />
+                        <path d="M 7.0931649,9.9895923 8.617864,6.6971262 Z" id="path1388" />
+                        <path d="M 7.3141358,11.094447 13.169863,8.2439224 Z" id="path1390" />
                     </g>
-                    <path d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z" id="path1415" />
                 </g>
-        </symbol>
-    </svg>
+                <path d="M 10.750504,3.2460878 A 4.9386744,4.931834 0 0 0 5.8109212,8.1772061 4.9386744,4.931834 0 0 0 5.8205912,8.4202553 4.4940569,4.4940569 0 0 1 10.305514,4.1082475 4.4940569,4.4940569 0 0 1 14.798902,8.6016354 4.4940569,4.4940569 0 0 1 10.403459,13.092605 4.9386744,4.931834 0 0 0 10.7505,13.109535 4.9386744,4.931834 0 0 0 15.688873,8.1772071 4.9386744,4.931834 0 0 0 10.7505,3.2460888 Z" id="path1415" />
+            </g>
+    </symbol>
+</svg>
 
 </body>
+
+<style>
+
+/*********************************/
+/******COLOR SHEME****************/
+/*********************************/
+
+:root {
+
+    --color-red-signal: rgb(235,116,100);
+    --color-orange-signal: rgb(235,164,100);
+   	--color-yellow-signal: rgb(235,210,100);
+    
+    --color-white-creme: rgb(230,230,230);
+    
+    --color-red-light: #FFB789;
+    --color-green-light: #B7f081;
+    --color-blue-middle: #4BA7CD;
+    
+    
+    --color-grey-light: rgb(230,230,230);
+    --color-grey-middle: rgb(180,180,180);
+    --color-grey-dark: rgb(100,100,100);
+    --color-grey-almostblack: rgb(50,50,50);
+
+}
+
+/*********************************/
+/******BASE***********************/
+/*********************************/
+* {
+	font-family: Helvetica;	
+}
+
+body {
+	margin:0;
+	font-size: 1.1em;
+	line-height: 1.5;
+	text-align: center;
+}
+
+img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 1em 0;
+}
+
+p {
+	margin: 0;
+	padding: 1em 0;
+}
+
+/*********************************/
+/******Header*********************/
+/*********************************/
+
+#header {
+	height: auto;
+	background-color: var(--color-grey-dark);
+	color: var(--color-white-creme);
+}
+
+.nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.nav ul {
+	display: flex;
+	list-style-type: none;
+	overflow: hidden;
+	transition: max-height 0.2s ease-in-out;
+}
+
+.nav ul li a {
+	  position: relative;
+	  text-decoration: none;
+	  color: var(--color-white-creme);
+	  padding: 1em;	  
+	  display: block;
+}
+
+.nav ul li a::after {
+	  content: '';
+	  transition: all 0.2s ease-in-out;
+	  position: absolute;
+	  bottom: 0; left: 0; right: 0;
+	  display: block;
+	  transform: scaleX(.3);
+	  opacity: 0;
+	  border-bottom: 2px solid var(--color-blue-middle);
+	  box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+.nav ul li a:hover::after {
+	  content: '';
+	  opacity: 1;
+	  position: absolute;
+	  bottom: 0; left: 0; right: 0;
+	  display: block;
+	  transform: scaleX(1);
+	  border-bottom: 2px solid var(--color-blue-middle);
+	  box-shadow: 0 0 8px 0 var(--color-blue-middle);
+}
+
+.nav button {
+	  display: none;
+	  cursor: pointer;
+	  border-radius: 4px;
+	  padding: 10px 10px 4px;
+	  outline: none;
+	  border: none;
+	  background: var(--color-grey-dark);
+}
+
+.nav button span {
+	 background: var(--color-white-creme);
+	 transition: all 0.2s ease-in-out;
+	 width: 26px;
+	 height: 1px;
+	 border: 2px solid var(--color-white-creme);
+	 margin-bottom: 6px;
+	 display: block;
+	 border-radius: 2px;	 
+}
+
+.nav button.collapsed span:nth-child(1) {
+  transform: translate(0px, 11px) rotate(45deg);
+}
+
+.nav button.collapsed span:nth-child(2) {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.nav button.collapsed span:nth-child(3) {
+  transform: translate(0px, -11px) rotate(-45deg);
+}
+
+.logo {  
+  padding: 1em;
+}
+
+.icon-container {position: relative;}
+
+.icon-big {		
+	width: 60px; height: 60px;     
+    position:absolute;
+    left: -35px; 
+    top: -30px;          
+}
+
+.icon-skin {
+	background-color: var(--color-grey-dark);
+    fill: var(--color-white-creme);     
+    transition: 0.2s;
+}
+
+.icon-skin:hover {
+	fill: var(--color-blue-middle);   
+}
+
+.empty {
+	width: 5em;
+}
+
+/**Language Modal**/
+
+#open-modal-btn {
+	color: var(--color-white-creme);  
+}
+
+#open-modal-btn:hover {
+	color: var(--color-blue-middle); 
+}
+
+.dropback,
+.modal {
+    position: fixed;
+}
+
+.dropback {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    cursor: pointer;
+    z-index: 1;
+    background-color: var(--color-grey-dark);
+    opacity: 0.5;
+}
+
+.modal {
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    background-color: var(--color-white-creme);
+    transform: translate(-50%, 100%);
+    transition: all .3s ease-in-out;
+    height: 50%;
+    width: 50%;
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 0 15px 100px rgba(0, 0, 0, .5);
+}
+
+.modal a {
+    text-decoration: none;
+    display: block;
+    margin: 25px 0;
+    color: black;
+}
+
+.modal a:hover {
+    text-decoration: underline;
+}
+
+.showModal {
+
+     transform: translate(-50%, -50%); 
+}
+
+.showDropback {
+    display: block;
+}
+
+/*********************************/
+/******Main***********************/
+/*********************************/
+#main .bg-image {
+	position: absolute;
+	background: url('../images/background03.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0.8;
+}
+
+.content-wrap {
+	 padding: 0 1.5em;
+}
+
+/*********************************/
+/******Sections*******************/
+/*********************************/
+
+#section-a {
+	padding-bottom: 2em;
+}
+
+#section-b {
+	padding-bottom: 2em;
+}
+
+.card {
+	padding: 1.5em;
+}
+
+.pane {		  
+  
+  color: var(--color-grey-dark);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  border-radius: 6px;
+  
+}
+	
+.pane:hover  {
+  color: var(--color-grey-almostblack);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.c-bg-green {
+  background-color: var(--color-green-light);	
+}
+
+.c-bg-blue {
+  background-color: var(--color-blue-middle);	
+}
+
+/*********************************/
+/******Media Queries**************/
+/*********************************/
+
+@media(min-width: 700px) {
+
+	#open-modal-btn {
+		display: initial;	    
+	}
+		
+	#open-modal-btn:hover {
+	    display: initial;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr repeat(2, minmax(auto, 36em)) 1fr;
+	}
+		
+	.content-wrap {
+		grid-column: 2/4
+	}
+	
+	#main {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1em;
+	}
+	
+	.scrollable {	
+	}
+
+}
+
+/**Navigation**/
+@media(max-width: 700px) {
+
+	.nav {
+	    height: auto;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+  	}
+  	
+	.nav button {
+	    display: block;
+	}
+	
+	.nav ul {
+	    width: 100%;
+	    flex-direction: column;
+	    max-height: 0;
+	    margin: 0;
+	    padding: 0;
+	}
+	
+}
+
+.nav ul.expanded {
+  max-height: 100vh;
+}	
+
+</style>
 
 </html>

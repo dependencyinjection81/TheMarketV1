@@ -34,7 +34,6 @@
 		    <li><div class="empty"></div></li>
 		    <li><div class="empty"></div></li>
 		    <li><div class="empty"></div></li>
-		    <li><div class="empty"></div></li>
 		    <li><a href='user-settings' sec:authentication="name"></a></li>
 		    <li><a href='execute-logout' th:text="#{header.logout}"></a></li>
 	    </ul>
@@ -43,11 +42,13 @@
 	</div>
 </header>
 
+<div class="site-description">
+Request page
+</div>
+
 <!-- Main Area -->
 <main id="main">
 	
-	<div class="bg-image"></div>
-
 	<section id="section-a" class="grid">
 		<div class="content-wrap">
 			<div class="my-requests">
@@ -287,6 +288,9 @@ p {
 .empty {
 	width: 5em;
 }
+
+
+
 /*********************************/
 /******Main***********************/
 /*********************************/
@@ -368,6 +372,8 @@ p {
 .c-bg-green {
   background-color: var(--color-green-light);	
 }
+
+
 
 /*********************************/
 /******Media Queries**************/
